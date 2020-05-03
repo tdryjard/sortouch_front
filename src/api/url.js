@@ -1,2 +1,2 @@
-const url = 'http://192.168.43.193:8000/api';
+const url = 'https://sortouch-back.herokuapp.com/';
 export default url;
