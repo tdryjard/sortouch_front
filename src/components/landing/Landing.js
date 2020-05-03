@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import Navbar from '../navbar/Navbar'
 import { Link } from 'react-router-dom'
-import QuestionChat from '../react_library/questionBlock/QuestionChat'
+import QuestionChat from './QuestionChat'
 import Chatbot from 'sortouch-react'
 import MenuBurger from '../menuBurger/MenuBurger'
 import './Landing.scss'
