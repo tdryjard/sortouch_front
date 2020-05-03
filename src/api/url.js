@@ -1,2 +1,2 @@
-const url = 'https://sortouch-front.herokuapp.com/';
+const url = 'https://sortouch-back.herokuapp.com/';
 export default url;
