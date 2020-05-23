@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import url from '../../../api/url'
 import { Redirect, Link } from 'react-router-dom'
+import origin from '../../../api/origin'
 import Navbar from '../../navbar/Navbar'
 import MenuBurger from '../../menuBurger/MenuBurger'
 import { useForm } from "react-hook-form";
@@ -46,13 +47,14 @@ const Registration = (props) => {
             if (data.data) {
                 const response = await fetch(`${url}/user/connect`, {
                     method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Acces-Control-Allow-Origin': { origin }
+                    },
                     body: JSON.stringify({
                         email: mail,
                         password: password
-                    }),
-                    headers: {
-                        'Content-Type': 'application/json'
-                    }
+                    })
                 });
                 // Récupération du status de la requête
                 const result = await response.json();
