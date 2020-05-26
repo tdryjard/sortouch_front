@@ -81,7 +81,7 @@ const Landing = () => {
                             {window.innerWidth > 1280 &&
                                 <h1 className="titleChatLanding"><QuestionChat text={`Créez votre chatbot gratuitement avec Sortouch`} /></h1>}
                             <div className="containerTextLanding1">
-                                <h2 id="textLanding1" className={"textChatLanding"}>L'éditeur de chatbot le plus simple actuellement</h2>
+                                <h2 id="textLanding1" className={"textChatLanding"}>L'éditeur de chatbot le plus simple à prendre en main</h2>
                             </div>
                             <img src={require('./image/editor.png')} alt="editeur" className="editorImg" />
                             <div className="containerTextLanding">
@@ -92,14 +92,14 @@ const Landing = () => {
                                 <img src={require('./image/wordpress.png')} alt="wordpress logo" className="logoInstallLanding" />
                             </div>
                             <div className="containerTextLanding">
-                                <h2 id="textLanding3" className={textEffect3 ? "textChatLanding" : "displayNone"}>Recevez les prises de contact avec vous via votre chatbot triées automatiquement !</h2>
+                                <h2 id="textLanding3" className={textEffect3 ? "textChatLanding" : "displayNone"}>Recevez les prises de contact avec vous via votre chatbot triées par catégories !</h2>
                             </div>
                             <div className="containerMessageImg">
                                 <img src={require('./image/formChatbot.png')} alt="formulaire contact chatbot" className="formChatImg" />
                                 <img src={require('./image/message_area.jpg')} alt="espace message" className="areaMessageImgLanding" />
                             </div>
                             <div className="containerTextLanding">
-                                <h2 id="textLanding4" className={textEffect4 ? "textChatLanding" : "displayNone"}>Créez vous une vrai base de donnée d'email et de numéro !</h2>
+                                <h2 id="textLanding4" className={textEffect4 ? "textChatLanding" : "displayNone"}>Retrouvez tous les emails et numéros de téléphones récoltés</h2>
                             </div>
                             <img src={require('./image/data_area.jpg')} alt="espace base de donnée" className="areaImgLanding" />
                         </div>
@@ -108,10 +108,10 @@ const Landing = () => {
                         <img alt="time gain" src={require('./image/time_back.svg')} className="imgHeadLanding" />
                         <div className="windowTextHead">
                             <div className="contentTitleLanding">
-                                <h1 className="titleLanding">85% des interactions impliqueront l’usage de chatbots en 2022</h1>
+                                <h1 className="titleLanding">Votre site est votre vitrine<br/>Ne laissez pas vos visiteurs regarder puis partir sans laisser de traces</h1>
                             </div>
                             <div className="contentTextLanding">
-                                <p className="textLanding">Si le chatbot est devenu incontournable ces derniers temps c'est grace à ces nombreux avantages<br />Le premier avantage prouvé est le gains de temps pour vous et vos clients ou futurs client<br />Aujour'hui, un utilisateur internet veut aller au plus vite vers ce qu'il recherche<br />Un chatbot vous aide à les guider lors de leur visite</p>
+                                <p className="textLanding">En invitants les visiteurs de votre site à vous laisser leurs contacts vous ne serez plus qu'une simple vitrine<br />Votre chatbot sortouch vous aide à transformer un simple visiteur en futur client en reprenant contact avec lui</p>
                             </div>
                         </div>
                     </div>
@@ -120,10 +120,10 @@ const Landing = () => {
                             <img alt="prospect gain" src={require('./image/graphic.svg')} className="imgHeadLanding" />}
                         <div className="windowTextHead">
                             <div className="contentTitleLanding">
-                                <h1 className="titleLanding">60% des entreprises ont observés une amélioration de la fidélisation client avec leur chatbot</h1>
+                                <h1 className="titleLanding">Vos visiteurs sont humains</h1>
                             </div>
                             <div className="contentTextLanding">
-                                <p className="textLanding">Attirer de nouveaux client ou répondre aux besoins de ses clients est le but de toute entreprise <br />En créant un liens direct avec eux grace à un chatbot créé par vous et qui vous ressemble apporte un bénéfice consédérable</p>
+                                <p className="textLanding">Demander simplement à un visiteur de donner son adresse mail ne suffis pas<br/>C'est devenu tellement inpersonnel et répandu que l'on appuie directement sur la croix quand l'on voit ce genre de popup<br/>Vos visiteurs sont humain et on besoin d'échanger, d'être conquis avant de donner leurs contacts<br/>C'est là qu'un bon chatbot fais la différence</p>
                             </div>
                         </div>
                         {window.innerWidth > 1280 &&
@@ -133,10 +133,10 @@ const Landing = () => {
                         <img alt="mail" src={require('./image/mail_back.svg')} className="imgHeadLanding" />
                         <div className="windowTextHead">
                             <div className="contentTitleLanding">
-                                <h1 className="titleLanding">75% des clients souhaitent avoir une conversation avec un humain pour des demandes plus complexes</h1>
+                                <h1 className="titleLanding">Les tunnels de vente sont indipensables</h1>
                             </div>
                             <div className="contentTextLanding">
-                                <p className="textLanding">C'est pourquoi Sortouch ne s'occupe pas uniquement de la première interraction mais aussi à l'après premier contact.<br />Grace à la boite de réception à votre disposition, ous recevez les prises de contacts directement dans votre boite de réception Sortouch, trié dans les catégories qui correspondent<br />Cela vous aide à créer le second contact humain tout en vous faisant gagner du temps et en protégeant vos emails des spams</p>
+                                <p className="textLanding">Un tunnel de vente c'est plusieurs étapes afin de transformer un prospect en client<br/>Si vous avez résussis à attirer un prospect sur votre site, c'est un pas de géant dans la conversion en acheteur<br/>Mais la plupart du temps, cela ne suffis pas !<br/>Il faut encore préciser ce tunnel de vente en recontactant personnellement votre prospect, par mail ou par téléphone dans les meilleurs des cas</p>
                             </div>
                         </div>
                     </div>
