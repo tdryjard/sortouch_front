@@ -32,8 +32,7 @@ const Registration = (props) => {
             const response = await fetch(`${url}/user/create`, {
                 method: 'POST',
                 headers: {
-                    'Content-Type': 'application/json',
-                    'Acces-Control-Allow-Origin': { origin }
+                    'Content-Type': 'application/json'
                 },
                 body: JSON.stringify({
                     email: mail,
@@ -48,8 +47,7 @@ const Registration = (props) => {
                 const response = await fetch(`${url}/user/connect`, {
                     method: 'POST',
                     headers: {
-                        'Content-Type': 'application/json',
-                        'Acces-Control-Allow-Origin': { origin }
+                        'Content-Type': 'application/json'
                     },
                     body: JSON.stringify({
                         email: mail,
@@ -75,7 +73,6 @@ const Registration = (props) => {
                         method: 'POST',
                         headers: {
                             'Content-Type': 'application/json',
-                            'Acces-Control-Allow-Origin': { origin },
                             'authorization': sessionStorage.getItem('token')
                         },
                         body: JSON.stringify({
@@ -91,7 +88,6 @@ const Registration = (props) => {
                             method: 'POST',
                             headers: {
                                 'Content-Type': 'application/json',
-                                'Acces-Control-Allow-Origin': { origin },
                                 'authorization': sessionStorage.getItem('token')
                             },
                             body: JSON.stringify({

@@ -31,6 +31,7 @@
     "lint-staged": "^9.5.0",
     "prettier": "^1.19.1"
   },
+  "proxy" : "https://sortouch-back.herokuapp.com" , 
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
