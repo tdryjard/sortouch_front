@@ -1,2 +1,2 @@
-const origin = 'https://sortouch_front.herokuapp.com';
+const origin = 'sortouch.co';
 export default origin;
