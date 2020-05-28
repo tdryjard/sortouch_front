@@ -21,8 +21,6 @@ import Pricing from './components/pricing/Pricing'
 function App() {
   const [userId, setUserId] = useState(null)
 
-  window.location = "http://api.sortouch.co/"
-
   useEffect(() => {
     if (localStorage.getItem('userId')) {
       setUserId(localStorage.getItem('userId'))
