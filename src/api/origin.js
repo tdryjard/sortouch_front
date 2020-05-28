@@ -1,2 +1,2 @@
-const origin = 'http://back.sortouch.co';
+const origin = 'sortouch.co';
 export default origin;
