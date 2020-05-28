@@ -1,2 +1,2 @@
-const url = 'https://api.sortouch.co/api';
+const url = 'http://api.sortouch.co/api';
 export default url;
