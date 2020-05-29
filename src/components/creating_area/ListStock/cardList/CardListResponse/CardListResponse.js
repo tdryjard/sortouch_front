@@ -63,7 +63,10 @@ const CardListResponse = (props) => {
     }
 
     const ValidUpdateResponse = () => {
-            const name = inputValue.html.replace('&nbsp;', '')
+            let name = inputValue.html.replace('&nbsp;', '')
+            name = name.replace('<div>', '')
+            name = name.replace('<br>', '')
+            name = name.replace('</div>', '')
             fetch(`${url}/response/update/${props.id}/${userId}/${modelId}`, {
                 method: 'PUT',
                 headers: {

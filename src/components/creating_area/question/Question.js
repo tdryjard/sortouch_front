@@ -31,7 +31,10 @@ const Question = () => {
   }
 
   async function validQuestion() {
-    const name = inputValue.html.replace('&nbsp;', '')
+    let name = inputValue.html.replace('&nbsp;', '')
+    name = name.replace('<div>', '')
+    name = name.replace('<br>', '')
+    name = name.replace('</div>', '')
     const valueQuestion = {
       content: name,
       user_id: userId,

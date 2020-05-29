@@ -31,7 +31,10 @@ const Addcategory = () => {
   }
 
   async function validCategory() {
-    const name = inputValue.html.replace('&nbsp;', '')
+    let name = inputValue.html.replace('&nbsp;', '')
+    name = name.replace('<div>', '')
+    name = name.replace('<br>', '')
+    name = name.replace('</div>', '')
     const valueCategory = {
       name: name,
       user_id: userId,

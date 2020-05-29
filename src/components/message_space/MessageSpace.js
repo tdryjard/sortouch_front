@@ -122,11 +122,14 @@ const MessageBox = (props) => {
 
     const updateCategoryActive = (id, name) => {
         setCategoryId(id)
-        setInputValue({html: name})
+        setInputValue({ html: name })
     }
 
     const sendUpdate = () => {
-        const name = inputValue.html.replace('&nbsp;', '')
+        let name = inputValue.html.replace('&nbsp;', '')
+        name = name.replace('<div>', '')
+        name = name.replace('<br>', '')
+        name = name.replace('</div>', '')
         fetch(`${url}/category/update/${categoryId}/${userId}/${modelId}`, {
             method: 'PUT',
             headers: {
@@ -143,7 +146,7 @@ const MessageBox = (props) => {
     }
 
     const changeInput = (event) => {
-        if(inputValue.html.split('').length < 50){
+        if (inputValue.html.split('').length < 50) {
             console.log(inputValue.html.split('').length)
             setInputValue({ html: event.target.value })
 
@@ -157,7 +160,7 @@ const MessageBox = (props) => {
             <Navbar type="mails" />
             {mobile && <img onClick={() => { setCategoryOpen(!categoryOpen) }} className="menuIcon" alt="menu burger" src={require('./image/menu_icon.png')} />}
             <div className={!mobile ? "containerOngletLeft" : mobile && categoryOpen ? "containerOngletLeftOpen" : "containerOngletLeftClose"}>
-            {Array.isArray(categorys) && <p className="titleCategoryOnglet">Catégories de réception</p>}
+                {Array.isArray(categorys) && <p className="titleCategoryOnglet">Catégories de réception</p>}
                 {Array.isArray(categorys) ?
                     categorys.map((category, index) => {
                         return (
@@ -171,7 +174,7 @@ const MessageBox = (props) => {
                                                     <img src={require('./image/newMessage_icon.png')} className="newMessageIcon" alt="new message" />
                                                     <p className="nbNewMessage">{unview[index]}</p>
                                                 </div>}
-                                            <img alt="update icon" src={require('./image/update_icon.png')} id={`category${category.id}`} className='iconCategory' onClick={() => {updateCategoryActive(category.id, category.name)}} />
+                                            <img alt="update icon" src={require('./image/update_icon.png')} id={`category${category.id}`} className='iconCategory' onClick={() => { updateCategoryActive(category.id, category.name) }} />
                                             <img alt="delete icon" src={require('./image/delete_icon.png')} id={`category${category.id}`} className="iconCategory" onClick={deleteCategory} />
                                         </div>
                                     </div>
@@ -190,8 +193,8 @@ const MessageBox = (props) => {
                             </div>
                         )
                     })
-                :
-                <p className="textNoCategory">Créez votre premier chatbot grace à <Link to="/editeur">l'éditeur</Link></p>}
+                    :
+                    <p className="textNoCategory">Créez votre premier chatbot grace à <Link to="/editeur">l'éditeur</Link></p>}
             </div>
             <AreaMessage token={token} userId={userId} modelId={modelId} categoryName={categorys[categoryIndex] && categorys[categoryIndex].name} userId={userId} categoryId={categorySelect} />
         </div>

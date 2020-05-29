@@ -1,7 +1,6 @@
 import React, { useState } from 'react'
 import url from '../../../api/url'
 import { Redirect, Link } from 'react-router-dom'
-import origin from '../../../api/origin'
 import Navbar from '../../navbar/Navbar'
 import MenuBurger from '../../menuBurger/MenuBurger'
 import { useForm } from "react-hook-form";
@@ -32,7 +31,8 @@ const Registration = (props) => {
             const response = await fetch(`${url}/user/create`, {
                 method: 'POST',
                 headers: {
-                    'Content-Type': 'application/json'
+                    'Content-Type': 'application/json',
+                    'Acces-Control-Allow-Origin': { origin }
                 },
                 body: JSON.stringify({
                     email: mail,
@@ -46,13 +46,13 @@ const Registration = (props) => {
             if (data.data) {
                 const response = await fetch(`${url}/user/connect`, {
                     method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
                     body: JSON.stringify({
                         email: mail,
                         password: password
-                    })
+                    }),
+                    headers: {
+                        'Content-Type': 'application/json'
+                    }
                 });
                 // Récupération du status de la requête
                 const result = await response.json();
@@ -67,13 +67,17 @@ const Registration = (props) => {
                 // CREATION EXEMPLE CHATBOT //
 
                 const userId = data.data.id
+                const token = await result.token
+                console.log(token)
+
 
                 if (data.data) {
                     let modelCreate = await fetch(url + '/model/add', {
                         method: 'POST',
                         headers: {
                             'Content-Type': 'application/json',
-                            'authorization': sessionStorage.getItem('token')
+                            'Acces-Control-Allow-Origin': { origin },
+                            'authorization': token
                         },
                         body: JSON.stringify({
                             name: 'exemple chatbot',
@@ -88,7 +92,8 @@ const Registration = (props) => {
                             method: 'POST',
                             headers: {
                                 'Content-Type': 'application/json',
-                                'authorization': sessionStorage.getItem('token')
+                                'Acces-Control-Allow-Origin': { origin },
+                                'authorization': token
                             },
                             body: JSON.stringify({
                                 content_type: 'question',
@@ -104,7 +109,7 @@ const Registration = (props) => {
                                 headers: {
                                     'Content-Type': 'application/json',
                                     'Acces-Control-Allow-Origin': { origin },
-                                    'authorization': sessionStorage.getItem('token')
+                                    'authorization': token
                                 },
                                 body: JSON.stringify({
                                     content: 'Bonjour, que puis je faire pour vous ?',
@@ -123,7 +128,7 @@ const Registration = (props) => {
                                     headers: {
                                         'Content-Type': 'application/json',
                                         'Acces-Control-Allow-Origin': { origin },
-                                        'authorization': sessionStorage.getItem('token')
+                                        'authorization': token
                                     },
                                     body: JSON.stringify({
                                         question_id: questionFirstId,
@@ -139,7 +144,7 @@ const Registration = (props) => {
                                         headers: {
                                             'Content-Type': 'application/json',
                                             'Acces-Control-Allow-Origin': { origin },
-                                            'authorization': sessionStorage.getItem('token')
+                                            'authorization': token
                                         },
                                         body: JSON.stringify({
                                             content_type: 'response',
@@ -155,7 +160,7 @@ const Registration = (props) => {
                                             headers: {
                                                 'Content-Type': 'application/json',
                                                 'Acces-Control-Allow-Origin': { origin },
-                                                'authorization': sessionStorage.getItem('token')
+                                                'authorization': token
                                             },
                                             body: JSON.stringify({
                                                 content: 'En savoir plus sur vos services',
@@ -169,7 +174,7 @@ const Registration = (props) => {
                                                 headers: {
                                                     'Content-Type': 'application/json',
                                                     'Acces-Control-Allow-Origin': { origin },
-                                                    'authorization': sessionStorage.getItem('token')
+                                                    'authorization': token
                                                 },
                                                 body: JSON.stringify({
                                                     content: `J'aimerais contacter le service après vente`,
@@ -188,7 +193,7 @@ const Registration = (props) => {
                                                     headers: {
                                                         'Content-Type': 'application/json',
                                                         'Acces-Control-Allow-Origin': { origin },
-                                                        'authorization': sessionStorage.getItem('token')
+                                                        'authorization': token
                                                     },
                                                     body: JSON.stringify({
                                                         response_id: responseFirstId,
@@ -207,7 +212,7 @@ const Registration = (props) => {
                                                         headers: {
                                                             'Content-Type': 'application/json',
                                                             'Acces-Control-Allow-Origin': { origin },
-                                                            'authorization': sessionStorage.getItem('token')
+                                                            'authorization': token
                                                         },
                                                         body: JSON.stringify({
                                                             response_id: responseTwoId,
@@ -223,7 +228,7 @@ const Registration = (props) => {
                                                             headers: {
                                                                 'Content-Type': 'application/json',
                                                                 'Acces-Control-Allow-Origin': { origin },
-                                                                'authorization': sessionStorage.getItem('token')
+                                                                'authorization': token
                                                             },
                                                             body: JSON.stringify({
                                                                 content_type: 'question',
@@ -239,7 +244,7 @@ const Registration = (props) => {
                                                                 headers: {
                                                                     'Content-Type': 'application/json',
                                                                     'Acces-Control-Allow-Origin': { origin },
-                                                                    'authorization': sessionStorage.getItem('token')
+                                                                    'authorization': token
                                                                 },
                                                                 body: JSON.stringify({
                                                                     content_type: 'question',
@@ -255,7 +260,7 @@ const Registration = (props) => {
                                                                     headers: {
                                                                         'Content-Type': 'application/json',
                                                                         'Acces-Control-Allow-Origin': { origin },
-                                                                        'authorization': sessionStorage.getItem('token')
+                                                                        'authorization': token
                                                                     },
                                                                     body: JSON.stringify({
                                                                         content: 'Très bien, laissez nous vos coordonnées et nous vous recontacterons rapidement !',
@@ -273,7 +278,7 @@ const Registration = (props) => {
                                                                         headers: {
                                                                             'Content-Type': 'application/json',
                                                                             'Acces-Control-Allow-Origin': { origin },
-                                                                            'authorization': sessionStorage.getItem('token')
+                                                                            'authorization': token
                                                                         },
                                                                         body: JSON.stringify({
                                                                             question_id: questionTwoId,
@@ -291,7 +296,7 @@ const Registration = (props) => {
                                                                             headers: {
                                                                                 'Content-Type': 'application/json',
                                                                                 'Acces-Control-Allow-Origin': { origin },
-                                                                                'authorization': sessionStorage.getItem('token')
+                                                                                'authorization': token
                                                                             },
                                                                             body: JSON.stringify({
                                                                                 question_id: questionTwoId,
@@ -307,7 +312,7 @@ const Registration = (props) => {
                                                                                 headers: {
                                                                                     'Content-Type': 'application/json',
                                                                                     'Acces-Control-Allow-Origin': { origin },
-                                                                                    'authorization': sessionStorage.getItem('token')
+                                                                                    'authorization': token
                                                                                 },
                                                                                 body: JSON.stringify({
                                                                                     content_type: 'response',
@@ -323,7 +328,7 @@ const Registration = (props) => {
                                                                                     headers: {
                                                                                         'Content-Type': 'application/json',
                                                                                         'Acces-Control-Allow-Origin': { origin },
-                                                                                        'authorization': sessionStorage.getItem('token')
+                                                                                        'authorization': token
                                                                                     },
                                                                                     body: JSON.stringify({
                                                                                         content_type: 'response',
@@ -339,7 +344,7 @@ const Registration = (props) => {
                                                                                         headers: {
                                                                                             'Content-Type': 'application/json',
                                                                                             'Acces-Control-Allow-Origin': { origin },
-                                                                                            'authorization': sessionStorage.getItem('token')
+                                                                                            'authorization': token
                                                                                         },
                                                                                         body: JSON.stringify({
                                                                                             content: `D'accord :)`,
@@ -353,7 +358,7 @@ const Registration = (props) => {
                                                                                             headers: {
                                                                                                 'Content-Type': 'application/json',
                                                                                                 'Acces-Control-Allow-Origin': { origin },
-                                                                                                'authorization': sessionStorage.getItem('token')
+                                                                                                'authorization': token
                                                                                             },
                                                                                             body: JSON.stringify({
                                                                                                 content: `D'accord :)`,
@@ -371,7 +376,7 @@ const Registration = (props) => {
                                                                                                 headers: {
                                                                                                     'Content-Type': 'application/json',
                                                                                                     'Acces-Control-Allow-Origin': { origin },
-                                                                                                    'authorization': sessionStorage.getItem('token')
+                                                                                                    'authorization': token
                                                                                                 },
                                                                                                 body: JSON.stringify({
                                                                                                     response_id: responseThreeId,
@@ -391,7 +396,7 @@ const Registration = (props) => {
                                                                                                     headers: {
                                                                                                         'Content-Type': 'application/json',
                                                                                                         'Acces-Control-Allow-Origin': { origin },
-                                                                                                        'authorization': sessionStorage.getItem('token')
+                                                                                                        'authorization': token
                                                                                                     },
                                                                                                     body: JSON.stringify({
                                                                                                         response_id: responseFourId,
@@ -407,7 +412,7 @@ const Registration = (props) => {
                                                                                                         headers: {
                                                                                                             'Content-Type': 'application/json',
                                                                                                             'Acces-Control-Allow-Origin': { origin },
-                                                                                                            'authorization': sessionStorage.getItem('token')
+                                                                                                            'authorization': token
                                                                                                         },
                                                                                                         body: JSON.stringify({
                                                                                                             name: "Service après vente",
@@ -421,7 +426,7 @@ const Registration = (props) => {
                                                                                                             headers: {
                                                                                                                 'Content-Type': 'application/json',
                                                                                                                 'Acces-Control-Allow-Origin': { origin },
-                                                                                                                'authorization': sessionStorage.getItem('token')
+                                                                                                                'authorization': token
                                                                                                             },
                                                                                                             body: JSON.stringify({
                                                                                                                 name: "Renseignement services",
@@ -435,7 +440,7 @@ const Registration = (props) => {
                                                                                                                 headers: {
                                                                                                                     'Content-Type': 'application/json',
                                                                                                                     'Acces-Control-Allow-Origin': { origin },
-                                                                                                                    'authorization': sessionStorage.getItem('token')
+                                                                                                                    'authorization': token
                                                                                                                 },
                                                                                                                 body: JSON.stringify({
                                                                                                                     content_type: 'category',
@@ -455,7 +460,7 @@ const Registration = (props) => {
                                                                                                                     headers: {
                                                                                                                         'Content-Type': 'application/json',
                                                                                                                         'Acces-Control-Allow-Origin': { origin },
-                                                                                                                        'authorization': sessionStorage.getItem('token')
+                                                                                                                        'authorization': token
                                                                                                                     },
                                                                                                                     body: JSON.stringify({
                                                                                                                         category_id: categoryFirstId,
@@ -471,7 +476,7 @@ const Registration = (props) => {
                                                                                                                         headers: {
                                                                                                                             'Content-Type': 'application/json',
                                                                                                                             'Acces-Control-Allow-Origin': { origin },
-                                                                                                                            'authorization': sessionStorage.getItem('token')
+                                                                                                                            'authorization': token
                                                                                                                         },
                                                                                                                         body: JSON.stringify({
                                                                                                                             content_type: 'category',
@@ -491,7 +496,7 @@ const Registration = (props) => {
                                                                                                                             headers: {
                                                                                                                                 'Content-Type': 'application/json',
                                                                                                                                 'Acces-Control-Allow-Origin': { origin },
-                                                                                                                                'authorization': sessionStorage.getItem('token')
+                                                                                                                                'authorization': token
                                                                                                                             },
                                                                                                                             body: JSON.stringify({
                                                                                                                                 category_id: categoryTwoId,

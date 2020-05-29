@@ -66,7 +66,7 @@ const Landing = () => {
             </div>
             <div className="containerTitleLanding">
                 <img src={require('./image/data.png')} alt="gains data" className="imgTitleLanding" />
-                <h1 className="titleLandingTop">Se créer un base de donnée d'email et de numéro de téléphone</h1>
+                <h1 className="titleLandingTop">Se créer une base de donnée d'email et de numéro de téléphone</h1>
             </div>
             <div className="containerHeadLanding">
                 <div className="containerTextHead">
@@ -81,25 +81,25 @@ const Landing = () => {
                             {window.innerWidth > 1280 &&
                                 <h1 className="titleChatLanding"><QuestionChat text={`Créez votre chatbot gratuitement avec Sortouch`} /></h1>}
                             <div className="containerTextLanding1">
-                                <h2 id="textLanding1" className={"textChatLanding"}>L'éditeur de chatbot le plus simple à prendre en main</h2>
+                                <h2 id="textLanding1" className={"textChatLanding"}>L'éditeur de chatbot le plus simple d'utilisation</h2>
                             </div>
                             <img src={require('./image/editor.png')} alt="editeur" className="editorImg" />
                             <div className="containerTextLanding">
-                                <h2 id="textLanding2" className={textEffect2 ? "textChatLanding" : "displayNone"} >Intégrez facilement votre chatbot à votre site</h2>
+                                <h2 id="textLanding2" className={textEffect2 ? "textChatLanding" : "displayNone"} >Intégrez facilement votre chatbot sur votre site</h2>
                             </div>
                             <div className="containerLogoLanding">
                                 <img src={require('./image/react.svg')} alt="react logo" className="logoInstallLanding" />
                                 <img src={require('./image/wordpress.png')} alt="wordpress logo" className="logoInstallLanding" />
                             </div>
                             <div className="containerTextLanding">
-                                <h2 id="textLanding3" className={textEffect3 ? "textChatLanding" : "displayNone"}>Recevez les prises de contact avec vous via votre chatbot triées par catégories !</h2>
+                                <h2 id="textLanding3" className={textEffect3 ? "textChatLanding" : "displayNone"}>Recevez les prises de contact avec vous via votre chatbot triées automatiquement !</h2>
                             </div>
                             <div className="containerMessageImg">
                                 <img src={require('./image/formChatbot.png')} alt="formulaire contact chatbot" className="formChatImg" />
                                 <img src={require('./image/message_area.jpg')} alt="espace message" className="areaMessageImgLanding" />
                             </div>
                             <div className="containerTextLanding">
-                                <h2 id="textLanding4" className={textEffect4 ? "textChatLanding" : "displayNone"}>Retrouvez tous les emails et numéros de téléphones récoltés</h2>
+                                <h2 id="textLanding4" className={textEffect4 ? "textChatLanding" : "displayNone"}>Créez vous une vrai base de donnée d'email et de numéro de téléphone !</h2>
                             </div>
                             <img src={require('./image/data_area.jpg')} alt="espace base de donnée" className="areaImgLanding" />
                         </div>
@@ -108,10 +108,10 @@ const Landing = () => {
                         <img alt="time gain" src={require('./image/time_back.svg')} className="imgHeadLanding" />
                         <div className="windowTextHead">
                             <div className="contentTitleLanding">
-                                <h1 className="titleLanding">Votre site est votre vitrine<br/>Ne laissez pas vos visiteurs regarder puis partir sans laisser de traces</h1>
+                                <h1 className="titleLanding">Votre site est votre vitrine<br/>Ne laissez pas vos visiteurs regarder puis partir sans laisser de trace</h1>
                             </div>
                             <div className="contentTextLanding">
-                                <p className="textLanding">En invitants les visiteurs de votre site à vous laisser leurs contacts vous ne serez plus qu'une simple vitrine<br />Votre chatbot sortouch vous aide à transformer un simple visiteur en futur client en reprenant contact avec lui</p>
+                                <p className="textLanding">En invitant les visiteurs de votre site à vous laisser leurs contacts vous ne serez plus qu'une simple vitrine<br />Votre chatbot sortouch vous aide à transformer un simple visiteur en futur client en reprenant contact avec lui</p>
                             </div>
                         </div>
                     </div>
@@ -123,7 +123,7 @@ const Landing = () => {
                                 <h1 className="titleLanding">Vos visiteurs sont humains</h1>
                             </div>
                             <div className="contentTextLanding">
-                                <p className="textLanding">Demander simplement à un visiteur de donner son adresse mail ne suffis pas<br/>C'est devenu tellement inpersonnel et répandu que l'on appuie directement sur la croix quand l'on voit ce genre de popup<br/>Vos visiteurs sont humain et on besoin d'échanger, d'être conquis avant de donner leurs contacts<br/>C'est là qu'un bon chatbot fais la différence</p>
+                                <p className="textLanding">Le simple popup demandant l'adresse mail est devenu intrusif et le clique sur le bouton croix un réflex<br/>Vos visiteurs sont humains et ont besoin d'échanger et d'être conquis avant de partager leurs contacts<br/>C'est là qu'un bon chatbot fait la différence</p>
                             </div>
                         </div>
                         {window.innerWidth > 1280 &&
@@ -133,10 +133,10 @@ const Landing = () => {
                         <img alt="mail" src={require('./image/mail_back.svg')} className="imgHeadLanding" />
                         <div className="windowTextHead">
                             <div className="contentTitleLanding">
-                                <h1 className="titleLanding">Les tunnels de vente sont indipensables</h1>
+                                <h1 className="titleLanding">Les tunnels de vente sont indispensables</h1>
                             </div>
                             <div className="contentTextLanding">
-                                <p className="textLanding">Un tunnel de vente c'est plusieurs étapes afin de transformer un prospect en client<br/>Si vous avez résussis à attirer un prospect sur votre site, c'est un pas de géant dans la conversion en acheteur<br/>Mais la plupart du temps, cela ne suffis pas !<br/>Il faut encore préciser ce tunnel de vente en recontactant personnellement votre prospect, par mail ou par téléphone dans les meilleurs des cas</p>
+                                <p className="textLanding">Un tunnel de vente représente les différentes étapes de la transformation d'un visiteur sur votre site en client<br/>Attirer un visiteur sur son site est une première étape<br/>Mais la plupart du temps, cela ne suffit pas !<br/>Il faut encore préciser ce tunnel de vente en recontactant personnellement votre prospect, par mail ou par téléphone dans les meilleurs des cas</p>
                             </div>
                         </div>
                     </div>

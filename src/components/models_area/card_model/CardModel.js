@@ -34,7 +34,7 @@ const CardModel = (props) => {
     const linkRef = useRef(null);
 
     const changeInput = (event) => {
-        if(inputValue.html.split('').length < 200){
+        if (inputValue.html.split('').length < 200) {
             setInputValue({ html: event.target.value })
         }
     }
@@ -45,7 +45,8 @@ const CardModel = (props) => {
                 'Content-Type': 'application/json',
                 'Access-Control-Allow-Origin': `${origin}`,
                 'authorization': token
-            }})
+            }
+        })
             .then(res => res.json())
             .then(res => setCategorys(res))
     }, [props.id, userId, token])
@@ -55,11 +56,12 @@ const CardModel = (props) => {
         console.log(categorys)
         for (let n = 0; n < categorys.length; n++) {
             fetch(`${url}/mail/find/${userId}/${props.id}/${categorys[n].id}`, {
-            headers: {
-                'Content-Type': 'application/json',
-                'Access-Control-Allow-Origin': `${origin}`,
-                'authorization': token
-            }})
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Access-Control-Allow-Origin': `${origin}`,
+                    'authorization': token
+                }
+            })
                 .then(res => res.json())
                 .then(res => {
                     console.log(res)
@@ -97,7 +99,10 @@ const CardModel = (props) => {
     }
 
     const updateModel = (event) => {
-        const name = inputValue.html.replace('&nbsp;', '')
+        let name = inputValue.html.replace('&nbsp;', '')
+        name = name.replace('<div>', '')
+        name = name.replace('<br>', '')
+        name = name.replace('</div>', '')
         const modelId = parseInt(event.target.id.replace('model', ''))
         console.log(`${url}/model/update/${modelId}/${userId}`)
         fetch(`${url}/model/update/${modelId}/${userId}`, {
@@ -139,7 +144,7 @@ const CardModel = (props) => {
                         </div>
                     </div>
                     <div className="infoCardModel">
-                                <img onClick={() => { setOptionSelected(true) }} className="optionIcon" src={require('./image/option_icon.png')} alt="option" />
+                        <img onClick={() => { setOptionSelected(true) }} className="optionIcon" src={require('./image/option_icon.png')} alt="option" />
                         <div className="contentNameCardModel"><p className="nameCardModel">{props.name}</p></div>
                         {redirect && <Redirect
                             state={props.id} to="/mails" />}

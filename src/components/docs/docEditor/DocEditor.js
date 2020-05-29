@@ -13,9 +13,9 @@ const DocEditor = () => {
             <div className="contentDoc">
                 <h1 className="titleDoc">Apprenez facilement à utiliser notre éditeur de chatbot</h1>
                 <div className="containerSectionDoc">
-                    <h4 className="titleContainerSectionDoc">Choisir une catégorie d'interraction à ajouter</h4>
+                    <h4 className="titleContainerSectionDoc">Choisir une catégorie d'interaction à ajouter</h4>
                     <div className="contentSectionDoc">
-                        <p className="textContainerSectionDoc">Vous pouvez naviguer entre les sections questions, réponses et boite de réception en appuyant sur ces différents bouton</p>
+                        <p className="textContainerSectionDoc">Vous pouvez naviguer entre les sections questions, réponses et boite de réception en appuyant sur ces différents boutons</p>
                         <img className="imgCategoryDoc" src={require('./image/category.png')} alt="category cartes éditeur"/>
                     </div>
                 </div>
@@ -29,28 +29,28 @@ const DocEditor = () => {
                 <div className="containerSectionDoc">
                     <h4 className="titleContainerSectionDoc">Ajouter une réponses</h4>
                     <div className="contentSectionDoc">
-                        <p className="textContainerSectionDoc">Exactement comme pour les questions, votre chatbot aura besoin de différentes réponses possible afin de diriger vos visiteurs au bon endroit. Ajouter le nom de la réponse, appuyer sur ajouter puis retourver sa réponse en bas de la section</p>
+                        <p className="textContainerSectionDoc">Exactement comme pour les questions, votre chatbot aura besoin de différentes réponses possibles afin de diriger vos visiteurs au bon endroit. Ajouter le nom de la réponse, appuyer sur ajouter puis retrouver sa réponse en bas de la section</p>
                         <img className="imgQuestionDoc" src={require('./image/response.png')} alt="category cartes éditeur"/>
                     </div>
                 </div>
                 <div className="containerSectionDoc">
                     <h4 className="titleContainerSectionDoc">Ajouter une boite de réception</h4>
                     <div className="contentSectionDoc">
-                        <p className="textContainerSectionDoc">Une fois qu'assez de questions, réponses auront été placés afind e cibler le besoin de l'utilisateur, il vous faudra le rediriger vers un formulaire lié à la bonne catégorie de réception. Pour cela, comme pour les questions et réponse, écrire le nom de la catégorie et appuer sur ajouter.</p>
+                        <p className="textContainerSectionDoc">Une fois qu'assez de questions, réponses auront été placées afin de cibler le besoin de l'utilisateur, il vous faudra le rediriger vers un formulaire lié à la bonne catégorie de réception. Pour cela, comme pour les questions et réponses, écrire le nom de la catégorie et appuyer sur ajouter.</p>
                         <img className="imgQuestionDoc" src={require('./image/destination.png')} alt="category cartes éditeur"/>
                     </div>
                 </div>
                 <div className="containerSectionDoc">
                     <h4 className="titleContainerSectionDoc">Ajouter une interraction</h4>
                     <div className="contentSectionDocColumn">
-                        <p className="textContainerSectionColumnDoc">Un chatbot se constitue en plusieurs interraction, afin d'ajouter une terraction dans l'éditeur il faut simplement appuyer sur le bouton d'ajout du type d'interraction désiré</p>
+                        <p className="textContainerSectionColumnDoc">Un chatbot se constitue en plusieurs interactions, afin d'ajouter une interaction dans l'éditeur il faut simplement appuyer sur le bouton d'ajout du type d'interaction désiré</p>
                         <img className="imgAddContainerDoc" src={require('./image/add_container.png')} alt="category cartes éditeur"/>
                     </div>
                 </div>
                 <div className="containerSectionDoc">
-                    <h4 className="titleContainerSectionDoc">Lier une question, réponse ou boite de destination à un un contenaire d'interaction</h4>
+                    <h4 className="titleContainerSectionDoc">Lier une question, réponse ou boite de destination à un un conteneur d'interaction</h4>
                     <div className="contentSectionDoc">
-                        <p className="textContainerSectionJoinDoc">Afin de lier les deux, il faut simplement appuyer sur l'icon <img src={require('../../creating_area/builder/image/connect_icon.png')} alt="joindre" className="joinIconText"/> de l'interraction à ajouter et sur le contenaire avec lequel l'on veut le lier </p>
+                        <p className="textContainerSectionJoinDoc">Afin de lier les deux, il faut simplement appuyer sur l'icon <img src={require('../../creating_area/builder/image/connect_icon.png')} alt="joindre" className="joinIconText"/> de l'interaction à ajouter et sur le conteneur avec lequel l'on veut le lier </p>
                         <img className="imgJoinDoc" src={require('./image/join.png')} alt="category cartes éditeur"/>
                     </div>
                 </div>

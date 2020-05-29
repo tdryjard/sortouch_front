@@ -44,7 +44,10 @@ const Area = () => {
 
     fetch(`${url}/question/findAll/${userId}/${modelId}`)
     .then(res => res.json())
-    .then(res => {setQuestions(res)})
+    .then(res => {
+      if(res.length){
+        setQuestions(res.reverse())
+      }})
   }, [userId, modelId])
 
   const changeToQuestions = () => {
@@ -58,8 +61,9 @@ const Area = () => {
     fetch(`${url}/question/findAll/${userId}/${modelId}`)
     .then(res => res.json())
     .then(res => {
-        console.log(res)
-        setQuestions(res)})
+      if(res.length){
+        setQuestions(res.reverse())
+      }})
   }
 
   const changeToResponse = () => {
@@ -73,8 +77,9 @@ const Area = () => {
     fetch(`${url}/response/findAll/${userId}/${modelId}`)
     .then(res => res.json())
     .then(res => {
-        console.log(res)
-        setResponses(res)})
+      if(res.length){
+        setResponses(res.reverse())
+      }})
   }
 
   const changeToDestination = () => {
@@ -93,7 +98,10 @@ const Area = () => {
           'authorization': token
         }})
       .then(res => res.json())
-      .then(res => setCategorys(res))
+      .then(res => {
+        if(res.length){
+          setCategorys(res.reverse())
+        }})
   }
 
   useEffect(() => {
@@ -102,7 +110,10 @@ const Area = () => {
     if(responses){
       fetch(`${url}/response/findAll/${userId}/${modelId}`)
       .then(res => res.json())
-      .then(res => {setResponses(res)})
+      .then(res => {
+        if(res.length){
+          setResponses(res.reverse())
+        }})
     }
     
 
@@ -115,13 +126,19 @@ const Area = () => {
           'authorization': token
         }})
       .then(res => res.json())
-      .then(res => setCategorys(res))
+      .then(res => {
+        if(res.length){
+          setCategorys(res.reverse())
+        }})
     }
 
     if(questions){
       fetch(`${url}/question/findAll/${userId}/${modelId}`)
       .then(res => res.json())
-      .then(res => {setQuestions(res)})
+      .then(res => {
+        if(res.length){
+          setQuestions(res.reverse())
+        }})
     }
     
   },[addingCardState, userId, modelId])

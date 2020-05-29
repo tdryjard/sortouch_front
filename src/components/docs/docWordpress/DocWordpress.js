@@ -28,7 +28,7 @@ const DocReact = () => {
                 <h4 className="titleContainerSectionDocWordpress">Sur votre ordinateur</h4>
                 <a href="sortouch-plugin.zip"
                     download="sortouch-plugin" className="linkDownload">1) Télécharger le plugin</a>
-                <p className="textDoc">2) Extraire le dossier le placer dans le dossier wp-content/plugins de wordpress en local</p>
+                <p className="textDoc">2) Extraire le dossier puis le placer dans le dossier wp-content/plugins de wordpress en local</p>
                 <h4 className="titleContainerSectionDocWordpress">Sur wordrpess</h4>
                 <p className="textDoc">1) Ajouter un bloc Shortcode (code court) sur votre site wordpress</p>
                 <img src={require('./image/add_shortcode.png')} alt="add shortcode" className="imgDocWordpress" />

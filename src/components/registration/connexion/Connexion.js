@@ -1,6 +1,5 @@
 import React, { useState } from 'react'
 import url from '../../../api/url'
-import origin from '../../../api/origin'
 import { Redirect, Link } from 'react-router-dom'
 import Navbar from '../../navbar/Navbar'
 import MenuBurger from '../../menuBurger/MenuBurger'
@@ -25,8 +24,7 @@ const Connexion = (props) => {
                 password: password
             }),
             headers: {
-                'Content-Type': 'application/json',
-                'Acces-Control-Allow-Origin': { origin }
+                'Content-Type': 'application/json'
             }
         });
         // Récupération du status de la requête

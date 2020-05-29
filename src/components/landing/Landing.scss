@@ -321,6 +321,17 @@
     width: 100%;
 }
 
+.titleChatLanding{
+    justify-content: center;
+    font-size: 30px;
+    margin: 0;
+    margin-left: 20px;
+    margin-right: 20px;
+    min-height: 90px;
+    width: 65%;
+    margin-bottom: 5px;
+}
+
 @media screen and (max-width: 1280px){
     .containerLanding{
         background-repeat: no-repeat;
@@ -357,7 +368,7 @@
     }
     .titleChatLanding{
         justify-content: center;
-        font-size: 22px;
+        font-size: 20px;
         margin: 0;
         margin-left: 20px;
         margin-right: 20px;

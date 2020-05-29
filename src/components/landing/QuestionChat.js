@@ -28,7 +28,7 @@ const Questionchat = (props) => {
 
     return(
         <div>
-            <p className="questionPrint">{totalQuestion}</p>
+            <p style={{margin: 0}}>{totalQuestion}</p>
         </div>
     )
 }

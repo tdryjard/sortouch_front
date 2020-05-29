@@ -32,7 +32,7 @@ const Questionchat = (props) => {
     return(
         <div className="contentQuestChat">
             <div className="contentTextQuestChat">
-                <p className="textQuestChatbot">{totalQuestion}</p>
+                <p>{totalQuestion}</p>
             </div>
         </div>
     )
