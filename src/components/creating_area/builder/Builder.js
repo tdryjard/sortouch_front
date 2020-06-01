@@ -189,6 +189,7 @@ const Builder = () => {
 
     const insertContainerId = async (id, type) => {
         const relations = await fetch(`${url}/relation/find/${userId}/${modelId}`)
+        console.log(relations)
         const res = await relations.json()
         const relationsResult = res.filter(relation => relation.onChange === 1)
         console.log(relationsResult)
