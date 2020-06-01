@@ -191,7 +191,7 @@ const Builder = () => {
         const relations = await fetch(`${url}/relation/find/${userId}/${modelId}`)
         const res = await relations.json()
         const relationsResult = res.filter(relation => relation.onChange === 1)
-        console.log(relationResult)
+        console.log(relationsResult)
         console.log(relations)
         if (relationsResult.length > 0) {
             let typeOnChange = "";
