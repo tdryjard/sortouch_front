@@ -191,6 +191,8 @@ const Builder = () => {
         const relations = await fetch(`${url}/relation/find/${userId}/${modelId}`)
         const res = await relations.json()
         const relationsResult = res.filter(relation => relation.onChange === 1)
+        console.log(relationResult)
+        console.log(relations)
         if (relationsResult.length > 0) {
             let typeOnChange = "";
             if (relationsResult[0].question_id) {
@@ -201,7 +203,7 @@ const Builder = () => {
                 typeOnChange = "category"
             }
             connectClassDisable()
-
+            console.log(type, typeOnChange)
             if (type === typeOnChange) {
                 try {
                     const result = await fetch(`${url}/relation/update/${userId}/${modelId}`, {
