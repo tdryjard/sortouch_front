@@ -33,93 +33,97 @@ const Builder = () => {
             setUserId(sessionStorage.getItem('userId'))
             setToken(sessionStorage.getItem('token'))
         }
-        if(!modelId) setModelId(sessionStorage.getItem('modelId'))
+        if (!modelId) setModelId(sessionStorage.getItem('modelId'))
     }, [])
 
     const printContainers = async () => {
-        console.log("ui")
-        try {
-            const resJson = await fetch(`${url}/container/findAll/${userId}/${responseSelect}/${modelId}`)
-            const res = await resJson.json()
-            const storageContainer = await storageContainers
-            if (res.length) {
-                const stockRes = res.slice().reverse()
-                if (storageContainer.length > 0 && responseSelect) {
-                    let resResult = res.filter(res => res.response_id != null)
-                    let newContainer = []
-                    if (storageContainer[0].ordering > storageContainer[storageContainer.length - 1].ordering) {
-                        for (let i = 0; storageContainer.length > i; i++) {
-                            for (let a = 0; a < resResult.length; a++) {
-                                if (resResult[a].id === storageContainer[i].id) storageContainer.splice(i, 1)
+            console.log(containers)
+            console.log("container")
+            try {
+                const resJson = await fetch(`${url}/container/findAll/${userId}/${responseSelect}/${modelId}`)
+                const res = await resJson.json()
+                const storageContainer = await storageContainers
+                if (res.length) {
+                    const stockRes = res.slice().reverse()
+                    if (storageContainer.length > 0 && responseSelect) {
+                        let resResult = res.filter(res => res.response_id != null)
+                        let newContainer = []
+                        if (storageContainer[0].ordering > storageContainer[storageContainer.length - 1].ordering) {
+                            for (let i = 0; storageContainer.length > i; i++) {
+                                for (let a = 0; a < resResult.length; a++) {
+                                    if (resResult[a].id === storageContainer[i].id) storageContainer.splice(i, 1)
+                                }
                             }
+                            let storageReverse = storageContainer.reverse()
+                            newContainer = [...storageReverse, ...resResult]
+                        } else {
+                            newContainer = [...storageContainer, ...resResult]
                         }
-                        let storageReverse = storageContainer.reverse()
-                        newContainer = [...storageReverse, ...resResult]
+                        for (let i = 0; i < newContainer.length; i++) {
+                            if (newContainer[i] && newContainer[i + 1] && newContainer[i].id === newContainer[i + 1].id) newContainer.splice(i, 1)
+                        }
+                        setContainers(await newContainer)
+                        takeCard(newContainer)
                     } else {
-                        newContainer = [...storageContainer, ...resResult]
+                        setContainers(res)
+                        takeCard(res)
                     }
-                    for (let i = 0; i < newContainer.length; i++) {
-                        if (newContainer[i] && newContainer[i + 1] && newContainer[i].id === newContainer[i + 1].id) newContainer.splice(i, 1)
-                    }
-                    setContainers(await newContainer)
-                    takeCard(newContainer)
-                } else {
-                    setContainers(res)
-                    takeCard(res)
-                }
-                setContainersReverse(stockRes)
-                setOrder(stockRes[0].ordering + 1)
-            } else setOrder(1)
+                    setContainersReverse(stockRes)
+                    setOrder(stockRes[0].ordering + 1)
+                } else setOrder(1)
 
-        } catch (error) {
-        }
-        setStorageContainers(containers)
+            } catch (error) {
+
+            }
+            setStorageContainers(containers)
     }
 
     useEffect(() => {
-        if(containers.length < 1){
             printContainers()
             console.log('dalu')
-        } 
     }, [responseSelectChanging, userId, modelId, responseBool])
 
     const takeCard = async (res) => {
         let stock = []
+        console.log(res)
         for (let i = 0; i < res.length + 3; i++) {
             if (res[i]) {
-                const result = (await fetch(`${url}/relation/findCardQuestion/${res[i].id}/${userId}/${modelId}`)).json()
-                let resultCards = result.then((result) => {
-                    stock = [...stock, result]
-                    setCardsQuest(stock)
-                })
+                let result = []
+                if (res[i].content_type === "question") {
+                    const resNoJson = await fetch(`${url}/relation/findCardQuestion/${res[i].id}/${userId}/${modelId}`)
+                    result = await resNoJson.json()
+                }
+                else result = { none: `pas de question container id ${i}` }
+                stock = [...stock, result]
+                console.log(stock)
+                setCardsQuest(stock)
             }
         }
         let stockRes = []
         for (let i = 0; i < res.length + 3; i++) {
             if (res[i]) {
-                const result = (await fetch(`${url}/relation/findCardResponse/${res[i].id}/${userId}/${modelId}`)).json()
-                let resultCards = result.then((result) => {
-                    stockRes = [...stockRes, result]
-                    setCardsRes(stockRes)
-                })
+                let result = []
+                if (res[i].content_type === "response"){
+                    const resNoJson = await fetch(`${url}/relation/findCardResponse/${res[i].id}/${userId}/${modelId}`)
+                    result = await resNoJson.json()
+                }
+                else result = { none: `pas de question container id ${i}` }
+                stockRes = [...stockRes, result]
+                console.log(stockRes)
+                setCardsRes(stockRes)
             }
         }
         let stockCategory = []
         for (let i = 0; i < res.length + 3; i++) {
-            if (typeof res[i] === 'object') {
-                fetch(`${url}/relation/findCardCategory/${res[i].id}/${userId}/${modelId}`, {
-                    method: 'GET',
-                    headers: {
-                        'Content-Type': 'application/json',
-                        'Acces-Control-Allow-Origin': { origin },
-                        'authorization': token
-                    }
-                })
-                    .then(res => res.json())
-                    .then(res => {
-                        stockCategory = [...stockCategory, res]
-                        setCardsCategory(stockCategory)
-                    })
+            if (res[i]) {
+                let result = []
+                if (res[i].content_type === "category"){
+                    const resNoJson = await fetch(`${url}/relation/findCardCategory/${res[i].id}/${userId}/${modelId}`)
+                    result = await resNoJson.json()
+                }
+                else result = { none: `pas de question container id ${i}` }
+                stockCategory = [...stockCategory, result]
+                setCardsCategory(stockCategory)
             }
         }
         console.log("dal")
