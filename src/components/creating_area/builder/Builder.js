@@ -23,6 +23,7 @@ const Builder = () => {
     const [userId, setUserId] = useState()
     const [modelId, setModelId] = useState()
     const [token, setToken] = useState()
+    const [load, setLoad] = useState(true)
 
     useEffect(() => {
         console.log('dalu')
@@ -126,6 +127,7 @@ const Builder = () => {
                 setCardsCategory(stockCategory)
             }
         }
+        setLoad(true)
         console.log("dal")
     }
 
@@ -236,6 +238,7 @@ const Builder = () => {
     }
 
     const selectResponse = async function (event) {
+        setLoad(false)
         console.log("weice")
         setContainers([])
         const numberCard = parseInt(event.currentTarget.childNodes[0].id.replace('card', ''))
@@ -366,6 +369,8 @@ const Builder = () => {
     }
 
     return (
+        <>
+        {load ?
         <div className="containerDiagram">
             {Array.isArray(containers) &&
                 containers.map((container, index) => {
@@ -446,6 +451,11 @@ const Builder = () => {
             </div>
             <Chatbot userId={userId} modelId={modelId} />
         </div>
+        :
+        <div className="containerLoadBuilder">
+            <img src={require('./image/load.gif')} className="loadGif" />
+        </div>}
+        </>
     )
 }
 
