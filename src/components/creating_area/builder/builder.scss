@@ -297,7 +297,7 @@
 
 .containerLoadBuilder{
     display: flex;
-    justify-content: center;
+    justify-content: flex-end;
     align-items: center;
     flex-direction: column;
     width: 45%;
@@ -305,9 +305,10 @@
     margin-right: 35%;
 }
 
-.loadGif{
+img.loadGif{
     height: 100%;
     width: auto;
+    border-radius: 50px;
 }
 
 @keyframes connectButton{

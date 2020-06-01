@@ -189,24 +189,24 @@ const Builder = () => {
 
     const insertContainerId = async (id, type) => {
         const relations = await fetch(`${url}/relation/find/${userId}/${modelId}`)
-        console.log(relations)
-        const resJson = await relations.json()
-        const res = await resJson
-        console.log(res)
-        const relationsResult = res.filter(relation => relation.onChange === 1)
+        const res = await relations.json()
+        let relationsResult = []
+        for(let i = 0; i < res.length; i++){
+            console.log(res[i].onChange)
+            if(res[i].onChange === 1) relationsResult = res[i]
+        }
+
         console.log(relationsResult)
-        console.log(relations)
-        if (relationsResult.length > 0) {
             let typeOnChange = "";
-            if (relationsResult[0].question_id) {
+            if (relationsResult.question_id) {
                 typeOnChange = "question"
-            } else if (relationsResult[0].response_id) {
+            } else if (relationsResult.response_id) {
                 typeOnChange = "response"
-            } else if (relationsResult[0].category_id) {
+            } else if (relationsResult.category_id) {
                 typeOnChange = "category"
             }
             connectClassDisable()
-            console.log(type, typeOnChange)
+
             if (type === typeOnChange) {
                 try {
                     const result = await fetch(`${url}/relation/update/${userId}/${modelId}`, {
@@ -239,7 +239,6 @@ const Builder = () => {
                 alert('veuillez selectionner un contenaire du même type')
             }
             setResponseBool(!responseBool)
-        }
     }
 
     const selectResponse = async function (event) {
