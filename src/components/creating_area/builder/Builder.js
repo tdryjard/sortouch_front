@@ -190,12 +190,13 @@ const Builder = () => {
     const insertContainerId = async (id, type) => {
         const relations = await fetch(`${url}/relation/find/${userId}/${modelId}`)
         const res = await relations.json()
+        console.log(res)
         let relationsResult = []
         if (res) {
-
             for (let i = 0; i < res.length; i++) {
-                console.log(res[i].onChange)
-                if (res[i].onChange === 1) relationsResult = res[i]
+                console.log(res[i].onchange)
+                console.log(res[i])
+                if (res[i].onchange === 1) relationsResult = res[i]
             }
             console.log(relationsResult)
             let typeOnChange = "";
