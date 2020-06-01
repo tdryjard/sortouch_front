@@ -184,6 +184,7 @@ const Builder = () => {
             }
         }
         setResponseBool(!responseBool)
+        setLoad(false)
     }
 
 
@@ -220,7 +221,7 @@ const Builder = () => {
                         },
                         body: JSON.stringify({
                             container_id: id,
-                            onChange: 0
+                            onchange: 0
                         })
                     })
                     if (await result) {
@@ -242,8 +243,7 @@ const Builder = () => {
             }
             setResponseBool(!responseBool)
         }
-
-
+        setLoad(false)
     }
 
     const selectResponse = async function (event) {
@@ -286,6 +286,7 @@ const Builder = () => {
             setResponseSelectChanging(!responseSelectChanging)
             setResponseBool(true)
         }, 0)
+        setLoad(false)
     }
 
 
@@ -311,6 +312,7 @@ const Builder = () => {
         setResponseSelect(undefined)
         setResponseSelected([])
         setResponseBool(!responseBool)
+        setLoad(false)
     }
 
     const deleteRelationResponse = async (containerIndex, containerId, cardId) => {
@@ -336,6 +338,7 @@ const Builder = () => {
         setResponseSelect(undefined)
         setResponseSelected([])
         setResponseBool(!responseBool)
+        setLoad(false)
     }
 
     const deleteCategory = async (containerId) => {
@@ -358,6 +361,7 @@ const Builder = () => {
         setResponseSelect(undefined)
         setResponseSelected([])
         setResponseBool(!responseBool)
+        setLoad(false)
     }
 
 
@@ -375,6 +379,7 @@ const Builder = () => {
             setResponseSelected([])
             setResponseBool(!responseBool)
         }
+        setLoad(false)
     }
 
     return (
@@ -388,14 +393,14 @@ const Builder = () => {
                                     <div className="contentBuildCard">
                                         {!Array.isArray(cardsQuest[index]) && !Array.isArray(cardsCategory[index]) && !Array.isArray(cardsRes[index]) &&
                                             <div className="contentEmptyContainer">
-                                                <img onClick={() => { deleteContainer(container.id) }} alt="delete container" src={require('./image/cross.png')} className="crossIconContainer" />
+                                                <img onClick={() => { deleteContainer(container.id); setLoad(true) }} alt="delete container" src={require('./image/cross.png')} className="crossIconContainer" />
                                                 <p className="typeContainer">contenaire à {container.content_type}</p>
                                             </div>}
                                         {Array.isArray(cardsQuest[index]) && container.content_type === "question" &&
                                             cardsQuest[index].map(card => {
                                                 return (
                                                     <div id={`container${container.id}`} className="containerCardQuest">
-                                                        <img alt="delete" id={`card${card.id}`} onClick={deleteRelationQuestion} src={require('../ListStock/cardList/image/delete_icon.png')} className="iconDeleteCardBuildQuest" />
+                                                        <img alt="delete" id={`card${card.id}`} onClick={() => { deleteRelationQuestion(); setLoad(true) }} src={require('../ListStock/cardList/image/delete_icon.png')} className="iconDeleteCardBuildQuest" />
                                                         <p className="textCardBuildQuest">{card.content}</p>
                                                     </div>
                                                 )
@@ -404,7 +409,7 @@ const Builder = () => {
                                             cardsRes[index].map(card => {
                                                 return (
                                                     <div onClick={selectResponse} id={`container${container.id}`} className={responseSelected.includes(card.id) ? 'containerCardResChatActive' : 'containerCardResChat'}>
-                                                        <img alt="delete" id={`card${card.id}`} onClick={() => { deleteRelationResponse(index, container.id, card.id) }} src={require('../ListStock/cardList/image/delete_icon.png')} className="iconDeleteCardBuild" />
+                                                        <img alt="delete" id={`card${card.id}`} onClick={() => { deleteRelationResponse(index, container.id, card.id); setLoad(true) }} src={require('../ListStock/cardList/image/delete_icon.png')} className="iconDeleteCardBuild" />
                                                         <p id={`container${index}`} className="textCardInBuild">{card.content}</p>
                                                     </div>)
                                             })
@@ -413,7 +418,7 @@ const Builder = () => {
                                             cardsCategory[index].map(card => {
                                                 return (
                                                     <div id={`container${container.id}`} className="containerCardCategoryBuild">
-                                                        <img alt="delete" id={`card${card.id}`} onClick={() => { deleteCategory(container.id) }} src={require('../ListStock/cardList/image/delete_icon.png')} className="iconDeleteCardBuild" />
+                                                        <img alt="delete" id={`card${card.id}`} onClick={() => { deleteCategory(container.id); setLoad(true) }} src={require('../ListStock/cardList/image/delete_icon.png')} className="iconDeleteCardBuild" />
                                                         <img alt="mail" src={require('./image/mail_icon.svg')} className="mailIcon" />
                                                         <p className="textCardCategoryBuild">{card.name}</p>
                                                     </div>
@@ -421,7 +426,7 @@ const Builder = () => {
                                             })}
                                     </div>
                                     <div className="contentIconCardBuild">
-                                        <img id={`connect${container.id}`} onClick={() => { insertContainerId(container.id, container.content_type) }} className={classConnectButton} alt="connect_icon" src={require('./image/connect_icon.png')} />
+                                        <img id={`connect${container.id}`} onClick={() => { insertContainerId(container.id, container.content_type); setLoad(true) }} className={classConnectButton} alt="connect_icon" src={require('./image/connect_icon.png')} />
                                     </div>
                                 </div>
                             )
@@ -432,13 +437,13 @@ const Builder = () => {
                             {containersReverse ?
                                 <div>
                                     {containersReverse[0].content_type !== "destination" &&
-                                        <div onClick={() => { createContainer('question') }} className="containerAddBuild">
+                                        <div onClick={() => { createContainer('question'); setLoad(true) }} className="containerAddBuild">
                                             <img alt="add" src={require('./image/plus_icon.png')} className="plusIconQuestion" />
                                             <p className="textAddBuild">question</p>
                                         </div>}
                                 </div>
                                 :
-                                <div onClick={() => { createContainer('question') }} className="containerAddBuild">
+                                <div onClick={() => { createContainer('question'); setLoad(true) }} className="containerAddBuild">
                                     <img alt="add" src={require('./image/plus_icon.png')} className="plusIconQuestion" />
                                     <p className="textAddBuild">question</p>
                                 </div>}
@@ -446,12 +451,12 @@ const Builder = () => {
                             {containersReverse &&
                                 <div className="contentButtonAddBuild">
                                     {containersReverse[0].content_type === "question" && containersReverse[0].content_type !== "destination" &&
-                                        <div onClick={() => { createContainer('response') }} className="containerAddBuild">
+                                        <div onClick={() => { createContainer('response'); setLoad(true) }} className="containerAddBuild">
                                             <img alt="add" src={require('./image/plus_icon.png')} className="plusIconResponse" />
                                             <p className="textAddBuild">réponse</p>
                                         </div>}
                                     {(containersReverse[0].content_type === "question" || containersReverse[0].content_type === "response") &&
-                                        <div onClick={() => { createContainer('category') }} className="containerAddBuild">
+                                        <div onClick={() => { createContainer('category'); setLoad(true) }} className="containerAddBuild">
                                             <img alt="add" src={require('./image/plus_icon.png')} className="plusIconDestination" />
                                             <p className="textAddBuild">réception</p>
                                         </div>}

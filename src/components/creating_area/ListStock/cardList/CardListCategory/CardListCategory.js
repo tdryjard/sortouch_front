@@ -35,7 +35,7 @@ const CardListDestination = (props) => {
               },
               body: JSON.stringify({
                   category_id : props.id,
-                  onChange : true,
+                  onchange : true,
                   user_id : userId,
                   model_id : modelId
               })

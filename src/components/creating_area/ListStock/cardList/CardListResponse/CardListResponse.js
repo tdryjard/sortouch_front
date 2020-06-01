@@ -116,7 +116,7 @@ const CardListResponse = (props) => {
                     },
                     body: JSON.stringify({
                         response_id : props.id,
-                        onChange : true,
+                        onchange : true,
                         user_id : userId,
                         model_id : modelId
                     })
