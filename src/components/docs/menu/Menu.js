@@ -11,7 +11,7 @@ const Menu = (props) => {
         <div className="menuDoc">
             <Link to="/utiliser-le-site-sortouch" className={props.link === "sortouch" ? "linkMenuDocOn" : "linkMenuDoc"}>Guide Sortouch</Link>
             <Link to="/editeur-doc" className={props.link === "editor" ? "linkMenuDocOn" : "linkMenuDoc"}>Éditeur Sortouch</Link>
-            <div className="contentNameSectionMenu">
+            {/*<div className="contentNameSectionMenu">
                 <p onClick={() => { setSectionChatbotActive(!sectionChatbotActive) }} className="titleSectionMenu">Créer le chatbot parfait</p>
                 {!sectionChatbotActive ? <img onClick={() => { setSectionChatbotActive(true) }} className="imgSectionMenuDoc" src={require('../image/plus.png')} /> :
                     <img onClick={() => { setSectionChatbotActive(false) }} className="imgSectionMenuDoc" src={require('../image/moins.png')} />}
@@ -20,7 +20,7 @@ const Menu = (props) => {
                 <Link to="bien-cibler-doc" className={props.link === "cible" ? "linkMenuDocOn" : "linkMenuDoc"}>Cibler ses visiteurs</Link>
                 <Link to="les-bonne-question-reponse-doc" className={props.link === "question" ? "linkMenuDocOn" : "linkMenuDoc"}>Les bonnes questions-réponse</Link>
                 <Link to="trier-efficacement-doc" className={props.link === "sort" ? "linkMenuDocOn" : "linkMenuDoc"}>Trier efficacement</Link>
-            </div>
+            </div>*/}
 
             <div className="contentNameSectionMenu">
                 <p onClick={() => { setSectionIntegrationActive(!sectionIntegrationActive) }} className="titleSectionMenu">Intégration sur votre site</p>
