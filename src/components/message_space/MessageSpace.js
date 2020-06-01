@@ -64,11 +64,9 @@ const MessageBox = (props) => {
     }, [classConnectButton, addingCardState, userId, modelId])
 
     const getNewMessage = async (categorys) => {
-        console.log(categorys)
         let stockUnview = []
         if (categorys.length) {
             for (let n = 0; n < categorys.length; n++) {
-                console.log(n)
                 if (categorys[n]) {
                     const result = await fetch(`${url}/mail/find/${userId}/${modelId}/${categorys[n].id}`, {
                         method: 'GET',
@@ -147,7 +145,6 @@ const MessageBox = (props) => {
 
     const changeInput = (event) => {
         if (inputValue.html.split('').length < 50) {
-            console.log(inputValue.html.split('').length)
             setInputValue({ html: event.target.value })
 
         }

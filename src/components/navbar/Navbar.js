@@ -15,8 +15,6 @@ const Navbar = (props) => {
 
     }, [])
 
-    console.log(userId, modelId)
-
     return(
         <div className="containerNav">
             <Link to="/" className={props.type === "landing" ? "linkNavbarActive" : "linkNavbar"} >Accueil</Link>

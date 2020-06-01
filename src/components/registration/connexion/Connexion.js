@@ -29,7 +29,6 @@ const Connexion = (props) => {
         });
         // Récupération du status de la requête
         const result = await response.json();
-        console.log(result)
 
         if (result.status === 200) {
             if (valid === true) {

@@ -41,7 +41,6 @@ const Registration = (props) => {
                 })
             });
             const data = await response.json();
-            console.log(data.data.id)
 
             if (data.data) {
                 const response = await fetch(`${url}/user/connect`, {
@@ -56,7 +55,6 @@ const Registration = (props) => {
                 });
                 // Récupération du status de la requête
                 const result = await response.json();
-                console.log(result)
 
                 if (result && result.status === 200) {
                     sessionStorage.setItem("userId", result.data.id)
@@ -68,7 +66,6 @@ const Registration = (props) => {
 
                 const userId = data.data.id
                 const token = await result.token
-                console.log(token)
 
 
                 if (data.data) {
@@ -86,7 +83,6 @@ const Registration = (props) => {
                     });
                     const model = await modelCreate.json()
                     const modelFirst = model.id
-                    console.log(modelFirst)
                     if (modelCreate) {
                         let postContainerOne = await fetch(url + '/container/create', {
                             method: 'POST',
@@ -120,7 +116,6 @@ const Registration = (props) => {
                             if (questionFirstResponse) {
                                 const containerFirst = await postContainerOne.json()
                                 const questionFirst = await questionFirstResponse.json()
-                                console.log(questionFirst)
                                 const questionFirstId = questionFirst.id
                                 const containerFirstId = containerFirst.id
                                 const relationFirst = await fetch(`${url}/relation/add`, {
@@ -185,7 +180,6 @@ const Registration = (props) => {
                                             if (responseTwo) {
                                                 const containerTwo = await postContainerTwo.json()
                                                 const responseFirstJson = await responseFirst.json()
-                                                console.log(questionFirst)
                                                 const responseFirstId = responseFirstJson.id
                                                 const containerTwoId = containerTwo.id
                                                 const relationTwo = await fetch(`${url}/relation/add`, {
@@ -205,7 +199,6 @@ const Registration = (props) => {
                                                 })
                                                 if (relationTwo) {
                                                     const responseTwoJson = await responseTwo.json()
-                                                    console.log(questionFirst)
                                                     const responseTwoId = responseTwoJson.id
                                                     const relationThree = await fetch(`${url}/relation/add`, {
                                                         method: 'POST',
@@ -506,6 +499,19 @@ const Registration = (props) => {
                                                                                                                                 container_id: containerHeightId
                                                                                                                             })
                                                                                                                         })
+                                                                                                                        if (relationFour) {
+                                                                                                                            const relationFour = await fetch(`${url}/relation/update/${userId}/${modelFirst}`, {
+                                                                                                                                method: 'POST',
+                                                                                                                                headers: {
+                                                                                                                                    'Content-Type': 'application/json',
+                                                                                                                                    'Acces-Control-Allow-Origin': { origin },
+                                                                                                                                    'authorization': token
+                                                                                                                                },
+                                                                                                                                body: JSON.stringify({
+                                                                                                                                    onChange: 0
+                                                                                                                                })
+                                                                                                                            })
+                                                                                                                        }
                                                                                                                     }
                                                                                                                 }
                                                                                                             }
@@ -568,8 +574,6 @@ const Registration = (props) => {
     const takePasswordVerif = (e) => {
         setPasswordVerif(e.target.value)
     }
-
-    console.log(props.location.query)
 
 
     return (

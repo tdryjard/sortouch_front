@@ -53,7 +53,6 @@ const CardModel = (props) => {
 
     useEffect(() => {
         let stockUnview = []
-        console.log(categorys)
         for (let n = 0; n < categorys.length; n++) {
             fetch(`${url}/mail/find/${userId}/${props.id}/${categorys[n].id}`, {
                 headers: {
@@ -64,7 +63,6 @@ const CardModel = (props) => {
             })
                 .then(res => res.json())
                 .then(res => {
-                    console.log(res)
                     let nb = 0
                     for (let i = 0; i < res.length; i++) {
                         if (res[i].view === 0) nb++
@@ -80,8 +78,6 @@ const CardModel = (props) => {
             setUnview(nbTT)
         }, 200)
     }, [categorys, userId, props.id, token])
-
-    console.log(unview)
 
     const deleteModel = (event) => {
         if (window.confirm('voulez vous supprimer ce model ?')) {
@@ -104,7 +100,6 @@ const CardModel = (props) => {
         name = name.replace('<br>', '')
         name = name.replace('</div>', '')
         const modelId = parseInt(event.target.id.replace('model', ''))
-        console.log(`${url}/model/update/${modelId}/${userId}`)
         fetch(`${url}/model/update/${modelId}/${userId}`, {
             method: 'PUT',
             headers: {

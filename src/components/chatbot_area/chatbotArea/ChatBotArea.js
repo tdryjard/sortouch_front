@@ -58,7 +58,6 @@ const ChatBotArea = () => {
                         setContainers(newContainer)
                         takeCard(newContainer)
                     } else {
-                        console.log(res)
                         setContainers(res)
                         takeCard(res)
                     }
@@ -67,7 +66,6 @@ const ChatBotArea = () => {
             
             
         } catch(error) {
-            console.log(error)
         }
         if(containers.length){
             setStorageContainers(containers)
@@ -173,8 +171,6 @@ const ChatBotArea = () => {
             window.scrollTo(0,document.body.scrollHeight);
         }, 700)
     }
-    
-    console.log(userId, modelId)
     
 
     return(

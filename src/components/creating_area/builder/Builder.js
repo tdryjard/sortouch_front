@@ -25,26 +25,25 @@ const Builder = () => {
     const [token, setToken] = useState()
 
     useEffect(() => {
-        if (localStorage.getItem('userId')) {
+        console.log('dalu')
+        if (localStorage.getItem('userId') && (!userId || !token)) {
             setUserId(localStorage.getItem('userId'))
             setToken(localStorage.getItem('token'))
-        } else {
+        } else if (!userId || !token) {
             setUserId(sessionStorage.getItem('userId'))
             setToken(sessionStorage.getItem('token'))
         }
-        setModelId(sessionStorage.getItem('modelId'))
+        if(!modelId) setModelId(sessionStorage.getItem('modelId'))
     }, [])
 
     const printContainers = async () => {
+        console.log("ui")
         try {
-            console.log(`${url}/container/findAll/${userId}/${responseSelect}/${modelId}`)
             const resJson = await fetch(`${url}/container/findAll/${userId}/${responseSelect}/${modelId}`)
             const res = await resJson.json()
             const storageContainer = await storageContainers
-            console.log(storageContainer)
             if (res.length) {
                 const stockRes = res.slice().reverse()
-                console.log(stockRes)
                 if (storageContainer.length > 0 && responseSelect) {
                     let resResult = res.filter(res => res.response_id != null)
                     let newContainer = []
@@ -55,16 +54,13 @@ const Builder = () => {
                             }
                         }
                         let storageReverse = storageContainer.reverse()
-                        console.log(storageReverse, resResult)
                         newContainer = [...storageReverse, ...resResult]
                     } else {
-                        console.log(storageContainer, resResult)
                         newContainer = [...storageContainer, ...resResult]
                     }
-                    for(let i = 0; i < newContainer.length; i++){
-                        if(newContainer[i] && newContainer[i+1] && newContainer[i].id === newContainer[i + 1].id) newContainer.splice(i, 1)
+                    for (let i = 0; i < newContainer.length; i++) {
+                        if (newContainer[i] && newContainer[i + 1] && newContainer[i].id === newContainer[i + 1].id) newContainer.splice(i, 1)
                     }
-                    console.log(newContainer)
                     setContainers(await newContainer)
                     takeCard(newContainer)
                 } else {
@@ -76,17 +72,15 @@ const Builder = () => {
             } else setOrder(1)
 
         } catch (error) {
-            console.log(error)
         }
         setStorageContainers(containers)
     }
 
-    console.log(storageContainers, containers)
-
     useEffect(() => {
-
-        printContainers()
-        if (!responseSelect) printContainers()
+        if(containers.length < 1){
+            printContainers()
+            console.log('dalu')
+        } 
     }, [responseSelectChanging, userId, modelId, responseBool])
 
     const takeCard = async (res) => {
@@ -128,6 +122,7 @@ const Builder = () => {
                     })
             }
         }
+        console.log("dal")
     }
 
 
@@ -156,7 +151,6 @@ const Builder = () => {
                         printContainers()
                     }
                 } catch (error) {
-                    console.log(error);
                 }
             } else {
                 alert('veuillez selectionner une réponse')
@@ -181,7 +175,6 @@ const Builder = () => {
                     printContainers()
                 }
             } catch (error) {
-                console.log(error);
             }
         }
         setResponseBool(!responseBool)
@@ -191,11 +184,8 @@ const Builder = () => {
     const insertContainerId = async (id, type) => {
         const relations = await fetch(`${url}/relation/find/${userId}/${modelId}`)
         const res = await relations.json()
-        console.log(res)
         const relationsResult = res.filter(relation => relation.onChange === 1)
-        console.log(relationsResult)
         if (relationsResult.length > 0) {
-            console.log(relationsResult)
             let typeOnChange = "";
             if (relationsResult[0].question_id) {
                 typeOnChange = "question"
@@ -204,12 +194,9 @@ const Builder = () => {
             } else if (relationsResult[0].category_id) {
                 typeOnChange = "category"
             }
-            console.log(typeOnChange)
-            console.log(type)
             connectClassDisable()
 
             if (type === typeOnChange) {
-                console.log('dalu')
                 try {
                     const result = await fetch(`${url}/relation/update/${userId}/${modelId}`, {
                         method: 'PUT',
@@ -245,6 +232,8 @@ const Builder = () => {
     }
 
     const selectResponse = async function (event) {
+        console.log("weice")
+        setContainers([])
         const numberCard = parseInt(event.currentTarget.childNodes[0].id.replace('card', ''))
         setResponseSelect(numberCard)
         responseSelected.length = parseInt(event.currentTarget.childNodes[0].id.replace('card', ''))
@@ -280,10 +269,8 @@ const Builder = () => {
         setTimeout(() => {
             setResponseSelectChanging(!responseSelectChanging)
             setResponseBool(true)
-        }, 200)
+        }, 0)
     }
-
-    console.log(responseSelected)
 
 
     const deleteRelationQuestion = async (event) => {
@@ -358,8 +345,8 @@ const Builder = () => {
     }
 
 
-    const deleteContainer = (containerId) => {
-        fetch(`${url}/container/delete/${containerId}/${userId}/${modelId}`, {
+    const deleteContainer = async (containerId) => {
+        const res = await fetch(`${url}/container/delete/${containerId}/${userId}/${modelId}`, {
             method: 'DELETE',
             headers: {
                 'Content-Type': 'application/json',
@@ -367,12 +354,12 @@ const Builder = () => {
                 'authorization': token
             }
         })
-        setResponseSelect(undefined)
-        setResponseSelected([])
-        setResponseBool(!responseBool)
+        if (res) {
+            setResponseSelect(undefined)
+            setResponseSelected([])
+            setResponseBool(!responseBool)
+        }
     }
-
-    console.log(userId, modelId)
 
     return (
         <div className="containerDiagram">
@@ -453,7 +440,6 @@ const Builder = () => {
                         </div>}
                 </div>
             </div>
-            {console.log(userId, modelId)}
             <Chatbot userId={userId} modelId={modelId} />
         </div>
     )

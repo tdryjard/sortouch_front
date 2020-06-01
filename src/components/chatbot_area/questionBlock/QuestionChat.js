@@ -1,8 +1,8 @@
-import React, {useEffect, useState} from 'react'
+import React, { useEffect, useState } from 'react'
 
 const Questionchat = (props) => {
     const [totalQuestion, setTotalQuestion] = useState([])
-    
+
 
     useEffect(() => {
         printText(props.text)
@@ -10,26 +10,23 @@ const Questionchat = (props) => {
 
 
     const printText = (text) => {
-        console.log(text)
-        if(props.text){
+        if (props.text) {
             let index = 0
             let question = text.split('')
-            console.log(question)
             let stockQuestion = []
             const questionPrint = setInterval(() => {
                 stockQuestion = [...stockQuestion, question[index]]
                 setTotalQuestion([...totalQuestion, stockQuestion])
                 index++
-                if(index === question.length){
+                if (index === question.length) {
                     clearInterval(questionPrint)
-                    return(true)
+                    return (true)
                 }
-        }, 50)
-        console.log(stockQuestion)
+            }, 50)
         }
     }
 
-    return(
+    return (
         <div className="contentQuestChat">
             <div className="contentTextQuestChat">
                 <p>{totalQuestion}</p>

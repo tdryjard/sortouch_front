@@ -36,7 +36,7 @@ const BurgerMenu = (props) => {
                         <Link to="/bien-cibler-doc" className={props.link === "cible" ? "linkMenuDocOn" : "linkMenuDoc"}>Cibler ses visiteurs</Link>
                         <Link to="/les-bonne-question-reponse-doc" className={props.link === "question" ? "linkMenuDocOn" : "linkMenuDoc"}>Les bonnes questions-réponse</Link>
                         <Link to="/trier-efficacement-doc" className={props.link === "sort" ? "linkMenuDocOn" : "linkMenuDoc"}>Trier efficacement</Link>
-                    </div>*/}
+            </div>*/}
 
                     <div className="contentNameSectionMenu">
                         <p onClick={() => { setSectionChatbotActive(!sectionIntegrationActive) }} className="titleSectionMenu">Intégration sur votre site</p>

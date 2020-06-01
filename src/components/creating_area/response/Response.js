@@ -42,7 +42,6 @@ const Question = () => {
       user_id: userId,
       model_id: modelId
     }
-    console.log(valueResponse)
     try {
       fetch(url + '/response/add', {
         method: 'POST',

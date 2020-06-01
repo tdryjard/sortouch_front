@@ -145,7 +145,7 @@ const Landing = () => {
             <div className="containerButtonLanding">
                 <Link to="/inscription" className="goButtonLanding">Essayer gratuitement</Link>
             </div>
-            <Chatbot modelId={91} userId={121} />
+            <Chatbot modelId={1} userId={1} />
         </div>
     )
 }

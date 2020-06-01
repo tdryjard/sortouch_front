@@ -14,8 +14,6 @@ const AddCategory = (props) => {
     const { connectClassActive, connectClassDisable, classConnectButton } = useGlobalState();
     const modelId = props.modelId
 
-    console.log(nameCategory)
-
     const changeInput = (event) => {
         setInputValue({html: event.target.value})
     }

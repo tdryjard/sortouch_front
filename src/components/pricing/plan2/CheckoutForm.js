@@ -95,12 +95,9 @@ const CheckoutForm = () => {
             .then(result => {
                 // result.customer.id is used to map back to the customer object
                 // result.setupIntent.client_secret is used to create the payment method
-
-                console.log(result)
             });
 
         const cardElement = await elements.getElement(CardElement);
-        console.log(cardElement)
         // Use your card Element with other Stripe.js APIs
         createPaymentMethod(cardElement, 'prod_HI6ZkVFPxvgL0h', 'price_HI6ZGpJfGmZlEo');
     }

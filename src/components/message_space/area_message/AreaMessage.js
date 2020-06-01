@@ -30,7 +30,6 @@ const AreaMessage = (props) => {
 
     useEffect(() => {
         if(window.innerWidth < 1280) setMobile(true)
-        console.log(window.innerWidth)
     }, [])
 
     const disableSeeMail = () => {
@@ -84,7 +83,6 @@ const AreaMessage = (props) => {
             </div>
             {Array.isArray(mails) && mailSelect === null &&
             mails.map((mail, index) => {
-                console.log(mail)
                 return(
                 <div>
                     {index !== seeContact ?

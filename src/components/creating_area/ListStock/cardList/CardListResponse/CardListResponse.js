@@ -89,7 +89,6 @@ const CardListResponse = (props) => {
 
     const changeInput = (event) => {
         if(inputValue.html.split('').length < 100){
-            console.log(inputValue.html.split('').length)
             setInputValue({ html: event.target.value })
         }
     }
@@ -103,7 +102,6 @@ const CardListResponse = (props) => {
                 if(res[i].response_id === props.id){
                     valid = false
                 }
-                console.log(valid)
             }
             if(valid === true){
                 setClassJoinRes('joinIconResActive')
