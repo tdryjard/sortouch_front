@@ -266,3 +266,11 @@
         margin-right: 2%;
     }
 }
+
+.loadingGifMessage{
+    width: 30%;
+    height: auto;
+    border-radius: 50px;
+    margin-left: 35%;
+    margin-top: 50px;
+}

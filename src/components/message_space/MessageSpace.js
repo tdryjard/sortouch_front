@@ -27,6 +27,7 @@ const MessageBox = (props) => {
     const [categoryOpen, setCategoryOpen] = useState(false)
     const [token, setToken] = useState()
     const [categoryIndex, setCategoryIndex] = useState(0)
+    const [load, setLoad] = useState(true)
 
     useEffect(() => {
         if (window.innerWidth < 1280) setMobile(true)
@@ -59,6 +60,7 @@ const MessageBox = (props) => {
             .then(res => {
                 setCategorys(res)
                 getNewMessage(res)
+                setLoad(false)
                 if (!categorySelect && res[0]) setCategorySelect(res[0].id)
             })
     }, [classConnectButton, addingCardState, userId, modelId])
@@ -156,6 +158,7 @@ const MessageBox = (props) => {
         <div className="containerMessageSpace">
             <Navbar type="mails" />
             {mobile && <img onClick={() => { setCategoryOpen(!categoryOpen) }} className="menuIcon" alt="menu burger" src={require('./image/menu_icon.png')} />}
+            {!load &&
             <div className={!mobile ? "containerOngletLeft" : mobile && categoryOpen ? "containerOngletLeftOpen" : "containerOngletLeftClose"}>
                 {Array.isArray(categorys) && <p className="titleCategoryOnglet">Catégories de réception</p>}
                 {Array.isArray(categorys) ?
@@ -192,8 +195,10 @@ const MessageBox = (props) => {
                     })
                     :
                     <p className="textNoCategory">Créez votre premier chatbot grace à <Link to="/editeur">l'éditeur</Link></p>}
-            </div>
-            <AreaMessage token={token} userId={userId} modelId={modelId} categoryName={categorys[categoryIndex] && categorys[categoryIndex].name} userId={userId} categoryId={categorySelect} />
+            </div>}
+            {!load &&
+            <AreaMessage token={token} userId={userId} modelId={modelId} categoryName={categorys[categoryIndex] && categorys[categoryIndex].name} userId={userId} categoryId={categorySelect} />}
+            {load && <img src={require('./image/load.gif')} alt="chargement" className="loadingGifMessage"/>}
         </div>
     )
 }

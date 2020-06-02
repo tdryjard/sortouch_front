@@ -24,9 +24,13 @@ const DataArea = () => {
     const [chooseColorId, setChooseColorId] = useState()
     const [colorSort, setColorSort] = useState('')
     const [colorParamsSelect, setColorParamsSelect] = useState(false)
+    const [load, setLoad] = useState(true)
+    const [timeOut, setTimeOut] = useState(false)
 
     useEffect(() => {
-
+        setTimeout(() => {
+            if(load) setTimeOut(true)
+        }, 3000)
     }, [contacts])
 
     useEffect(() => {
@@ -137,6 +141,7 @@ const DataArea = () => {
                 }
             }
             setSortContacts(newContacts)
+            setLoad(false)
         }
     }
 
@@ -227,6 +232,8 @@ const DataArea = () => {
                         </div>
                     )
                 })
+                    : load && !timeOut ?
+                    <img src={require('./image/load.gif')} alt="chargement" style={{marginTop: "50px", height: "50%", width: "auto"}} />
                     :
                     <p className="noResult">Aucun résultat</p>}
             </div>

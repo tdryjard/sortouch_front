@@ -12,6 +12,7 @@ const Addcategory = () => {
   const { addingCard } = useGlobalStateAddingCard();
   const [modelId, setModelId] = useState()
   const [token, setToken] = useState()
+  const [load, setLoad] = useState(false)
 
   useEffect(() => {
     if (localStorage.getItem('userId')) {
@@ -41,7 +42,7 @@ const Addcategory = () => {
       model_id: modelId
     }
     try {
-      fetch(url + '/category/add', {
+      const result = await fetch(url + '/category/add', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -50,7 +51,10 @@ const Addcategory = () => {
         },
         body: JSON.stringify(valueCategory)
       });
-      addingCard()
+      if (result) {
+        setLoad(false)
+        addingCard()
+      }
     } catch (error) {
       console.log(error);
     }
@@ -60,17 +64,21 @@ const Addcategory = () => {
 
   return (
     <div className="containerAddCategoryBuilder">
-      <p className="textAddingQuestion">Category</p>
-      <ContentEditable
-        className="contentQuestionInput"
-        innerRef={contentEditable}
-        html={inputValue.html}
-        disabled={false}
-        onChange={changeInput}
-        tagName='article'
-      />
-      <button className="validAddCategoryBuilder" onClick={validCategory}>Ajouter</button>
-
+      {!load ?
+        <>
+          <p className="textAddingQuestion">Category</p>
+          <ContentEditable
+            className="contentQuestionInput"
+            innerRef={contentEditable}
+            html={inputValue.html}
+            disabled={false}
+            onChange={changeInput}
+            tagName='article'
+          />
+          <button className="validAddCategoryBuilder" onClick={validCategory}>Ajouter</button>
+        </>
+        :
+        <img alt="chargement" src={require('../../../../image/loading.gif')} className="loadAddCard" />}
     </div>
   )
 }

@@ -7,11 +7,10 @@ import MenuBurger from '../menuBurger/MenuBurger'
 import './Landing.scss'
 
 const Landing = () => {
-    const [textEffect1, setTextEffect1] = useState('')
     const [textEffect2, setTextEffect2] = useState('')
     const [textEffect3, setTextEffect3] = useState('')
     const [textEffect4, setTextEffect4] = useState('')
-    const [scrollPosition, setSrollPosition] = useState(0);
+    const [userId, setUserId] = useState()
 
 
     const textLanding1 = getOffset(document.getElementById('textLanding1')).top
@@ -29,6 +28,14 @@ const Landing = () => {
         }
         return { top: _y, left: _x };
     }
+
+    useEffect(() => {
+        if (localStorage.getItem('userId')){
+            setUserId(localStorage.getItem('userId'))
+        } else if (sessionStorage.getItem('userId')) {
+            setUserId(sessionStorage.getItem('userId'))
+        }
+    }, [])
 
 
     useEffect(() => {
@@ -143,7 +150,10 @@ const Landing = () => {
                 </div>
             </div>
             <div className="containerButtonLanding">
+                {!userId ?
                 <Link to="/inscription" className="goButtonLanding">Essayer gratuitement</Link>
+                :
+                <Link to="/models" className="goButtonLanding">Essayer gratuitement</Link>}
             </div>
             <Chatbot modelId={1} userId={1} />
         </div>

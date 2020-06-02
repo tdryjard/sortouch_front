@@ -13,6 +13,7 @@ const Question = () => {
   const { addingCard } = useGlobalStateAddingCard();
   const [modelId, setModelId] = useState()
   const [token, setToken] = useState()
+  const [load, setLoad] = useState(false)
 
   useEffect(() => {
     if (localStorage.getItem('userId')) {
@@ -43,7 +44,7 @@ const Question = () => {
       model_id: modelId
     }
     try {
-      fetch(url + '/response/add', {
+      const result = await fetch(url + '/response/add', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -52,7 +53,10 @@ const Question = () => {
         },
         body: JSON.stringify(valueResponse)
       });
-      addingCard()
+      if(result){
+        setLoad(false)
+        addingCard()
+      }
     } catch (error) {
       console.log(error);
     }
@@ -62,6 +66,8 @@ const Question = () => {
 
   return (
     <div className="containerResponseBuild">
+      {!load ?
+      <>
       <p className="textAddingResponse">Réponse</p>
       <ContentEditable
         className="contentQuestionInput"
@@ -72,7 +78,9 @@ const Question = () => {
         tagName='article'
       />
       <button className="validResponse" onClick={validResponse}>Ajouter</button>
-
+      </>
+      :
+      <img alt="chargement" src={require('../image/loading.gif')} className="loadAddCard"/>}
     </div>
   )
 }
