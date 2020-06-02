@@ -77,9 +77,8 @@ const CardModel = (props) => {
         }, 200)
     }, [categorys, userId, props.id, token])
 
-    const deleteModel = (event) => {
+    const deleteModel = async (modelId) => {
         if (window.confirm('voulez vous supprimer ce model ?')) {
-            const modelId = parseInt(event.target.id.replace('model', ''))
             const result = await fetch(`${url}/model/delete/${modelId}/${userId}`, {
                 method: 'DELETE',
                 headers: {
@@ -162,7 +161,7 @@ const CardModel = (props) => {
                         tagName='article'
                     />
                     <button onClick={updateModel} id={`model${props.id}`} className="buttonUpdateModel">Valider changement</button>
-                    <button id={`model${props.id}`} className="deleteButton" onClick={deleteModel}>Supprimer le model</button>
+                    <button id={`model${props.id}`} className="deleteButton" onClick={() => {deleteModel(props.id)}}>Supprimer le model</button>
                 </div>}
         </>
     )
