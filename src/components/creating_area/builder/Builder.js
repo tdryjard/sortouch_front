@@ -174,6 +174,7 @@ const Builder = () => {
             } catch (error) {
             }
         }
+        setStorageContainers(containers)
         setResponseBool(!responseBool)
         setLoad(false)
     }
@@ -228,6 +229,7 @@ const Builder = () => {
                 })
                 alert('veuillez selectionner un contenaire du même type')
             }
+            setStorageContainers(containers)
             setResponseBool(!responseBool)
         }
         setLoad(false)
