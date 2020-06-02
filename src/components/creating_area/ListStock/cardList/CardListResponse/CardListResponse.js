@@ -57,8 +57,8 @@ const CardListResponse = (props) => {
                           'authorization': token
                         }
                     })
+                    if(result3) addingCard()
                 }
-                if(result3) addingCard()
             }
         }
     }
