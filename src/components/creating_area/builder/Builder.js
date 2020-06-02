@@ -26,7 +26,6 @@ const Builder = () => {
     const [load, setLoad] = useState(true)
 
     useEffect(() => {
-        console.log('dalu')
         if (localStorage.getItem('userId') && (!userId || !token)) {
             setUserId(localStorage.getItem('userId'))
             setToken(localStorage.getItem('token'))
@@ -38,8 +37,6 @@ const Builder = () => {
     }, [])
 
     const printContainers = async () => {
-        console.log(containers)
-        console.log("container")
         try {
             const resJson = await fetch(`${url}/container/findAll/${userId}/${responseSelect}/${modelId}`)
             const res = await resJson.json()
@@ -81,12 +78,10 @@ const Builder = () => {
 
     useEffect(() => {
         printContainers()
-        console.log('dalu')
     }, [responseSelectChanging, userId, modelId, responseBool])
 
     const takeCard = async (res) => {
         let stock = []
-        console.log(res)
         for (let i = 0; i < res.length + 3; i++) {
             if (res[i]) {
                 let result = []
@@ -96,7 +91,6 @@ const Builder = () => {
                 }
                 else result = { none: `pas de question container id ${i}` }
                 stock = [...stock, result]
-                console.log(stock)
                 setCardsQuest(stock)
             }
         }
@@ -110,7 +104,6 @@ const Builder = () => {
                 }
                 else result = { none: `pas de question container id ${i}` }
                 stockRes = [...stockRes, result]
-                console.log(stockRes)
                 setCardsRes(stockRes)
             }
         }
@@ -128,7 +121,6 @@ const Builder = () => {
             }
         }
         setLoad(true)
-        console.log("dal")
     }
 
 
@@ -191,15 +183,11 @@ const Builder = () => {
     const insertContainerId = async (id, type) => {
         const relations = await fetch(`${url}/relation/find/${userId}/${modelId}`)
         const res = await relations.json()
-        console.log(res)
         let relationsResult = []
         if (res) {
             for (let i = 0; i < res.length; i++) {
-                console.log(res[i].onchange)
-                console.log(res[i])
                 if (res[i].onchange === 1) relationsResult = res[i]
             }
-            console.log(relationsResult)
             let typeOnChange = "";
             if (relationsResult.question_id) {
                 typeOnChange = "question"
@@ -248,7 +236,6 @@ const Builder = () => {
 
     const selectResponse = async function (event) {
         setLoad(false)
-        console.log("weice")
         setContainers([])
         const numberCard = parseInt(event.currentTarget.childNodes[0].id.replace('card', ''))
         setResponseSelect(numberCard)
