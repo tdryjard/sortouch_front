@@ -77,7 +77,7 @@ const Question = () => {
         onChange={changeInput}
         tagName='article'
       />
-      <button className="validResponse" onClick={validResponse}>Ajouter</button>
+      <button className="validResponse" onClick={() => {setLoad(true); validResponse()}}>Ajouter</button>
       </>
       :
       <img alt="chargement" src={require('../image/loading.gif')} className="loadAddCard"/>}

@@ -75,7 +75,7 @@ const Addcategory = () => {
             onChange={changeInput}
             tagName='article'
           />
-          <button className="validAddCategoryBuilder" onClick={validCategory}>Ajouter</button>
+          <button className="validAddCategoryBuilder" onClick={() => {setLoad(true); validCategory()}}>Ajouter</button>
         </>
         :
         <img alt="chargement" src={require('../../../../image/loading.gif')} className="loadAddCard" />}
