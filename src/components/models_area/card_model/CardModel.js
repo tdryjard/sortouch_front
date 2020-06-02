@@ -16,6 +16,7 @@ const CardModel = (props) => {
     const [userId, setUserId] = useState()
     const [token, setToken] = useState()
     const [redirectEditor, setRedirectEditor] = useState(false)
+    const [deleted, setDeleted] = useState(false)
 
     useEffect(() => {
         if (localStorage.getItem('userId')) {
@@ -29,9 +30,6 @@ const CardModel = (props) => {
 
         }, 300)
     }, [])
-
-
-    const linkRef = useRef(null);
 
     const changeInput = (event) => {
         if (inputValue.html.split('').length < 200) {
@@ -49,7 +47,7 @@ const CardModel = (props) => {
         })
             .then(res => res.json())
             .then(res => setCategorys(res))
-    }, [props.id, userId, token])
+    }, [props.id, userId, token, deleted])
 
     useEffect(() => {
         let stockUnview = []
@@ -82,7 +80,7 @@ const CardModel = (props) => {
     const deleteModel = (event) => {
         if (window.confirm('voulez vous supprimer ce model ?')) {
             const modelId = parseInt(event.target.id.replace('model', ''))
-            fetch(`${url}/model/delete/${modelId}/${userId}`, {
+            const result = await fetch(`${url}/model/delete/${modelId}/${userId}`, {
                 method: 'DELETE',
                 headers: {
                     'Content-Type': 'application/json',
@@ -91,7 +89,7 @@ const CardModel = (props) => {
                 }
             })
         }
-        window.location.reload()
+        if(result) setDeleted(!deleted)
     }
 
     const updateModel = (event) => {

@@ -278,9 +278,7 @@ const Builder = () => {
     }
 
 
-    const deleteRelationQuestion = async (event) => {
-        const containerId = (event.currentTarget.parentNode.id).replace('container', '')
-        const cardId = (event.target.id).replace('card', '')
+    const deleteRelationQuestion = async (containerId, cardId) => {
         fetch(`${url}/relation/deleteQuestionCard/${containerId}/${cardId}/${userId}/${modelId}`, {
             method: 'DELETE',
             headers: {
@@ -388,7 +386,7 @@ const Builder = () => {
                                             cardsQuest[index].map(card => {
                                                 return (
                                                     <div id={`container${container.id}`} className="containerCardQuest">
-                                                        <img alt="delete" id={`card${card.id}`} onClick={() => { deleteRelationQuestion(); setLoad(true) }} src={require('../ListStock/cardList/image/delete_icon.png')} className="iconDeleteCardBuildQuest" />
+                                                        <img alt="delete" id={`card${card.id}`} onClick={() => { deleteRelationQuestion(container.id, card.id); setLoad(true) }} src={require('../ListStock/cardList/image/delete_icon.png')} className="iconDeleteCardBuildQuest" />
                                                         <p className="textCardBuildQuest">{card.content}</p>
                                                     </div>
                                                 )
