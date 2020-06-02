@@ -31,7 +31,7 @@ const CardListResponse = (props) => {
     
     const deleteResponse = async () => {
         if(window.confirm(`es tu sûrs de vouloir supprimer la réponses ${props.content} et toutes ses relations ?`)){
-            fetch(`${url}/relation/deleteAllRelationResponse/${props.id}/${userId}/${modelId}`, {
+            const result = await fetch(`${url}/relation/deleteAllRelationResponse/${props.id}/${userId}/${modelId}`, {
                 method: 'DELETE',
                 headers: {
                   'Content-Type' :'application/json',
@@ -39,26 +39,27 @@ const CardListResponse = (props) => {
                   'authorization': token
                 }
             })
-            fetch(`${url}/container/deleteContainerRelationResponse/${props.id}/${userId}/${modelId}`, {
-                method: 'DELETE',
-                headers: {
-                  'Content-Type' :'application/json',
-                  'Acces-Control-Allow-Origin' : {origin},
-                  'authorization': token
+            if(result){
+                const result2 = await fetch(`${url}/container/deleteContainerRelationResponse/${props.id}/${userId}/${modelId}`, {
+                    method: 'DELETE',
+                    headers: {
+                      'Content-Type' :'application/json',
+                      'Acces-Control-Allow-Origin' : {origin},
+                      'authorization': token
+                    }
+                })
+                if(result2){
+                    const result3 = await fetch(`${url}/response/delete/${props.id}/${userId}/${modelId}`, {
+                        method: 'DELETE',
+                        headers: {
+                          'Content-Type' :'application/json',
+                          'Acces-Control-Allow-Origin' : {origin},
+                          'authorization': token
+                        }
+                    })
                 }
-            })
-            fetch(`${url}/response/delete/${props.id}/${userId}/${modelId}`, {
-                method: 'DELETE',
-                headers: {
-                  'Content-Type' :'application/json',
-                  'Acces-Control-Allow-Origin' : {origin},
-                  'authorization': token
-                }
-            })
-            addingCard()
-            setTimeout(() => {
-                document.location.reload(true)
-            }, 200)
+                if(result3) addingCard()
+            }
         }
     }
 
