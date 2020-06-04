@@ -3,9 +3,8 @@ import { Link } from 'react-router-dom'
 import CheckoutForm from './CheckoutForm'
 import {Elements} from '@stripe/react-stripe-js';
 import {loadStripe} from '@stripe/stripe-js';
-import './Plan2.scss'
 
-const Plan2 = () => {
+const Plan4 = () => {
     const [active, setActive] = useState(false)
     const [userId, setUserId] = useState()
 
@@ -23,35 +22,30 @@ const Plan2 = () => {
         <div className="containerPlan">
             {!active ?
                 <div className="contentPlan">
-                    <h2 className="titlePlan2">Standard</h2>
-                    <div className="pricePlan">60€/mois </div>
+                    <h2 className="titlePlan2">Sur mesure</h2>
                     <div className="containerOptionPlan">
                         <img src={require('../image/valid.png')} alt="valid" className="validImg" />
-                        <p className="textOptionPlan">Création de chatbot illimité</p>
+                        <p className="textOptionPlan">Création de votre chatbot sur mesure</p>
                     </div>
                     <div className="containerOptionPlan">
                         <img src={require('../image/valid.png')} alt="valid" className="validImg" />
-                        <p className="textOptionPlan">Intégration sur votre site</p>
+                        <p className="textOptionPlan">Annalyse de votre marché et des besoins de vos visiteurs</p>
                     </div>
                     <div className="containerOptionPlan">
                         <img src={require('../image/valid.png')} alt="valid" className="validImg" />
-                        <p className="textOptionPlan">2000 réceptions de prise de contact par mois</p>
+                        <p className="textOptionPlan">Créations de vos différentes catégories de réceptions</p>
                     </div>
                     <div className="containerOptionPlan">
                         <img src={require('../image/valid.png')} alt="valid" className="validImg" />
-                        <p className="textOptionPlan">10 000 stockages de coordonnées</p>
+                        <p className="textOptionPlan">Accompagnement d'utlisation de nos outils</p>
                     </div>
                     <div className="containerOptionPlan">
                         <img src={require('../image/valid.png')} alt="valid" className="validImg" />
-                        <p className="textOptionPlan">Assistance technique</p>
+                        <p className="textOptionPlan">Intégration du chatbot sur votre site par nos soins</p>
                     </div>
-                    {!userId ?
-                        <Link to={{ pathname: `/inscription`, query: { pricing: true } }} className="buttonPricing2">
-                            Souscrire
-                        </Link>
-                        :
+                    {!userId &&
                         <div onClick={() => { setActive(true) }} className="buttonPricing2">
-                            Souscrire
+                            Nous contacter
                         </div>}
                 </div>
                 :
@@ -64,4 +58,4 @@ const Plan2 = () => {
     );
 };
 
-export default Plan2
+export default Plan4

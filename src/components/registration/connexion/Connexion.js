@@ -17,36 +17,46 @@ const Connexion = (props) => {
 
     const validSub = async () => {
         // Envoi de la requête
-        const response = await fetch(`${url}/user/connect`, {
-            method: 'POST',
-            body: JSON.stringify({
-                email: mail,
-                password: password
-            }),
-            headers: {
-                'Content-Type': 'application/json'
-            }
-        });
-        // Récupération du status de la requête
-        const result = await response.json();
+        try {
+            const response = await fetch(`${url}/user/connect`, {
+                method: 'POST',
+                body: JSON.stringify({
+                    email: mail,
+                    password: password
+                }),
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            })
+            console.log(response)
+            const result = await response.json();
 
-        if (result.status === 200) {
-            if (valid === true) {
-                localStorage.setItem("userId", result.data.id)
-                localStorage.setItem('token', result.token)
-                setRedirect(true)
-            } else if (valid === false) {
-                sessionStorage.setItem("userId", result.data.id)
-                sessionStorage.setItem('token', result.token)
-                setRedirect(true)
+            if (result.status === 200) {
+                if (valid === true) {
+                    localStorage.setItem("userId", result.data.id)
+                    localStorage.setItem('token', result.token)
+                    setRedirect(true)
+                } else if (valid === false) {
+                    sessionStorage.setItem("userId", result.data.id)
+                    sessionStorage.setItem('token', result.token)
+                    setRedirect(true)
+                }
+            } else {
+                setAlert("email ou mot de passe incorrect")
+                setTimeout(() => {
+                    setAlert('')
+                }, 2000);
             }
-        } else {
+        } catch{
             setAlert("email ou mot de passe incorrect")
             setTimeout(() => {
                 setAlert('')
             }, 2000);
         }
+
     }
+
+    console.log('dalu')
 
 
     const takeMail = (e) => {

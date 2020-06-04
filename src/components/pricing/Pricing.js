@@ -7,6 +7,7 @@ import MenuBurger from '../menuBurger/MenuBurger'
 import Plan from './plan/Plan'
 import Plan2 from './plan2/Plan2'
 import Plan3 from './plan3/Plan3'
+import Plan4 from './plan4/Plan4'
 import './Pricing.scss'
 
 const Pricing = () => {
@@ -49,6 +50,9 @@ const Pricing = () => {
             </Elements>
             <Elements stripe={stripePromise}>
                 <Plan3 options={CARD_OPTIONS}/>
+            </Elements>
+            <Elements stripe={stripePromise}>
+                <Plan4 options={CARD_OPTIONS}/>
             </Elements>
         </div>
     )

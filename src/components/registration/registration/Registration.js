@@ -127,7 +127,7 @@ const Registration = (props) => {
                                     },
                                     body: JSON.stringify({
                                         question_id: questionFirstId,
-                                        onchange: true,
+                                        onchange: 1,
                                         user_id: userId,
                                         model_id: modelFirst,
                                         container_id: containerFirstId
@@ -191,7 +191,7 @@ const Registration = (props) => {
                                                     },
                                                     body: JSON.stringify({
                                                         response_id: responseFirstId,
-                                                        onchange: true,
+                                                        onchange: 1,
                                                         user_id: userId,
                                                         model_id: modelFirst,
                                                         container_id: containerTwoId
@@ -209,7 +209,7 @@ const Registration = (props) => {
                                                         },
                                                         body: JSON.stringify({
                                                             response_id: responseTwoId,
-                                                            onchange: true,
+                                                            onchange: 1,
                                                             user_id: userId,
                                                             model_id: modelFirst,
                                                             container_id: containerTwoId
@@ -275,7 +275,7 @@ const Registration = (props) => {
                                                                         },
                                                                         body: JSON.stringify({
                                                                             question_id: questionTwoId,
-                                                                            onchange: true,
+                                                                            onchange: 1,
                                                                             user_id: userId,
                                                                             model_id: modelFirst,
                                                                             container_id: containerThreeId
@@ -293,7 +293,7 @@ const Registration = (props) => {
                                                                             },
                                                                             body: JSON.stringify({
                                                                                 question_id: questionTwoId,
-                                                                                onchange: true,
+                                                                                onchange: 1,
                                                                                 user_id: userId,
                                                                                 model_id: modelFirst,
                                                                                 container_id: containerFourId
@@ -373,7 +373,7 @@ const Registration = (props) => {
                                                                                                 },
                                                                                                 body: JSON.stringify({
                                                                                                     response_id: responseThreeId,
-                                                                                                    onchange: true,
+                                                                                                    onchange: 1,
                                                                                                     user_id: userId,
                                                                                                     model_id: modelFirst,
                                                                                                     container_id: containerFiveId
@@ -393,7 +393,7 @@ const Registration = (props) => {
                                                                                                     },
                                                                                                     body: JSON.stringify({
                                                                                                         response_id: responseFourId,
-                                                                                                        onchange: true,
+                                                                                                        onchange: 1,
                                                                                                         user_id: userId,
                                                                                                         model_id: modelFirst,
                                                                                                         container_id: containerSixId
@@ -457,7 +457,7 @@ const Registration = (props) => {
                                                                                                                     },
                                                                                                                     body: JSON.stringify({
                                                                                                                         category_id: categoryFirstId,
-                                                                                                                        onchange: true,
+                                                                                                                        onchange: 1,
                                                                                                                         user_id: userId,
                                                                                                                         model_id: modelFirst,
                                                                                                                         container_id: containerSevenId
@@ -493,18 +493,18 @@ const Registration = (props) => {
                                                                                                                             },
                                                                                                                             body: JSON.stringify({
                                                                                                                                 category_id: categoryTwoId,
-                                                                                                                                onchange: true,
+                                                                                                                                onchange: 1,
                                                                                                                                 user_id: userId,
                                                                                                                                 model_id: modelFirst,
                                                                                                                                 container_id: containerHeightId
                                                                                                                             })
                                                                                                                         })
                                                                                                                         if (relationFour) {
-                                                                                                                            const relationFour = await fetch(`${url}/relation/update/${userId}/${modelFirst}`, {
-                                                                                                                                method: 'POST',
+                                                                                                                            const resetOnchange = await fetch(`${url}/relation/update/${userId}/${modelFirst}`, {
+                                                                                                                                method: 'PUT',
                                                                                                                                 headers: {
                                                                                                                                     'Content-Type': 'application/json',
-                                                                                                                                    'Acces-Control-Allow-Origin': { origin },
+                                                                                                                                    'Access-Control-Allow-Origin': `${origin}`,
                                                                                                                                     'authorization': token
                                                                                                                                 },
                                                                                                                                 body: JSON.stringify({

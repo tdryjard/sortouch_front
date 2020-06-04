@@ -1,7 +1,8 @@
 .containerPlan{
     width: 25%;
-    height: 68%;
+    height: 70%;
     margin-top: 150px;
+    margin-bottom: 50px;
     box-shadow: 2px 2px 20px rgb(190, 190, 190);
     border-radius: 10px;
     display: flex;
@@ -17,7 +18,8 @@
 .contentPlan{
     position: relative;
     width: 92%;
-    height: 97%;
+    min-height: 85%;
+    padding-bottom: 20%;
     box-shadow: 2px 2px 20px rgb(190, 190, 190);
     border-radius: 10px;
     display: flex;
@@ -46,7 +48,7 @@
 
 .titlePlan2{
     font-family: 'Inter', sans-serif;
-    font-size: 40px;
+    font-size: 35px;
     color: white;
     text-align: center;
     width: 200px;
@@ -78,14 +80,14 @@
     align-items: center;
     flex-direction: row;
     width: 90%;
-    height: 10%;
     padding: 2%;
-    margin-top: 5px;
-    margin-bottom: 5px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    height: 7%;
 }
 
 .validImg{
-    height: 45%;
+    height: 60%;
     width: auto;
     margin-right: 50px;
     margin-left: 20px;
@@ -94,6 +96,7 @@
 .textOptionPlan{
     font-family: 'Sen', sans-serif;
     font-size: 120%;
+    margin: 0;
 }
 
 .buttonPricing{
@@ -110,7 +113,7 @@
     font-size: 25px;
     padding: 10px;
     box-shadow: 1px 1px 8px rgb(196, 196, 196);
-    bottom: 50px;
+    bottom: 20px;
     cursor: pointer;
     text-decoration: none;
 }
@@ -120,6 +123,8 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    text-align: center;
+    flex-direction: column;
     border-radius: 15px;
     height: 60px;
     width: 180px;
@@ -129,7 +134,7 @@
     font-size: 25px;
     padding: 10px;
     box-shadow: 1px 1px 8px rgb(196, 196, 196);
-    bottom: 50px;
+    bottom: 30px;
     cursor: pointer;
     text-decoration: none;
 }
@@ -301,15 +306,41 @@
     border: none;
   }
 
+.pricePlan{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    width: 100%;
+    font-size: 30px;
+    color: white;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    background-color: rgb(195, 142, 253);
+    text-align: center;
+    margin-bottom: 20px;
+}
+
 @media screen and (max-width: 1280px){
     .containerPricing{
         flex-direction: column;
-        height: 300vh !important;
+        height: 680vh !important;
+        display: flex;
+        justify-content: flex-start !important;
+        flex-direction: column;
+        flex-wrap: wrap;
+        width: 100%;
     }
     .containerPlan{
         width: 90%;
-        height: 500px;
+        height: 750px;
         margin-bottom: 30px;
+    }
+    .containerOptionPlan{
+        height: 60px;
+    }
+    .textOptionPlan{
+        font-size: 18px;
     }
     .backPricingImg{
         display: none;

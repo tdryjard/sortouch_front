@@ -25,7 +25,7 @@ const MenuBurger = (props) => {
                 <img onClick={() => {setActive(false)}} alt="menu" className="crossIconBurger" src={require('./image/cross.png')}/>
                 <Link to="/" className={props.type === "landing" ? "linkBurgerActive" : "linkBurger"} >Accueil</Link>
                 <Link to="/utiliser-le-site-sortouch" className={props.type === "editor-doc" ? "linkBurgerActive" : "linkBurger"} >Docs</Link>
-                <Link to="/editeur-doc" className={props.type === "tarif" ? "linkBurgerActive" : "linkBurger"} >Tarifs</Link>
+                <Link to="/tarifs" className={props.type === "tarif" ? "linkBurgerActive" : "linkBurger"} >Tarifs</Link>
                 {!userId && !modelId ?
                     <div className="contentConnect">
                         <Link to="/connexion" className="connexionNavbar">Connexion</Link>

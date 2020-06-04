@@ -21,7 +21,7 @@ const Plan = () => {
                 <h2 className="titlePlan">Gratuit</h2>
                 <div className="containerOptionPlan">
                     <img src={require('../image/valid.png')} alt="valid" className="validImg" />
-                    <p className="textOptionPlan">1 modèle de chatbot</p>
+                    <p className="textOptionPlan">1 création de chatbot</p>
                 </div>
                 <div className="containerOptionPlan">
                     <img src={require('../image/valid.png')} alt="valid" className="validImg" />
@@ -29,7 +29,7 @@ const Plan = () => {
                 </div>
                 <div className="containerOptionPlan">
                     <img src={require('../image/valid.png')} alt="valid" className="validImg" />
-                    <p className="textOptionPlan">200 réceptions de messages par mois</p>
+                    <p className="textOptionPlan">100 réceptions de prise de contact par mois</p>
                 </div>
                 <div className="containerOptionPlan">
                     <img src={require('../image/valid.png')} alt="valid" className="validImg" />

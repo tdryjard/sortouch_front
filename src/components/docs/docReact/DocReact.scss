@@ -70,3 +70,10 @@
     width: 100%;
     margin-top: 20px;
 }
+
+@media screen and (max-width: 1200px){
+    .integrationContainer{
+        max-width: 90%;
+        flex-wrap: wrap;
+    }
+}

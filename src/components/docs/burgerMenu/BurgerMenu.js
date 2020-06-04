@@ -13,12 +13,17 @@ const BurgerMenu = (props) => {
         <div className="contentBurgerMenu">
             {!menuActive &&
                 <>
-                    <Navbar type={"doc"} />
                     <img onClick={() => { setMenuActive(true) }} alt="menu" className="burgerIcon" src={require('./image/menu_icon.png')} />
                 </>}
             {menuActive &&
                 <div className="containerMenuBurgerOpen">
                     <img onClick={() => { setMenuActive(false) }} alt="menu" className="crossIconDoc" src={require('./image/cross.png')} />
+                    <div className="contentNameSectionMenu">
+                        <Link to="/" className={"linkMenuDocEditor"}>Accueil</Link>
+                    </div>
+                    <div className="contentNameSectionMenu">
+                        <Link to="/tarifs" className={"linkMenuDocEditor"}>Tarifs</Link>
+                    </div>
                     <div className="contentNameSectionMenu">
                         <Link to="/utiliser-le-site-sortouch" className={props.link === "sortouch" ? "linkMenuDocEditorOn" : "linkMenuDocEditor"}>Guide Sortouch</Link>
                     </div>
@@ -39,7 +44,7 @@ const BurgerMenu = (props) => {
             </div>*/}
 
                     <div className="contentNameSectionMenu">
-                        <p onClick={() => { setSectionChatbotActive(!sectionIntegrationActive) }} className="titleSectionMenu">Intégration sur votre site</p>
+                        <p onClick={() => { setSectionIntegrationActive(!sectionIntegrationActive) }} className="titleSectionMenu">Intégration sur votre site</p>
                         {!sectionIntegrationActive ? <img onClick={() => { setSectionIntegrationActive(true) }} className="imgSectionMenuDoc" src={require('../image/plus.png')} /> :
                             <img onClick={() => { setSectionIntegrationActive(false) }} className="imgSectionMenuDoc" src={require('../image/moins.png')} />}
                     </div>

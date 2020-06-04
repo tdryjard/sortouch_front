@@ -174,7 +174,7 @@ const Builder = () => {
             } catch (error) {
             }
         }
-        setStorageContainers(containers)
+        if(responseSelected) setStorageContainers(containers)
         setResponseBool(!responseBool)
         setLoad(false)
     }
@@ -229,7 +229,7 @@ const Builder = () => {
                 })
                 alert('veuillez selectionner un contenaire du même type')
             }
-            setStorageContainers(containers)
+            if(type !== "response") setStorageContainers(containers)
             setResponseBool(!responseBool)
         }
         setLoad(false)
@@ -287,14 +287,14 @@ const Builder = () => {
                 'authorization': token
             }
         })
-        fetch(`${url}/container/delete/${containerId}/${userId}/${modelId}`, {
+        /*fetch(`${url}/container/delete/${containerId}/${userId}/${modelId}`, {
             method: 'DELETE',
             headers: {
                 'Content-Type': 'application/json',
                 'Acces-Control-Allow-Origin': { origin },
                 'authorization': token
             }
-        })
+        })*/
         setResponseSelect(undefined)
         setResponseSelected([])
         setResponseBool(!responseBool)
@@ -310,7 +310,7 @@ const Builder = () => {
                 'authorization': token
             }
         })
-        if (cardsRes[containerIndex].length < 2) {
+        /*if (cardsRes[containerIndex].length < 2) {
             await fetch(`${url}/container/delete/${containerId}/${userId}/${modelId}`, {
                 method: 'DELETE',
                 headers: {
@@ -319,7 +319,7 @@ const Builder = () => {
                     'authorization': token
                 }
             })
-        }
+        }*/
 
         setResponseSelect(undefined)
         setResponseSelected([])
@@ -336,14 +336,14 @@ const Builder = () => {
                 'authorization': token
             }
         })
-        const result2 = await fetch(`${url}/container/delete/${containerId}/${userId}/${modelId}`, {
+        /*const result2 = await fetch(`${url}/container/delete/${containerId}/${userId}/${modelId}`, {
             method: 'DELETE',
             headers: {
                 'Content-Type': 'application/json',
                 'Acces-Control-Allow-Origin': { origin },
                 'authorization': token
             }
-        })
+        })*/
         setResponseSelect(undefined)
         setResponseSelected([])
         setResponseBool(!responseBool)
