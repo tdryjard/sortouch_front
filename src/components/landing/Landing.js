@@ -155,7 +155,7 @@ const Landing = () => {
                 :
                 <Link to="/models" className="goButtonLanding">Essayer gratuitement</Link>}
             </div>
-            <Chatbot modelId={1} userId={1} />
+            <Chatbot modelId={11} userId={21} />
         </div>
     )
 }
