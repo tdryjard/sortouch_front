@@ -9,7 +9,6 @@ const Area = () => {
     <div className="containerArea">
       <Navbar type="editeur" />
       <Builder />
-      <ListStock />
     </div>
   );
 };

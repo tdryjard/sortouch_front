@@ -4,6 +4,7 @@ import origin from '../../../api/origin';
 import useGlobalState from '../../../hooks/useGlobalState';
 import { Link } from 'react-router-dom'
 import Chatbot from 'sortouch-react'
+import { useForm } from "react-hook-form";
 import './card.css'
 import './builder.scss'
 
@@ -24,6 +25,11 @@ const Builder = () => {
     const [modelId, setModelId] = useState()
     const [token, setToken] = useState()
     const [load, setLoad] = useState(true)
+    const [containerAddCard, setContainerAddCard] = useState()
+    const [valueCardAdd, setValueCardAdd] = useState()
+    const [storage, setStorage] = useState(false)
+
+    const { addCardRef, handleSubmit } = useForm()
 
     useEffect(() => {
         if (localStorage.getItem('userId') && (!userId || !token)) {
@@ -78,6 +84,7 @@ const Builder = () => {
 
     useEffect(() => {
         printContainers()
+        if(storageContainers) setStorage(true)
     }, [responseSelectChanging, userId, modelId, responseBool])
 
     const takeCard = async (res) => {
@@ -174,13 +181,13 @@ const Builder = () => {
             } catch (error) {
             }
         }
-        if(responseSelected) setStorageContainers(containers)
+        if (responseSelected) setStorageContainers(containers)
         setResponseBool(!responseBool)
         setLoad(false)
     }
 
 
-    const insertContainerId = async (id, type) => {
+    /*const insertContainerId = async (id, type) => {
         const relations = await fetch(`${url}/relation/find/${userId}/${modelId}`)
         const res = await relations.json()
         let relationsResult = []
@@ -229,11 +236,11 @@ const Builder = () => {
                 })
                 alert('veuillez selectionner un contenaire du même type')
             }
-            if(type !== "response") setStorageContainers(containers)
+            if (type !== "response") setStorageContainers(containers)
             setResponseBool(!responseBool)
         }
         setLoad(false)
-    }
+    }*/
 
     const selectResponse = async function (event) {
         setLoad(false)
@@ -368,6 +375,115 @@ const Builder = () => {
         setLoad(false)
     }
 
+    const getValueCard = (e) => {
+        setValueCardAdd(e.target.value)
+    }
+
+    const sendNewCard = async (containerId, containerType) => {
+        let resRelation = {}
+        if (containerType === "question") {
+            await fetch(`${url}/question/add`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Acces-Control-Allow-Origin': { origin },
+                    'authorization': token
+                },
+                body: JSON.stringify({
+                    content: valueCardAdd,
+                    user_id: userId,
+                    model_id: modelId
+                })
+            })
+                .then(res => res.json())
+                .then(res => {
+                    resRelation = fetch(`${url}/relation/add`, {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'Acces-Control-Allow-Origin': { origin },
+                            'authorization': token
+                        },
+                        body: JSON.stringify({
+                            question_id: res.id,
+                            user_id: userId,
+                            model_id: modelId,
+                            container_id: containerId
+                        })
+                    })
+                })
+        } else if (containerType === "response") {
+            fetch(`${url}/response/add`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Acces-Control-Allow-Origin': { origin },
+                    'authorization': token
+                },
+                body: JSON.stringify({
+                    content: valueCardAdd,
+                    user_id: userId,
+                    model_id: modelId
+                })
+            })
+                .then(res => res.json())
+                .then(res => {
+                    resRelation = fetch(`${url}/relation/add`, {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'Acces-Control-Allow-Origin': { origin },
+                            'authorization': token
+                        },
+                        body: JSON.stringify({
+                            response_id: res.id,
+                            user_id: userId,
+                            model_id: modelId,
+                            container_id: containerId
+                        })
+                    })
+                })
+        } else if (containerType === "category") {
+            fetch(`${url}/category/add`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Acces-Control-Allow-Origin': { origin },
+                    'authorization': token
+                },
+                body: JSON.stringify({
+                    name: valueCardAdd,
+                    user_id: userId,
+                    model_id: modelId
+                })
+            })
+                .then(res => res.json())
+                .then(res => {
+                    resRelation = fetch(`${url}/relation/add`, {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'Acces-Control-Allow-Origin': { origin },
+                            'authorization': token
+                        },
+                        body: JSON.stringify({
+                            category_id: res.id,
+                            user_id: userId,
+                            model_id: modelId,
+                            container_id: containerId
+                        })
+                    })
+                })
+        }
+
+        if (resRelation) {
+            setContainerAddCard(null)
+            if(!storageContainers || containerType !== "response") setStorageContainers(containers)
+            setResponseBool(!responseBool)
+        }
+
+    }
+
     return (
         <>
             {load ?
@@ -410,45 +526,53 @@ const Builder = () => {
                                                     </div>
                                                 )
                                             })}
+                                        {containerAddCard === container.id &&
+                                            <>
+                                                <form className="containerAddCard" onSubmit={handleSubmit(sendNewCard)}>
+                                                    <textarea className="addCardInput" ref={addCardRef} onChange={getValueCard} placeholder={container.content_type === "question" ? "nouvelle question" : container.content_type === "response" ? "nouvelle réponse" : "nouvelle catégorie de réception"} />
+                                                    <button className="addCardButton" onClick={() => { sendNewCard(container.id, container.content_type) }}>Valider</button>
+                                                </form>
+                                            </>
+                                        }
                                     </div>
-                                    <div className="contentIconCardBuild">
-                                        <img id={`connect${container.id}`} onClick={() => { insertContainerId(container.id, container.content_type); setLoad(true) }} className={classConnectButton} alt="connect_icon" src={require('./image/connect_icon.png')} />
-                                    </div>
+                                    {!Array.isArray(cardsCategory[index]) &&
+                                        <div className="contentIconCardBuild">
+                                            <img id={`connect${container.id}`} onClick={() => { setContainerAddCard(container.id) }} className={containerAddCard !== container.id ? "imgConnectActive" : "imgConnect"} alt="ajouter une interaction" src={require('./image/plus_icon.png')} />
+                                        </div>}
                                 </div>
                             )
                         })}
+                    {containers[containers.length - 1] && containers[containers.length - 1].content_type !== "category" &&
                     <div className="containerButtonBuilder">
                         <p className="textAddContainerBuild">Ajouter une étape</p>
                         <div className="contentButtonBuild">
-                            {containersReverse ?
-                                <div>
-                                    {containersReverse[0].content_type !== "destination" &&
-                                        <div onClick={() => { createContainer('question'); setLoad(true) }} className="containerAddBuild">
-                                            <img alt="add" src={require('./image/plus_icon.png')} className="plusIconQuestion" />
-                                            <p className="textAddBuild">question</p>
-                                        </div>}
-                                </div>
-                                :
-                                <div onClick={() => { createContainer('question'); setLoad(true) }} className="containerAddBuild">
-                                    <img alt="add" src={require('./image/plus_icon.png')} className="plusIconQuestion" />
-                                    <p className="textAddBuild">question</p>
-                                </div>}
 
                             {containersReverse &&
                                 <div className="contentButtonAddBuild">
+                                    {(((responseSelected[responseSelected.length - 1] === responseSelect && !storage) || (containers[containers.length - 1].response_id !== responseSelect && responseSelect)) && containersReverse[0].content_type === "response") ?
+                                        <div onClick={() => { createContainer('question'); setLoad(true) }} className="containerAddBuild">
+                                            <img alt="add" src={require('./image/plus_icon.png')} className="plusIconQuestion" />
+                                            <p className="textAddBuild">question</p>
+                                        </div>
+                                        : (((responseSelected[responseSelected.length - 1] === responseSelect && !storage) || (containers[containers.length - 1].response_id !== responseSelect && responseSelect)) && containersReverse[0].content_type === "response") ?
+                                        null
+                                        : containersReverse[0].content_type === "question" && containersReverse[0].content_type !== "destination" ?
+                                        null
+                                        : <p className="alertSelectResponse">Veuillez selectionner une réponse parmis le dernier conteneur</p>}
                                     {containersReverse[0].content_type === "question" && containersReverse[0].content_type !== "destination" &&
                                         <div onClick={() => { createContainer('response'); setLoad(true) }} className="containerAddBuild">
                                             <img alt="add" src={require('./image/plus_icon.png')} className="plusIconResponse" />
                                             <p className="textAddBuild">réponse</p>
                                         </div>}
-                                    {(containersReverse[0].content_type === "question" || containersReverse[0].content_type === "response") &&
+                                    {(((responseSelected[responseSelected.length - 1] === responseSelect && !storage) || (containers[containers.length - 1].response_id !== responseSelect && responseSelect)) && containersReverse[0].content_type === "response") ?
                                         <div onClick={() => { createContainer('category'); setLoad(true) }} className="containerAddBuild">
                                             <img alt="add" src={require('./image/plus_icon.png')} className="plusIconDestination" />
                                             <p className="textAddBuild">réception</p>
-                                        </div>}
+                                        </div>
+                                        : null}
                                 </div>}
                         </div>
-                    </div>
+                    </div>}
                     <Chatbot userId={userId} modelId={modelId} />
                 </div>
                 :

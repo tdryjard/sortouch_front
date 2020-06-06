@@ -60,8 +60,6 @@ const Question = () => {
     }
   }
 
-  console.log(load)
-
 
   return (
     <div className="containerQuestion">

@@ -28,7 +28,6 @@ const Connexion = (props) => {
                     'Content-Type': 'application/json'
                 }
             })
-            console.log(response)
             const result = await response.json();
 
             if (result.status === 200) {
@@ -55,8 +54,6 @@ const Connexion = (props) => {
         }
 
     }
-
-    console.log('dalu')
 
 
     const takeMail = (e) => {

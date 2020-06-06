@@ -238,8 +238,8 @@
 }
 
 .editorImg{
-    height: 400px;
-    width: auto;
+    width: 850px;
+    height: auto;
     border-radius: 15px;
 }
 
@@ -277,6 +277,8 @@
     padding: 20px;
     border-radius: 20px;
     margin-top: 50px;
+    text-decoration: none;
+    color: rgb(34, 34, 34);
 }
 
 .containerTitleLanding1{
@@ -289,6 +291,8 @@
     padding: 20px;
     border-radius: 20px;
     margin-top: 200px;
+    text-decoration: none;
+    color: rgb(34, 34, 34);
 }
 
 .imgTitleLanding{
@@ -307,10 +311,10 @@
 }
 
 .areaMessageImgLanding{
-    width: 40%;
+    width: 42%;
     height: auto;
     border-radius: 15px;
-    margin-left: 5%;
+    margin-left: 2%;
 }
 
 .containerMessageImg{
@@ -333,6 +337,18 @@
 }
 
 @media screen and (max-width: 1280px){
+    .linkImg{
+        display: flex;
+        justify-content: center;
+        flex-direction: row;
+        width: 100%;
+    }
+    .linkImgDuo{
+        width: 50%;
+        display: flex;
+        justify-content: center;
+        flex-direction: row;
+    }
     .containerLanding{
         background-repeat: no-repeat;
         background-size: 300%;
@@ -419,7 +435,7 @@
         margin-top: 0px;
     }
     .logoInstallLanding{
-        width: 35%;
+        width: 95%;
         margin-left: 10%;
         margin-top: 0;
         height: auto;

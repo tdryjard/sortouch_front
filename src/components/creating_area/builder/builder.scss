@@ -3,9 +3,7 @@
     justify-content: start;
     align-items: center;
     flex-direction: column;
-    width: 45%;
-    margin-left: 5%;
-    margin-right: 35%;
+    width: 75%;
 }
 
 .containerButtonBuilder{
@@ -302,8 +300,6 @@
     align-items: center;
     flex-direction: column;
     width: 45%;
-    margin-left: 5%;
-    margin-right: 35%;
 }
 
 img.loadGif{
@@ -311,6 +307,61 @@ img.loadGif{
     width: auto;
     border-radius: 100px;
     margin-top: 200px;
+}
+
+.containerAddCard{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 80%;
+    background-color: #fcf4f5;
+    border-radius: 10px;
+    box-shadow:  -4px -3px 3px 0px #ffffff, 
+    2px 2px 5px 0px #adadad;
+    margin-bottom: 20px;
+    padding: 20px;
+    margin-top: 20px;
+}
+
+.addCardInput{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 5px;
+    width: 200px;
+    background-color: rgb(255, 247, 247);
+    border: none;
+    box-shadow: 2px 2px 2px 0px rgb(156, 156, 156) inset, -2px -3px 2px 0px white inset;
+    padding: 5px;
+    text-align: center;
+    font-size: 15px;
+    margin-top: 20px;
+    font-family: 'Sen', sans-serif;
+    width: 100%;
+    margin: 0;
+    background-color: rgb(252, 252, 252);
+}
+
+.addCardButton{
+    height: 40px;
+    width: 100px;
+    border: none;
+    background-color: rgb(250, 250, 250);
+    border-radius: 10px;
+    box-shadow:  -4px -3px 3px 0px #ffffff, 
+    2px 2px 5px 0px #adadad;
+    font-size: 15px;
+    margin-left: 30px;
+    outline-style: none;
+    font-family: 'Sen', sans-serif;
+    cursor: pointer;
+}
+
+.alertSelectResponse{
+    font-family: 'Sen', sans-serif;
+    font-weight: bold;
+    font-size: 20px;
+    color: rgb(44, 44, 44);
 }
 
 @keyframes connectButton{

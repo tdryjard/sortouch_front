@@ -30,7 +30,7 @@ const Landing = () => {
     }
 
     useEffect(() => {
-        if (localStorage.getItem('userId')){
+        if (localStorage.getItem('userId')) {
             setUserId(localStorage.getItem('userId'))
         } else if (sessionStorage.getItem('userId')) {
             setUserId(sessionStorage.getItem('userId'))
@@ -63,18 +63,18 @@ const Landing = () => {
                 <Navbar type={"landing"} />
                 :
                 <MenuBurger type={"landing"} />}
-            <div className="containerTitleLanding1">
+            <a href="#explication" className="containerTitleLanding1">
                 <img src={require('./image/money.png')} alt="gains money" className="imgTitleLanding" />
                 <h1 className="titleLandingTop">Transformer ses visiteurs en clients</h1>
-            </div>
-            <div className="containerTitleLanding">
+            </a>
+            <a href="#explication" className="containerTitleLanding">
                 <img src={require('./image/time.png')} alt="gains time" className="imgTitleLanding" />
                 <h1 className="titleLandingTop">Gagner du temps dans le traitement de ses mails</h1>
-            </div>
-            <div className="containerTitleLanding">
+            </a>
+            <a href="#explication" className="containerTitleLanding">
                 <img src={require('./image/data.png')} alt="gains data" className="imgTitleLanding" />
                 <h1 className="titleLandingTop">Se créer une base de donnée d'email et de numéro de téléphone</h1>
-            </div>
+            </a>
             <div className="containerHeadLanding">
                 <div className="containerTextHead">
                     <div className="contentChatbotLanding">
@@ -87,35 +87,47 @@ const Landing = () => {
                         <div className="contentTextChatLanding">
                             {window.innerWidth > 1280 &&
                                 <h1 className="titleChatLanding"><QuestionChat text={`Créez votre chatbot gratuitement avec Sortouch`} /></h1>}
-                            <div className="containerTextLanding1">
+                            <Link to="editeur-doc" className="containerTextLanding1">
                                 <h2 id="textLanding1" className={"textChatLanding"}>L'éditeur de chatbot le plus simple d'utilisation</h2>
-                            </div>
-                            <img src={require('./image/editor.png')} alt="editeur" className="editorImg" />
-                            <div className="containerTextLanding">
+                            </Link>
+                            <Link className="linkImg" to="editeur-doc"> <img src={require('./image/editor.gif')} alt="editeur" className="editorImg" /> </Link>
+                            <Link to="installer-react" className="containerTextLanding">
                                 <h2 id="textLanding2" className={textEffect2 ? "textChatLanding" : "displayNone"} >Intégrez facilement votre chatbot sur votre site</h2>
-                            </div>
+                            </Link>
                             <div className="containerLogoLanding">
-                                <img src={require('./image/react.svg')} alt="react logo" className="logoInstallLanding" />
-                                <img src={require('./image/wordpress.png')} alt="wordpress logo" className="logoInstallLanding" />
+                                <Link className="linkImgDuo" to="installer-react"><img src={require('./image/react.svg')} alt="react logo" className="logoInstallLanding" /></Link>
+                                <Link className="linkImgDuo" to="installer-wordpress"> <img src={require('./image/wordpress.png')} alt="wordpress logo" className="logoInstallLanding" /> </Link>
                             </div>
                             <div className="containerTextLanding">
-                                <h2 id="textLanding3" className={textEffect3 ? "textChatLanding" : "displayNone"}>Recevez les prises de contact avec vous via votre chatbot triées automatiquement !</h2>
+                                {userId ?
+                                <Link to="/mails"><h2 id="textLanding3" className={textEffect3 ? "textChatLanding" : "displayNone"}>Recevez les prises de contact avec vous via votre chatbot triées automatiquement !</h2></Link>
+                                : <Link to="/inscription"><h2 id="textLanding3" className={textEffect3 ? "textChatLanding" : "displayNone"}>Recevez les prises de contact avec vous via votre chatbot triées automatiquement !</h2></Link>}
                             </div>
                             <div className="containerMessageImg">
-                                <img src={require('./image/formChatbot.png')} alt="formulaire contact chatbot" className="formChatImg" />
-                                <img src={require('./image/message_area.jpg')} alt="espace message" className="areaMessageImgLanding" />
+                            {userId ?
+                                <Link className="linkImg" to="/mails"><img src={require('./image/formChatbot.png')} alt="formulaire contact chatbot" className="formChatImg" />
+                                <img src={require('./image/message_area.jpg')} alt="espace message" className="areaMessageImgLanding" /> </Link>
+                                :
+                                <Link className="linkImg" to="/inscription"><img src={require('./image/formChatbot.png')} alt="formulaire contact chatbot" className="formChatImg" />
+                                <img src={require('./image/message_area.jpg')} alt="espace message" className="areaMessageImgLanding" /> </Link>}
                             </div>
                             <div className="containerTextLanding">
-                                <h2 id="textLanding4" className={textEffect4 ? "textChatLanding" : "displayNone"}>Créez vous une vrai base de donnée d'email et de numéro de téléphone !</h2>
+                            {userId ?
+                                <Link to="/base-de-donnee"><h2 id="textLanding4" className={textEffect4 ? "textChatLanding" : "displayNone"}>Créez vous une vrai base de donnée d'email et de numéro de téléphone !</h2></Link>
+                                :
+                                <Link to="/inscription"><h2 id="textLanding4" className={textEffect4 ? "textChatLanding" : "displayNone"}>Créez vous une vrai base de donnée d'email et de numéro de téléphone !</h2></Link>}
                             </div>
-                            <img src={require('./image/data_area.jpg')} alt="espace base de donnée" className="areaImgLanding" />
+                            {userId ?
+                                <Link className="linkImg" to="/base-de-donnee"><img src={require('./image/data_area.jpg')} alt="espace base de donnée" className="areaImgLanding" /></Link>
+                                :
+                                <Link className="linkImg" to="/inscription"><img src={require('./image/data_area.jpg')} alt="espace base de donnée" className="areaImgLanding" /></Link>}
                         </div>
                     </div>
-                    <div className="contentHeadLanding">
+                    <div id="explication" className="contentHeadLanding">
                         <img alt="time gain" src={require('./image/time_back.svg')} className="imgHeadLanding" />
                         <div className="windowTextHead">
                             <div className="contentTitleLanding">
-                                <h1 className="titleLanding">Votre site est votre vitrine<br/>Ne laissez pas vos visiteurs regarder puis partir sans laisser de trace</h1>
+                                <h1 className="titleLanding">Votre site est votre vitrine<br />Ne laissez pas vos visiteurs regarder puis partir sans laisser de trace</h1>
                             </div>
                             <div className="contentTextLanding">
                                 <p className="textLanding">En invitant les visiteurs de votre site à vous laisser leurs contacts vous ne serez plus qu'une simple vitrine<br />Votre chatbot sortouch vous aide à transformer un simple visiteur en futur client en reprenant contact avec lui</p>
@@ -130,7 +142,7 @@ const Landing = () => {
                                 <h1 className="titleLanding">Vos visiteurs sont humains</h1>
                             </div>
                             <div className="contentTextLanding">
-                                <p className="textLanding">Le simple popup demandant l'adresse mail est devenu intrusif et le clique sur le bouton croix un réflex<br/>Vos visiteurs sont humains et ont besoin d'échanger et d'être conquis avant de partager leurs contacts<br/>C'est là qu'un bon chatbot fait la différence</p>
+                                <p className="textLanding">Le simple popup demandant l'adresse mail est devenu intrusif et le clique sur le bouton croix un réflex<br />Vos visiteurs sont humains et ont besoin d'échanger et d'être conquis avant de partager leurs contacts<br />C'est là qu'un bon chatbot fait la différence</p>
                             </div>
                         </div>
                         {window.innerWidth > 1280 &&
@@ -143,7 +155,7 @@ const Landing = () => {
                                 <h1 className="titleLanding">Les tunnels de vente sont indispensables</h1>
                             </div>
                             <div className="contentTextLanding">
-                                <p className="textLanding">Un tunnel de vente représente les différentes étapes de la transformation d'un visiteur sur votre site en client<br/>Attirer un visiteur sur son site est une première étape<br/>Mais la plupart du temps, cela ne suffit pas !<br/>Il faut encore préciser ce tunnel de vente en recontactant personnellement votre prospect, par mail ou par téléphone dans les meilleurs des cas</p>
+                                <p className="textLanding">Un tunnel de vente représente les différentes étapes de la transformation d'un visiteur sur votre site en client<br />Attirer un visiteur sur son site est une première étape<br />Mais la plupart du temps, cela ne suffit pas !<br />Il faut encore préciser ce tunnel de vente en recontactant personnellement votre prospect, par mail ou par téléphone dans les meilleurs des cas</p>
                             </div>
                         </div>
                     </div>
@@ -151,9 +163,9 @@ const Landing = () => {
             </div>
             <div className="containerButtonLanding">
                 {!userId ?
-                <Link to="/inscription" className="goButtonLanding">Essayer gratuitement</Link>
-                :
-                <Link to="/models" className="goButtonLanding">Essayer gratuitement</Link>}
+                    <Link to="/inscription" className="goButtonLanding">Essayer gratuitement</Link>
+                    :
+                    <Link to="/models" className="goButtonLanding">Essayer gratuitement</Link>}
             </div>
             <Chatbot modelId={11} userId={21} />
         </div>

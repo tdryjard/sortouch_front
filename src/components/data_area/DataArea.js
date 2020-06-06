@@ -90,6 +90,20 @@ const DataArea = () => {
 
 
     const sort = (param, type) => {
+
+        if (type === "model"){
+            setChoiceModel(param.name)
+            setSelectModel(false)
+        }
+        if (type === "category"){
+            setSelectCategory(false)
+            setChoiceCategory(param.name)
+        }
+        if (type === "color"){
+            setColorParamsSelect(false)
+            setColorSort(param)
+        }
+
         if (contacts.length > 0) {
             let stockContacts = []
             let contact = contacts.slice()
@@ -167,11 +181,11 @@ const DataArea = () => {
                 :
                 <MenuBurger type={"data"} />}
             <div className="headSearchData">
-                <div className="choiceSearchData">
+                <div onClick={() => { setSelectModel(!selectModel) }} className="choiceSearchData">
                     <p onClick={() => { setSelectModel(!selectModel) }} className="textChoiceDataGet">{choiceModel}</p>
                 </div>
                 {choiceModel !== 'Tout' &&
-                    <div className="choiceSearchData">
+                    <div onClick={() => { setSelectCategory(!selectCategory) }} className="choiceSearchData">
                         <p onClick={() => { setSelectCategory(!selectCategory) }} className="textChoiceDataGet">{choiceCategory}</p>
                     </div>}
                 <div className="containerColorParams">
@@ -233,7 +247,7 @@ const DataArea = () => {
                     )
                 })
                     : load && !timeOut ?
-                    <img src={require('./image/load.gif')} alt="chargement" style={{marginTop: "50px", height: "50%", width: "auto"}} />
+                    <img className="loadData" src={require('./image/load.gif')} alt="chargement" />
                     :
                     <p className="noResult">Aucun résultat</p>}
             </div>
