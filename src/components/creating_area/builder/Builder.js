@@ -478,7 +478,7 @@ const Builder = () => {
 
         if (resRelation) {
             setContainerAddCard(null)
-            if(!storageContainers || containerType !== "response") setStorageContainers(containers)
+            if(responseSelect !== containers[containers.length - 1].response_id) setStorageContainers(containers)
             setResponseBool(!responseBool)
         }
 
@@ -542,7 +542,6 @@ const Builder = () => {
                                 </div>
                             )
                         })}
-                    {containers[containers.length - 1] && containers[containers.length - 1].content_type !== "category" &&
                     <div className="containerButtonBuilder">
                         <p className="textAddContainerBuild">Ajouter une étape</p>
                         <div className="contentButtonBuild">
@@ -572,7 +571,7 @@ const Builder = () => {
                                         : null}
                                 </div>}
                         </div>
-                    </div>}
+                    </div>
                     <Chatbot userId={userId} modelId={modelId} />
                 </div>
                 :

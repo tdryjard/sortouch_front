@@ -32,12 +32,12 @@ const CreateModel = () => {
         }
     }
 
-    const addModel = () => {
+    const addModel = async () => {
         let name = inputValue.html.replace('&nbsp;', '')
         name = name.replace('<div>', '')
         name = name.replace('<br>', '')
         name = name.replace('</div>', '')
-        fetch(url + '/model/add', {
+        const res = await fetch(url + '/model/add', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -48,7 +48,25 @@ const CreateModel = () => {
                 name: name,
                 user_id: userId
             })
-        });
+        })
+        const result = await res.json()
+        if(result){
+            fetch(url + '/container/create', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Acces-Control-Allow-Origin': { origin },
+                    'authorization': token
+                },
+                body: JSON.stringify({
+                    content_type: 'question',
+                    user_id: userId,
+                    ordering: 1,
+                    response_id: null,
+                    model_id: result.id
+                })
+            })
+        }
         setTimeout(() => {
             setSend(true)
         }, 200)
