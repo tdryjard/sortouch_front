@@ -25,7 +25,6 @@ const CreateModel = () => {
         }
     }, [])
 
-
     const changeInput = (event) => {
         if (inputValue.html.split('').length < 100) {
             setInputValue({ html: event.target.value })
@@ -50,8 +49,9 @@ const CreateModel = () => {
             })
         })
         const result = await res.json()
+        let post = {}
         if(result){
-            fetch(url + '/container/create', {
+            post = await fetch(url + '/container/create', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -75,7 +75,7 @@ const CreateModel = () => {
         } else {
             connectClassActive()
         }
-        window.location.reload()
+        if(post) window.location.reload()
     }
 
     const activeContent = () => {
