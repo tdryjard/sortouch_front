@@ -29,7 +29,7 @@ const MenuBurger = (props) => {
                 {!userId && !modelId ?
                     <div className="contentConnect">
                         <Link to="/connexion" className="connexionNavbar">Connexion</Link>
-                        <Link to="/inscription" className="subNavbar">inscription</Link>
+                        <Link to="/inscription" className="subNavbar">Essayer</Link>
                     </div>
                 :
                 <>

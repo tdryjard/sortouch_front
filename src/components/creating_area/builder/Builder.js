@@ -7,6 +7,7 @@ import Chatbot from 'sortouch-react'
 import { useForm } from "react-hook-form";
 import './card.css'
 import './builder.scss'
+import CardListDestination from '../ListStock/cardList/CardListCategory/CardListCategory';
 
 const Builder = () => {
     const [containers, setContainers] = useState([])
@@ -28,6 +29,7 @@ const Builder = () => {
     const [containerAddCard, setContainerAddCard] = useState()
     const [valueCardAdd, setValueCardAdd] = useState()
     const [storage, setStorage] = useState(false)
+    const [insertCard, setInsertCard] = useState(false)
 
     const { addCardRef, handleSubmit } = useForm()
 
@@ -42,6 +44,16 @@ const Builder = () => {
         if (!modelId) setModelId(sessionStorage.getItem('modelId'))
     }, [])
 
+    useEffect(() => {
+        setTimeout(() => {
+            window.scrollTo(0, document.body.scrollHeight || document.documentElement.scrollHeight);
+        }, 100)
+        
+    }, [containers, cardsRes, cardsQuest, cardsCategory, responseSelect])
+
+
+    window.scrollTo(0, document.body.scrollHeight || document.documentElement.scrollHeight);
+
     const printContainers = async () => {
         try {
             const resJson = await fetch(`${url}/container/findAll/${userId}/${responseSelect}/${modelId}`)
@@ -50,6 +62,7 @@ const Builder = () => {
             if (res.length) {
                 const stockRes = res.slice().reverse()
                 if (storageContainer.length > 0 && responseSelect) {
+                    if(insertCard) setInsertCard(false)
                     let resResult = res.filter(res => res.response_id != null)
                     let newContainer = []
                     if (storageContainer[0].ordering > storageContainer[storageContainer.length - 1].ordering) {
@@ -68,6 +81,9 @@ const Builder = () => {
                     }
                     setContainers(await newContainer)
                     takeCard(newContainer)
+                } else if (insertCard){
+                    setContainers(containers)
+                    takeCard(containers)
                 } else {
                     setContainers(res)
                     takeCard(res)
@@ -478,10 +494,11 @@ const Builder = () => {
 
         if (resRelation) {
             setContainerAddCard(null)
-            if(responseSelect !== containers[containers.length - 1].response_id) setStorageContainers(containers)
+            if(responseSelect !== containers[containers.length - 1].response_id){
+                setStorageContainers(containers)
+            } else setInsertCard(true)
             setResponseBool(!responseBool)
         }
-
     }
 
     return (
@@ -529,7 +546,7 @@ const Builder = () => {
                                         {containerAddCard === container.id &&
                                             <>
                                                 <form className="containerAddCard" onSubmit={handleSubmit(sendNewCard)}>
-                                                    <textarea className="addCardInput" ref={addCardRef} onChange={getValueCard} placeholder={container.content_type === "question" ? "nouvelle question" : container.content_type === "response" ? "nouvelle réponse" : "nouvelle catégorie de réception"} />
+                                                    <textarea maxLength="70" className="addCardInput" ref={addCardRef} onChange={getValueCard} placeholder={container.content_type === "question" ? "nouvelle question" : container.content_type === "response" ? "nouvelle réponse" : "nouvelle catégorie de réception"} />
                                                     <button className="addCardButton" onClick={() => { sendNewCard(container.id, container.content_type) }}>Valider</button>
                                                 </form>
                                             </>

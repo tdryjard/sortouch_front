@@ -87,10 +87,7 @@ const CardModel = (props) => {
                     'authorization': token
                 }
             })
-            if(result){
-                setDeleted(!deleted)
-                window.location.reload()
-            }
+            if(result) setDeleted(!deleted)
         }
     }
 

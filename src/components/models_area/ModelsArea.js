@@ -46,7 +46,7 @@ const ModelArea = (props) => {
                 }
             })
                 .then(res => res.json())
-                .then(res => setCards(res))
+                .then(res => setCards(res.reverse()))
         }
     }, [userId, token])
 
