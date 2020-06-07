@@ -49,10 +49,7 @@ const Builder = () => {
             window.scrollTo(0, document.body.scrollHeight || document.documentElement.scrollHeight);
         }, 100)
         
-    }, [containers, cardsRes, cardsQuest, cardsCategory, responseSelect])
-
-
-    window.scrollTo(0, document.body.scrollHeight || document.documentElement.scrollHeight);
+    }, [responseSelect])
 
     const printContainers = async () => {
         try {
