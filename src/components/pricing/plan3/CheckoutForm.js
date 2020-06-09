@@ -15,7 +15,6 @@ const CheckoutForm = (props) => {
 
     const elements = useElements();
 
-    const stripe = require('stripe')('pk_test_AGb35S7bWUgRgRUh3tsxgfrL00MDuBTKPS');
     const stripeFunction = useStripe();
 
     useEffect(() => {

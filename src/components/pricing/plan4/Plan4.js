@@ -1,8 +1,4 @@
 import React, { useState, useEffect } from 'react'
-import { Link } from 'react-router-dom'
-import CheckoutForm from './CheckoutForm'
-import { Elements } from '@stripe/react-stripe-js';
-import { loadStripe } from '@stripe/stripe-js';
 import url from '../../../api/url'
 
 const Plan4 = () => {
