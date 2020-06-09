@@ -8,7 +8,6 @@ import ChatbotArea from './components/chatbot_area/chatbotArea/ChatBotArea'
 import Landing from './components/landing/Landing'
 import Registration from './components/registration/registration/Registration'
 import Connexion from './components/registration/connexion/Connexion'
-import Premium from './components/premium/Premium'
 import DocEditor from './components/docs/docEditor/DocEditor'
 import DocShare from './components/docs/docShare/DocShare'
 import DocReact from './components/docs/docReact/DocReact'
@@ -55,7 +54,6 @@ function App() {
           <Route path="/mails" component={MessageSpace} />
           <Route path="/chatbot" component={ChatbotArea} />
           <Route path="/editeur" component={Builder} />
-          <Route path="/premium" component={Premium} />
           <Route path="/editeur-doc" component={DocEditor} />
           <Route path="/partager-son-chatbot-doc" component={DocShare} />
           <Route path="/installer-react" component={DocReact} />
