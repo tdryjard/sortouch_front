@@ -1,10 +1,10 @@
 .containerPricing{
     height: 100vh;
     width: 100%;
-    margin-top: 50px;
+    margin-top: 80px;
     display: flex;
     justify-content: center;
-    align-items: center;
+    align-items: flex-start;
     flex-wrap: wrap;
     background-color: rgb(252, 252, 252);
 }
@@ -24,4 +24,46 @@
     z-index: -2;
     height: 100%;
     width: 33.3333%;
+}
+
+.containerPricingBuy{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    box-shadow: 2px 2px 10px rgb(134, 134, 134);
+    border-radius: 10px;
+    padding: 50px;
+    width: 40%;
+}
+
+.cancelSub{
+    border: none;
+    width: 200px;
+    height: 50px;
+    background-color: rgb(44, 44, 44);
+    color: white;
+    font-family: 'Sen', sans-serif;
+    font-size: 20px;
+    margin-top: 30px;
+    cursor: pointer;
+}
+
+.cancelSub:hover{
+    background-color: white;
+    border: rgb(44, 44, 44) 2px solid;
+    color: rgb(32, 32, 32);
+}
+
+.textCancel{
+    font-family: 'Sen', sans-serif;
+    font-size: 20px;
+}
+
+.windowPricingBuy{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 70px;
 }

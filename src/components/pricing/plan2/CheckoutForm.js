@@ -1,9 +1,9 @@
-import React, {useEffect, useState} from 'react'
+import React, { useEffect, useState } from 'react'
 import url from '../../../api/url'
 import { Elements, CardElement, useStripe, useElements } from '@stripe/react-stripe-js';
 import { loadStripe } from '@stripe/stripe-js';
 
-const CheckoutForm = () => {
+const CheckoutForm = (props) => {
 
     const [token, setToken] = useState()
     const [mail, setMail] = useState('')
@@ -11,11 +11,12 @@ const CheckoutForm = () => {
     const [phone, setPhone] = useState('')
     const [error, setError] = useState('')
     const [userId, setUserId] = useState()
-    
-    const stripe = useStripe();
+    const [load, setLoad] = useState(false)
+
     const elements = useElements();
 
-    const stripePromise = loadStripe("pk_test_8hlgpZTIPsyWpNGcp2OkpybF00iovkpKJO");
+    const stripe = require('stripe')('pk_test_AGb35S7bWUgRgRUh3tsxgfrL00MDuBTKPS');
+    const stripeFunction = useStripe();
 
     useEffect(() => {
         if (localStorage.getItem('userId')) {
@@ -47,40 +48,10 @@ const CheckoutForm = () => {
         },
     };
 
-    function validateEmail(email) {
-        let re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-        return re.test(email);
-    }
-
-    const validatePhone = (phone) => {
-        let re = /^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/im
-        return re.test(phone)
-    }
 
     const subscription = async (event) => {
-
-        if (!validateEmail(mail)) {
-            alert('email non valide')
-        } else if (!validatePhone(phone)) {
-            alert('numéro de téléphone non valide')
-        } else {
-            fetch(`${url}/subscription/create`, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'Acces-Control-Allow-Origin': { origin },
-                    'authorization': token
-                },
-                body: JSON.stringify({
-                    society: society,
-                    user_id: userId,
-                    phone: phone,
-                    email: mail
-                })
-            });
-        }
-
-        fetch(`${url}/v1/customers`, {
+        setLoad(true)
+        fetch(`${url}/create-customer`, {
             method: 'post',
             headers: {
                 'Content-Type': 'application/json'
@@ -95,74 +66,102 @@ const CheckoutForm = () => {
             .then(result => {
                 // result.customer.id is used to map back to the customer object
                 // result.setupIntent.client_secret is used to create the payment method
+                if (result) createPaymentMethod(elements.getElement(CardElement), result.customer.id, 'price_1GrQ6bKleZ50Ivn665vv20Bt')
             });
-
-        const cardElement = await elements.getElement(CardElement);
-        // Use your card Element with other Stripe.js APIs
-        createPaymentMethod(cardElement, 'prod_HI6ZkVFPxvgL0h', 'price_HI6ZGpJfGmZlEo');
     }
 
     function createPaymentMethod(cardElement, customerId, priceId) {
-        return stripe
+        return stripeFunction
             .createPaymentMethod({
                 type: 'card',
                 card: cardElement,
             })
             .then((result) => {
                 if (result.error) {
-                    displayError(result.error);
+                    setError(error);
                 } else {
-                    createSubscription(
-                        customerId,
-                        result.paymentMethod.id,
-                        priceId);
+                    createSubscription({
+                        customerId: customerId,
+                        paymentMethodId: result.paymentMethod.id,
+                        priceId: priceId,
+                    });
                 }
             });
     }
 
-
-    function createSubscription(customerId, paymentMethodId, priceId) {
-        return (
-            fetch(`${url}/create-subscription`, {
-                method: 'post',
-                headers: {
-                    'Content-type': 'application/json',
-                },
-                body: JSON.stringify({
-                    customerId: customerId,
+    async function createSubscription({ customerId, paymentMethodId, priceId }) {
+        const resSub = await fetch(`${url}/create-subscription`, {
+            method: 'post',
+            headers: {
+                'Content-type': 'application/json',
+            },
+            body: JSON.stringify({
+                customerId: customerId,
+                paymentMethodId: paymentMethodId,
+                priceId: priceId,
+            }),
+        })
+            .then((response) => {
+                return response.json();
+            })
+            // If the card is declined, display an error to the user.
+            .then(async (result) => {
+                if (result.error) {
+                    // The card had an error when trying to attach it to a customer.
+                    setError('Problème avec le paiement, veuillez réessayer ou nous contacter si le problème persiste')
+                    throw result;
+                }
+                const up = await fetch(`${url}/user/update/${props.userId}`, {
+                    method: 'PUT',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Acces-Control-Allow-Origin': { origin },
+                        'authorization': props.token
+                    },
+                    body: JSON.stringify({
+                        type: "standard",
+                        custom: result.id
+                    })
+                })
+                if (up) {
+                    sessionStorage.setItem('type', 'standard')
+                    window.location.reload()
+                }
+            })
+            // Normalize the result to contain the object returned by Stripe.
+            // Add the addional details we need.
+            .then((result) => {
+                return {
                     paymentMethodId: paymentMethodId,
                     priceId: priceId,
-                }),
+                    subscription: result,
+                };
             })
-                .then((response) => {
-                    return response.json();
-                })
-                // If the card is declined, display an error to the user.
-                .then((result) => {
-                    if (result.error) {
-                        // The card had an error when trying to attach it to a customer.
-                        throw result;
-                    }
-                    return result;
-                })
-                // Normalize the result to contain the object returned by Stripe.
-                // Add the addional details we need.
-                .then((result) => {
-                    return {
-                        paymentMethodId: paymentMethodId,
-                        priceId: priceId,
-                        subscription: result,
-                    };
-                })
-        );
+            // Some payment methods require a customer to be on session
+            // to complete the payment process. Check the status of the
+            // payment intent to handle these actions.
+            .then()
+            // If attaching this card to a Customer object succeeds,
+            // but attempts to charge the customer fail, you
+            // get a requires_payment_method error.
+            .then((result) => {
+
+            })
+            // No more actions required. Provision your service for the user.
+            .then()
+            .catch((error) => {
+                // An error has happened. Display the failure to the user here.
+                // We utilize the HTML element we created.
+
+            })
     }
 
-    const displayError = (error) => {
-        setError(error)
+    useEffect(() => {
         setTimeout(() => {
             setError('')
-        }, 3000)
-    }
+            setLoad(false)
+        }, 6000)
+    }, [error])
 
 
     const getMail = (e) => {
@@ -180,10 +179,15 @@ const CheckoutForm = () => {
 
     return (
         <div className="contentPlanStripe" >
-            {error && <p>{error}</p>}
-            <input className="inputPricing" onChange={getMail} placeholder="Votre email" />
-            <input className="inputPricing" onChange={getSociety} placeholder="Nom de votre société" />
-            <input className="inputPricing" onChange={getPhone} placeholder="Numéro de téléphone" />
+            {error && <p className="errorPay">{error}</p>}
+            {!load ?
+                <>
+                    <input className="inputPricing" onChange={getMail} placeholder="Votre email" />
+                    <input className="inputPricing" onChange={getSociety} placeholder="Nom de votre société" />
+                    <input className="inputPricing" onChange={getPhone} placeholder="Numéro de téléphone" />
+                </>
+                : <img style={{ width: "50%" }} src={require('../image/load.gif')} />}
+
             <div className="inputPricingCard">
                 <CardElement options={CARD_OPTIONS} />
             </div>
@@ -192,4 +196,4 @@ const CheckoutForm = () => {
     )
 }
 
-    export default CheckoutForm
+export default CheckoutForm

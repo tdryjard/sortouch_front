@@ -61,9 +61,13 @@ const CardModel = (props) => {
             })
                 .then(res => res.json())
                 .then(res => {
+                    let result = []
+                    if (res.length > 0) {
+                        result = res.filter(mail => mail.deleted !== 1)
+                    }
                     let nb = 0
-                    for (let i = 0; i < res.length; i++) {
-                        if (res[i].view === 0) nb++
+                    for (let i = 0; i < result.length; i++) {
+                        if (result[i].view === 0) nb++
                     }
                     stockUnview.push(nb)
                 })

@@ -1,0 +1,117 @@
+.windowPopup{
+    height: 100%;
+    width: 100%;
+    top: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+}
+
+.backBlur{
+    width: 100%;
+    height: 100%;
+    z-index: 20;
+    position: absolute;
+    background:black;
+    background:rgba(0,0,0,0.4);
+    filter:blur(4px);
+    -o-filter:blur(4px);
+    -ms-filter:blur(4px);
+    -moz-filter:blur(4px);
+    -webkit-filter:blur(4px);
+}
+
+.containerPopup{
+    position: fixed;
+    top: 35%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    border-radius: 5px;
+    height: 50%;
+    width: 50%;
+    z-index: 100;
+    background-color: rgb(255, 255, 255);
+}
+
+.textPopup{
+    color: rgb(39, 39, 39);
+    font-family: 'Sen', sans-serif;
+    font-size: 25px;
+    text-align: center;
+    max-width: 80%;
+    margin-top: 100px;
+    margin-bottom: 100px;
+}
+
+.buttonPopup{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+    border: none;
+    background-color: #B576FF;
+    color: rgb(255, 255, 255);
+    box-shadow: 2px 2px 7px rgb(115, 73, 163);
+    width: 250px;
+    height: 70px;
+    border-radius: 5px;
+    font-family: 'Sen', sans-serif;
+    font-size: 25px;
+    cursor: pointer;
+}
+
+.iconPopup{
+    width: 25%;
+    position: absolute;
+    top: -200px;
+}
+
+.crossPopupPremium{
+    position: absolute;
+    right: 30px;
+    top: 20px;
+    height: 30px;
+    padding: 5px;
+    width: auto;
+    border: rgb(44, 44, 44) 2px solid;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+@media screen and(max-width: 1200px){
+    .windowPopup{
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        flex-direction: column;
+    }
+    .containerPopup{
+        justify-content: flex-start;
+        height: 70%;
+        width: 90%;
+        top: 20%;
+    }
+    .iconPopup{
+        display: none;
+    }
+    .buttonPopup{
+        margin-bottom: 50px;
+    }
+    .crossPopupPremium{
+        top: 10px;
+        right: 10px;
+        height: 25px;
+    }
+    .textPopup{
+        margin-bottom: 20px !important;
+        margin-top: 70px !important;
+    }
+    .buttonPopup{
+        margin: 0;
+        position: absolute;
+        bottom: 30px;
+    }
+}

@@ -8,15 +8,26 @@ import './Plan2.scss'
 const Plan2 = () => {
     const [active, setActive] = useState(false)
     const [userId, setUserId] = useState()
+    const [token, setToken] = useState()
+    const [type, setType] = useState()
 
-    const stripePromise = loadStripe("pk_test_8hlgpZTIPsyWpNGcp2OkpybF00iovkpKJO");
+    const stripePromise = loadStripe("pk_test_AGb35S7bWUgRgRUh3tsxgfrL00MDuBTKPS");
 
     useEffect(() => {
         if (localStorage.getItem('userId')) {
             setUserId(localStorage.getItem('userId'))
+            setToken(localStorage.getItem('token'))
+            setType(localStorage.getItem('type'))
         } else {
             setUserId(sessionStorage.getItem('userId'))
+            setToken(sessionStorage.getItem('token'))
+            setType(sessionStorage.getItem('type'))
         }
+    }, [])
+
+    useEffect(() => {
+        if (sessionStorage.getItem('type')) setType(sessionStorage.getItem('type'))
+        else if (localStorage.getItem('type')) setType(localStorage.getItem('type'))
     }, [])
 
     return (
@@ -45,19 +56,23 @@ const Plan2 = () => {
                         <img src={require('../image/valid.png')} alt="valid" className="validImg" />
                         <p className="textOptionPlan">Assistance technique</p>
                     </div>
-                    {!userId ?
+                    {type === "expert" ?
+                        <div className="buttonPricing2">
+                            <p style={{ fontSize: "18px", margin: "0px", marginTop: "5px" }}>Résiliez l'abonnement en cours pour souscrire</p>
+                        </div>
+                        : !userId ?
                         <Link to={{ pathname: `/inscription`, query: { pricing: true } }} className="buttonPricing2">
-                            Souscrire
+                            Souscrire <p style={{ fontSize: "15px", margin: "0px", marginTop: "5px" }}>Sans engagement</p>
                         </Link>
                         :
                         <div onClick={() => { setActive(true) }} className="buttonPricing2">
-                            Souscrire
+                            Souscrire <p style={{ fontSize: "15px", margin: "0px", marginTop: "5px" }}>Sans engagement</p>
                         </div>}
                 </div>
                 :
 
                 <Elements stripe={stripePromise}>
-                    <CheckoutForm />
+                    <CheckoutForm userId={userId} token={token} />
                 </Elements>
             }
         </div>

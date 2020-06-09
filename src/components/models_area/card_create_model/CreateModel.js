@@ -4,9 +4,10 @@ import origin from '../../../api/origin'
 import useGlobalState from '../../../hooks/useGlobalState'
 import ContentEditable from 'react-contenteditable'
 import './CreateModel.scss'
+import PopupPremium from '../../popupPremium/PopupPremium'
 
 
-const CreateModel = () => {
+const CreateModel = (props) => {
     const [adding, setAdding] = useState(false)
     const [inputValue, setInputValue] = useState({ html: "nouveau model" })
     const [contentEditable] = useState(React.createRef())
@@ -14,14 +15,18 @@ const CreateModel = () => {
     const { connectClassActive, connectClassDisable, classConnectButton } = useGlobalState();
     const [userId, setUserId] = useState()
     const [token, setToken] = useState()
+    const [type, setType] = useState()
+    const [popup, setPopup] = useState(false)
 
     useEffect(() => {
         if (localStorage.getItem('userId')) {
             setUserId(localStorage.getItem('userId'))
             setToken(localStorage.getItem('token'))
+            setType(localStorage.getItem('type'))
         } else {
             setUserId(sessionStorage.getItem('userId'))
             setToken(sessionStorage.getItem('token'))
+            setType(sessionStorage.getItem('type'))
         }
     }, [])
 
@@ -50,7 +55,7 @@ const CreateModel = () => {
             })
         })
         const result = await res.json()
-        if(result){
+        if (result) {
             fetch(url + '/container/create', {
                 method: 'POST',
                 headers: {
@@ -79,42 +84,48 @@ const CreateModel = () => {
     }
 
     const activeContent = () => {
-        setTimeout(() => {
-            setAdding(true)
-        }, 200)
+        if (props.models.length > 0 && type === "free") {
+            setPopup(true)
+        } else {
+            setTimeout(() => {
+                setAdding(true)
+            }, 200)
+        }
     }
 
     return (
-        <div className="containerAddModel">
-            {adding === false && send !== true ?
-                <div onClick={activeContent} className="contentAddModel">
-                    <p onClick={activeContent} className="textCategory">Nouveau chatbot</p>
-                    <div className="contentShine">
-                        <img alt="add" onClick={activeContent} src={require('../../message_space/addCategory/image/plus_icon.png')} className="addButtonCategory" />
-                        <div className="shine" />
-                    </div>
-                </div>
-                : adding === true && send !== true ?
-                    <div className="contentAddModelActive">
-                        <p className="textCategory">Entrez le nom du model</p>
-                        <ContentEditable
-                            className="inputAddModel"
-                            innerRef={contentEditable}
-                            html={inputValue.html}
-                            disabled={false}
-                            onChange={changeInput}
-                            tagName='article'
-                        />
-                        <button onClick={addModel} className="buttonAddModel">Ajouter</button>
-                    </div>
-                    :
-                    <div className="contentAddModelActive">
-                        <div className="contentSetTimeout">
-                            {setTimeout(() => { setSend(false); setAdding(false) }, 1500)}
+        <>
+            {popup && <PopupPremium display={popup} />}
+            <div onClick={() => { setPopup(!popup) }} className="containerAddModel">
+                {adding === false && send !== true ?
+                    <div onClick={activeContent} className="contentAddModel">
+                        <p onClick={activeContent} className="nameCardModel">Nouveau chatbot</p>
+                        <div className="contentShine">
+                            <img alt="add" onClick={activeContent} src={require('../../message_space/addCategory/image/plus_icon.png')} className="addButtonCategoryModel" />
                         </div>
-                        <p className="textCategory">Model créé !</p>
-                    </div>}
-        </div>
+                    </div>
+                    : adding === true && send !== true ?
+                        <div className="contentAddModelActive">
+                            <p className="textCategory">Entrez le nom du model</p>
+                            <ContentEditable
+                                className="inputAddModel"
+                                innerRef={contentEditable}
+                                html={inputValue.html}
+                                disabled={false}
+                                onChange={changeInput}
+                                tagName='article'
+                            />
+                            <button onClick={addModel} className="buttonAddModel">Ajouter</button>
+                        </div>
+                        :
+                        <div className="contentAddModelActive">
+                            <div className="contentSetTimeout">
+                                {setTimeout(() => { setSend(false); setAdding(false) }, 1500)}
+                            </div>
+                            <p className="textCategory">Model créé !</p>
+                        </div>}
+            </div>
+        </>
     )
 }
 

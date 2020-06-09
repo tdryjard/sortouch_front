@@ -90,37 +90,53 @@ const Landing = () => {
                             <Link to="editeur-doc" className="containerTextLanding1">
                                 <h2 id="textLanding1" className={"textChatLanding"}>L'éditeur de chatbot le plus simple d'utilisation</h2>
                             </Link>
-                            <Link className="linkImg" to="editeur-doc"> <img src={require('./image/editor.gif')} alt="editeur" className="editorImg" /> </Link>
+                            {window.innerWidth > 1280 ? <Link className="linkImg" to="editeur-doc"> <img src={require('./image/editor.gif')} alt="editeur" className="editorImg" /> </Link>
+                                : <img src={require('./image/editor.gif')} alt="editeur" className="editorImg" />}
                             <Link to="installer-react" className="containerTextLanding">
                                 <h2 id="textLanding2" className={textEffect2 ? "textChatLanding" : "displayNone"} >Intégrez facilement votre chatbot sur votre site</h2>
                             </Link>
-                            <div className="containerLogoLanding">
-                                <Link className="linkImgDuo" to="installer-react"><img src={require('./image/react.svg')} alt="react logo" className="logoInstallLanding" /></Link>
-                                <Link className="linkImgDuo" to="installer-wordpress"> <img src={require('./image/wordpress.png')} alt="wordpress logo" className="logoInstallLanding" /> </Link>
-                            </div>
+                            {window.innerWidth > 1280 ?
+                                <div className="containerLogoLanding">
+                                    <Link className="linkImgDuo" to="installer-react"><img src={require('./image/react.svg')} alt="react logo" className="logoInstallLanding" /></Link>
+                                    <Link className="linkImgDuo" to="installer-wordpress"> <img src={require('./image/wordpress.png')} alt="wordpress logo" className="logoInstallLanding" /> </Link>
+                                </div>
+                                :
+                                <div className="containerLogoLanding">
+                                    <img src={require('./image/react.svg')} alt="react logo" className="logoInstallLanding" />
+                                    <img src={require('./image/wordpress.png')} alt="wordpress logo" className="logoInstallLanding" />
+                                </div>}
                             <div className="containerTextLanding">
                                 {userId ?
-                                <Link to="/mails"><h2 id="textLanding3" className={textEffect3 ? "textChatLanding" : "displayNone"}>Recevez les prises de contact avec vous via votre chatbot triées automatiquement !</h2></Link>
-                                : <Link to="/inscription"><h2 id="textLanding3" className={textEffect3 ? "textChatLanding" : "displayNone"}>Recevez les prises de contact avec vous via votre chatbot triées automatiquement !</h2></Link>}
+                                    <Link to="/mails"><h2 id="textLanding3" className={textEffect3 ? "textChatLanding" : "displayNone"}>Recevez les prises de contact avec vous via votre chatbot triées automatiquement !</h2></Link>
+                                    : <Link to="/inscription"><h2 id="textLanding3" className={textEffect3 ? "textChatLanding" : "displayNone"}>Recevez les prises de contact avec vous via votre chatbot triées automatiquement !</h2></Link>}
                             </div>
-                            <div className="containerMessageImg">
-                            {userId ?
-                                <Link className="linkImg" to="/mails"><img src={require('./image/formChatbot.png')} alt="formulaire contact chatbot" className="formChatImg" />
-                                <img src={require('./image/message_area.jpg')} alt="espace message" className="areaMessageImgLanding" /> </Link>
+                            {window.innerWidth > 1280 ?
+                                <div className="containerMessageImg">
+                                    {userId ?
+                                        <Link className="linkImg" to="/mails"><img src={require('./image/formChatbot.png')} alt="formulaire contact chatbot" className="formChatImg" />
+                                            <img src={require('./image/message_area.jpg')} alt="espace message" className="areaMessageImgLanding" /> </Link>
+                                        :
+                                        <Link className="linkImg" to="/inscription"><img src={require('./image/formChatbot.png')} alt="formulaire contact chatbot" className="formChatImg" />
+                                            <img src={require('./image/message_area.jpg')} alt="espace message" className="areaMessageImgLanding" /> </Link>}
+                                </div>
                                 :
-                                <Link className="linkImg" to="/inscription"><img src={require('./image/formChatbot.png')} alt="formulaire contact chatbot" className="formChatImg" />
-                                <img src={require('./image/message_area.jpg')} alt="espace message" className="areaMessageImgLanding" /> </Link>}
-                            </div>
+                                <div className="containerMessageImg">
+                                    <img src={require('./image/formChatbot.png')} alt="formulaire contact chatbot" className="formChatImg" />
+                                    <img src={require('./image/message_area.jpg')} alt="espace message" className="areaMessageImgLanding" />
+                                </div>}
                             <div className="containerTextLanding">
-                            {userId ?
-                                <Link to="/base-de-donnee"><h2 id="textLanding4" className={textEffect4 ? "textChatLanding" : "displayNone"}>Créez vous une vrai base de donnée d'email et de numéro de téléphone !</h2></Link>
-                                :
-                                <Link to="/inscription"><h2 id="textLanding4" className={textEffect4 ? "textChatLanding" : "displayNone"}>Créez vous une vrai base de donnée d'email et de numéro de téléphone !</h2></Link>}
+                                {userId ?
+                                    <Link to="/base-de-donnee"><h2 id="textLanding4" className={textEffect4 ? "textChatLanding" : "displayNone"}>Créez vous une vrai base de donnée d'email et de numéro de téléphone !</h2></Link>
+                                    :
+                                    <Link to="/inscription"><h2 id="textLanding4" className={textEffect4 ? "textChatLanding" : "displayNone"}>Créez vous une vrai base de donnée d'email et de numéro de téléphone !</h2></Link>}
                             </div>
-                            {userId ?
+                            {window.innerWidth > 1280 ?
+                            userId ?
                                 <Link className="linkImg" to="/base-de-donnee"><img src={require('./image/data_area.jpg')} alt="espace base de donnée" className="areaImgLanding" /></Link>
                                 :
-                                <Link className="linkImg" to="/inscription"><img src={require('./image/data_area.jpg')} alt="espace base de donnée" className="areaImgLanding" /></Link>}
+                                <Link className="linkImg" to="/inscription"><img src={require('./image/data_area.jpg')} alt="espace base de donnée" className="areaImgLanding" /></Link>
+                            :
+                            <img src={require('./image/data_area.jpg')} alt="espace base de donnée" className="areaImgLanding" />}
                         </div>
                     </div>
                     <div id="explication" className="contentHeadLanding">

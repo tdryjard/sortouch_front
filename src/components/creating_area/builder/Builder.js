@@ -44,13 +44,6 @@ const Builder = () => {
         if (!modelId) setModelId(sessionStorage.getItem('modelId'))
     }, [])
 
-    useEffect(() => {
-        setTimeout(() => {
-            window.scrollTo(0, document.body.scrollHeight || document.documentElement.scrollHeight);
-        }, 100)
-        
-    }, [responseSelect])
-
     const printContainers = async () => {
         try {
             const resJson = await fetch(`${url}/container/findAll/${userId}/${responseSelect}/${modelId}`)

@@ -62,7 +62,7 @@ const ModelArea = (props) => {
                 :
                 <MenuBurger type={"models"} />}
             <div className="contentModelArea">
-                <CreateModel />
+                <CreateModel models={cards} />
                 {cards.length &&
                     cards.map((card, index) => {
                         return (

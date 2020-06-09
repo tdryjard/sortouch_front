@@ -14,7 +14,7 @@ const Registration = (props) => {
     const [redirect, setRedirect] = useState(false)
     const [submit, setSubmit] = useState(false)
 
-    const {register, handleSubmit} = useForm()
+    const { register, handleSubmit } = useForm()
 
     function validateEmail(email) {
         let re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
@@ -24,7 +24,7 @@ const Registration = (props) => {
 
     const validSub = async () => {
         if (!validateEmail(mail)) setAlert('Veuillez entrer une email correct')
-        else if (password !== passwordVerif)  setAlert('mot de passe différents')
+        else if (password !== passwordVerif) setAlert('mot de passe différents')
         else if (password.split('').length < 8) setAlert('Veuillez entre un mot de passe entre 8 et 25 caractères svp')
         else {
             setSubmit(true)
@@ -490,6 +490,8 @@ const Registration = (props) => {
                                                                                                                                 container_id: containerHeightId
                                                                                                                             })
                                                                                                                         })
+
+                                                                                                                        sessionStorage.setItem("type", 'free')
                                                                                                                     }
                                                                                                                 }
                                                                                                             }
@@ -563,29 +565,29 @@ const Registration = (props) => {
             {redirect && !props.location.query ? <Redirect to={{ pathname: `/models` }} />
                 : redirect && props.location.query && props.location.query.pricing && <Redirect to='/tarifs' />}
             {!submit ?
-            <div className="contentRegister">
-                <h4 className="titleRegister">Inscription</h4>
-                {alert &&
-                    <div className="contentAlert">
-                        <p className="textAlert">{alert}</p>
-                    </div>}
-                <form className="signForm" onSubmit={handleSubmit(validSub)}>
-                    <input ref={register} onChange={takeMail} className={alert === "Veuillez entrer une email correct" ? "inputLogError" : "inputLog"} placeholder="email" />
-                    <input ref={register} type="password" onChange={takePassword} className={alert === "Veuillez entrer une email correct" || alert === "" ? "inputLog" : "inputLogError"} placeholder="mot de passe" />
-                    <input ref={register} type="password" onChange={takePasswordVerif} className={alert === "Veuillez entrer une email correct" || alert === "" ? "inputLog" : "inputLogError"} placeholder="répéter mot de passe" />
-                    <button type="submit" className="validLog">S'inscrire</button>
-                </form>
-                {props.location.query && props.location.query.pricing ?
-                    <Link to={{ pathname: `/connexion`, query: { pricing: true } }} className="linkRegistration">Connexion</Link>
-                    :
-                    <Link to={{ pathname: `/connexion` }} className="linkRegistration">Connexion</Link>}
-            </div>
-            :
-            <div className="contentRegister">
-                <p className="textLoadingRegister">Nous construisons votre espace Sortouch</p>
-                <p className="textLoadingRegister">Veuillez patienter</p>
-                <img src={require('../image/loading.gif')} className="loadingGif"/>
-            </div>}
+                <div className="contentRegister">
+                    <h4 className="titleRegister">Inscription</h4>
+                    {alert &&
+                        <div className="contentAlert">
+                            <p className="textAlert">{alert}</p>
+                        </div>}
+                    <form className="signForm" onSubmit={handleSubmit(validSub)}>
+                        <input ref={register} onChange={takeMail} className={alert === "Veuillez entrer une email correct" ? "inputLogError" : "inputLog"} placeholder="email" />
+                        <input ref={register} type="password" onChange={takePassword} className={alert === "Veuillez entrer une email correct" || alert === "" ? "inputLog" : "inputLogError"} placeholder="mot de passe" />
+                        <input ref={register} type="password" onChange={takePasswordVerif} className={alert === "Veuillez entrer une email correct" || alert === "" ? "inputLog" : "inputLogError"} placeholder="répéter mot de passe" />
+                        <button type="submit" className="validLog">S'inscrire</button>
+                    </form>
+                    {props.location.query && props.location.query.pricing ?
+                        <Link to={{ pathname: `/connexion`, query: { pricing: true } }} className="linkRegistration">Connexion</Link>
+                        :
+                        <Link to={{ pathname: `/connexion` }} className="linkRegistration">Connexion</Link>}
+                </div>
+                :
+                <div className="contentRegister">
+                    <p className="textLoadingRegister">Nous construisons votre espace Sortouch</p>
+                    <p className="textLoadingRegister">Veuillez patienter</p>
+                    <img src={require('../image/loading.gif')} className="loadingGif" />
+                </div>}
         </div>
     )
 }

@@ -1,6 +1,6 @@
 .containerPlan{
     width: 25%;
-    height: 70%;
+    min-height: 65%;
     margin-top: 150px;
     margin-bottom: 50px;
     box-shadow: 2px 2px 20px rgb(190, 190, 190);
@@ -18,8 +18,8 @@
 .contentPlan{
     position: relative;
     width: 92%;
-    min-height: 85%;
-    padding-bottom: 20%;
+    min-height: 500px;
+    padding-bottom: 130px;
     box-shadow: 2px 2px 20px rgb(190, 190, 190);
     border-radius: 10px;
     display: flex;
@@ -99,7 +99,7 @@
 }
 
 .validImg{
-    height: 60%;
+    height: 30px;
     width: auto;
     margin-right: 50px;
     margin-left: 20px;
@@ -173,7 +173,7 @@
 .contentPlanStripe{
     position: relative;
     width: 92%;
-    height: 82%;
+    min-height: 500px;
     box-shadow: 2px 2px 20px rgb(190, 190, 190);
     border-radius: 10px;
     display: flex;
@@ -184,7 +184,7 @@
     background-color: rgba(255, 255, 255, 0.952);
     margin-right: 40px;
     margin-left: 40px;
-    padding-top: 100px;
+    padding-top: 10px;
 }
 
 .FormGroup {
@@ -245,6 +245,30 @@
         font-family: 'Sen', sans-serif;
     }
 
+.inputPricingMessage{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 20px 15px 20px;
+    padding: 0;
+    border-style: none;
+    background-color: rgb(181, 120, 253);
+    will-change: opacity, transform;
+    box-shadow: 0 6px 9px rgba(50, 50, 93, 0.06), 0 2px 5px rgba(0, 0, 0, 0.08),
+      inset 0 1px 0 #829fff;
+    border-radius: 4px;
+    height: 200px;
+    width: 90%;
+    color: white;
+    font-family: 'Sen', sans-serif;
+    text-align: center;
+    font-size: 18px;
+  } .inputPricingMessage::placeholder{ 
+        color: white;
+        font-size: 18px;
+        font-family: 'Sen', sans-serif;
+    }
+
 .StripeElement{
     margin-top: 3px;
 }
@@ -276,7 +300,7 @@
     font-weight: 600;
     font-family: 'Sen', sans-serif;
     margin: 0;
-    margin-top: 15px;
+    margin-top: 0;
     width: 100%;
 }
 
@@ -293,7 +317,6 @@
     justify-content: center;
     align-items: center;
     flex-wrap: wrap;
-    position: absolute;
     bottom: 50px;
     padding: 0;
     border-style: none;
@@ -303,6 +326,7 @@
       inset 0 1px 0 #829fff;
     border-radius: 10px;
     width: 80%;
+    height: 50px;
     color: rgb(181, 120, 253);
     border: rgb(181, 120, 253) 2px solid;
     font-family: 'Sen', sans-serif;
@@ -310,6 +334,8 @@
     font-size: 18px;
     cursor: pointer;
     outline: none;
+    margin-bottom: 30px;
+    margin-top: 15px;
   }
 
   .buttonBuyPricing:hover{
@@ -333,19 +359,51 @@
     margin-bottom: 20px;
 }
 
+.errorPay{
+    font-family: 'Sen', sans-serif;
+    font-size: 20px;
+    max-width: 85%;
+    text-align: center;
+}
+
+.textEndContact{
+    font-family: 'Sen', sans-serif;
+    font-size: 25px;
+    width: 80%;
+    margin-right: 10%;
+    margin-left: 10%;
+    text-align: center;
+    margin-top: 80px;
+}
+
 @media screen and (max-width: 1280px){
+    .containerPricingBuy{
+        padding: 10px !important;
+        width: 85% !important;
+    }
+    .buttonPricing2{
+        height: 70px !important;
+        margin-top: 35px;
+        position: relative;
+    }
+    .buttonPricing{
+        height: 70px !important;
+        margin-top: 35px;
+        position: relative;
+    }
     .containerPricing{
         flex-direction: column;
-        height: 680vh !important;
+        height: 580vh !important;
         display: flex;
         justify-content: flex-start !important;
+        align-items: center !important;
         flex-direction: column;
         flex-wrap: wrap;
         width: 100%;
     }
     .containerPlan{
         width: 90%;
-        height: 750px;
+        min-height: 500px;
         margin-bottom: 30px;
     }
     .containerOptionPlan{
@@ -372,6 +430,11 @@
     .contentPlanStripe{
         padding: 0;
         height: 97%;
+        align-items: center;
+        justify-content: center;
+    }
+    .contentPlan{
+        padding-bottom: 0px;
     }
     .buttonBuyPricing{
         bottom: 25px;

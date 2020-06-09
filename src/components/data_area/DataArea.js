@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import Navbar from '../navbar/Navbar'
 import MenuBurger from '../menuBurger/MenuBurger'
+import PopupPremium from '../popupPremium/PopupPremium'
 import url from '../../api/url'
 import './DataArea.scss'
 
@@ -26,10 +27,12 @@ const DataArea = () => {
     const [colorParamsSelect, setColorParamsSelect] = useState(false)
     const [load, setLoad] = useState(true)
     const [timeOut, setTimeOut] = useState(false)
+    const [type, setType] = useState()
+    const [popup, setPopup] = useState(false)
 
     useEffect(() => {
         setTimeout(() => {
-            if(load) setTimeOut(true)
+            if (load) setTimeOut(true)
         }, 3000)
     }, [contacts])
 
@@ -37,9 +40,11 @@ const DataArea = () => {
         if (localStorage.getItem('userId')) {
             setUserId(localStorage.getItem('userId'))
             setToken(localStorage.getItem('token'))
+            setType(localStorage.getItem('type'))
         } else {
             setUserId(sessionStorage.getItem('userId'))
             setToken(sessionStorage.getItem('token'))
+            setType(sessionStorage.getItem('type'))
         }
     }, [])
 
@@ -83,6 +88,8 @@ const DataArea = () => {
         })
             .then(res => res.json())
             .then(res => {
+                if(type === "free" && res.length > 500) res.length = 500
+                if(type === "standard" && res.length > 10000) res.length = 10000
                 setContacts(res)
                 setSortContacts(res)
             })
@@ -91,15 +98,15 @@ const DataArea = () => {
 
     const sort = (param, type) => {
 
-        if (type === "model"){
+        if (type === "model") {
             setChoiceModel(param.name)
             setSelectModel(false)
         }
-        if (type === "category"){
+        if (type === "category") {
             setSelectCategory(false)
             setChoiceCategory(param.name)
         }
-        if (type === "color"){
+        if (type === "color") {
             setColorParamsSelect(false)
             setColorSort(param)
         }
@@ -174,8 +181,14 @@ const DataArea = () => {
         setChooseColor(false)
     }
 
+    useEffect(() => {
+        if (contacts && contacts.length > 400 && type === "free") setPopup(true)
+        if (contacts && contacts.length > 9500 && type === "standard") setPopup(true)
+    }, [contacts, type])
+
     return (
         <div className="containerModelArea">
+            {popup && contacts && <PopupPremium display={popup} limit={contacts.length} />}
             {window.innerWidth > 1280 ?
                 <Navbar type={"data"} />
                 :
@@ -247,9 +260,9 @@ const DataArea = () => {
                     )
                 })
                     : load && !timeOut ?
-                    <img className="loadData" src={require('./image/load.gif')} alt="chargement" />
-                    :
-                    <p className="noResult">Aucun résultat</p>}
+                        <img className="loadData" src={require('./image/load.gif')} alt="chargement" />
+                        :
+                        <p className="noResult">Aucun résultat</p>}
             </div>
         </div>
     )

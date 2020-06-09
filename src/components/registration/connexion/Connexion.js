@@ -33,10 +33,12 @@ const Connexion = (props) => {
             if (result.status === 200) {
                 if (valid === true) {
                     localStorage.setItem("userId", result.data.id)
+                    localStorage.setItem("type", result.data.type)
                     localStorage.setItem('token', result.token)
                     setRedirect(true)
                 } else if (valid === false) {
                     sessionStorage.setItem("userId", result.data.id)
+                    sessionStorage.setItem("type", result.data.type)
                     sessionStorage.setItem('token', result.token)
                     setRedirect(true)
                 }

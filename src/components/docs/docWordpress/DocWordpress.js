@@ -30,6 +30,9 @@ const DocReact = () => {
                     download="sortouch-plugin" className="linkDownload">1) Télécharger le plugin</a>
                 <p className="textDoc">2) Extraire le dossier puis le placer dans le dossier wp-content/plugins de wordpress en local</p>
                 <h4 className="titleContainerSectionDocWordpress">Sur wordrpess</h4>
+                <p className="textDoc">Activer le plugin Sortouch qui est apparu dans la section "extensions"</p>
+                <img src={require('./image/active.png')} alt="active plugin" className="imgDocWordpress" />
+                <h4 className="titleContainerSectionDocWordpress">Sur votre site</h4>
                 <p className="textDoc">1) Ajouter un bloc Shortcode (code court) sur votre site wordpress</p>
                 <img src={require('./image/add_shortcode.png')} alt="add shortcode" className="imgDocWordpress" />
                 <p className="textDocMargin">2) écrivez la même chose que l'image ci-dessous en remplaçant le texte entre guillemets avec votre user id et votre chatbot id</p>
