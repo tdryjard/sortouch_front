@@ -18,7 +18,7 @@ const Navbar = (props) => {
     return(
         <div className="containerNav">
             <Link to="/" className={props.type === "landing" ? "linkNavbarActive" : "linkNavbar"} >Accueil</Link>
-            <Link to="/utiliser-le-site-sortouch" className={props.type === "doc" ? "linkNavbarActive" : "linkNavbar"} >Docs</Link>
+            <Link to="/utiliser-le-site-sortouch" className={props.type === "doc" ? "linkNavbarActive" : "linkNavbar"} >Tutos</Link>
             <Link to="/tarifs" className={props.type === "tarifs" ? "linkNavbarActive" : "linkNavbar"} >Tarifs</Link>
             {!userId && window.innerWidth > 1280 ?
                 <div className="contentConnect">
