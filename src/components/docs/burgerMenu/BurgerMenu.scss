@@ -22,7 +22,7 @@
     width: 80%;
     padding: 10%;
     background-color: rgb(255, 249, 249);
-    padding-top: 5%;
+    padding-top: 10px;
     overflow: hidden;
     z-index: 60;
     animation: openMenuBurger 1s;
@@ -39,4 +39,31 @@
     width: auto;
     margin-left: -20px;
     margin-bottom: 50px;
+    margin-top: 15px;
+}
+
+.openBurgerSiteDoc{
+    position: absolute;
+    top: 25px;
+    right: 10%;
+    width: 60%;
+    height: 50px;
+    box-shadow: 2px 2px 8px rgb(180, 180, 180);
+    border: none;
+    background-color: white;
+    color: rgb(29, 29, 29);
+    font-family: 'Sen', sans-serif;
+    font-size: 20px;
+    border-radius: 8px;
+    animation: spawnButtonBurger 0.5s;
+} @keyframes spawnButtonBurger{
+    0%{
+        opacity: 0;
+    }
+    80%{
+        opacity: 0;
+    }
+    100%{
+        opacity: 100%;
+    }
 }

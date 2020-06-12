@@ -18,13 +18,14 @@
     border: 3px #b36fff solid;
 }
 
-.iconChat{
+.iconChatBuilder{
     width: 60px;
     height: auto;
     background-color: #b36fff;
     border-radius: 50%;
     cursor: pointer;
     z-index: 1000;
+    box-shadow: 1px 1px 4px rgb(148, 148, 148);
 }
 
 @media screen and (max-width: 1200px){
@@ -222,7 +223,6 @@
     border-radius: 25px;
     cursor: pointer;
     min-height: 70px;
-    overflow: hidden;
 }
 
 .containerLittleCardResChat:hover{
@@ -360,5 +360,144 @@
     }
     100%{
         margin-bottom: 30px;
+    }
+}
+
+.menuChatbot{
+    position: fixed;
+    bottom: 30px;
+    right: 50px;
+    border-radius: 5px;
+    background-color: #b36fff;
+    font-size: 25px;
+    color: white;
+    font-family: 'Sen', sans-serif;
+    border: white 3px solid;
+    height: 50px;
+    width: 230px;
+    cursor: pointer;
+}
+
+.menuChatbot:hover{
+    background-color: white;
+    border: #b36fff 3px solid;
+    color: #b36fff;
+}
+
+.containerBoxTestChat{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    position: fixed;
+    bottom: 40px;
+    right: 50px;
+    height: 170px;
+    width: 450px;
+    background-color: white;
+    border-radius: 10px;
+    border: #b36fff 5px solid;
+    padding: 10px;
+}
+
+.buttonTestChat{
+    border-radius: 10px;
+    background-color: #ffffff;
+    font-size: 25px;
+    color: #b36fff;
+    font-family: 'Sen', sans-serif;
+    border: #b36fff 3px solid;
+    height: 50px;
+    width: 190px;
+    cursor: pointer;
+} .buttonTestChat:hover{
+    background-color: #b36fff;
+    color: white;
+}
+
+.choiceColorChatbot{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    border-radius: 10px;
+    margin-top: 15px;
+    background-color: #ffffff;
+    font-size: 20px;
+    font-weight: bold;
+    text-align: start;
+    color: #b36fff;
+    font-family: 'Sen', sans-serif;
+    border: #b36fff 3px solid;
+    height: 100px;
+    width: 210px;
+    cursor: pointer;
+    padding: 10px;
+    padding-left: 20px;
+    padding-right: 20px;
+} .choiceColorChatbot:hover{
+    background-color: #b36fff;
+    color: white;
+}
+
+.choiceColorChatbotOn{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    border-radius: 10px;
+    margin-top: 15px;
+    background-color: #ffffff;
+    font-size: 20px;
+    text-align: start;
+    color: #b36fff;
+    font-family: 'Sen', sans-serif;
+    border: #b36fff 3px solid;
+    height: 100px;
+    width: 400px;
+    cursor: pointer;
+    overflow: hidden;
+    animation: choiceColorChat 0.5s;
+}
+
+@keyframes choiceColorChat{
+    from{width: 0px}
+    to{width: 400px}
+}
+
+.crossPreview{
+    position: absolute;
+    top: 10px;
+    left: 15px;
+    height: 35px;
+    width: auto;
+    cursor: pointer;
+}
+
+@media screen and (max-width: 1200px){
+    .menuChatbot{
+        width: 60%;
+        left: 20%;
+    }
+    .containerBoxTestChat{
+        width: 80%;
+        left: 5%;
+    }
+    .iconChatBuilder{
+        width: 13%;
+    }
+    .choiceColorChatbotOn{
+        width: 95%;
+    }
+    @keyframes choiceColorChat{
+        from{width: 0%}
+        to{width: 95%}
+    }
+}
+
+@media screen and (max-width: 350px){
+    .crossPreview{
+        left: 5px;
+        height: 30px;
     }
 }

@@ -6,7 +6,7 @@ import Navbar from '../../navbar/Navbar'
 import url from '../../../api/url'
 import './DocWordpress.scss'
 
-const DocReact = () => {
+const DocWordpress = () => {
     const [userId, setUserId] = useState()
 
     useEffect(() => {
@@ -43,7 +43,7 @@ const DocReact = () => {
                 <h4 className="titleContainerSectionDoc">Votre user id : {userId ? userId : <Link to="/connexion" className="connexionDoc">Se connecter</Link>}</h4>
                 <h4 className="titleContainerSectionDocWordpress">Trouver son chatbot id</h4>
                 {userId &&
-                <p className="textDoc">Se rendre votre <Link to="/models">page model</Link> et allez dans les option de votre chatbot (exemple ci-dessous)</p> }
+                <p className="textDoc">Se rendre votre <Link style={{color: "rgb(46, 46, 46)"}} to="/models">page model</Link> et allez dans les option de votre chatbot (exemple ci-dessous)</p> }
                 <div className="containerStepModelid">
                     <img alt="model id étape 1" src={require('./image/modelid1.png')} className="takeModelId" />
                     <img alt="model id étape 2" src={require('./image/modelid2.png')} className="takeModelId" />
@@ -53,4 +53,4 @@ const DocReact = () => {
     )
 }
 
-export default DocReact
+export default DocWordpress

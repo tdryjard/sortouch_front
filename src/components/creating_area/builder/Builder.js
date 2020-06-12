@@ -3,13 +3,14 @@ import url from '../../../api/url';
 import origin from '../../../api/origin';
 import useGlobalState from '../../../hooks/useGlobalState';
 import { Link } from 'react-router-dom'
-import Chatbot from 'sortouch-react'
 import { useForm } from "react-hook-form";
+import ContentEditable from 'react-contenteditable'
 import './card.css'
 import './builder.scss'
 import CardListDestination from '../ListStock/cardList/CardListCategory/CardListCategory';
 
 const Builder = () => {
+    const [contentEditable] = useState(React.createRef())
     const [containers, setContainers] = useState([])
     const [order, setOrder] = useState(1)
     const { connectClassDisable, classConnectButton } = useGlobalState();
@@ -30,8 +31,12 @@ const Builder = () => {
     const [valueCardAdd, setValueCardAdd] = useState()
     const [storage, setStorage] = useState(false)
     const [insertCard, setInsertCard] = useState(false)
+    const [update, setUpdate] = useState()
+    const [typeUpdate, setTypeUpdate] = useState('')
+    const [containerUpdate, setContainerUpdate] = useState()
+    const [inputValue, setInputValue] = useState({ html: "" })
 
-    const { addCardRef, handleSubmit } = useForm()
+    const { addCardRef, upCard, handleSubmit } = useForm()
 
     useEffect(() => {
         if (localStorage.getItem('userId') && (!userId || !token)) {
@@ -52,7 +57,7 @@ const Builder = () => {
             if (res.length) {
                 const stockRes = res.slice().reverse()
                 if (storageContainer.length > 0 && responseSelect) {
-                    if(insertCard) setInsertCard(false)
+                    if (insertCard) setInsertCard(false)
                     let resResult = res.filter(res => res.response_id != null)
                     let newContainer = []
                     if (storageContainer[0].ordering > storageContainer[storageContainer.length - 1].ordering) {
@@ -71,7 +76,7 @@ const Builder = () => {
                     }
                     setContainers(await newContainer)
                     takeCard(newContainer)
-                } else if (insertCard){
+                } else if (insertCard) {
                     setContainers(containers)
                     takeCard(containers)
                 } else {
@@ -90,7 +95,7 @@ const Builder = () => {
 
     useEffect(() => {
         printContainers()
-        if(storageContainers) setStorage(true)
+        if (storageContainers) setStorage(true)
     }, [responseSelectChanging, userId, modelId, responseBool])
 
     const takeCard = async (res) => {
@@ -248,14 +253,13 @@ const Builder = () => {
         setLoad(false)
     }*/
 
-    const selectResponse = async function (event) {
+    const selectResponse = async function (numberCard, index) {
         setLoad(false)
         setContainers([])
-        const numberCard = parseInt(event.currentTarget.childNodes[0].id.replace('card', ''))
         setResponseSelect(numberCard)
-        responseSelected.length = parseInt(event.currentTarget.childNodes[0].id.replace('card', ''))
+        responseSelected.length = numberCard
 
-        const containerIndex = (parseInt(event.currentTarget.childNodes[1].id.replace('container', '')) + 1)
+        const containerIndex = index + 1
         const stockContainers = containers
         stockContainers.length = containerIndex
         setStorageContainers(stockContainers)
@@ -484,11 +488,80 @@ const Builder = () => {
 
         if (resRelation) {
             setContainerAddCard(null)
-            if(responseSelect !== containers[containers.length - 1].response_id){
+            if (responseSelect !== containers[containers.length - 1].response_id) {
                 setStorageContainers(containers)
             } else setInsertCard(true)
             setResponseBool(!responseBool)
         }
+    }
+
+    const updateCard = async (cardId, type, containerIndex) => {
+        let content = inputValue.html.replace(/&nbsp;/gi, '').replace(/<div><br><\/div>/gi, '').replace(/<p><br><\/p>/gi, '').replace(/<div>/gi, '').replace(/<\/div>/gi, '')
+        content.trim()
+        if (type === "question") {
+            let res = await fetch(`${url}/question/update/${cardId}/${userId}/${modelId}`, {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Access-Control-Allow-Origin': `${origin}`,
+                    'authorization': token
+                },
+                body: JSON.stringify({
+                    content: content
+                })
+            })
+            if (res) {
+                setUpdate(null)
+                setTypeUpdate('')
+                setResponseSelect(undefined)
+                setResponseSelected([])
+                setResponseBool(!responseBool)
+            }
+        }
+        if (type === "response") {
+            let res = await fetch(`${url}/response/update/${cardId}/${userId}/${modelId}`, {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Access-Control-Allow-Origin': `${origin}`,
+                    'authorization': token
+                },
+                body: JSON.stringify({
+                    content: content
+                })
+            })
+            if (res) {
+                setUpdate(null)
+                setTypeUpdate('')
+                setResponseSelect(undefined)
+                setResponseSelected([])
+                setResponseBool(!responseBool)
+            }
+        }
+        if (type === "category") {
+            let res = await fetch(`${url}/category/update/${cardId}/${userId}/${modelId}`, {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Access-Control-Allow-Origin': `${origin}`,
+                    'authorization': token
+                },
+                body: JSON.stringify({
+                    name : content
+                })
+            })
+            if (res) {
+                setUpdate(null)
+                setTypeUpdate('')
+                setResponseSelect(undefined)
+                setResponseSelected([])
+                setResponseBool(!responseBool)
+            }
+        }
+    }
+
+    const getUpdateCard = (e) => {
+        setInputValue({ html: e.target.value })
     }
 
     return (
@@ -502,34 +575,85 @@ const Builder = () => {
                                     <div className="contentBuildCard">
                                         {!Array.isArray(cardsQuest[index]) && !Array.isArray(cardsCategory[index]) && !Array.isArray(cardsRes[index]) &&
                                             <div className="contentEmptyContainer">
-                                                <img onClick={() => { deleteContainer(container.id); setLoad(true) }} alt="delete container" src={require('./image/cross.png')} className="crossIconContainer" />
+                                                {index !== 0 && <img onClick={() => { deleteContainer(container.id); setLoad(true) }} alt="delete container" src={require('./image/cross.png')} className="crossIconContainer" />}
                                                 <p className="typeContainer">contenaire à {container.content_type}</p>
                                             </div>}
                                         {Array.isArray(cardsQuest[index]) && container.content_type === "question" &&
-                                            cardsQuest[index].map(card => {
+                                            cardsQuest[index].map((card, cardIndex) => {
                                                 return (
                                                     <div id={`container${container.id}`} className="containerCardQuest">
-                                                        <img alt="delete" id={`card${card.id}`} onClick={() => { deleteRelationQuestion(container.id, card.id); setLoad(true) }} src={require('../ListStock/cardList/image/delete_icon.png')} className="iconDeleteCardBuildQuest" />
-                                                        <p className="textCardBuildQuest">{card.content}</p>
+                                                        {!(cardIndex === update && typeUpdate === "question" && index === containerUpdate) ?
+                                                            <>
+                                                                <img onClick={() => { return (setUpdate(cardIndex), setContainerUpdate(index), setTypeUpdate("question"), setInputValue({ html: card.content })) }} className="iconDeleteCardBuild" alt="update" src={require('./image/update_icon.png')} />
+                                                                <img alt="delete" id={`card${card.id}`} onClick={() => { deleteRelationQuestion(container.id, card.id); setLoad(true) }} src={require('../ListStock/cardList/image/delete_icon.png')} className="iconDeleteCardBuildQuest" />
+                                                                <p className="textCardBuildQuest">{card.content}</p>
+                                                            </>
+                                                            :
+                                                            <form onSubmit={handleSubmit(updateCard)} className="containerUpdateCard">
+                                                                <ContentEditable
+                                                                    ref={upCard}
+                                                                    className="contentQuestionInput"
+                                                                    innerRef={contentEditable}
+                                                                    html={inputValue.html}
+                                                                    disabled={false}
+                                                                    onChange={getUpdateCard}
+                                                                    tagName='article'
+                                                                />
+                                                                <img onClick={() => { updateCard(card.id, 'question', cardIndex) }} className="iconDeleteCardBuild" alt="update" src={require('./image/update_icon.png')} />
+                                                            </form>}
                                                     </div>
                                                 )
                                             })}
                                         {Array.isArray(cardsRes[index]) && container.content_type === "response" &&
-                                            cardsRes[index].map(card => {
+                                            cardsRes[index].map((card, cardIndex) => {
                                                 return (
-                                                    <div onClick={selectResponse} id={`container${container.id}`} className={responseSelected.includes(card.id) ? 'containerCardResChatActive' : 'containerCardResChat'}>
-                                                        <img alt="delete" id={`card${card.id}`} onClick={() => { deleteRelationResponse(index, container.id, card.id); setLoad(true) }} src={require('../ListStock/cardList/image/delete_icon.png')} className="iconDeleteCardBuild" />
-                                                        <p id={`container${index}`} className="textCardInBuild">{card.content}</p>
+                                                    <div onClick={() => { return (cardIndex !== update && selectResponse(card.id, index)) }} id={`container${container.id}`} className={(cardIndex === update && typeUpdate === "response" && containerUpdate === index) ? 'containerUpdateCardRes' : responseSelected.includes(card.id) ? 'containerCardResChatActive' : 'containerCardResChat'}>
+                                                        {!(cardIndex === update && typeUpdate === "response" && containerUpdate === index) ?
+                                                            <>
+                                                                <img onClick={() => { return (setUpdate(cardIndex), setContainerUpdate(index), setTypeUpdate('response'), setInputValue({ html: card.content })) }} className="iconDeleteCardBuild" alt="update" src={require('./image/update_icon.png')} />
+                                                                <img alt="delete" id={`card${card.id}`} onClick={() => { deleteRelationResponse(index, container.id, card.id); setLoad(true) }} src={require('../ListStock/cardList/image/delete_icon.png')} className="iconDeleteCardBuild" />
+                                                                <p id={`container${index}`} className="textCardInBuild">{card.content}</p>
+                                                            </>
+                                                            :
+                                                            <form onSubmit={handleSubmit(updateCard)} className="containerUpdateCard">
+                                                                <ContentEditable
+                                                                    ref={upCard}
+                                                                    className="contentQuestionInput"
+                                                                    innerRef={contentEditable}
+                                                                    html={inputValue.html}
+                                                                    disabled={false}
+                                                                    onChange={getUpdateCard}
+                                                                    tagName='article'
+                                                                />
+                                                                <img onClick={() => { updateCard(card.id, 'response', cardIndex, index) }} className="iconDeleteCardBuild" alt="update" src={require('./image/update_icon.png')} />
+                                                            </form>}
                                                     </div>)
                                             })
                                         }
                                         {Array.isArray(cardsCategory[index]) && container.content_type === "category" &&
-                                            cardsCategory[index].map(card => {
+                                            cardsCategory[index].map((card, cardIndex) => {
                                                 return (
-                                                    <div id={`container${container.id}`} className="containerCardCategoryBuild">
-                                                        <img alt="delete" id={`card${card.id}`} onClick={() => { deleteCategory(container.id); setLoad(true) }} src={require('../ListStock/cardList/image/delete_icon.png')} className="iconDeleteCardBuild" />
-                                                        <img alt="mail" src={require('./image/mail_icon.svg')} className="mailIcon" />
-                                                        <p className="textCardCategoryBuild">{card.name}</p>
+                                                    <div id={`container${container.id}`} className={(cardIndex === update && typeUpdate === "category" && containerUpdate === index) ? 'containerUpdateCardRes' :  "containerCardCategoryBuild"}>
+                                                        {!(cardIndex === update && typeUpdate === "category" && containerUpdate === index) ?
+                                                            <>
+                                                                <img onClick={() => { return (setUpdate(cardIndex), setContainerUpdate(index), setTypeUpdate('category'), setInputValue({ html: card.name })) }} className="iconDeleteCardBuild" alt="update" src={require('./image/update_icon.png')} />
+                                                                <img alt="delete" id={`card${card.id}`} onClick={() => { deleteCategory(container.id); setLoad(true) }} src={require('../ListStock/cardList/image/delete_icon.png')} className="iconDeleteCardBuild" />
+                                                                <img alt="mail" src={require('./image/mail_icon.svg')} className="mailIcon" />
+                                                                <p className="textCardCategoryBuild">{card.name}</p>
+                                                            </>
+                                                            :
+                                                            <form onSubmit={handleSubmit(updateCard)} className="containerUpdateCard">
+                                                                <ContentEditable
+                                                                    ref={upCard}
+                                                                    className="contentQuestionInput"
+                                                                    innerRef={contentEditable}
+                                                                    html={inputValue.html}
+                                                                    disabled={false}
+                                                                    onChange={getUpdateCard}
+                                                                    tagName='article'
+                                                                />
+                                                                <img onClick={() => { updateCard(card.id, 'category', cardIndex) }} className="iconDeleteCardBuild" alt="update" src={require('./image/update_icon.png')} />
+                                                            </form>}
                                                     </div>
                                                 )
                                             })}
@@ -542,10 +666,12 @@ const Builder = () => {
                                             </>
                                         }
                                     </div>
-                                    {!Array.isArray(cardsCategory[index]) &&
+                                    {
+                                        !Array.isArray(cardsCategory[index]) &&
                                         <div className="contentIconCardBuild">
                                             <img id={`connect${container.id}`} onClick={() => { setContainerAddCard(container.id) }} className={containerAddCard !== container.id ? "imgConnectActive" : "imgConnect"} alt="ajouter une interaction" src={require('./image/plus_icon.png')} />
-                                        </div>}
+                                        </div>
+                                    }
                                 </div>
                             )
                         })}
@@ -561,10 +687,10 @@ const Builder = () => {
                                             <p className="textAddBuild">question</p>
                                         </div>
                                         : (((responseSelected[responseSelected.length - 1] === responseSelect && !storage) || (containers[containers.length - 1].response_id !== responseSelect && responseSelect)) && containersReverse[0].content_type === "response") ?
-                                        null
-                                        : containersReverse[0].content_type === "question" && containersReverse[0].content_type !== "destination" ?
-                                        null
-                                        : <p className="alertSelectResponse">Veuillez selectionner une réponse parmis le dernier conteneur</p>}
+                                            null
+                                            : containersReverse[0].content_type === "question" && containersReverse[0].content_type !== "destination" ?
+                                                null
+                                                : <p className="alertSelectResponse">Veuillez selectionner une réponse parmis le dernier conteneur</p>}
                                     {containersReverse[0].content_type === "question" && containersReverse[0].content_type !== "destination" &&
                                         <div onClick={() => { createContainer('response'); setLoad(true) }} className="containerAddBuild">
                                             <img alt="add" src={require('./image/plus_icon.png')} className="plusIconResponse" />
@@ -579,7 +705,6 @@ const Builder = () => {
                                 </div>}
                         </div>
                     </div>
-                    <Chatbot userId={userId} modelId={modelId} />
                 </div>
                 :
                 <div className="containerLoadBuilder">

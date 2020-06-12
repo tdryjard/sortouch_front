@@ -34,3 +34,31 @@
     align-items: center;
     flex-direction: column;
 }
+
+.titleChangeLog{
+    max-width: 85%;
+    text-align: center;
+    margin-bottom: 50px;
+    font-size: 22px;
+    font-family: 'Sen', sans-serif;
+}
+
+.validChangeLog{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+    font-size: 20px;
+    height: 70px;
+    width: 200px;
+    font-family: 'Sen', sans-serif;
+    font-size: 20px;
+    color: white;
+    box-shadow: 2px 2px 6px rgb(175, 175, 175);
+    background-color: rgb(210, 166, 255);
+    border: none;
+    border-radius: 5px;
+    font-weight: 600;
+    position: absolute;
+    bottom: 80px;
+}

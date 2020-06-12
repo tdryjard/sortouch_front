@@ -185,6 +185,9 @@
     font-size: 20px;
     margin-right: 0;
     font-family: 'Sen', sans-serif;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
 }
 
 .textNoMessage{
@@ -197,10 +200,18 @@
 
 @media screen and (max-width: 1280px) {
     .titleMessageOnglet{
-        margin-left: 10%;
+        width: 65%;
+        margin-right: 17.5%;
+        margin-left: 17.5%;
+        margin-top: 0;
+        margin-bottom: 0;
         text-overflow: ellipsis;
         white-space: nowrap;
-        font-size: 15px;
+        font-size: 20px;
+        font-weight: bold;
+        text-transform: uppercase;
+        letter-spacing: 1.5px;
+        text-overflow: ellipsis;
     }
     .contentLittleMessageMail{
         width: 66%;
@@ -210,5 +221,12 @@
     }
     .contentMessage{
         height: 80%;
+    }
+    .textNoMessage{
+        width: 80%;
+        margin-left: 10%;
+        margin-right: 10%;
+        font-size: 20px;
+        color: rgb(29, 29, 29);
     }
 }

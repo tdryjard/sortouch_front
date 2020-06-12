@@ -19,7 +19,7 @@ const DataArea = () => {
     const [categorySelect, setCategorySelect] = useState()
     const [selectCategory, setSelectCategory] = useState(false)
     const [categoryId, setCategoryId] = useState()
-    const [contacts, setContacts] = useState()
+    const [contacts, setContacts] = useState([])
     const [sortContacts, setSortContacts] = useState([])
     const [chooseColor, setChooseColor] = useState(false)
     const [chooseColorId, setChooseColorId] = useState()
@@ -201,6 +201,7 @@ const DataArea = () => {
                     <div onClick={() => { setSelectCategory(!selectCategory) }} className="choiceSearchData">
                         <p onClick={() => { setSelectCategory(!selectCategory) }} className="textChoiceDataGet">{choiceCategory}</p>
                     </div>}
+                {contacts.length > 1 &&
                 <div className="containerColorParams">
                     {!colorSort ?
                         <img onClick={() => { setColorParamsSelect(!colorParamsSelect) }} src={require('./image/color_icon.png')} className="colorIconHead" alt="choose color" />
@@ -215,7 +216,7 @@ const DataArea = () => {
                             <div onClick={() => { sort('Red', 'color') }} className="colorRed" />
                         </div>}
                     <img onClick={() => { setColorParamsSelect(!colorParamsSelect) }} src={require('./image/choice_icon.png')} alt="arrow choice" className="arrowChoice" />
-                </div>
+                </div>}
             </div>
             <div className="contentDataArea">
                 {selectModel &&

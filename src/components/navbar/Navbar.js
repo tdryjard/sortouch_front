@@ -23,7 +23,7 @@ const Navbar = (props) => {
             {!userId && window.innerWidth > 1280 ?
                 <div className="contentConnect">
                     <Link to="/connexion" className="connexionNavbar">Connexion</Link>
-                    <Link to="/inscription" className="subNavbar">Essayer</Link>
+                    <Link to="/inscription" className="subNavbar">Essayer gratuitement</Link>
                 </div>
             : userId && modelId ?
             <>

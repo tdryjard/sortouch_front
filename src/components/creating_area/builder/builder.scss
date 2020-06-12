@@ -364,6 +364,45 @@ img.loadGif{
     color: rgb(44, 44, 44);
 }
 
+.contentQuestionInput{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 5px;
+    min-height: 30px;
+    width: 85%;
+    background-color: rgb(250, 242, 245);
+    border: none;
+    box-shadow: 2px 2px 2px 0px rgb(156, 156, 156) inset, -2px -3px 1px 0px white inset;
+    padding: 5px;
+    text-align: center;
+    font-size: 15px;
+    margin-top: 5px;
+    margin-right: 10px;
+    font-family: 'Sen', sans-serif;
+}
+
+.containerUpdateCard{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 90%;
+    height: 80px;
+    box-shadow: 1px 1px 4px rgb(187, 187, 187);
+    padding-left: 20px;
+    border-radius: 10px;
+}
+
+.containerUpdateCardRes{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 90%;
+    height: 80px;
+    padding-left: 20px;
+    border-radius: 10px;
+}
+
 @keyframes connectButton{
     0%{
         box-shadow: 1px 1px 4px 0px rgb(46, 46, 46) inset, -2px -2px 1px 0px rgb(192, 192, 192) inset;
@@ -379,5 +418,34 @@ img.loadGif{
     }
     100% {
         box-shadow: -3px -3px 2px 0px #ffffff, 3px 3px 5px 0px #adadad;
+    }
+}
+
+@media screen and(max-width: 1280px){
+    .containerDiagram{
+        width: 100%;
+    }
+    .contentBuildCard{
+        margin-left: 0;
+
+    }
+    .iconDeleteCardBuildQuest{
+        margin-right: 20px;
+    }
+    .textCardBuildQuest{
+        text-align: start;
+        font-size: 18px;
+    }
+    .containerCardQuest{
+        width: 90%;
+    }
+    .alertSelectResponse{
+        text-align: center;
+    }
+    .containerAddCard{
+        width: 110%;
+    }
+    .contentBuildDestination{
+        justify-content: center;
     }
 }

@@ -5,6 +5,7 @@ import url from '../../api/url'
 import Navbar from '../navbar/Navbar'
 import MenuBurger from '../menuBurger/MenuBurger'
 import useGlobalState from '../../hooks/useGlobalState';
+import Footer from '../footer/Footer'
 import './ModelsArea.scss'
 import { Redirect } from 'react-router'
 
@@ -72,9 +73,10 @@ const ModelArea = (props) => {
             </div>
             {mobile && popup &&
                 <div className="containerPopupMobile">
-                    <p className="textPopupMobile">Afin d'accéder à l'éditeur veuillez vous rendre sur www.sortouch.com avec votre ordinateur</p>
+                    <p className="textPopupMobile">Nous conseillions une utilisation sur ordinateur pour une expérience optimale</p>
                     <img src={require('./image/cross.png')} alt="close" className="crossPopup" onClick={() => { setPoupup(false) }} />
                 </div>}
+            <Footer/>
         </div>
     )
 }

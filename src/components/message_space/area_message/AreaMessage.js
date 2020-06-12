@@ -149,7 +149,7 @@ const AreaMessage = (props) => {
                     </div>
                 </div>
             }
-            {!Array.isArray(mails) && <p className="textNoMessage">Encore aucune prise de contact reçues dans cette catégorie</p>}
+            {mails.length < 1 && <p className="textNoMessage">Encore aucune prise de contact reçues dans cette catégorie</p>}
         </div>
     )
 }

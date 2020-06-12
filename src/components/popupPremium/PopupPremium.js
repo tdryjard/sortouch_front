@@ -21,7 +21,7 @@ const PopupPremium = (props) => {
     }, [props])
 
     return (
-        <div className={active && "windowPopup"}>
+        <div className={active === true && "windowPopup"}>
             {type === "free" && active && location.pathname === "/models" ?
                 <>
                     <div className="backBlur" />

@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom'
 import QuestionChat from './QuestionChat'
 import Chatbot from 'sortouch-react'
 import MenuBurger from '../menuBurger/MenuBurger'
+import Footer from '../footer/Footer'
 import './Landing.scss'
 
 const Landing = () => {
@@ -184,6 +185,7 @@ const Landing = () => {
                     <Link to="/models" className="goButtonLanding">Essayer gratuitement</Link>}
             </div>
             <Chatbot modelId={11} userId={21} />
+            <Footer/>
         </div>
     )
 }

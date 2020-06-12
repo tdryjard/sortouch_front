@@ -4,10 +4,11 @@
     align-items: center;
     flex-direction: column;
     width: 100%;
-    height: 100vh;
+    min-height: 100vh;
     background-image: url('./image/back1.png');
     background-position: center;
     background-size: cover;
+    overflow: auto;
 }
 
 .contentModelArea{
@@ -17,13 +18,13 @@
     flex-direction: row;
     flex-wrap: wrap;
     width: 60%;
-    height: 65%;
+    height: 65vh;
     padding: 5%;
     background-color: white;
     box-shadow: rgb(145, 145, 145) 0.5px 0.5px 8px;
     overflow: auto;
     padding-top: 3%;
-    margin-top: 50px;
+    margin-top: 150px;
 }
 
 .containerPopupMobile{
@@ -88,12 +89,18 @@
 }
 
 @media screen and (max-width: 1280px){
+    .containerModelArea{
+        margin-top: 10px;
+        height: 80vh;
+        overflow: auto;
+    }
     .contentModelArea{
         width: 80%;
-        height: 75%;
+        height: 75vh;
         display: flex;
         align-items: center;
         justify-content: center;
+        margin-top: 120px;
     }
     .titleModelArea{
         font-size: 25px;

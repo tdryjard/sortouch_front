@@ -7,7 +7,9 @@ import AreaMessage from './area_message/AreaMessage';
 import useGlobalStateAddingCard from '../../hooks/useGlobalStateAddingCard';
 import { Link } from 'react-router-dom'
 import Navbar from '../navbar/Navbar'
+import MenuBurger from '../menuBurger/MenuBurger'
 import PopupPremium from '../popupPremium/PopupPremium'
+import Footer from '../footer/Footer'
 import './MessageSpace.css'
 
 const MessageBox = (props) => {
@@ -50,24 +52,24 @@ const MessageBox = (props) => {
     const getDay = () => {
         let newDate = new Date()
         let date = newDate.getDate();
-        return(date)
+        return (date)
     }
 
     useEffect(() => {
-        if (nbMails. length > 0) {
+        if (nbMails.length > 0) {
             let nbMailsOfMonth = nbMails.filter(mail => mail.date.includes(getCurrentDate(' ')))
-            if(type === "standard" && nbMailsOfMonth.length > 1){
+            if (type === "free" && nbMailsOfMonth.length > 90) {
                 setPopup(true)
                 setLimit(nbMailsOfMonth.length)
-            } else if (type === "standard" && nbMailsOfMonth.length > 1800){
+            } else if (type === "standard" && nbMailsOfMonth.length > 1800) {
                 setPopup(true)
                 setLimit(nbMailsOfMonth.length)
-            } else if (type === "expert" && nbMailsOfMonth.length > 9000){
+            } else if (type === "expert" && nbMailsOfMonth.length > 9000) {
                 setPopup(true)
                 setLimit(nbMailsOfMonth.length)
             }
         }
-        if(getDay() === 0){
+        if (getDay() === 0) {
             fetch(`${url}/mail/delete/${userId}`, {
                 method: 'DELETE',
                 headers: {
@@ -214,7 +216,10 @@ const MessageBox = (props) => {
     return (
         <div className="containerMessageSpace">
             {popup && <PopupPremium display={popup} limit={limit} />}
-            <Navbar type="mails" />
+            {window.innerWidth > 1280 ?
+                <Navbar type={"mails"} />
+                :
+                <MenuBurger type={"mails"} />}
             {mobile && <img onClick={() => { setCategoryOpen(!categoryOpen) }} className="menuIcon" alt="menu burger" src={require('./image/menu_icon.png')} />}
             {!load &&
                 <div className={!mobile ? "containerOngletLeft" : mobile && categoryOpen ? "containerOngletLeftOpen" : "containerOngletLeftClose"}>
@@ -252,7 +257,7 @@ const MessageBox = (props) => {
                             )
                         })
                         :
-                        <p className="textNoCategory">Créez votre premier chatbot grace à <Link to="/editeur">l'éditeur</Link></p>}
+                        <p className="textNoCategory">Acune catégories de réceptions <br/><br/> Vous pouvez en ajouter grace à <Link to="/editeur">l'éditeur</Link></p>}
                 </div>}
             {!load &&
                 <AreaMessage type={type} token={token} modelId={modelId} userId={userId} categoryId={categorySelect} categoryName={categorys[categoryIndex] && categorys[categoryIndex].name} />}

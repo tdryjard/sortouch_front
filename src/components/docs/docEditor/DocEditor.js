@@ -2,6 +2,7 @@ import React from 'react'
 import Menu from '../menu/Menu'
 import MenuBurger from '../burgerMenu/BurgerMenu'
 import Navbar from '../../navbar/Navbar'
+import Footer from '../../footer/Footer'
 import './DocEditor.scss'
 
 const DocEditor = () => {

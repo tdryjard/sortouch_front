@@ -1,0 +1,85 @@
+.containerFooter{
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    flex-direction: row;
+    flex-wrap: wrap;
+    position: relative;
+    width: 94%;
+    padding-top: 30px;
+    padding-bottom: 30px;
+    padding-right: 3%;
+    padding-left: 3%;
+    background-color: #c18bff;
+    min-height: 100px;
+    box-shadow: -3px -5px 3px 0px #ffffff, 3px 3px 5px 0px #553875;
+    margin-top: 100px;
+    margin-bottom: 10px;
+}
+
+.sectionFooter{
+    display: flex;
+    justify-content: start;
+    align-items: flex-start;
+    flex-direction: column;
+    width: 40%;
+}
+
+.titleFooter{
+    font-family: 'Sen', sans-serif;
+    font-size: 25px;
+    background-color: white;
+    color: #c18bff;
+    padding: 5px;
+    padding-left: 25px;
+    padding-right: 25px;
+    border-radius: 5px;
+    margin: 0;
+    margin-bottom: 20px;
+}
+
+.linkFooter{
+    font-family: 'Sen', sans-serif;
+    font-size: 20px;
+    color: rgb(255, 255, 255);
+    width: 400px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    text-decoration: none;
+}
+
+.linkFooter:hover{
+    border-bottom: 2px white solid;
+}
+
+.signThomas{
+    position: absolute;
+    bottom: 0px;
+    right: 20px;
+    font-family: 'Sen', sans-serif;
+    color: white;
+    text-align: center;
+}
+
+@media screen and(max-width: 1200px){
+    .linkFooter{
+        font-size: 17px;
+        color: rgb(255, 255, 255);
+        width: 90%;
+        margin-top: 10px;
+        margin-bottom: 10px;
+        text-align: center;
+    }
+    .containerFooter{
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        padding-bottom: 60px;
+    }
+    .sectionFooter{
+        justify-content: center;
+        align-items: center;
+        width: 90%;
+        margin-bottom: 60px;
+    }
+}

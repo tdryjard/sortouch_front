@@ -38,10 +38,7 @@ const CreateModel = (props) => {
     }
 
     const addModel = async () => {
-        let name = inputValue.html.replace('&nbsp;', '')
-        name = name.replace('<div>', '')
-        name = name.replace('<br>', '')
-        name = name.replace('</div>', '')
+        let name = inputValue.html.replace(/&nbsp;/gi, '').replace(/<div><br><\/div>/gi, '').replace(/<p><br><\/p>/gi, '').replace(/<div>/gi, '').replace(/<\/div>/gi, '')
         const res = await fetch(url + '/model/add', {
             method: 'POST',
             headers: {
@@ -51,7 +48,8 @@ const CreateModel = (props) => {
             },
             body: JSON.stringify({
                 name: name,
-                user_id: userId
+                user_id: userId,
+                color: '#b36fff'
             })
         })
         const result = await res.json()
@@ -96,7 +94,7 @@ const CreateModel = (props) => {
     return (
         <>
             {popup && <PopupPremium display={popup} />}
-            <div onClick={() => { setPopup(!popup) }} className="containerAddModel">
+            <div onClick={activeContent} className="containerAddModel">
                 {adding === false && send !== true ?
                     <div onClick={activeContent} className="contentAddModel">
                         <p onClick={activeContent} className="nameCardModel">Nouveau chatbot</p>

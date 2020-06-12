@@ -1,0 +1,198 @@
+.containerPartner{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    width: 100%;
+}
+
+.contentPartner{
+    height: 80%;
+    width: 85%;
+    border-radius: 15px;
+    box-shadow: 2px 2px 14px rgb(161, 161, 161);
+    margin-top: 70px;
+}
+
+.containerStats{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    width: 98%;
+    padding: 1%;
+    height: 10%;
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+}
+
+.containerOngletsPartner{
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    flex-direction: row;
+    width: 98%;
+    height: 8%;
+    padding: 1%;
+    box-shadow: 0px 2.5px 4px rgb(206, 206, 206);
+}
+
+.containerListPartner{
+    height: 75%;
+    width: 100%;
+    border-bottom-left-radius: 15px;
+    border-bottom-right-radius: 15px;
+    overflow: auto;
+}
+
+.containerGenerate{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    background-color: #b36fff;
+    border-radius: 10px;
+    box-shadow:  -4px -3px 3px 0px #ffffff, 
+    2px 2px 5px 0px #adadad;
+    width: 550px;
+    height: 55px;
+    margin-left: 15%;
+}
+
+.inputGenerate{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 5px;
+    background-color: rgb(255, 247, 247);
+    border: none;
+    box-shadow: 2px 2px 2px 0px rgb(156, 156, 156) inset, -2px -3px 2px 0px white inset;
+    padding: 5px;
+    text-align: center;
+    font-size: 15px;
+    font-family: 'Sen', sans-serif;
+    width: 220px;
+    margin: 0;
+    background-color: rgb(252, 252, 252);
+}
+
+.buttonGenerate{
+    padding-top: 2px;
+    padding-bottom: 2px;
+    border: none;
+    background-color: rgb(250, 250, 250);
+    border-radius: 10px;
+    box-shadow:  2px 2px 5px #7d49b9;
+    font-size: 15px;
+    margin-left: 30px;
+    outline-style: none;
+    font-family: 'Sen', sans-serif;
+    cursor: pointer;
+    width: 220px;
+    height: 30px;
+}
+
+.loadGenerate{
+    height: 30px;
+    width: auto;
+    background-color: white;
+    padding: 5px;
+    border-radius: 50%;
+    margin-left: 50px;
+}
+
+.headRowPartner{
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-direction: row;
+}
+
+.rowPartner{
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-direction: row;
+}
+
+.titleRowPartner1{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 30%;
+    font-family: 'Sen', sans-serif;
+    font-size: 18px;
+}
+
+.titleRowPartner2{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 30%;
+    font-family: 'Sen', sans-serif;
+    font-size: 18px;
+}
+
+.titleRowPartner3{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 40%;
+    font-family: 'Sen', sans-serif;
+    font-size: 18px;
+}
+
+.ongletPartnerSub{
+    border: none;
+    width: 200px;
+    height: 50px;
+    background-color: #b36fff;
+    box-shadow: 2px 2px 5px rgb(172, 172, 172);
+    color: white;
+    font-family: 'Sen', sans-serif;
+    font-size: 20px;
+    margin-right: 30px;
+    margin-left: 30px;
+    cursor: pointer;
+    border-radius: 7px;
+}
+
+.ongletPartnerSubActive{
+    border: none;
+    width: 200px;
+    height: 50px;
+    background-color: #b36fff;
+    box-shadow: 1px 1px 4px 0px rgb(151, 151, 151) inset, -2px -2px 1px 0px rgb(255, 255, 255) inset;
+    color: white;
+    font-family: 'Sen', sans-serif;
+    font-size: 20px;
+    margin-right: 30px;
+    margin-left: 30px;
+    border-radius: 7px;
+}
+
+.rowPartner{
+    background-color: #fef9f9;
+    border-bottom: 3px white solid;
+}
+
+.gainPartner{
+    font-family: 'Sen', sans-serif;
+    font-size: 25px;
+    width: 30%;
+    color: #292929;
+}
+
+.totalGainPartner{font-family: 'Sen', sans-serif;
+    font-size: 30px;
+    width: 30%;
+    color: #292929;
+    letter-spacing: 1px;
+}
+
+.littleRowPartner{
+    width: 20%;
+    text-align: center;
+    font-family: 'Sen', sans-serif;
+    font-size: 18px;
+}

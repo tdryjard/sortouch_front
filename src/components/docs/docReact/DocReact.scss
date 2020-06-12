@@ -71,9 +71,18 @@
     margin-top: 20px;
 }
 
+.blockCode1{
+    width: 50%;
+    border-radius: 10px;
+}
+
 @media screen and (max-width: 1200px){
     .integrationContainer{
         max-width: 90%;
         flex-wrap: wrap;
+    }
+    .blockCode1{
+        width: 90%;
+        border-radius: 10px;
     }
 }

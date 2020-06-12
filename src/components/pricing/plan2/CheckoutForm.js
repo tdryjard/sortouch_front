@@ -14,7 +14,6 @@ const CheckoutForm = (props) => {
     const [load, setLoad] = useState(false)
 
     const elements = useElements();
-
     const stripeFunction = useStripe();
 
     useEffect(() => {

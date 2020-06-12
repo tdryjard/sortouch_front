@@ -17,6 +17,7 @@ const CardModel = (props) => {
     const [token, setToken] = useState()
     const [redirectEditor, setRedirectEditor] = useState(false)
     const [deleted, setDeleted] = useState(false)
+    const [cardSelect, setCardSelect] = useState(false)
 
     useEffect(() => {
         if (localStorage.getItem('userId')) {
@@ -38,21 +39,8 @@ const CardModel = (props) => {
     }
 
     useEffect(() => {
-        fetch(`${url}/category/findAll/${userId}/${props.id}`, {
-            headers: {
-                'Content-Type': 'application/json',
-                'Access-Control-Allow-Origin': `${origin}`,
-                'authorization': token
-            }
-        })
-            .then(res => res.json())
-            .then(res => setCategorys(res))
-    }, [props.id, userId, token, deleted])
-
-    useEffect(() => {
-        let stockUnview = []
-        for (let n = 0; n < categorys.length; n++) {
-            fetch(`${url}/mail/find/${userId}/${props.id}/${categorys[n].id}`, {
+        if (userId && props.id) {
+            fetch(`${url}/category/findAll/${userId}/${props.id}`, {
                 headers: {
                     'Content-Type': 'application/json',
                     'Access-Control-Allow-Origin': `${origin}`,
@@ -60,30 +48,49 @@ const CardModel = (props) => {
                 }
             })
                 .then(res => res.json())
-                .then(res => {
-                    let result = []
-                    if (res.length > 0) {
-                        result = res.filter(mail => mail.deleted !== 1)
-                    }
-                    let nb = 0
-                    for (let i = 0; i < result.length; i++) {
-                        if (result[i].view === 0) nb++
-                    }
-                    stockUnview.push(nb)
-                })
+                .then(res => setCategorys(res))
         }
-        setTimeout(() => {
-            let nbTT = 0
-            for (let i = 0; i < stockUnview.length; i++) {
-                nbTT += stockUnview[i]
+
+    }, [props.id, userId, token, deleted])
+
+    useEffect(() => {
+        let stockUnview = []
+        if (userId && props.id && categorys) {
+            for (let n = 0; n < categorys.length; n++) {
+                fetch(`${url}/mail/find/${userId}/${props.id}/${categorys[n].id}`, {
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Access-Control-Allow-Origin': `${origin}`,
+                        'authorization': token
+                    }
+                })
+                    .then(res => res.json())
+                    .then(res => {
+                        let result = []
+                        if (res.length > 0) {
+                            result = res.filter(mail => mail.deleted !== 1)
+                        }
+                        let nb = 0
+                        for (let i = 0; i < result.length; i++) {
+                            if (result[i].view === 0) nb++
+                        }
+                        stockUnview.push(nb)
+                    })
             }
-            setUnview(nbTT)
-        }, 200)
+            setTimeout(() => {
+                let nbTT = 0
+                for (let i = 0; i < stockUnview.length; i++) {
+                    nbTT += stockUnview[i]
+                }
+                setUnview(nbTT)
+            }, 200)
+        }
+
     }, [categorys, userId, props.id, token])
 
     const deleteModel = async (modelId) => {
         if (window.confirm('voulez vous supprimer ce model ?')) {
-            const result = await fetch(`${url}/model/delete/${modelId}/${userId}`, {
+            const deleteMail = await fetch(`${url}/mail/deleteByModel/${userId}/${modelId}`, {
                 method: 'DELETE',
                 headers: {
                     'Content-Type': 'application/json',
@@ -91,7 +98,75 @@ const CardModel = (props) => {
                     'authorization': token
                 }
             })
-            if(result) setDeleted(!deleted)
+
+            if (deleteMail) {
+                const deleteRelation = await fetch(`${url}/relation/deleteByModel/${userId}/${modelId}`, {
+                    method: 'DELETE',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Acces-Control-Allow-Origin': { origin },
+                        'authorization': token
+                    }
+                })
+
+                if (deleteRelation) {
+                    const deleteContainer = await fetch(`${url}/container/deleteByModel/${userId}/${modelId}`, {
+                        method: 'DELETE',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'Acces-Control-Allow-Origin': { origin },
+                            'authorization': token
+                        }
+                    })
+                    const res = await deleteContainer.json()
+                    if (deleteContainer) {
+                        const deleteQuestion = await fetch(`${url}/question/deleteByModel/${userId}/${modelId}`, {
+                            method: 'DELETE',
+                            headers: {
+                                'Content-Type': 'application/json',
+                                'Acces-Control-Allow-Origin': { origin },
+                                'authorization': token
+                            }
+                        })
+                        if (deleteQuestion) {
+                            const deleteResponse = await fetch(`${url}/response/deleteByModel/${userId}/${modelId}`, {
+                                method: 'DELETE',
+                                headers: {
+                                    'Content-Type': 'application/json',
+                                    'Acces-Control-Allow-Origin': { origin },
+                                    'authorization': token
+                                }
+                            })
+                            if (deleteResponse) {
+                                const deleteCategory = await fetch(`${url}/category/deleteByModel/${userId}/${modelId}`, {
+                                    method: 'DELETE',
+                                    headers: {
+                                        'Content-Type': 'application/json',
+                                        'Acces-Control-Allow-Origin': { origin },
+                                        'authorization': token
+                                    }
+                                })
+                                if (deleteCategory) {
+                                    const result = await fetch(`${url}/model/delete/${modelId}/${userId}`, {
+                                        method: 'DELETE',
+                                        headers: {
+                                            'Content-Type': 'application/json',
+                                            'Acces-Control-Allow-Origin': { origin },
+                                            'authorization': token
+                                        }
+                                    })
+                                    if (result){
+                                        sessionStorage.setItem('modelId', '')
+                                        setTimeout(() => {
+                                            window.location.reload()
+                                        }, 100)
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
         }
     }
 
@@ -115,13 +190,6 @@ const CardModel = (props) => {
         window.location.reload()
     }
 
-    const cardSelect = () => {
-        sessionStorage.setItem('modelId', props.id)
-        setTimeout(() => {
-            setRedirect(true)
-        }, 1000)
-    }
-
     const cardSelectToEditor = () => {
         sessionStorage.setItem('modelId', props.id)
         setTimeout(() => {
@@ -132,7 +200,7 @@ const CardModel = (props) => {
     return (
         <>
             {optionSelected === false ?
-                <div onClick={() => { window.innerWidth < 1280 && cardSelect() }} className={props.index === 0 ? "contentCardModelFirst" : "contentCardModel"}>
+                <div onClick={() => { window.innerWidth < 1280 && setCardSelect(true) }} className={props.index === 0 ? "contentCardModelFirst" : "contentCardModel"}>
                     <div className="headCardModel">
                         <div className="contentNewMessageModel">
                             <img src={require('../../message_space/image/newMessage_icon.png')} className="newMessageIconModel" alt="new message" />
@@ -146,8 +214,8 @@ const CardModel = (props) => {
                             state={props.id} to="/mails" />}
                         {redirectEditor && <Redirect
                             state={props.id} to="/editeur" />}
-                        <button onClick={cardSelect} className="buttonSelectModel">Boite de réception</button>
-                        <button onClick={cardSelectToEditor} className="buttonSelectModel">Modifier</button>
+                        {window.innerWidth < 1280 && cardSelect ? <button onClick={() => {setRedirect(true)}} className="buttonSelectModel">Boite de réception</button> : window.innerWidth > 1280 && <button onClick={cardSelect} className="buttonSelectModel">Boite de réception</button>}
+                        {window.innerWidth < 1280 && cardSelect ? <button onClick={cardSelectToEditor} className="buttonSelectModel">Modifier</button> : window.innerWidth > 1280 && <button onClick={cardSelectToEditor} className="buttonSelectModel">Modifier</button>}
                     </div>
                 </div>
                 :
@@ -165,7 +233,7 @@ const CardModel = (props) => {
                         tagName='article'
                     />
                     <button onClick={updateModel} id={`model${props.id}`} className="buttonUpdateModel">Valider changement</button>
-                    <button id={`model${props.id}`} className="deleteButton" onClick={() => {deleteModel(props.id)}}>Supprimer le model</button>
+                    <button id={`model${props.id}`} className="deleteButton" onClick={() => { deleteModel(props.id) }}>Supprimer le model</button>
                 </div>}
         </>
     )
