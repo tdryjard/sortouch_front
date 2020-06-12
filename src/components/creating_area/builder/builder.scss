@@ -424,6 +424,7 @@ img.loadGif{
 @media screen and(max-width: 1280px){
     .containerDiagram{
         width: 100%;
+        padding-bottom: 100px;
     }
     .contentBuildCard{
         margin-left: 0;
@@ -447,5 +448,14 @@ img.loadGif{
     }
     .contentBuildDestination{
         justify-content: center;
+    }
+    .containerCardCategoryBuild{
+        width: 95%;
+        padding: 10px;
+        padding-right: 15%;
+        padding-left: 15%;
+    }
+    .textCardCategoryBuild{
+        margin-right: 10px;
     }
 }

@@ -206,7 +206,7 @@ const CheckoutForm = (props) => {
             <div className="inputPricingCard">
                 <CardElement options={CARD_OPTIONS} />
             </div>
-            <button onClick={subscription} type="submit" className="buttonBuyPricing"><p className="titleBuy">Acheter 60€/mois </p> <p className="noEngagement">sans engagement</p> </button>
+            <button onClick={subscription} type="submit" className="buttonBuyPricing"><p className="titleBuy">Acheter 90€/mois </p> <p className="noEngagement">sans engagement</p> </button>
         </div>
     )
 }

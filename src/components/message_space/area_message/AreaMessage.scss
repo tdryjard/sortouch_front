@@ -201,11 +201,12 @@
 @media screen and (max-width: 1280px) {
     .titleMessageOnglet{
         width: 65%;
-        margin-right: 17.5%;
-        margin-left: 17.5%;
+        margin-right: 14%;
+        margin-left: 22%;
         margin-top: 0;
         margin-bottom: 0;
         text-overflow: ellipsis;
+        overflow: hidden;
         white-space: nowrap;
         font-size: 20px;
         font-weight: bold;

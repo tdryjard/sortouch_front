@@ -163,7 +163,7 @@
     position: absolute;
     background-color: rgb(255, 210, 210);
     left: 8%;
-    top: 17.5%;
+    top: 17%;
     z-index: 3;
     border-top-left-radius: 15px;
     border-bottom-right-radius: 15px;
@@ -178,7 +178,7 @@
     position: absolute;
     flex-direction: column;
     left: 8%;
-    top: 17.5%;
+    top: 17%;
     width: 85%;
     height: 80%;
     background-color: rgb(255, 226, 226);
@@ -235,9 +235,10 @@
     .messageContainer{
         position: absolute;
         left: 8%;
-        top: 12%;
+        top: 17%;
         width: 85%;
         height: 80%;
+        margin: 0;
     }
     .contentCategory{
         width: 75%;

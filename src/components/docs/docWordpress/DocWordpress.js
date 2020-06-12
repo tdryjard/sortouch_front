@@ -26,8 +26,8 @@ const DocWordpress = () => {
                 <h1 className="titleDoc">Intégrer son chatbot à son site Wordpress</h1>
                 <img alt="react logo" src={require('./image/wordpress.png')} className="reactLogo" />
                 <h4 className="titleContainerSectionDocWordpress">Sur votre ordinateur</h4>
-                <a href="sortouch_plugin.zip"
-                    download="sortouch_plugin.zip" className="linkDownload">1) Télécharger le plugin</a>
+                <a href="sortouch.zip"
+                    download="sortouch.zip" className="linkDownload">1) Télécharger le plugin</a>
                 <p className="textDoc">2) Extraire le dossier puis le placer dans le dossier wp-content/plugins de wordpress en local</p>
                 <h4 className="titleContainerSectionDocWordpress">Sur wordrpess</h4>
                 <p className="textDoc">Activer le plugin Sortouch qui est apparu dans la section "extensions"</p>
