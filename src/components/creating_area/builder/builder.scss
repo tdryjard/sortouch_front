@@ -428,10 +428,13 @@ img.loadGif{
     }
     .contentBuildCard{
         margin-left: 0;
-
+        width: 100%;
     }
     .iconDeleteCardBuildQuest{
         margin-right: 20px;
+    }
+    .iconDeleteCardBuild{
+        margin-right: 5%;
     }
     .textCardBuildQuest{
         text-align: start;
@@ -439,6 +442,7 @@ img.loadGif{
     }
     .containerCardQuest{
         width: 90%;
+        justify-content: flex-start;
     }
     .alertSelectResponse{
         text-align: center;
@@ -452,10 +456,25 @@ img.loadGif{
     .containerCardCategoryBuild{
         width: 95%;
         padding: 10px;
-        padding-right: 15%;
-        padding-left: 15%;
+        padding-right: 5%;
+        padding-left: 5%;
+        margin: 0;
     }
     .textCardCategoryBuild{
         margin-right: 10px;
+        width: 38%;
+        -webkit-hyphens: auto;
+        -moz-hyphens: auto;
+        -ms-hyphens: auto;
+        hyphens: auto;
+        overflow-wrap: break-word;
+    }
+    img.loadGif{
+        position: absolute;
+        width: 50%;
+        height: auto;
+        z-index: 100;
+        top: 0;
+        border-radius: 50%;
     }
 }

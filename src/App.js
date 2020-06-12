@@ -33,6 +33,7 @@ function App() {
       setUserId(sessionStorage.getItem('userId'))
       setType(sessionStorage.getItem('type'))
     }
+    initializeReactGA()
   }, [])
 
   function initializeReactGA() {

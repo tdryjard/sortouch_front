@@ -195,7 +195,7 @@ const CardModel = (props) => {
         setTimeout(() => {
             if(type === "editor") setRedirectEditor(true)
             if(type === "mail") setRedirect(true)
-        }, 500)
+        }, 100)
     }
 
     return (
@@ -215,8 +215,8 @@ const CardModel = (props) => {
                             state={props.id} to="/mails" />}
                         {redirectEditor && <Redirect
                             state={props.id} to="/editeur" />}
-                        {window.innerWidth < 1280 && cardSelect ? <button onClick={() => {cardSelectToEditor('mail')}} className="buttonSelectModel">Boite de réception</button> : window.innerWidth > 1280 && <button onClick={cardSelect} className="buttonSelectModel">Boite de réception</button>}
-                        {window.innerWidth < 1280 && cardSelect ? <button onClick={() => {cardSelectToEditor('editor')}} className="buttonSelectModel">Modifier</button> : window.innerWidth > 1280 && <button onClick={cardSelectToEditor} className="buttonSelectModel">Modifier</button>}
+                        {window.innerWidth < 1280 && cardSelect ? <button onClick={() => {cardSelectToEditor('mail')}} className="buttonSelectModel">Boite de réception</button> : window.innerWidth > 1280 && <button onClick={() => {cardSelectToEditor('mail')}} className="buttonSelectModel">Boite de réception</button>}
+                        {window.innerWidth < 1280 && cardSelect ? <button onClick={() => {cardSelectToEditor('editor')}} className="buttonSelectModel">Modifier</button> : window.innerWidth > 1280 && <button onClick={() => {cardSelectToEditor('editor')}} className="buttonSelectModel">Modifier</button>}
                     </div>
                 </div>
                 :
