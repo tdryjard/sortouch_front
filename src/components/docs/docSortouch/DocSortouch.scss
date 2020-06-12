@@ -173,7 +173,7 @@
         font-family: 'Sen', sans-serif;
         text-decoration: none;
         padding: 5px 30px 5px 30px;
-        margin-left: 20px;
+        margin-left: 0px;
     }
     .connexionDocSortouch{
         display: flex;
@@ -189,8 +189,8 @@
         padding: 5px 10px 5px 10px;
         width: 150px;
         height: 50px;
-        margin-left: 20px;
-        margin-top: 50px;
+        margin-left: 0px;
+        margin-top: 90px;
     }
     .containerImgDoc{
         flex-direction: column;
@@ -208,6 +208,6 @@
         height: auto;
     }
     .textDocSortouchLast{
-        margin-top: 80px;
+        margin-top: 150px;
     }
 }
