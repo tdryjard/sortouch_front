@@ -215,6 +215,7 @@ const MessageBox = (props) => {
 
     return (
         <div className="containerMessageSpace">
+        <title>Sortouch : boite de réception</title>
             {popup && <PopupPremium display={popup} limit={limit} />}
             {window.innerWidth > 1280 ?
                 <Navbar type={"mails"} />

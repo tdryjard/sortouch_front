@@ -15,6 +15,7 @@ const DocWordpress = () => {
 
     return (
         <div className="containerDoc">
+        <title>Sortouch : doc wordpress partenaire</title>
             <div className="containerNav">
                 <Link to="/" className="linkNavbar" >Menu</Link>
                 <Link to="/installer-wordpress" className="linkNavbar" >Installer chatbot sur Wordpress</Link>

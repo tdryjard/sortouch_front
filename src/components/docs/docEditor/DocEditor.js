@@ -8,6 +8,7 @@ import './DocEditor.scss'
 const DocEditor = () => {
     return(
         <div className="containerDoc">
+        <title>Sortouch : tuto éditeur</title>
             {window.innerWidth > 1280 && <Navbar type={"doc"}/>}
             {window.innerWidth > 1280 && <Menu link="editor"/>}
             {window.innerWidth < 1280 && <MenuBurger link="editor"/>}

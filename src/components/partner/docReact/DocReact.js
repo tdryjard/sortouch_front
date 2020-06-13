@@ -15,6 +15,7 @@ const DocReact = () => {
 
     return (
         <div className="containerDoc">
+        <title>Sortouch : installer chatbot sur React | partenaire</title>
 
             <div className="containerNav">
                 <Link to="/" className="linkNavbar" >Menu</Link>

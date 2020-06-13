@@ -558,6 +558,7 @@ const Registration = (props) => {
 
     return (
         <div className="containerRegistration">
+        <title>Sortouch : inscription</title>
             {window.innerWidth > 1280 ?
                 <Navbar type={"models"} />
                 :

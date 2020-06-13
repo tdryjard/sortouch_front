@@ -19,6 +19,7 @@ const DocWordpress = () => {
 
     return (
         <div className="containerDoc">
+        <title>Sortouch : installer chatbot sur Wordpress</title>
             {window.innerWidth > 1280 && <Navbar type={"doc"} />}
             {window.innerWidth > 1280 && <Menu sectionSelect="install" link="docWordpress" />}
             {window.innerWidth < 1280 && <MenuBurger sectionSelect="install" link="docWordpress" />}

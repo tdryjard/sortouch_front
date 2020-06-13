@@ -100,6 +100,7 @@ const Pricing = () => {
 
   return (
     <div className="containerPricing">
+    <title>Sortouch : tarifs</title>
       {window.innerWidth > 1280 ?
         <Navbar type={"tarifs"} />
         :

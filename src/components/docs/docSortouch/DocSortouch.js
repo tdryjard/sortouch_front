@@ -19,6 +19,7 @@ const DocSortouch = () => {
 
     return (
         <div className="containerDoc">
+        <title>Sortouch : comment utiliser sortouch</title>
             {window.innerWidth > 1280 && <Navbar type={"doc"} />}
             {window.innerWidth > 1280 && <Menu link="sortouch" />}
             {window.innerWidth < 1280 && <MenuBurger link="sortouch" />}

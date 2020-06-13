@@ -24,7 +24,7 @@ const Area = () => {
 
   return (
     <div className="containerArea">
-
+    <title>Sortouch : éditeur</title>
       {window.innerWidth > 1280 ?
         <Navbar type={"editeur"} />
         :

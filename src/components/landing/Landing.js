@@ -60,6 +60,7 @@ const Landing = () => {
 
     return (
         <div className="containerLanding">
+        <title>Sortouch : éditeur de chatbot gratuit</title>
             {window.innerWidth > 1280 ?
                 <Navbar type={"landing"} />
                 :

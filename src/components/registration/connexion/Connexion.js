@@ -134,6 +134,7 @@ const Connexion = (props) => {
 
     return (
         <div className="containerRegistration">
+        <title>Sortouch : connexion</title>
             {window.innerWidth > 1280 ?
                 <Navbar type={"models"} />
                 :

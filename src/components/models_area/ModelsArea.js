@@ -58,6 +58,7 @@ const ModelArea = (props) => {
 
     return (
         <div className="containerModelArea">
+        <title>Sortouch : mes chatbots</title>
             {window.innerWidth > 1280 ?
                 <Navbar type={"models"} />
                 :

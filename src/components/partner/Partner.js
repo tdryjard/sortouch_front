@@ -623,6 +623,7 @@ const Partner = () => {
 
     return (
         <div className="containerPartner">
+        <title>Sortouch : partenaire</title>
             <div className="containerNav">
                 <Link to="/" className="linkNavbar" >Menu</Link>
                 <Link to="/installer-wordpress" className="linkNavbar" >Installer chatbot sur Wordpress</Link>
