@@ -124,7 +124,7 @@ const MessageBox = (props) => {
         let stockUnview = []
         if (categorys.length) {
             for (let n = 0; n < categorys.length; n++) {
-                if (categorys[n]) {
+                if (categorys[n].id) {
                     let res = await fetch(`${url}/mail/find/${userId}/${modelId}/${categorys[n].id}`, {
                         method: 'GET',
                         headers: {

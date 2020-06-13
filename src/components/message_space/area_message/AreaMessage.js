@@ -15,24 +15,26 @@ const AreaMessage = (props) => {
     const [phoneView, setPhoneView] = useState(false)
 
     useEffect(() => {
-        fetch(`${url}/mail/find/${props.userId}/${props.modelId}/${props.categoryId}`, {
-            method: 'GET',
-            headers: {
-                'Content-Type': 'application/json',
-                'Acces-Control-Allow-Origin': { origin },
-                'authorization': props.token
-            }
-        })
-            .then(res => res.json())
-            .then(res => {
-                if (res.length > 0) {
-                    let result = res.filter(mail => mail.deleted !== 1)
-                    if(props.type === "free" && result.length > 100) result.length = 100
-                    if(props.type === "standard" && result.length > 2000) result.length = 2000
-                    if(props.type === "expert" && result.length > 5000) result.length = 5000
-                    setMails(result)
+        if (props.userId && props.modelId && props.categoryId) {
+            fetch(`${url}/mail/find/${props.userId}/${props.modelId}/${props.categoryId}`, {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Acces-Control-Allow-Origin': { origin },
+                    'authorization': props.token
                 }
             })
+                .then(res => res.json())
+                .then(res => {
+                    if (res.length > 0) {
+                        let result = res.filter(mail => mail.deleted !== 1)
+                        if (props.type === "free" && result.length > 100) result.length = 100
+                        if (props.type === "standard" && result.length > 2000) result.length = 2000
+                        if (props.type === "expert" && result.length > 5000) result.length = 5000
+                        setMails(result)
+                    }
+                })
+        }
     }, [props.categoryId, props.userId, props.modelId, mailSelect, deleted])
 
     useEffect(() => {

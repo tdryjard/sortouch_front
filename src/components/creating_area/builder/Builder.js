@@ -94,7 +94,7 @@ const Builder = () => {
     }
 
     useEffect(() => {
-        printContainers()
+        if(userId && modelId) printContainers()
         if (storageContainers) setStorage(true)
     }, [responseSelectChanging, userId, modelId, responseBool])
 

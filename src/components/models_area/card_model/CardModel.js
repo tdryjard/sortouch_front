@@ -57,25 +57,27 @@ const CardModel = (props) => {
         let stockUnview = []
         if (userId && props.id && categorys) {
             for (let n = 0; n < categorys.length; n++) {
-                fetch(`${url}/mail/find/${userId}/${props.id}/${categorys[n].id}`, {
-                    headers: {
-                        'Content-Type': 'application/json',
-                        'Access-Control-Allow-Origin': `${origin}`,
-                        'authorization': token
-                    }
-                })
-                    .then(res => res.json())
-                    .then(res => {
-                        let result = []
-                        if (res.length > 0) {
-                            result = res.filter(mail => mail.deleted !== 1)
+                if (categorys[n].id) {
+                    fetch(`${url}/mail/find/${userId}/${props.id}/${categorys[n].id}`, {
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'Access-Control-Allow-Origin': `${origin}`,
+                            'authorization': token
                         }
-                        let nb = 0
-                        for (let i = 0; i < result.length; i++) {
-                            if (result[i].view === 0) nb++
-                        }
-                        stockUnview.push(nb)
                     })
+                        .then(res => res.json())
+                        .then(res => {
+                            let result = []
+                            if (res.length > 0) {
+                                result = res.filter(mail => mail.deleted !== 1)
+                            }
+                            let nb = 0
+                            for (let i = 0; i < result.length; i++) {
+                                if (result[i].view === 0) nb++
+                            }
+                            stockUnview.push(nb)
+                        })
+                }
             }
             setTimeout(() => {
                 let nbTT = 0
@@ -155,7 +157,7 @@ const CardModel = (props) => {
                                             'authorization': token
                                         }
                                     })
-                                    if (result){
+                                    if (result) {
                                         sessionStorage.setItem('modelId', '')
                                         setTimeout(() => {
                                             window.location.reload()
@@ -193,8 +195,8 @@ const CardModel = (props) => {
     const cardSelectToEditor = (type) => {
         sessionStorage.setItem('modelId', props.id)
         setTimeout(() => {
-            if(type === "editor") setRedirectEditor(true)
-            if(type === "mail") setRedirect(true)
+            if (type === "editor") setRedirectEditor(true)
+            if (type === "mail") setRedirect(true)
         }, 100)
     }
 
@@ -215,8 +217,8 @@ const CardModel = (props) => {
                             state={props.id} to="/mails" />}
                         {redirectEditor && <Redirect
                             state={props.id} to="/editeur" />}
-                        {window.innerWidth < 1280 && cardSelect ? <button onClick={() => {cardSelectToEditor('mail')}} className="buttonSelectModel">Boite de réception</button> : window.innerWidth > 1280 && <button onClick={() => {cardSelectToEditor('mail')}} className="buttonSelectModel">Boite de réception</button>}
-                        {window.innerWidth < 1280 && cardSelect ? <button onClick={() => {cardSelectToEditor('editor')}} className="buttonSelectModel">Modifier</button> : window.innerWidth > 1280 && <button onClick={() => {cardSelectToEditor('editor')}} className="buttonSelectModel">Modifier</button>}
+                        {window.innerWidth < 1280 && cardSelect ? <button onClick={() => { cardSelectToEditor('mail') }} className="buttonSelectModel">Boite de réception</button> : window.innerWidth > 1280 && <button onClick={() => { cardSelectToEditor('mail') }} className="buttonSelectModel">Boite de réception</button>}
+                        {window.innerWidth < 1280 && cardSelect ? <button onClick={() => { cardSelectToEditor('editor') }} className="buttonSelectModel">Modifier</button> : window.innerWidth > 1280 && <button onClick={() => { cardSelectToEditor('editor') }} className="buttonSelectModel">Modifier</button>}
                     </div>
                 </div>
                 :

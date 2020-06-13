@@ -64,7 +64,7 @@ const ModelArea = (props) => {
                 <MenuBurger type={"models"} />}
             <div className="contentModelArea">
                 <CreateModel models={cards} />
-                {cards.length &&
+                {cards.length > 0 &&
                     cards.map((card, index) => {
                         return (
                             <CardModel id={card.id} name={card.name} index={index} />
