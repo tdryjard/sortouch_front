@@ -17,7 +17,7 @@ const Pricing = () => {
   const [token, setToken] = useState()
   const [cancel, setCancel] = useState(false)
 
-  const stripePromise = loadStripe('pk_test_8hlgpZTIPsyWpNGcp2OkpybF00iovkpKJO');
+  const stripePromise = loadStripe('pk_live_u4e03SLJFJMC8k4Bv7g1T3Py00rrpMeJLo');
 
   useEffect(() => {
     if (sessionStorage.getItem('type')) setType(sessionStorage.getItem('type'))
