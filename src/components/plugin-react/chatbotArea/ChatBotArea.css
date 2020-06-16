@@ -38,6 +38,71 @@
     }
 }
 
+.contentTextIconChat{
+    z-index: 1010;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    background-image: url('./chat_block.png');
+    width: 220px;
+    height: 90px;
+    right: 46%;
+    bottom: 26%;
+}
+
+.contentTextIconChat2{
+    z-index: 1010;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    background-image: url('./chat_block2.png');
+    width: 220px;
+    height: 90px;
+    right: 46%;
+    bottom: 26%;
+}
+
+.contentTextIconChat3{
+    z-index: 1010;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    background-image: url('./chat_block3.png');
+    width: 220px;
+    height: 90px;
+    right: 46%;
+    bottom: 26%;
+}
+
+.contentTextIconChat4{
+    z-index: 1010;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    background-image: url('./chat_block4.png');
+    width: 220px;
+    height: 90px;
+    right: 46%;
+    bottom: 26%;
+}
+
+.contentTextIconChat5{
+    z-index: 1010;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    background-image: url('./chat_block5.png');
+    width: 220px;
+    height: 90px;
+    right: 46%;
+    bottom: 26%;
+}
+
 .questionPrint{
     margin: 0;
     font-size: 18px;

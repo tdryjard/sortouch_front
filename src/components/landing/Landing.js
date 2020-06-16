@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import Navbar from '../navbar/Navbar'
 import { Link } from 'react-router-dom'
 import QuestionChat from './QuestionChat'
-import Chatbot from 'sortouch-react'
+import Chatbot from '../plugin-react/chatbotArea/ChatBotArea'
 import MenuBurger from '../menuBurger/MenuBurger'
 import Footer from '../footer/Footer'
 import './Landing.scss'
@@ -12,6 +12,7 @@ const Landing = () => {
     const [textEffect3, setTextEffect3] = useState('')
     const [textEffect4, setTextEffect4] = useState('')
     const [userId, setUserId] = useState()
+    const [chatbotActive, setChatbotActive] = useState(false)
 
 
     const textLanding1 = getOffset(document.getElementById('textLanding1')).top
@@ -60,22 +61,33 @@ const Landing = () => {
 
     return (
         <div className="containerLanding">
-        <title>Sortouch : éditeur de chatbot gratuit</title>
+            <title>Sortouch : éditeur de chatbot gratuit</title>
+            <div className="firstContainerLanding">
+                <img src={require('./image/firstImg.png')} className="firstImgLanding" alt="pc et telephone présentation" />
+                <div className="containerFirstTextLanding">
+                    <h1 className="titleFirstLanding">Créer un chatbot en toute simplicité</h1>
+                    <span className="borderBottom"/>
+                    <h2 className="describeFirstContainerLanding">Sortouch vous permet de créer facilement des interactions avec vos visiteurs et les guider à travers des questions et réponses éditables, ce qui génèrera votre chatbot !
+                    <br/><br/>À la fin de chaque interaction vous pouvez proposer un formulaire qui vous renverra les prises de contact via votre chatbot triées dans votre boite de réception Sortouch
+                    <br/><br/>Ne perdez aucun contact ! Chaque prise de contact avec vous via votre chatbot est enregistrée dans votre espace stockage de coordonnées</h2>
+                    <div onClick={() => {setChatbotActive(!chatbotActive)}} className="startBotButton">Démo <img src={require('./image/back.png')} className="backReverseIcon"/> </div>
+                </div>
+            </div>
             {window.innerWidth > 1280 ?
                 <Navbar type={"landing"} />
                 :
                 <MenuBurger type={"landing"} />}
             <a href="#explication" className="containerTitleLanding1">
                 <img src={require('./image/money.png')} alt="gains money" className="imgTitleLanding" />
-                <h1 className="titleLandingTop">Transformer ses visiteurs en clients</h1>
+                <h3 className="titleLandingTop">Transformer ses visiteurs en clients</h3>
             </a>
             <a href="#explication" className="containerTitleLanding">
                 <img src={require('./image/time.png')} alt="gains time" className="imgTitleLanding" />
-                <h1 className="titleLandingTop">Gagner du temps dans le traitement de ses mails</h1>
+                <h3 className="titleLandingTop">Gagner du temps dans le traitement de ses mails</h3>
             </a>
             <a href="#explication" className="containerTitleLanding">
                 <img src={require('./image/data.png')} alt="gains data" className="imgTitleLanding" />
-                <h1 className="titleLandingTop">Se créer une base de donnée d'email et de numéro de téléphone</h1>
+                <h3 className="titleLandingTop">Se créer une base de donnée d'email et de numéro de téléphone</h3>
             </a>
             <div className="containerHeadLanding">
                 <div className="containerTextHead">
@@ -133,12 +145,12 @@ const Landing = () => {
                                     <Link to="/inscription"><h2 id="textLanding4" className={textEffect4 ? "textChatLanding" : "displayNone"}>Créez vous une vrai base de donnée d'email et de numéro de téléphone !</h2></Link>}
                             </div>
                             {window.innerWidth > 1280 ?
-                            userId ?
-                                <Link className="linkImg" to="/base-de-donnee"><img src={require('./image/data_area.jpg')} alt="espace base de donnée" className="areaImgLanding" /></Link>
+                                userId ?
+                                    <Link className="linkImg" to="/base-de-donnee"><img src={require('./image/data_area.jpg')} alt="espace base de donnée" className="areaImgLanding" /></Link>
+                                    :
+                                    <Link className="linkImg" to="/inscription"><img src={require('./image/data_area.jpg')} alt="espace base de donnée" className="areaImgLanding" /></Link>
                                 :
-                                <Link className="linkImg" to="/inscription"><img src={require('./image/data_area.jpg')} alt="espace base de donnée" className="areaImgLanding" /></Link>
-                            :
-                            <img src={require('./image/data_area.jpg')} alt="espace base de donnée" className="areaImgLanding" />}
+                                <img src={require('./image/data_area.jpg')} alt="espace base de donnée" className="areaImgLanding" />}
                         </div>
                     </div>
                     <div id="explication" className="contentHeadLanding">
@@ -185,8 +197,8 @@ const Landing = () => {
                     :
                     <Link to="/models" className="goButtonLanding">Essayer gratuitement</Link>}
             </div>
-            <Chatbot modelId={11} userId={21} />
-            <Footer/>
+            <Chatbot active={chatbotActive} modelId={11} userId={21} />
+            <Footer />
         </div>
     )
 }

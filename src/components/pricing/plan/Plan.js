@@ -16,7 +16,6 @@ const Plan = () => {
     }, [])
 
     return (
-        <div className="containerPlan">
             <div className="contentPlan">
                 <h2 className="titlePlan">Gratuit</h2>
                 <div className="containerOptionPlan">
@@ -44,7 +43,6 @@ const Plan = () => {
                         Commencer
                 </Link>}
             </div>
-        </div>
     );
 };
 

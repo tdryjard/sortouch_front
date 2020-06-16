@@ -30,7 +30,7 @@ const Area = () => {
         :
         <MenuBurger type={"editeur"} />}
       <Builder />
-      <Chatbot modelId={modelId} userId={userId} modelId={modelId} token={token}/>
+      <Chatbot userId={userId} modelId={modelId} token={token}/>
     </div>
   );
 };

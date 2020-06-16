@@ -31,7 +31,7 @@ const Plan2 = () => {
     }, [])
 
     return (
-        <div className="containerPlan">
+        <>
             {!active ?
                 <div className="contentPlan">
                     <h2 className="titlePlan2">Standard</h2>
@@ -75,7 +75,7 @@ const Plan2 = () => {
                     <CheckoutForm userId={userId} token={token} />
                 </Elements>
             }
-        </div>
+        </>
     );
 };
 

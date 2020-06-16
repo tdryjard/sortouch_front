@@ -1,11 +1,23 @@
-import React from 'react'
+import React, {useState, useEffect} from 'react'
 import Menu from '../menu/Menu'
 import MenuBurger from '../burgerMenu/BurgerMenu'
 import Navbar from '../../navbar/Navbar'
+import {Link} from 'react-router-dom'
 import Footer from '../../footer/Footer'
 import './DocEditor.scss'
 
 const DocEditor = () => {
+    const [userId, setUserId] = useState()
+
+    useEffect(() => {
+        if (localStorage.getItem('userId')) {
+            setUserId(localStorage.getItem('userId'))
+        } else if (sessionStorage.getItem('userId')) {
+            setUserId(sessionStorage.getItem('userId'))
+        }
+    }, [])
+
+
     return(
         <div className="containerDoc">
         <title>Sortouch : tuto éditeur</title>
@@ -39,6 +51,10 @@ const DocEditor = () => {
                         <img className="imgAddContainerDoc" src={require('./image/textarea.png')} alt="textarea"/>
                     </div>
                 </div>
+                {userId ?
+                <Link to="/editeur" className="containerSectionDoc"><h4 className="titleContainerSectionDoc">Accéder à l'éditeur</h4></Link>
+                :
+                <Link to="/connexion" className="containerSectionDoc"><h4 className="titleContainerSectionDoc">Connecter vous afin d'accéder à l'éditeur</h4></Link>}
             </div>
         </div>
     )

@@ -396,7 +396,7 @@
     width: 450px;
     background-color: white;
     border-radius: 10px;
-    border: rgb(235, 195, 239) 5px solid;
+    border: rgb(56, 56, 56) 3px solid;
     padding: 10px;
 }
 
@@ -404,14 +404,14 @@
     border-radius: 10px;
     background-color: #ffffff;
     font-size: 25px;
-    color: rgb(235, 195, 239);
+    color: rgb(39, 39, 39);
     font-family: 'Sen', sans-serif;
-    border: rgb(235, 195, 239) 3px solid;
+    border: rgb(39, 39, 39) 3px solid;
     height: 50px;
     width: 190px;
     cursor: pointer;
 } .buttonTestChat:hover{
-    background-color: rgb(235, 195, 239);
+    background-color: rgb(39, 39, 39);
     color: white;
 }
 
@@ -426,9 +426,9 @@
     font-size: 20px;
     font-weight: bold;
     text-align: start;
-    color: rgb(235, 195, 239);
+    color: rgb(39, 39, 39);
     font-family: 'Sen', sans-serif;
-    border: rgb(235, 195, 239) 3px solid;
+    border: rgb(39, 39, 39) 3px solid;
     height: 100px;
     width: 210px;
     cursor: pointer;
@@ -436,7 +436,7 @@
     padding-left: 20px;
     padding-right: 20px;
 } .choiceColorChatbot:hover{
-    background-color: rgb(235, 195, 239);
+    background-color: rgb(39, 39, 39);
     color: white;
 }
 
@@ -450,9 +450,8 @@
     background-color: #ffffff;
     font-size: 20px;
     text-align: start;
-    color: rgb(235, 195, 239);
     font-family: 'Sen', sans-serif;
-    border: rgb(235, 195, 239) 3px solid;
+    border: rgb(39, 39, 39) 3px solid;
     height: 100px;
     width: 400px;
     cursor: pointer;

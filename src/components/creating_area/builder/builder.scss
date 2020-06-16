@@ -7,6 +7,7 @@
 }
 
 .containerButtonBuilder{
+    position: relative;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -143,6 +144,7 @@
 }
 
 .contentIconCardBuild{
+    position: relative;
     display: flex;
     justify-content: flex-start;
     align-items: center;
@@ -401,6 +403,19 @@ img.loadGif{
     height: 80px;
     padding-left: 20px;
     border-radius: 10px;
+}
+
+.crossPopupEditor{
+    position: absolute;
+    width: 200px;
+    height: auto;
+    top: -40px;
+    right: -180px;
+    z-index: 10;
+    animation: crossPopupEditor infinite 1s;
+} @keyframes crossPopupEditor{
+    from{right: -180px} 
+    to{right: -240px}
 }
 
 @keyframes connectButton{

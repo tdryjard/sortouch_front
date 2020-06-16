@@ -492,6 +492,9 @@ const Registration = (props) => {
                                                                                                                         })
 
                                                                                                                         sessionStorage.setItem("type", 'free')
+                                                                                                                        localStorage.setItem('popupModel', true)
+                                                                                                                        localStorage.setItem('popupEditeur1', true)
+                                                                                                                        localStorage.setItem('popupEditeur2', true)
                                                                                                                     }
                                                                                                                 }
                                                                                                             }

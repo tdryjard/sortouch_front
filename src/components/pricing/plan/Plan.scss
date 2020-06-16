@@ -1,23 +1,8 @@
-.containerPlan{
-    width: 25%;
-    min-height: 65%;
-    margin-top: 150px;
-    margin-bottom: 50px;
-    box-shadow: 2px 2px 20px rgb(190, 190, 190);
-    border-radius: 10px;
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
-    flex-direction: column;
-    z-index: 2;
-    background-color: rgba(255, 255, 255, 0.795);
-    margin-right: 2%;
-    margin-left: 2%;
-}
+
 
 .contentPlan{
     position: relative;
-    width: 92%;
+    width: 20%;
     min-height: 500px;
     padding-bottom: 130px;
     box-shadow: 2px 2px 20px rgb(190, 190, 190);
@@ -28,8 +13,8 @@
     flex-direction: column;
     z-index: 2;
     background-color: rgba(255, 255, 255, 0.952);
-    margin-right: 40px;
-    margin-left: 40px;
+    margin-right: 2%;
+    margin-left: 2%;
 }
 
 .titlePlan{
@@ -172,19 +157,18 @@
 
 .contentPlanStripe{
     position: relative;
-    width: 92%;
+    width: 20%;
     min-height: 500px;
     box-shadow: 2px 2px 20px rgb(190, 190, 190);
     border-radius: 10px;
     display: flex;
-    justify-content: start;
+    justify-content: flex-start;
     align-items: center;
     flex-direction: column;
     z-index: 2;
     background-color: rgba(255, 255, 255, 0.952);
-    margin-right: 40px;
-    margin-left: 40px;
-    padding-top: 10px;
+    margin-right: 2%;
+    margin-left: 2%;
 }
 
 .FormGroup {
@@ -375,12 +359,7 @@
     text-align: center;
     margin-top: 80px;
 }
-
 @media screen and (max-width: 1280px){
-    .containerPricingBuy{
-        padding: 10px !important;
-        width: 85% !important;
-    }
     .buttonPricing2{
         height: 70px !important;
         margin-top: 35px;
@@ -400,11 +379,6 @@
         flex-direction: column;
         flex-wrap: wrap;
         width: 100%;
-    }
-    .containerPlan{
-        width: 90%;
-        min-height: 500px;
-        margin-bottom: 30px;
     }
     .containerOptionPlan{
         height: 60px;
@@ -428,13 +402,20 @@
         bottom: 30px;
     }
     .contentPlanStripe{
-        padding: 0;
-        height: 97%;
-        align-items: center;
-        justify-content: center;
+        padding-bottom: 0px;
+        width: 90%;
+        margin-bottom: 90px;
     }
     .contentPlan{
         padding-bottom: 0px;
+        width: 90%;
+        margin-bottom: 90px;
+    }
+    .containerPricingBuy{
+        width: 90% !important;
+        margin-bottom: 90px !important;
+        padding: 5px !important;
+        padding-bottom: 30px !important;
     }
     .buttonBuyPricing{
         bottom: 25px;

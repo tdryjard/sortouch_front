@@ -194,6 +194,7 @@ const CardModel = (props) => {
 
     const cardSelectToEditor = (type) => {
         sessionStorage.setItem('modelId', props.id)
+        localStorage.setItem('popupModel', false)
         setTimeout(() => {
             if (type === "editor") setRedirectEditor(true)
             if (type === "mail") setRedirect(true)
@@ -204,6 +205,9 @@ const CardModel = (props) => {
         <>
             {optionSelected === false ?
                 <div onClick={() => { window.innerWidth < 1280 && setCardSelect(true) }} className={props.index === 0 ? "contentCardModelFirst" : "contentCardModel"}>
+                    {props.index === 0 && (localStorage.getItem('popupModel') === "true") &&
+                         <img src={require('./image/popup.png')} className="crossPopupModel"/>
+                    }
                     <div className="headCardModel">
                         <div className="contentNewMessageModel">
                             <img src={require('../../message_space/image/newMessage_icon.png')} className="newMessageIconModel" alt="new message" />

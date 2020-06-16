@@ -38,7 +38,7 @@ const Footer = () => {
                     <Link to="/mails" className="linkFooter">Boite de réception du chatbot selectionné</Link>
                 </>}
             </div>}
-            <p className="signThomas">Plateforme développée par Thomas Dryjard Des Garniers</p>
+            <p className="signThomas">Plateforme développée par Thomas Dryjard</p>
         </div>
     )
 }

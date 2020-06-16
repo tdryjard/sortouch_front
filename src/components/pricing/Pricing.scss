@@ -1,5 +1,5 @@
 .containerPricing{
-    height: 100vh;
+    min-height: 75vh;
     width: 100%;
     margin-top: 80px;
     display: flex;
@@ -7,6 +7,8 @@
     align-items: flex-start;
     flex-wrap: wrap;
     background-color: rgb(252, 252, 252);
+    margin-top: 25vh;
+    padding-bottom: 5vh;
 }
 
 .backPricing{
@@ -35,6 +37,7 @@
     border-radius: 10px;
     padding: 50px;
     width: 40%;
+    margin-bottom: 120px;
 }
 
 .cancelSub{
@@ -65,5 +68,4 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-top: 70px;
 }

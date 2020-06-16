@@ -83,7 +83,7 @@ const Plan4 = () => {
     }
 
     return (
-        <div className="containerPlan">
+        <>
             {!active ?
                 <div className="contentPlan">
                     <h2 className="titlePlan2">Sur mesure</h2>
@@ -125,7 +125,7 @@ const Plan4 = () => {
                     <button onClick={postContact} type="submit" className="buttonBuyPricing"><p className="titleBuy">Envoyer </p></button>
                 </div>
             }
-        </div>
+        </>
     );
 };
 

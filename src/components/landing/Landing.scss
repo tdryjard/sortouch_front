@@ -4,11 +4,6 @@
     justify-content: start;
     align-items: center;
     flex-direction: column;
-    background-image: url('./image/backLanding.png');
-    background-position: top;
-    background-size: 100%;
-    background-repeat: no-repeat;
-    background-attachment: fixed;
     width: 100%;
     min-height: 522vh;
 }
@@ -48,6 +43,54 @@
     margin-right: 250px;
 }
 
+.firstContainerLanding{
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-direction: row;
+    width: 100%;
+    height: 50vh;
+    margin-top: 25vh;
+}
+
+.firstImgLanding{
+    width: 50%;
+    height: auto;
+}
+
+.containerFirstTextLanding{
+    height: 100%;
+    width: 35%;
+    margin-left: 5%;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    flex-direction: column;
+}
+
+.titleFirstLanding{
+    font-size: 30px;
+    font-weight: 600;
+    font-family: 'Sen', sans-serif;
+    border-bottom: 0px;
+}
+
+.borderBottom{
+    border-radius: 10px;
+    height: 5px;
+    width: 80%;
+    background: rgb(112,64,177);
+    background: linear-gradient(90deg, rgba(112,64,177,1) 0%, rgba(179,111,255,1) 81%);
+    animation: borderBottom 2s;
+} @keyframes borderBottom{from{width: 0%} to{width: 80%}}
+
+.describeFirstContainerLanding{
+    font-size: 20px;
+    font-weight: 400;
+    font-family: 'Sen', sans-serif;
+    color: rgb(75, 75, 75);
+}
+
 .contentTitleLanding{
     display: flex;
     justify-content: center;
@@ -72,6 +115,17 @@
     margin-top: 0;
     color: rgb(56, 56, 56);
 }
+
+.titleLandingTop{
+    font-size: 25px;
+    font-weight: 600;
+    font-family: 'Libre Franklin', sans-serif;
+    letter-spacing: 1px;
+    margin-bottom: 0px;
+    margin-top: 0;
+    color: rgb(56, 56, 56);
+}
+
 .textLanding{
     font-size: 18px;
     font-family: 'Sen', sans-serif;
@@ -336,7 +390,55 @@
     margin-bottom: 5px;
 }
 
+.startBotButton{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    height: 50px;
+    width: 150px;
+    background-color: #b36fff;
+    font-family: 'Libre Franklin', sans-serif;
+    border: none;
+    border-radius: 4px;
+    font-size: 20px;
+    font-weight: bold;
+    letter-spacing: 0.5px;
+    cursor: pointer;
+    margin-left: 70%;
+}
+.startBotButton:hover{
+    animation: demo 0.5s;
+    width: 190px;
+}
+@keyframes demo{
+    from{width: 150px}
+    to{width: 190px}
+}
+
+.backReverseIcon{
+    width: 40%;
+    margin-left: 10%;
+    margin-bottom: 0px;
+}
+
 @media screen and (max-width: 1280px){
+    .startBotButton{
+        margin-left: 0px;
+    }
+    .firstContainerLanding{
+        flex-direction: column;
+        margin-top: 80px;
+        height: auto;
+    }
+    .containerFirstTextLanding{
+        width: 90%;
+        height: auto;
+    }
+    .firstImgLanding{
+        width: 100%;
+        height: auto;
+    }
     .linkImg{
         display: flex;
         justify-content: center;
@@ -459,7 +561,7 @@
     }
     .containerTitleLanding1{
         width: 80%;
-        margin-top: 100px;
+        margin-top: 50px;
     }
     .containerTitleLanding{
         width: 80%;

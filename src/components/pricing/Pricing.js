@@ -171,11 +171,6 @@ const Pricing = () => {
                 </div>
               </div>
               : null}
-      <div className="backPricing">
-        <img src={require('./image/plan1.svg')} alt="free plan" className="backPricingImg" />
-        <img src={require('./image/plan2.svg')} alt="2ème plan" className="backPricingImg" />
-        <img src={require('./image/plan3.svg')} alt="3ème plan back" className="backPricingImg" />
-      </div>
       <Plan />
       {!(type === "standard") &&
         <Elements stripe={stripePromise}>
