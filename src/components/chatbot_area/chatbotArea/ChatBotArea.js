@@ -3,7 +3,6 @@ import React, {useState, useEffect} from 'react'
 import url from '../../../api/url';
 import Questionchat from '../questionBlock/QuestionChat';
 import FormContact from '../fromContact/FormContact';
-import Chatbot from 'sortouch-react'
 import './ChatBotArea.scss'
 
 const ChatBotArea = () => {
