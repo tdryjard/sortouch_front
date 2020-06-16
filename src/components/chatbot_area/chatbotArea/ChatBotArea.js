@@ -205,7 +205,6 @@ const ChatBotArea = () => {
                     </div>
                 )
             })}
-            <Chatbot userId={userId} modelId={modelId}/>
         </div>
     )
 }
