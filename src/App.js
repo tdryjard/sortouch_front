@@ -20,7 +20,6 @@ import DocReactPartner from './components/partner/docReact/DocReact'
 import DocWordpressPartner from './components/partner/docWordpress/DocWordpress'
 import ReactGA from 'react-ga';
 
-
 function App() {
   const [userId, setUserId] = useState(null)
   const [type, setType] = useState()
