@@ -57,7 +57,6 @@ const CheckoutForm = (props) => {
     }
 
 
-
     const subscription = async (event) => {
         setLoad(true)
         fetch(`${url}/create-customer`, {
