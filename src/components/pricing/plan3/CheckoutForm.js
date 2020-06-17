@@ -56,6 +56,8 @@ const CheckoutForm = (props) => {
         return re.test(phone)
     }
 
+
+
     const subscription = async (event) => {
         setLoad(true)
         fetch(`${url}/create-customer`, {
@@ -188,6 +190,7 @@ const CheckoutForm = (props) => {
     const getPhone = (e) => {
         setPhone(e.target.value)
     }
+
 
     return (
         <div className="contentPlanStripe" >

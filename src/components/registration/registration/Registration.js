@@ -562,6 +562,7 @@ const Registration = (props) => {
     return (
         <div className="containerRegistration">
         <title>Sortouch : inscription</title>
+            <meta name="description" content="Créez vous un compte Sortouch facilement pour créer votre premier chatbot, recevoir les des mesages via votre site et collecter des coordonnées" />
             {window.innerWidth > 1280 ?
                 <Navbar type={"models"} />
                 :

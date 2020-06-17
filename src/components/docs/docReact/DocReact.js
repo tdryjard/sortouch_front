@@ -19,6 +19,7 @@ const DocReact = () => {
     return (
         <div className="containerDoc">
         <title>Sortouch : installer chatbot sur ReactJs</title>
+            <meta name="description" content="Apprendre à installer son chatbot sur son site ReactJs" />
             {window.innerWidth > 1280 && <Navbar type={"doc"} />}
             {window.innerWidth > 1280 && <Menu sectionSelect="install" link="docReact" />}
             {window.innerWidth < 1280 && <MenuBurger sectionSelect="install" link="docReact" />}

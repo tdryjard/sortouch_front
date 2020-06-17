@@ -20,6 +20,7 @@ const DocSortouch = () => {
     return (
         <div className="containerDoc">
         <title>Sortouch : comment utiliser sortouch</title>
+            <meta name="description" content="Apprendre facilement comment utiliser la plateforme de création de chatbot et de gestion des contacts Sortouch en suivant un court tuto" />
             {window.innerWidth > 1280 && <Navbar type={"doc"} />}
             {window.innerWidth > 1280 && <Menu link="sortouch" />}
             {window.innerWidth < 1280 && <MenuBurger link="sortouch" />}

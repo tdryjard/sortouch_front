@@ -101,6 +101,7 @@ const Pricing = () => {
   return (
     <div className="containerPricing">
     <title>Sortouch : tarifs</title>
+            <meta name="description" content="Retrouvez les différentes formules et tarifs pour créer votre chatbot simplement avec Sortouch. Essayer gratuitement sans limite de temps !" />
       {window.innerWidth > 1280 ?
         <Navbar type={"tarifs"} />
         :

@@ -62,6 +62,7 @@ const Landing = () => {
     return (
         <div className="containerLanding">
             <title>Sortouch : éditeur de chatbot gratuit</title>
+            <meta name="description" content="Créer facilement et gratuitement son chatbot pour son site. Gérer ses prises de contacts et stocker les coordonnées de ses visiteurs." />
             <div className="firstContainerLanding">
                 <img src={require('./image/firstImg.png')} className="firstImgLanding" alt="pc et telephone présentation" />
                 <div className="containerFirstTextLanding">

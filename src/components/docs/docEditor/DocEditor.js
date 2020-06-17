@@ -21,6 +21,7 @@ const DocEditor = () => {
     return(
         <div className="containerDoc">
         <title>Sortouch : tuto éditeur</title>
+            <meta name="description" content="Apprendre à éditer son premier chatbot en suivant un simple guide. Apprendre comment ajouter des question, réponses et boite de réception à votre chatbot" />
             {window.innerWidth > 1280 && <Navbar type={"doc"}/>}
             {window.innerWidth > 1280 && <Menu link="editor"/>}
             {window.innerWidth < 1280 && <MenuBurger link="editor"/>}

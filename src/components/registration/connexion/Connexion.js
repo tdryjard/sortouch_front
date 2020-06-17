@@ -135,6 +135,7 @@ const Connexion = (props) => {
     return (
         <div className="containerRegistration">
         <title>Sortouch : connexion</title>
+            <meta name="description" content="Connectez vous à votre compte Sortouch pour éditer votre chatbot et retrouver vos prises de contact" />
             {window.innerWidth > 1280 ?
                 <Navbar type={"models"} />
                 :
