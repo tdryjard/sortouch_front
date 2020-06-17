@@ -88,7 +88,7 @@ const DataArea = () => {
         })
             .then(res => res.json())
             .then(res => {
-                if(type === "free" && res.length > 500) res.length = 500
+                if(type === "free" && res.length > 50) res.length = 50
                 if(type === "standard" && res.length > 10000) res.length = 10000
                 setContacts(res)
                 setSortContacts(res)
@@ -182,7 +182,7 @@ const DataArea = () => {
     }
 
     useEffect(() => {
-        if (contacts && contacts.length > 400 && type === "free") setPopup(true)
+        if (contacts && contacts.length > 40 && type === "free") setPopup(true)
         if (contacts && contacts.length > 9500 && type === "standard") setPopup(true)
     }, [contacts, type])
 

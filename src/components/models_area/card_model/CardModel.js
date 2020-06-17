@@ -205,7 +205,7 @@ const CardModel = (props) => {
         <>
             {optionSelected === false ?
                 <div onClick={() => { window.innerWidth < 1280 && setCardSelect(true) }} className={props.index === 0 ? "contentCardModelFirst" : "contentCardModel"}>
-                    {props.index === 0 && (localStorage.getItem('popupModel') === "true") &&
+                    {window.location.innerWidth > 1280 && props.index === 0 && (localStorage.getItem('popupModel') === "true") &&
                          <img src={require('./image/popup.png')} className="crossPopupModel"/>
                     }
                     <div className="headCardModel">

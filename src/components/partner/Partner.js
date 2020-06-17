@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import {Link} from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import url from '../../api/url'
 import './Partner.scss'
 
@@ -14,9 +14,10 @@ const Partner = () => {
     const [resGenerate, setResGenerate] = useState([])
     const [resActivate, setResActivate] = useState([])
     const [modelsId, setModelsId] = useState([])
-    const [nbStandard, setNbStandard] = useState()
-    const [nbExpert, setNbExpert] = useState()
-    const [gain, setGain] = useState()
+    const [nbStandard, setNbStandard] = useState(0)
+    const [nbExpert, setNbExpert] = useState(0)
+    const [gain, setGain] = useState(0)
+    const [clientActive, setClientActive] = useState()
 
 
     useEffect(() => {
@@ -623,21 +624,28 @@ const Partner = () => {
 
     return (
         <div className="containerPartner">
-        <title>Sortouch : partenaire</title>
+            <title>Sortouch : partenaire</title>
             <div className="containerNav">
                 <Link to="/" className="linkNavbar" >Menu</Link>
                 <Link to="/installer-wordpress" className="linkNavbar" >Installer chatbot sur Wordpress</Link>
                 <Link to="/installer-react" className="linkNavbar" >Installer chatbot sur ReactJs</Link>
             </div>
             <div className="contentPartner">
+                {window.innerWidth > 1280 ?
                 <div className="containerStats">
                     <p className="gainPartner">{nbStandard} formules standard</p>
                     <p className="gainPartner">{nbExpert} formules expert</p>
                     <p className="totalGainPartner">{gain}€ revenus mensuel</p>
                 </div>
+                :
+                <div className="containerStats">
+                    <p style={{fontSize: "15px"}} className="gainPartner">{nbStandard} formules standard</p>
+                    <p style={{fontSize: "15px"}} className="gainPartner">{nbExpert} formules expert</p>
+                    <p style={{fontSize: "15px"}} className="totalGainPartner">{gain}€ revenus mensuel</p>
+                </div>}
                 <div className="containerOngletsPartner">
-                    <button onClick={() => { setOngletSelect('client sub') }} className={ongletSelect === 'client sub' ? "ongletPartnerSubActive" : "ongletPartnerSub"}>Comptes activés</button>
-                    <button onClick={() => { setOngletSelect('client generate') }} className={ongletSelect === 'client generate' ? "ongletPartnerSubActive" : "ongletPartnerSub"}>Comptes générés</button>
+                    <button onClick={() => { setOngletSelect('client sub'); setClientActive(0) }} className={ongletSelect === 'client sub' ? "ongletPartnerSubActive" : "ongletPartnerSub"}>Comptes activés</button>
+                    <button onClick={() => { setOngletSelect('client generate'); setClientActive(0) }} className={ongletSelect === 'client generate' ? "ongletPartnerSubActive" : "ongletPartnerSub"}>Comptes générés</button>
                     <div className="containerGenerate">
                         <input maxLength="30" placeholder="nom client" className="inputGenerate" onChange={getNameClient} />
                         {!loadGenerate && <button onClick={() => { setLoadgenerate(true) }} className="buttonGenerate">Générer compte client</button>}
@@ -645,43 +653,92 @@ const Partner = () => {
                     </div>
                 </div>
                 <div className="containerListPartner">
-                    {ongletSelect === 'client generate' ?
-                        <>
-                            <div className="headRowPartner">
-                                <p style={{ fontSize: "22px" }} className="littleRowPartner">Nom du client</p>
-                                <p style={{ fontSize: "22px" }} className="littleRowPartner">Mot de passe généré</p>
-                                <p style={{ fontSize: "22px" }} className="littleRowPartner">Email générée</p>
-                                <p style={{ fontSize: "22px" }} className="littleRowPartner">user id</p>
-                                <p style={{ fontSize: "22px" }} className="littleRowPartner">chatbot id</p>
-                            </div>
-                            {Array.isArray(resGenerate) && resGenerate.map((res, index) => {
-                                return (
-                                    <div className="rowPartner">
-                                        <p className="littleRowPartner">{res.name_client}</p>
-                                        <p className="littleRowPartner">{res.mdp_generate}</p>
-                                        <p className="littleRowPartner">{res.email_generate}</p>
-                                        <p className="littleRowPartner">{res.id}</p>
-                                        <p className="littleRowPartner">{modelsId[index]}</p>
-                                    </div>)
-                            })}
-                        </>
+                    {window.innerWidth > 1280 ?
+                        ongletSelect === 'client generate' ?
+                            <>
+                                <div className="headRowPartner">
+                                    <p style={{ fontSize: "22px" }} className="littleRowPartner">Nom du client</p>
+                                    <p style={{ fontSize: "22px" }} className="littleRowPartner">Mot de passe généré</p>
+                                    <p style={{ fontSize: "22px" }} className="littleRowPartner">Email générée</p>
+                                    <p style={{ fontSize: "22px" }} className="littleRowPartner">user id</p>
+                                    <p style={{ fontSize: "22px" }} className="littleRowPartner">chatbot id</p>
+                                </div>
+                                {Array.isArray(resGenerate) && resGenerate.map((res, index) => {
+                                    return (
+                                        <div className="rowPartner">
+                                            <p className="littleRowPartner">{res.name_client}</p>
+                                            <p className="littleRowPartner">{res.mdp_generate}</p>
+                                            <p className="littleRowPartner">{res.email_generate}</p>
+                                            <p className="littleRowPartner">{res.id}</p>
+                                            <p className="littleRowPartner">{modelsId[index]}</p>
+                                        </div>)
+                                })}
+                            </>
+                            :
+                            <>
+                                <div className="headRowPartner">
+                                    <p style={{ fontSize: "22px" }} className="titleRowPartner1">Nom du client</p>
+                                    <p style={{ fontSize: "22px" }} className="titleRowPartner2">Type d'abonnement</p>
+                                    <p style={{ fontSize: "22px" }} className="titleRowPartner3">Gains</p>
+                                </div>
+                                {Array.isArray(resActivate) && resActivate.map(res => {
+                                    return (
+                                        <div className="rowPartner">
+                                            <p className="titleRowPartner1">{res.name_client}</p>
+                                            <p className="titleRowPartner2">{res.type}</p>
+                                            <p className="titleRowPartner3">{res.type === "standard" ? `+${60 * 30 / 100}€ par mois` : res.type === "expert" ? `+${80 * 30 / 100}€ par mois` : "pas abonné"}</p>
+                                        </div>)
+                                })}
+                            </>
                         :
-                        <>
-                            <div className="headRowPartner">
-                                <p style={{ fontSize: "22px" }} className="titleRowPartner1">Nom du client</p>
-                                <p style={{ fontSize: "22px" }} className="titleRowPartner2">Type d'abonnement</p>
-                                <p style={{ fontSize: "22px" }} className="titleRowPartner3">Gains</p>
-                            </div>
-                            {Array.isArray(resActivate) && resActivate.map(res => {
-                                return (
-                                    <div className="rowPartner">
-                                        <p className="titleRowPartner1">{res.name_client}</p>
-                                        <p className="titleRowPartner2">{res.type}</p>
-                                        <p className="titleRowPartner3">{res.type === "standard" ? `+${60 * 30 / 100}€ par mois` : res.type === "expert" ? `+${80 * 30 / 100}€ par mois` : "pas abonné"}</p>
-                                    </div>)
-                            })}
-                        </>}
-
+                        !(ongletSelect === 'client generate') ?
+                            <>
+                                {!clientActive &&
+                                    <p className="titleRowPartnerMobile">Nom du client</p>}
+                                {Array.isArray(resGenerate) && resActivate.map((res, index) => {
+                                    return (
+                                        !clientActive ?
+                                            <div onClick={() => { setClientActive(res.id) }} className="rowPartner">
+                                                <p style={{margin: "5px", fontSize: "18px"}} className="titleRowPartnerMobile">{res.name_client}</p>
+                                            </div>
+                                            : clientActive === res.id &&
+                                            <div className="containerClientPartnerActive">
+                                                <button onClick={() => {setClientActive(0)}} className="backViewClientPartner">Voir autres clients</button>
+                                                <p className="titleRowPartnerMobile">Nom du client</p>
+                                                <p className="littleRowPartnerMobile">{res.name_client}</p>
+                                                <p className="titleRowPartnerMobile">Type d'abonnement</p>
+                                                <p className="littleRowPartnerMobile">{res.type}</p>
+                                                <p className="titleRowPartnerMobile">Gains</p>
+                                                <p className="littleRowPartnerMobile">{res.type === "standard" ? `+${60 * 30 / 100}€ par mois` : res.type === "expert" ? `+${80 * 30 / 100}€ par mois` : "pas abonné"}</p>
+                                            </div>)
+                                })}
+                            </>
+                            :
+                            <>
+                                {!clientActive &&
+                                    <p className="titleRowPartnerMobile">Nom du client</p>}
+                                {Array.isArray(resGenerate) && resGenerate.map((res, index) => {
+                                    return (
+                                        !clientActive ?
+                                            <div onClick={() => { setClientActive(res.id) }} className="rowPartner">
+                                                <p style={{margin: "5px", fontSize: "18px"}} className="titleRowPartnerMobile">{res.name_client}</p>
+                                            </div>
+                                            : clientActive === res.id &&
+                                            <div className="containerClientPartnerActive">
+                                                <button onClick={() => {setClientActive(0)}} className="backViewClientPartner">Voir autres clients</button>
+                                                <p className="titleRowPartnerMobile">Nom du client</p>
+                                                <p className="littleRowPartnerMobile">{res.name_client}</p>
+                                                <p className="titleRowPartnerMobile">Mot de passe généré</p>
+                                                <p className="littleRowPartnerMobile">{res.mdp_generate}</p>
+                                                <p className="titleRowPartnerMobile">Email générée</p>
+                                                <p className="littleRowPartnerMobile">{res.email_generate}</p>
+                                                <p className="titleRowPartnerMobile">User id</p>
+                                                <p className="littleRowPartnerMobile">{res.id}</p>
+                                                <p className="titleRowPartnerMobile">Chatbot id</p>
+                                                <p className="littleRowPartnerMobile">{modelsId[index]}</p>
+                                            </div>)
+                                })}
+                            </>}
                 </div>
             </div>
         </div>

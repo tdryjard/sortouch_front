@@ -645,7 +645,7 @@ const Builder = () => {
                                                                 />
                                                                 <img onClick={() => { updateCard(card.id, 'response', cardIndex, index) }} className="iconDeleteCardBuild" alt="update" src={require('./image/update_icon.png')} />
                                                             </form>}
-                                                        {cardsRes[index][cardsRes[index].length - 1].id === card.id && popupSelect === true &&
+                                                        {window.location.innerWidth > 1280 && cardsRes[index][cardsRes[index].length - 1].id === card.id && popupSelect === true &&
                                                             <img src={require('./image/popupSelect.png')} className="crossPopupEditor" />}
                                                     </div>)
                                             })
@@ -686,8 +686,6 @@ const Builder = () => {
                                             </>
                                         }
                                     </div>
-                                    {console.log(cardsRes)}
-                                    {console.log(container)}
                                     {
                                         !Array.isArray(cardsCategory[index]) && !(cardsRes[index] && container.content_type === "response" && cardsRes[index].length > 3) && !(cardsQuest[index] && container.content_type === "question" && cardsQuest[index].length > 0) &&
                                         <div className="contentIconCardBuild">
@@ -726,7 +724,7 @@ const Builder = () => {
                                             <p className="textAddBuild">réception</p>
                                         </div>
                                         : null}
-                                    {popupStep === true &&
+                                    {window.location.innerWidth > 1280 && popupStep === true &&
                                         <img src={require('./image/popupStep.png')} className="crossPopupEditor" />}
                                 </div>}
                         </div>

@@ -18,7 +18,7 @@
     flex-direction: column;
     padding: 50px;
     width: 350px;
-    height: 600px;
+    min-height: 600px;
     box-shadow: 3.5px 5px 20px rgb(189, 189, 189);
     border-radius: 10px;
     background-color: rgb(255, 255, 255);
@@ -146,8 +146,9 @@
 @media screen and (max-width: 1280px){
     .contentRegister{
         width: 80%;
-        height: 80%;
+        min-height: 80%;
         padding: 0;
+        justify-content: start;
     }
     .subForm{
         width: 90%;

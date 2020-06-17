@@ -24,15 +24,15 @@ const Plan = () => {
                 </div>
                 <div className="containerOptionPlan">
                     <img src={require('../image/valid.png')} alt="valid" className="validImg" />
-                    <p className="textOptionPlan">Intégration sur votre site</p>
+                    <p className="textOptionPlan">Intégration sur votre site par vous</p>
                 </div>
                 <div className="containerOptionPlan">
                     <img src={require('../image/valid.png')} alt="valid" className="validImg" />
-                    <p className="textOptionPlan">100 réceptions de prise de contact par mois</p>
+                    <p className="textOptionPlan">20 réceptions de prise de contact par mois</p>
                 </div>
                 <div className="containerOptionPlan">
                     <img src={require('../image/valid.png')} alt="valid" className="validImg" />
-                    <p className="textOptionPlan">500 stockages de coordonnées</p>
+                    <p className="textOptionPlan">50 stockages de coordonnées</p>
                 </div>
                 {!userId ?
                     <Link to="/inscription" className="buttonPricing">

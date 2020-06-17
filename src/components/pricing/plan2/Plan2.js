@@ -35,14 +35,14 @@ const Plan2 = () => {
             {!active ?
                 <div className="contentPlan">
                     <h2 className="titlePlan2">Standard</h2>
-                    <div className="pricePlan">60€/mois </div>
+                    <div className="pricePlan">90€/mois </div>
                     <div className="containerOptionPlan">
                         <img src={require('../image/valid.png')} alt="valid" className="validImg" />
                         <p className="textOptionPlan">Création de chatbot illimité</p>
                     </div>
                     <div className="containerOptionPlan">
                         <img src={require('../image/valid.png')} alt="valid" className="validImg" />
-                        <p className="textOptionPlan">Intégration sur votre site</p>
+                        <p className="textOptionPlan">Intégration sur votre site par vous</p>
                     </div>
                     <div className="containerOptionPlan">
                         <img src={require('../image/valid.png')} alt="valid" className="validImg" />

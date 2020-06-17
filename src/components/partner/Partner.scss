@@ -57,6 +57,8 @@
     width: 550px;
     height: 55px;
     margin-left: 15%;
+    padding-right: 10px;
+    padding-left: 10px;
 }
 
 .inputGenerate{
@@ -195,4 +197,99 @@
     text-align: center;
     font-family: 'Sen', sans-serif;
     font-size: 18px;
+}
+
+.containerClientPartnerActive{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 100%;
+}
+
+.titleRowPartnerMobile{
+    width: 100%;
+    text-align: center;
+    font-family: 'Sen', sans-serif;
+    font-size: 22px;
+    background-color: #fef9f9;
+    border-bottom: 3px white solid;
+    margin-top: 0px;
+    margin-bottom: 0px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.littleRowPartnerMobile{
+    font-family: 'Sen', sans-serif;
+    font-size: 18px;
+    margin: 0;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.backViewClientPartner{
+    font-family: 'Sen', sans-serif;
+    color: white;
+    font-size: 18px;
+    height: 40px;
+    width: 190px;
+    border-radius: 10px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    border: none;
+    box-shadow: 2px 2px 4px rgb(187, 187, 187);
+    background-color: #b36fff;
+}
+
+@media screen and (max-width: 1280px){
+    .containerPartner{
+        height: auto;
+    }
+    .contentPartner{
+        height: auto;
+        margin-top: 100px;
+        margin-bottom: 50px;
+    }
+    .containerListPartner{
+        height: auto;
+    }
+    .containerClientPartnerActive{
+        height: auto;
+    }
+    .littleRowPartner{
+        font-size: 13px !important;
+    }
+    .containerGenerate{
+        justify-content: center;
+        align-items: center;
+        padding: 20px;
+        flex-direction: column;
+        width: 70%;
+        margin-left: 0;
+    }
+    .buttonGenerate{
+        margin-left: 0;
+        margin-top: 15px;
+    }
+    .containerOngletsPartner{
+        flex-direction: column;
+        height: auto;
+        justify-content: center;
+        align-items: center;
+        padding-top: 15px;
+        padding-bottom: 15px;
+    }
+    .ongletPartnerSub{
+        margin: 0;
+        margin-bottom: 20px;
+    }
+    .ongletPartnerSubActive{
+        margin: 0;
+        margin-bottom: 20px;
+    }
+    .loadGenerate{
+        margin-left: 0;
+        margin-top: 10px;
+    }
 }

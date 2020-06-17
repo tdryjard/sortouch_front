@@ -15,17 +15,17 @@ const DocReact = () => {
 
     return (
         <div className="containerDoc">
-        <title>Sortouch : installer chatbot sur React | partenaire</title>
+            <title>Sortouch : installer chatbot sur React | partenaire</title>
 
             <div className="containerNav">
                 <Link to="/" className="linkNavbar" >Menu</Link>
                 <Link to="/installer-wordpress" className="linkNavbar" >Installer chatbot sur Wordpress</Link>
                 <Link to="/installer-react" className="linkNavbar" >Installer chatbot sur ReactJs</Link>
             </div>
-            <div style={{marginLeft: "0"}} className="contentDoc">
+            <div style={{ marginLeft: "0" }} className="contentDoc">
                 <h1 className="titleDoc">Intégrer un chatbot sur un site ReactJs</h1>
                 <img alt="react logo" src={require('./image/react.svg')} className="reactLogo" />
-                <div style={{width: "80%"}} className="containerSectionDoc">
+                <div style={{ width: "80%" }} className="containerSectionDoc">
                     <h4 className="titleContainerSectionDoc">Installer la librairie</h4>
                     <p className="codeText">$ npm install sortouch-react</p>
                     <h4 className="titleContainerSectionDoc">Importer la librairie dans son code</h4>
@@ -39,9 +39,10 @@ const DocReact = () => {
                         <img alt="block code 3" src={require('./image/code3.png')} className="blockCode" />
                     </div>
                     <h4 className="titleContainerSectionDoc">Trouver le user id d'un compte généré</h4>
-                        <img style={{width: "120%"}} alt="trouver user id" src={require('./image/userId.png')} className="blockCode" />
+                    <img style={{ width: "120%" }} alt="trouver user id" src={require('./image/userId.png')} className="blockCode" />
                     <h4 className="titleContainerSectionDoc">Trouver son chatbot id d'un compte généré</h4>
-                        <img style={{width: "120%"}} alt="trouver user id" src={require('./image/chatbotId.png')} className="blockCode" />
+                    <img style={{ width: "120%" }} alt="trouver user id" src={require('./image/chatbotId.png')} className="blockCode" />
+                    <h4 style={{fontSize: "18px"}} className="titleContainerSectionDoc">Enfin, partagez le mot de passe l'email générés à votre client, à sa première connexion, de nouveaux identifiants lui seront demandés<br/>Pour chaque abonnement mensuel souscrit par votre client sur Sortouch, 30% du montant prix de l'abonnement sera ajouté à votre versement mensuel</h4>
                 </div>
             </div>
 

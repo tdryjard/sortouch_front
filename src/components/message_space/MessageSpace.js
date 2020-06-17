@@ -58,7 +58,7 @@ const MessageBox = (props) => {
     useEffect(() => {
         if (nbMails.length > 0) {
             let nbMailsOfMonth = nbMails.filter(mail => mail.date.includes(getCurrentDate(' ')))
-            if (type === "free" && nbMailsOfMonth.length > 90) {
+            if (type === "free" && nbMailsOfMonth.length > 16) {
                 setPopup(true)
                 setLimit(nbMailsOfMonth.length)
             } else if (type === "standard" && nbMailsOfMonth.length > 1800) {

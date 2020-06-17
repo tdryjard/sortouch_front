@@ -28,7 +28,7 @@ const PopupPremium = (props) => {
                     <div className="containerPopup">
                         <img alt="icon" src={require('./image/icon.svg')} className="iconPopup" />
                         <img onClick={() => { setActive(!active) }} alt="close" src={require('../models_area/image/cross.png')} className="crossPopupPremium" />
-                        <p className="textPopup"> Votre compte gratuit ne vous permet de créer seulement 1 chatbot</p>
+                        <p className="textPopup"> Votre compte gratuit ne vous permet de créer seulement 1 chatbot<br/>Veuillez modifier le chatbot d'exemple</p>
                         <Link to="/tarifs" className="buttonPopup">Voir les offres</Link>
                     </div>
                 </>

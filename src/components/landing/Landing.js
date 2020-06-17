@@ -157,10 +157,10 @@ const Landing = () => {
                         <img alt="time gain" src={require('./image/time_back.svg')} className="imgHeadLanding" />
                         <div className="windowTextHead">
                             <div className="contentTitleLanding">
-                                <h1 className="titleLanding">Votre site est votre vitrine<br />Ne laissez pas vos visiteurs regarder puis partir sans laisser de trace</h1>
+                                <h1 className="titleLanding">Simplicité et efficacité</h1>
                             </div>
                             <div className="contentTextLanding">
-                                <p className="textLanding">En invitant les visiteurs de votre site à vous laisser leurs contacts vous ne serez plus qu'une simple vitrine<br />Votre chatbot sortouch vous aide à transformer un simple visiteur en futur client en reprenant contact avec lui</p>
+                                <p className="textLanding">Votre site devient plus simple de navigation. Grâce à Sortouch les utilisateurs pourront trouver leurs informations de manière simple et rapide. Fini les informations compliquées à trouver, une simple recherche, un simple clic et vous voilà satisfait/servi</p>
                             </div>
                         </div>
                     </div>
@@ -169,10 +169,10 @@ const Landing = () => {
                             <img alt="prospect gain" src={require('./image/graphic.svg')} className="imgHeadLanding" />}
                         <div className="windowTextHead">
                             <div className="contentTitleLanding">
-                                <h1 className="titleLanding">Vos visiteurs sont humains</h1>
+                                <h1 className="titleLanding">Prise d'information</h1>
                             </div>
                             <div className="contentTextLanding">
-                                <p className="textLanding">Le simple popup demandant l'adresse mail est devenu intrusif et le clique sur le bouton croix un réflex<br />Vos visiteurs sont humains et ont besoin d'échanger et d'être conquis avant de partager leurs contacts<br />C'est là qu'un bon chatbot fait la différence</p>
+                                <p className="textLanding">Sortouch créer une proximité avec les clients. Il permet ainsi de prendre des informations de contact simplement et de créer une base de données facilement utilisable</p>
                             </div>
                         </div>
                         {window.innerWidth > 1280 &&

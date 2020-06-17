@@ -65,7 +65,7 @@ const ChatBotArea = (props) => {
 
     const searching = (e) => {
         let word = e.target.value
-        let wordSplit = word.split('')
+        let wordSplit = word.toLowerCase().split('')
         let resReturn = []
         if (wordSplit.length > 2) {
             fetch(`https://sortouch-back.herokuapp.com/api/response/findAll/${props.userId}/${props.modelId}`)
@@ -88,14 +88,11 @@ const ChatBotArea = (props) => {
                             }
                         }
                         if (nbEgale > 0 && (resReturn[resReturn.length - 1].id !== res[i].id)) resReturn.push(res[i])
-                        console.log(resReturn)
                         nbEgale = 0
                     }
                     let sortResult = resReturn.filter(function(item, pos) {
                         return resReturn.indexOf(item) == pos;
                     })
-
-                    console.log(sortResult)
                     if (resReturn.length > 0) setSearch(sortResult)
                 })
         }
@@ -174,12 +171,9 @@ const ChatBotArea = (props) => {
                 fetch(`https://sortouch-back.herokuapp.com/api/container/findAll/${props.userId}/${responseSelect}/${props.modelId}`)
                     .then(res => res.json())
                     .then(res => {
-                        console.log(res)
-                        console.log(containers)
                         if ((containers.length > 0) && beforeSelect[0] !== 0) {
                             if (beforeSelect[0] === 0) setBeforeSelect([])
                             let resResult = res.filter(res => res.response_id !== null)
-                            console.log(resResult)
                             setContainers(resResult)
                             takeCard(resResult)
                         } else {
@@ -304,8 +298,6 @@ const ChatBotArea = (props) => {
         if (isPost === true) setPosted(false)
     }
 
-    console.log(responseSelect)
-
 
 
     const getColor = async () => {
@@ -354,19 +346,13 @@ const ChatBotArea = (props) => {
         zIndex: '1000'
     }
 
-    console.log(beforeSelect)
-
     const backResponse = () => {
         setResponseSelect(beforeSelect[beforeSelect.length - 2])
         const stockSelect = beforeSelect
-        console.log(stockSelect)
         let res = stockSelect.slice(0, -1)
         if (res.length === 0) res[0] = 0
-        console.log(stockSelect.slice(0, -1))
         setBeforeSelect(res)
     }
-
-    console.log(beforeSelect)
 
 
     return (

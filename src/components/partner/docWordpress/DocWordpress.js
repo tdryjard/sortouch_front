@@ -15,13 +15,13 @@ const DocWordpress = () => {
 
     return (
         <div className="containerDoc">
-        <title>Sortouch : doc wordpress partenaire</title>
+            <title>Sortouch : doc wordpress partenaire</title>
             <div className="containerNav">
                 <Link to="/" className="linkNavbar" >Menu</Link>
                 <Link to="/installer-wordpress" className="linkNavbar" >Installer chatbot sur Wordpress</Link>
                 <Link to="/installer-react" className="linkNavbar" >Installer chatbot sur ReactJs</Link>
             </div>
-            <div style={{marginLeft: "0"}} className="contentDoc">
+            <div style={{ marginLeft: "0" }} className="contentDoc">
                 <h1 className="titleDoc">Intégrer un chatbot sur un site Wordpress</h1>
                 <img alt="react logo" src={require('./image/wordpress.png')} className="reactLogo" />
                 <h4 className="titleContainerSectionDocWordpress">Sur votre ordinateur</h4>
@@ -39,9 +39,10 @@ const DocWordpress = () => {
                     <p className="shortcode">[erw_sortouch user="le user id" model="le chatbot id"]</p>
                 </div>
                 <h4 className="titleContainerSectionDoc">Trouver le user id d'un compte généré</h4>
-                        <img style={{width: "100%"}} alt="trouver user id" src={require('../docReact/image/userId.png')} className="blockCode" />
-                    <h4 className="titleContainerSectionDoc">Trouver son chatbot id d'un compte généré</h4>
-                        <img style={{width: "100%"}} alt="trouver user id" src={require('../docReact/image/chatbotId.png')} className="blockCode" />
+                <img style={{ width: "100%" }} alt="trouver user id" src={require('../docReact/image/userId.png')} className="blockCode" />
+                <h4 className="titleContainerSectionDoc">Trouver le chatbot id d'un compte généré</h4>
+                <img style={{ width: "100%" }} alt="trouver user id" src={require('../docReact/image/chatbotId.png')} className="blockCode" />
+                <p style={{fontSize: "18px"}} className="textDocMargin">Enfin, partagez le mot de passe l'email générés à votre client, à sa première connexion, de nouveaux identifiants lui seront demandés<br/>Pour chaque abonnement mensuel souscrit par votre client sur Sortouch, 30% du montant prix de l'abonnement sera ajouté à votre versement mensuel</p>
             </div>
         </div>
     )
