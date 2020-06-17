@@ -56,7 +56,6 @@ const CheckoutForm = (props) => {
         return re.test(phone)
     }
 
-
     const subscription = async (event) => {
         setLoad(true)
         fetch(`${url}/create-customer`, {
