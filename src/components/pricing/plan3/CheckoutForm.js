@@ -189,7 +189,6 @@ const CheckoutForm = (props) => {
         setPhone(e.target.value)
     }
 
-
     return (
         <div className="contentPlanStripe" >
             {error && <p className="errorPay">{error}</p>}
