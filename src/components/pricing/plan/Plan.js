@@ -20,6 +20,10 @@ const Plan = () => {
                 <h2 className="titlePlan">Gratuit</h2>
                 <div className="containerOptionPlan">
                     <img src={require('../image/valid.png')} alt="valid" className="validImg" />
+                    <p className="textOptionPlan">Nombres d'utilisateurs ilimités</p>
+                </div>
+                <div className="containerOptionPlan">
+                    <img src={require('../image/valid.png')} alt="valid" className="validImg" />
                     <p className="textOptionPlan">1 création de chatbot</p>
                 </div>
                 <div className="containerOptionPlan">

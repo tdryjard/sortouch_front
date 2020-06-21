@@ -18,7 +18,9 @@ import Pricing from './components/pricing/Pricing'
 import Partner from './components/partner/Partner'
 import DocReactPartner from './components/partner/docReact/DocReact'
 import DocWordpressPartner from './components/partner/docWordpress/DocWordpress'
+import CGV from './components/CGV/CGV'
 import ReactGA from 'react-ga';
+
 
 function App() {
   const [userId, setUserId] = useState(null)
@@ -72,6 +74,7 @@ function App() {
             <Route path="/mails" component={MessageSpace} />
             <Route path="/editeur" component={Builder} />
             <Route path="/base-de-donnee" component={DataArea} />
+            <Route path="/conditions-utilisateur" component={CGV} />
           </>
           :
           <>
@@ -87,12 +90,14 @@ function App() {
             <Route path="/installer-wordpress" component={DocWordpress} />
             <Route path="/utiliser-le-site-sortouch" component={DocSortouch} />
             <Route path="/tarifs" component={Pricing} />
+            <Route path="/conditions-utilisateur" component={CGV} />
           </>
         :
         <>
           <Route exact path="/" component={Partner} />
           <Route path="/installer-react" component={DocReactPartner} />
           <Route path="/installer-wordpress" component={DocWordpressPartner} />
+            <Route path="/conditions-utilisateur" component={CGV} />
         </>}
     </Switch>
   );

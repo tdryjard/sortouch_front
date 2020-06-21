@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import CheckoutForm from './CheckoutForm'
-import {Elements} from '@stripe/react-stripe-js';
-import {loadStripe} from '@stripe/stripe-js';
+import { Elements } from '@stripe/react-stripe-js';
+import { loadStripe } from '@stripe/stripe-js';
 import './Plan2.scss'
 
 const Plan2 = () => {
@@ -38,6 +38,10 @@ const Plan2 = () => {
                     <div className="pricePlan">90€/mois </div>
                     <div className="containerOptionPlan">
                         <img src={require('../image/valid.png')} alt="valid" className="validImg" />
+                        <p className="textOptionPlan">Nombres d'utilisateurs ilimités</p>
+                    </div>
+                    <div className="containerOptionPlan">
+                        <img src={require('../image/valid.png')} alt="valid" className="validImg" />
                         <p className="textOptionPlan">Création de chatbot illimité</p>
                     </div>
                     <div className="containerOptionPlan">
@@ -61,13 +65,13 @@ const Plan2 = () => {
                             <p style={{ fontSize: "18px", margin: "0px", marginTop: "5px" }}>Résiliez l'abonnement en cours pour souscrire</p>
                         </div>
                         : !userId ?
-                        <Link to={{ pathname: `/inscription`, query: { pricing: true } }} className="buttonPricing2">
-                            Souscrire <p style={{ fontSize: "15px", margin: "0px", marginTop: "5px" }}>Sans engagement</p>
-                        </Link>
-                        :
-                        <div onClick={() => { setActive(true) }} className="buttonPricing2">
-                            Souscrire <p style={{ fontSize: "15px", margin: "0px", marginTop: "5px" }}>Sans engagement</p>
-                        </div>}
+                            <Link to={{ pathname: `/inscription`, query: { pricing: true } }} className="buttonPricing2">
+                                Souscrire <p style={{ fontSize: "15px", margin: "0px", marginTop: "5px" }}>Sans engagement</p>
+                            </Link>
+                            :
+                            <div onClick={() => { setActive(true) }} className="buttonPricing2">
+                                Souscrire <p style={{ fontSize: "15px", margin: "0px", marginTop: "5px" }}>Sans engagement</p>
+                            </div>}
                 </div>
                 :
 

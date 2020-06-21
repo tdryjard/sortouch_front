@@ -4,6 +4,7 @@ import { Redirect, Link } from 'react-router-dom'
 import Navbar from '../../navbar/Navbar'
 import MenuBurger from '../../menuBurger/MenuBurger'
 import { useForm } from "react-hook-form";
+import ResetPassword from '../../resetPassword/ResetPassword'
 import './Connexion.scss'
 
 const Connexion = (props) => {
@@ -19,6 +20,7 @@ const Connexion = (props) => {
     const [partnerId, setPartnerId] = useState()
     const [clientName, setClientName] = useState()
     const [secondPassword, setSecondPassword] = useState()
+    const [resetPassword, setResetPassword] = useState(false)
 
     const { connexion, handleSubmit } = useForm()
 
@@ -84,7 +86,7 @@ const Connexion = (props) => {
                     method: 'PUT',
                     headers: {
                         'Content-Type': 'application/json',
-                        'authorization': token
+                        'authorization': 'validy24816'
                     },
                     body: JSON.stringify({
                         password: password,
@@ -144,7 +146,7 @@ const Connexion = (props) => {
                 <Redirect to="/tarifs" />
                 : redirect &&
                 <Redirect to="/models" />}
-            {!changeLog &&
+            {!changeLog && !resetPassword &&
                 <div className="contentRegister">
                     <h4 className="titleRegister">Connexion</h4>
                     {alert &&
@@ -154,6 +156,7 @@ const Connexion = (props) => {
                     <form onSubmit={handleSubmit(validSub)} className="subForm">
                         <input ref={connexion} onChange={takeMail} className={alert === "veuillez entrer une email correct" ? "inputLogError" : "inputLog"} placeholder="email" />
                         <input ref={connexion} type="password" onChange={takePassword} className={alert === "veuillez entrer une email correct" || alert === "" ? "inputLog" : "inputLogError"} placeholder="mot de passe" />
+                        <p onClick={() => {setResetPassword(true)}} className="linkResetPassword">mot de passe oublié ?</p>
                         <div className="containerStayConnect">
                             <div className="checkBox" onClick={() => { setValid(!valid) }}>
                                 {valid === true &&
@@ -179,6 +182,7 @@ const Connexion = (props) => {
                         <button type="submit" className="validChangeLog">Changer ses identifiants</button>
                     </form>
                 </div>}
+            {resetPassword && <ResetPassword/> }
         </div>
     )
 }

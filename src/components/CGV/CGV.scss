@@ -1,0 +1,30 @@
+.containerCGv{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    flex-direction: column;
+    width: 100%;
+    margin-top: 200px;
+}
+
+.contentCGV{
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    flex-direction: column;
+    width: 40%;
+}
+
+.titleCGV{
+    color: rgb(255, 174, 174);
+    font-family: 'Sen', sans-serif;
+    font-weight: bold;
+    font-size: 20px;
+}
+
+.textCGV{
+    font-family: 'Sen', sans-serif;
+    color: rgb(109, 109, 109);
+    font-size: 15px;
+}
