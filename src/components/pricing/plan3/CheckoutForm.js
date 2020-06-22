@@ -75,7 +75,7 @@ const CheckoutForm = (props) => {
             .then(result => {
                 // result.customer.id is used to map back to the customer object
                 // result.setupIntent.client_secret is used to create the payment method
-                if (result) createPaymentMethod(elements.getElement(CardElement), result.customer.id, 'price_1Gv2SiKleZ50Ivn6leRkAfFD')
+                if (result) createPaymentMethod(elements.getElement(CardElement), result.customer.id, 'price_1GwZNuKleZ50Ivn6rjynly4I')
             });
     }
 
@@ -206,7 +206,7 @@ const CheckoutForm = (props) => {
             <div className="inputPricingCard">
                 <CardElement options={CARD_OPTIONS} />
             </div>
-            <button onClick={subscription} type="submit" className="buttonBuyPricing"><p className="titleBuy">Acheter 120€/mois </p> <p className="noEngagement">sans engagement</p> </button>
+            <button onClick={subscription} type="submit" className="buttonBuyPricing"><p className="titleBuy">Acheter 89.00€/mois </p> <p className="noEngagement">sans engagement</p> </button>
         </div>
     )
 }

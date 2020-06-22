@@ -8,7 +8,6 @@ const CheckoutForm = (props) => {
     const [token, setToken] = useState()
     const [mail, setMail] = useState('')
     const [society, setSociety] = useState('')
-    const [phone, setPhone] = useState('')
     const [error, setError] = useState('')
     const [userId, setUserId] = useState()
     const [load, setLoad] = useState(false)
@@ -46,26 +45,38 @@ const CheckoutForm = (props) => {
         },
     };
 
+    function validateEmail(email) {
+        let re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+        return re.test(email);
+    }
+
 
     const subscription = async (event) => {
-        setLoad(true)
-        fetch(`${url}/create-customer`, {
-            method: 'post',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({
-                email: mail
+        if (!validateEmail(mail)) setError('Veuillez entrer une email correct')
+        else if (!society) setError(`Veuillez entrer votre nom ou nom d'entreprise`)
+        else {
+            setLoad(true)
+            fetch(`${url}/create-customer`, {
+                method: 'post',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    email: mail,
+                    name: society
+                })
             })
-        })
-            .then(response => {
-                return response.json();
-            })
-            .then(result => {
-                // result.customer.id is used to map back to the customer object
-                // result.setupIntent.client_secret is used to create the payment method
-                if (result) createPaymentMethod(elements.getElement(CardElement), result.customer.id, 'price_1Gv2S1KleZ50Ivn6zWiqJ9DD')
-            });
+                .then(response => {
+                    if (!response) setError('Problème avec le paiement, veuillez réessayer ou nous contacter si le problème persiste')
+                    else return response.json();
+                })
+                .then(result => {
+                    // result.customer.id is used to map back to the customer object
+                    // result.setupIntent.client_secret is used to create the payment method
+                    if (result) createPaymentMethod(elements.getElement(CardElement), result.customer.id, 'price_1GwZJxKleZ50Ivn6n5S03e4U')
+                });
+        }
+
     }
 
     function createPaymentMethod(cardElement, customerId, priceId) {
@@ -76,7 +87,7 @@ const CheckoutForm = (props) => {
             })
             .then((result) => {
                 if (result.error) {
-                    setError(error);
+                    setError('Problème avec le paiement, veuillez réessayer ou nous contacter si le problème persiste')
                 } else {
                     createSubscription({
                         customerId: customerId,
@@ -150,7 +161,7 @@ const CheckoutForm = (props) => {
             .catch((error) => {
                 // An error has happened. Display the failure to the user here.
                 // We utilize the HTML element we created.
-
+                console.log('bonjour')
             })
     }
 
@@ -158,7 +169,7 @@ const CheckoutForm = (props) => {
         setTimeout(() => {
             setError('')
             setLoad(false)
-        }, 6000)
+        }, 7000)
     }, [error])
 
 
@@ -170,10 +181,6 @@ const CheckoutForm = (props) => {
         setSociety(e.target.value)
     }
 
-    const getPhone = (e) => {
-        setPhone(e.target.value)
-    }
-
 
     return (
         <div className="contentPlanStripe" >
@@ -182,14 +189,13 @@ const CheckoutForm = (props) => {
                 <>
                     <input className="inputPricing" onChange={getMail} placeholder="Votre email" />
                     <input className="inputPricing" onChange={getSociety} placeholder="Nom de votre société" />
-                    <input className="inputPricing" onChange={getPhone} placeholder="Numéro de téléphone" />
                 </>
                 : <img style={{ width: "50%" }} src={require('../image/load.gif')} />}
 
             <div className="inputPricingCard">
                 <CardElement options={CARD_OPTIONS} />
             </div>
-            <button onClick={subscription} type="submit" className="buttonBuyPricing"><p className="titleBuy">Acheter 90€/mois </p> <p className="noEngagement">sans engagement</p> </button>
+            <button onClick={subscription} type="submit" className="buttonBuyPricing"><p className="titleBuy">Acheter 59.00€/mois </p> <p className="noEngagement">sans engagement</p> </button>
         </div>
     )
 }
