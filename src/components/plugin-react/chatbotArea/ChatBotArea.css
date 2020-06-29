@@ -239,8 +239,6 @@
     background: rgb(53, 179, 252);
     background: linear-gradient(90deg, rgba(53,179,252,1) 0%, rgba(8,116,251,1) 81%);
     box-shadow: -4px -3px 1px 0px #ffffff, 1px 1px 9px 0px rgb(175, 175, 175);
-    margin-right: 5px;
-    margin-left: 5px;
     padding: 10px 20px 10px 20px;
     border-radius: 25px;
     cursor: pointer;
@@ -250,6 +248,8 @@
     border-top-right-radius: 20px;
     margin-bottom: 0;
     margin-top: 30px;
+    margin-right: 5px;
+    margin-left: 5px;
 }
 
 .contentResponseChat{
