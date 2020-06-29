@@ -680,7 +680,7 @@ const Builder = () => {
                                         {containerAddCard === container.id &&
                                             <>
                                                 <form className="containerAddCard" onSubmit={handleSubmit(sendNewCard)}>
-                                                    <textarea maxLength={container.content_type === "question" ? "65" : container.content_type === "response" && "45"} className="addCardInput" ref={addCardRef} onChange={getValueCard} placeholder={container.content_type === "question" ? "nouvelle question" : container.content_type === "response" ? "nouvelle réponse" : "nouvelle catégorie de réception"} />
+                                                    <textarea maxLength={container.content_type === "question" ? "250" : container.content_type === "response" && "80"} className="addCardInput" ref={addCardRef} onChange={getValueCard} placeholder={container.content_type === "question" ? "nouvelle question" : container.content_type === "response" ? "nouvelle réponse" : "nouvelle catégorie de réception"} />
                                                     <button className="addCardButton" onClick={() => { sendNewCard(container.id, container.content_type) }}>Valider</button>
                                                 </form>
                                             </>
