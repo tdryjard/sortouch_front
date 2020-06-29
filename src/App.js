@@ -19,6 +19,9 @@ import Partner from './components/partner/Partner'
 import DocReactPartner from './components/partner/docReact/DocReact'
 import DocWordpressPartner from './components/partner/docWordpress/DocWordpress'
 import CGV from './components/CGV/CGV'
+import ChoiceEditor from './components/choiceEditor/ChoiceEditor'
+import OnePage from './components/onePage/OnePage'
+import DocEditorWeb from './components/docs/docEditorWeb/DocEditorWeb'
 import ReactGA from 'react-ga';
 
 
@@ -65,6 +68,7 @@ function App() {
             <Route path="/inscription" component={Registration} />
             <Route path="/connexion" component={Connexion} />
             <Route path="/editeur-doc" component={DocEditor} />
+            <Route path="/editeur-web-doc" component={DocEditorWeb} />
             <Route path="/partager-son-chatbot-doc" component={DocShare} />
             <Route path="/installer-react" component={DocReact} />
             <Route path="/installer-wordpress" component={DocWordpress} />
@@ -72,9 +76,11 @@ function App() {
             <Route path="/tarifs" component={Pricing} />
             <Route path="/models" component={ModelArea} />
             <Route path="/mails" component={MessageSpace} />
-            <Route path="/editeur" component={Builder} />
+            <Route path="/editeur-chatbot" component={Builder} />
             <Route path="/base-de-donnee" component={DataArea} />
             <Route path="/conditions-utilisateur" component={CGV} />
+            <Route path="/choisir-editeur" component={ChoiceEditor} />
+            <Route path="/web" component={OnePage} />
           </>
           :
           <>
@@ -83,21 +89,27 @@ function App() {
             <Route path="/base-de-donnee" component={DataArea} />
             <Route path="/mails" component={MessageSpace} />
             <Route path="/chatbot" component={ChatbotArea} />
-            <Route path="/editeur" component={Builder} />
+            <Route path="/editeur-chatbot" component={Builder} />
             <Route path="/editeur-doc" component={DocEditor} />
+            <Route path="/editeur-web-doc" component={DocEditorWeb} />
             <Route path="/partager-son-chatbot-doc" component={DocShare} />
             <Route path="/installer-react" component={DocReact} />
             <Route path="/installer-wordpress" component={DocWordpress} />
             <Route path="/utiliser-le-site-sortouch" component={DocSortouch} />
             <Route path="/tarifs" component={Pricing} />
             <Route path="/conditions-utilisateur" component={CGV} />
+            <Route path="/choisir-editeur" component={ChoiceEditor} />
+            <Route path="/web" component={OnePage} />
           </>
         :
         <>
           <Route exact path="/" component={Partner} />
           <Route path="/installer-react" component={DocReactPartner} />
           <Route path="/installer-wordpress" component={DocWordpressPartner} />
-            <Route path="/conditions-utilisateur" component={CGV} />
+          <Route path="/conditions-utilisateur" component={CGV} />
+          <Route path="/choisir-editeur" component={ChoiceEditor} />
+          <Route path="/editeur-web-doc" component={DocEditorWeb} />
+          <Route path="/web" component={OnePage} />
         </>}
     </Switch>
   );
