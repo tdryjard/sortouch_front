@@ -38,7 +38,7 @@ const DocEditor = () => {
                     </div>
                 </div>
                 <div className="containerSectionDoc">
-                    <h4 className="titleContainerSectionDoc">Ajouter une interraction</h4>
+                    <h4 className="titleContainerSectionDoc">Ajouter une interaction</h4>
                     <div className="contentSectionDocColumn">
                         <p className="textContainerSectionColumnDoc">Un chatbot se constitue en plusieurs interactions, afin d'ajouter une interaction dans l'éditeur il faut simplement appuyer sur le bouton d'ajout du type d'interaction désiré</p>
                         <img className="imgAddContainerDoc" src={require('./image/add_container.png')} alt="category cartes éditeur"/>
