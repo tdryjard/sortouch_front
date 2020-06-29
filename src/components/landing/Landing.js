@@ -104,7 +104,10 @@ const Landing = (props) => {
                                 <p className="textBackCardChoice">Une infinité de combinaisons de questions/réponses peuvent être créés</p>
                             </div>
                             <div className="contentTextBackCard">
-                                {(window.innerWidth > 1280 || cardActive) && <Link to="/editeur-chatbot" className="buttonLinkChoice">C'est parti</Link>}
+                                {!userId ?
+                                <Link to="/connexion" className="buttonLinkChoice">C'est parti</Link>
+                                :
+                                <Link to="/editeur-chatbot" className="buttonLinkChoice">C'est parti</Link>}
                             </div>
                         </div>
                     </div>
