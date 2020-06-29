@@ -129,7 +129,10 @@ const Landing = (props) => {
                                 <p className="textBackCardChoice">Votre chatbot est la pièce centrale de votre page web</p>
                             </div>
                             <div className="contentTextBackCard">
-                                {(window.innerWidth > 1280 || cardActive) && <button className="buttonLinkChoice">C'est parti</button>}
+                                {!userId ?
+                                <Link to="/connexion" className="buttonLinkChoice">C'est parti</Link>
+                                :
+                                <Link to="/choisir-editeur" className="buttonLinkChoice">C'est parti</Link>}
                             </div>
                         </div>
                     </div>
