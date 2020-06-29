@@ -47,7 +47,7 @@ const DocEditor = () => {
                 <div className="containerSectionDoc">
                     <h4 className="titleContainerSectionDoc">Ajouter une question, réponse ou catégorie de réceptions</h4>
                     <div className="contentSectionDocColumn">
-                        <p className="textContainerSectionColumnDoc">Appuyez simplement sur le bouton "+" écrivez simplement votre question, réponse ou la catégorie dans laquelle vous souhaitez recevoir la prise de contact liée à la réponse précédente.<br/>Pui appuyez sur ajouter</p>
+                        <p className="textContainerSectionColumnDoc">Appuyez simplement sur le bouton "+" à droite des conteneurs puis écrivez votre question, réponse ou la catégorie dans laquelle vous souhaitez recevoir la prise de contact liée à la réponse précédente.<br/>Pui appuyez sur ajouter</p>
                         <img style={{borderRadius: "50px"}} src={require('./image/button_add.png')} alt="Ajouter une question"/>
                         <img className="imgAddContainerDoc" src={require('./image/textarea.png')} alt="textarea"/>
                     </div>

@@ -113,7 +113,6 @@
     text-decoration: none;
     padding: 5px 30px 5px 30px;
     margin-left: 50px;
-    margin-top: 5px;
     cursor: pointer;
 }
 
@@ -182,18 +181,19 @@
 
 @media screen and (max-width: 1240px){
     .connexionNavbar{
-        width: 25%;
+        width: 27%;
         height: 40px;
         font-size: 20px;
     }
     .subNavbar{
-        width: 25%;
+        width: 27%;
         height: 40px;
         font-size: 20px;
         margin-left: 20px;
     }
     .contentConnect{
         width: 100%;
+        margin-top: 30px;
     }
     .linkNavbar{
         font-size: 15px;

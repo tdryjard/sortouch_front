@@ -51,7 +51,7 @@ const BurgerMenu = (props) => {
                 : (menuActive && changeMenu) &&
                 <div className="containerMenuBurgerOpen">
                     <img onClick={() => { setMenuActive(false) }} alt="menu" className="crossIconDoc" src={require('./image/cross.png')} />
-                    <button className="openBurgerSiteDoc" onClick={() => {return(setChangeMenu(!changeMenu))}}>Menu tutos</button>
+                    <button className="openBurgerSiteDoc" onClick={() => {return(setChangeMenu(!changeMenu))}}>Menu Docs</button>
                     <Link to="/" className={props.type === "landing" ? "linkBurgerActive" : "linkBurger"} >Accueil</Link>
                     <Link to="/utiliser-le-site-sortouch" className={props.type === "editor-doc" ? "linkBurgerActive" : "linkBurger"} >Tutos</Link>
                     <Link to="/tarifs" className={props.type === "tarif" ? "linkBurgerActive" : "linkBurger"} >Tarifs</Link>

@@ -20,7 +20,7 @@ const Plan = () => {
                 <h2 className="titlePlan">Gratuit</h2>
                 <div className="containerOptionPlan">
                     <img src={require('../image/valid.png')} alt="valid" className="validImg" />
-                    <p className="textOptionPlan">Nombres d'utilisateurs ilimités</p>
+                    <p className="textOptionPlan">Nombre d'utilisateurs illimité</p>
                 </div>
                 <div className="containerOptionPlan">
                     <img src={require('../image/valid.png')} alt="valid" className="validImg" />

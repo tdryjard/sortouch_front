@@ -37,7 +37,7 @@ const Plan3 = () => {
                     <div className="pricePlan">89.00€/mois </div>
                     <div className="containerOptionPlan">
                         <img src={require('../image/valid.png')} alt="valid" className="validImg" />
-                        <p className="textOptionPlan">Nombres d'utilisateurs ilimités</p>
+                        <p className="textOptionPlan">Nombre d'utilisateurs illimité</p>
                     </div>
                     <div className="containerOptionPlan">
                         <img src={require('../image/valid.png')} alt="valid" className="validImg" />

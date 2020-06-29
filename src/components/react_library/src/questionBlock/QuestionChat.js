@@ -22,7 +22,7 @@ const Questionchat = (props) => {
                     clearInterval(questionPrint)
                     return(true)
                 }
-            }, 50)
+            }, 30)
         }
     }
 
