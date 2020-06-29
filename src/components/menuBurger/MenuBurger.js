@@ -16,6 +16,16 @@ const MenuBurger = (props) => {
 
     }, [])
 
+    const disconnect = () => {
+        sessionStorage.setItem('userId', '')
+        sessionStorage.setItem('modelId', '')
+        localStorage.setItem('userId', '')
+        localStorage.setItem('modelId', '')
+        setTimeout(() => {
+            window.location.reload()
+        }, 100)
+    }
+
     return (
         <div>
             {!active ?
@@ -23,7 +33,7 @@ const MenuBurger = (props) => {
                 :
                 <div className="containerMenuBurger">
                     <img onClick={() => { setActive(false) }} alt="menu" className="crossIconBurger" src={require('./image/cross.png')} />
-                    <Link to="/" style={{marginTop: "80px"}} className={props.type === "landing" ? "linkBurgerActive" : "linkBurger"} >Accueil</Link>
+                    <Link to="/" style={{marginTop: "50px"}} className={props.type === "landing" ? "linkBurgerActive" : "linkBurger"} >Accueil</Link>
                     <Link to="/utiliser-le-site-sortouch" className={props.type === "editor-doc" ? "linkBurgerActive" : "linkBurger"} >Tutos</Link>
                     <Link to="/tarifs" className={props.type === "tarif" ? "linkBurgerActive" : "linkBurger"} >Tarifs</Link>
                     {!userId && !modelId ?
@@ -38,7 +48,8 @@ const MenuBurger = (props) => {
                         </>
                     }
                     {modelId && <Link to="/mails" className={props.type === "mails" ? "linkBurgerActive" : "linkBurger"} >Boite de réception</Link>}
-                    {modelId && <Link to="/editeur" className={props.type === "editeur" ? "linkBurgerActive" : "linkBurger"} >Éditeur</Link>}
+                    {modelId && <Link to="/choisir-editeur" className={props.type === "editeur" ? "linkBurgerActive" : "linkBurger"} >Éditeur</Link>}
+                    {userId && <button onClick={disconnect} className="disconnect" >Déconnexion</button>}
                 </div>
             }
         </div>

@@ -24,11 +24,11 @@ const Plan = () => {
                 </div>
                 <div className="containerOptionPlan">
                     <img src={require('../image/valid.png')} alt="valid" className="validImg" />
-                    <p className="textOptionPlan">1 création de chatbot</p>
+                    <p className="textOptionPlan">1 page web personnalisée</p>
                 </div>
                 <div className="containerOptionPlan">
                     <img src={require('../image/valid.png')} alt="valid" className="validImg" />
-                    <p className="textOptionPlan">Intégration sur votre site par vous</p>
+                    <p className="textOptionPlan">1 modèle de chatbot</p>
                 </div>
                 <div className="containerOptionPlan">
                     <img src={require('../image/valid.png')} alt="valid" className="validImg" />

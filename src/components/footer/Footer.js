@@ -22,8 +22,8 @@ const Footer = () => {
                 <Link to="/utiliser-le-site-sortouch" className="linkFooter">Documentation du site</Link>
                 <Link to="/editeur-doc" className="linkFooter">Documentation de l'éditeur</Link>
                 <Link to="/installer-react" className="linkFooter">Installer le chatbot sur un site ReactJs</Link>
-                <Link to="/tarifs" className="linkFooter">tarifs</Link>
-                <Link to="/conditions-utilisateur" className="linkFooter">conditions générales d'utilisation</Link>
+                <Link to="/tarifs" className="linkFooter">Tarifs</Link>
+                <Link to="/conditions-utilisateur" className="linkFooter">Conditions générales d'utilisation</Link>
             </div>
             {(userId || modelId) &&
             <div className="sectionFooter">

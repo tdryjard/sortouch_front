@@ -161,7 +161,6 @@ const CheckoutForm = (props) => {
             .catch((error) => {
                 // An error has happened. Display the failure to the user here.
                 // We utilize the HTML element we created.
-                console.log('bonjour')
             })
     }
 

@@ -29,8 +29,8 @@ const AreaMessage = (props) => {
                     if (res.length > 0) {
                         let result = res.filter(mail => mail.deleted !== 1)
                         if (props.type === "free" && result.length > 20) result.length = 20
-                        if (props.type === "standard" && result.length > 2000) result.length = 2000
-                        if (props.type === "expert" && result.length > 5000) result.length = 5000
+                        if (props.type === "standard" && result.length > 1000) result.length = 1000
+                        if (props.type === "expert" && result.length > 3000) result.length = 3000
                         setMails(result)
                     }
                 })

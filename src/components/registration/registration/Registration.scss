@@ -3,12 +3,13 @@
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    height: 100vh;
+    height: 95vh;
     width: 100%;
     background-image: url('../../chatbot_area/chatbotArea/image/backChatBot.png');
     background-position: top;
     background-size: cover;
     background-color: rgb(252, 252, 252);
+    padding-top: 100px;
 }
 
 .contentRegister{
@@ -22,7 +23,6 @@
     box-shadow: 3.5px 5px 20px rgb(189, 189, 189);
     border-radius: 10px;
     background-color: rgb(255, 255, 255);
-    margin-top: 100px;
     position: relative;
 }
 
@@ -67,8 +67,8 @@
     width: 200px;
     font-family: 'Sen', sans-serif;
     font-size: 20px;
-    color: rgb(227, 197, 255);
-    border: rgb(227, 197, 255) 2px solid;
+    color: rgba(113,0,208,1);
+    border: rgba(113,0,208,1) 2px solid;
     box-shadow: 3px 3px 6px rgb(185, 185, 185),
     -5px -5px 1px rgb(255, 255, 255);
     background-color: rgb(255, 255, 255);
@@ -97,7 +97,7 @@
 }
 
 .validLog:hover{
-    background-color: rgb(219, 180, 255);
+    background: linear-gradient(90deg, rgba(113,0,208,1) 0%, rgba(160,0,255,1) 81%);
     color: white;
     cursor: pointer;
 }
@@ -122,7 +122,7 @@
     border: none;
     box-shadow: 3px 3px 6px rgb(185, 185, 185),
     -5px -5px 1px rgb(255, 255, 255);
-    background-color: rgb(227, 197, 255);
+    background: linear-gradient(90deg, rgba(113,0,208,1) 0%, rgba(160,0,255,1) 81%);
     border-radius: 5px;
     margin-top: 20px;
     color: white;

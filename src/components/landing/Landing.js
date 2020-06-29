@@ -2,17 +2,18 @@ import React, { useState, useEffect } from 'react'
 import Navbar from '../navbar/Navbar'
 import { Link } from 'react-router-dom'
 import QuestionChat from './QuestionChat'
-import Chatbot from '../plugin-react/chatbotArea/ChatBotArea'
+import Chatbot from 'sortouch-react'
 import MenuBurger from '../menuBurger/MenuBurger'
 import Footer from '../footer/Footer'
 import './Landing.scss'
 
-const Landing = () => {
+const Landing = (props) => {
     const [textEffect2, setTextEffect2] = useState('')
     const [textEffect3, setTextEffect3] = useState('')
     const [textEffect4, setTextEffect4] = useState('')
     const [userId, setUserId] = useState()
     const [chatbotActive, setChatbotActive] = useState(false)
+    const [cardActive, setCardActive] = useState(false)
 
 
     const textLanding1 = getOffset(document.getElementById('textLanding1')).top
@@ -32,12 +33,14 @@ const Landing = () => {
     }
 
     useEffect(() => {
+        if (props.location.query && props.location.query.reload) window.location.reload()
         if (localStorage.getItem('userId')) {
             setUserId(localStorage.getItem('userId'))
         } else if (sessionStorage.getItem('userId')) {
             setUserId(sessionStorage.getItem('userId'))
         }
     }, [])
+
 
 
     useEffect(() => {
@@ -66,19 +69,73 @@ const Landing = () => {
             <div className="firstContainerLanding">
                 <img src={require('./image/firstImg.png')} className="firstImgLanding" alt="pc et telephone présentation" />
                 <div className="containerFirstTextLanding">
-                    <h1 className="titleFirstLanding">Créer un chatbot en toute simplicité</h1>
-                    <span className="borderBottom"/>
-                    <h2 className="describeFirstContainerLanding">Sortouch vous permet de créer facilement des interactions avec vos visiteurs et les guider à travers des questions et réponses éditables, ce qui génèrera votre chatbot !
-                    <br/><br/>À la fin de chaque interaction vous pouvez proposer un formulaire qui vous renverra les prises de contact via votre chatbot triées dans votre boite de réception Sortouch
-                    <br/><br/>Ne perdez aucun contact ! Chaque prise de contact avec vous via votre chatbot est enregistrée dans votre espace stockage de coordonnées</h2>
-                    <div onClick={() => {setChatbotActive(!chatbotActive)}} className="startBotButton">Démo <img src={require('./image/back.png')} className="backReverseIcon"/> </div>
+                    <h1 className="titleFirstLanding">Créer un Chat Bot en toute simplicité</h1>
+                    <span className="borderBottom" />
+                    <h2 className="describeFirstContainerLanding">Sortouch vous permet de créer facilement des interactions avec vos visiteurs et les guider à travers des questions et réponses éditables !
+                    <br /><br />Ajoutez un formulaire de contact à votre chatbot puis recevez les messages laissés par vos visiteurs et stockez leurs coordonnées.
+                    <br /><br />Intégrez votre chatbot à votre site <p style={{fontWeight: "bold", width: "30px", marginTop: "5px", marginBottom: "5px"}}>ou</p> Créez votre page web personnalisée avec votre chatbot </h2>
+                    <div onClick={() => { setChatbotActive(!chatbotActive) }} className="startBotButton">Démo <img src={require('./image/back.png')} className="backReverseIcon" /> </div>
                 </div>
             </div>
             {window.innerWidth > 1280 ?
                 <Navbar type={"landing"} />
                 :
                 <MenuBurger type={"landing"} />}
-            <a href="#explication" className="containerTitleLanding1">
+            <div style={window.innerWidth > 1280 ? { background: "none", marginTop: "80px" } : { background: "none", marginTop: "80px", height: "190vh" }} className="containerChoiceEditor">
+                <div onClick={() => { setCardActive(true) }} className="flip-card">
+                    <div className="flip-card-inner">
+                        <div className="contentChoice">
+                            {window.innerWidth < 1280 ? <img style={{marginBottom: "100px", marginTop: "0px"}} src={require('../choiceEditor/image/chatbot.svg')} alt="éditeur chatbot illustration" className="backChoice" />
+                            :
+                            <img src={require('../choiceEditor/image/chatbot.svg')} alt="éditeur chatbot illustration" className="backChoice" />}
+                            <button className="buttonChoiceEditor">Éditeur de chatbot</button>
+                        </div>
+                        <div class="flip-card-back">
+                            <div className="contentTextBackCard">
+                                <h4 className="titleBackCardChoice">Éditer son chatbot</h4>
+                                <p className="textBackCardChoice">Accéder aux différents outils de créations</p>
+                            </div>
+                            <div className="contentTextBackCard">
+                                <h4 className="titleBackCardChoice">Prévisualiser</h4>
+                                <p className="textBackCardChoice">Vous pouvez visualiser le chatbot que vous êtes entrain de créer en direct</p>
+                            </div>
+                            <div className="contentTextBackCard">
+                                <h4 className="titleBackCardChoice">Des combinaisons infinis</h4>
+                                <p className="textBackCardChoice">Une infinité de combinaisons de questions/réponses peuvent être créés</p>
+                            </div>
+                            <div className="contentTextBackCard">
+                                {(window.innerWidth > 1280 || cardActive) && <Link to="/editeur-chatbot" className="buttonLinkChoice">C'est parti</Link>}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div onClick={() => { setCardActive(true) }} className="flip-card2">
+                    <div className="flip-card-inner2">
+                        <div style={{ justifyContent: "flex-start" }} className="contentChoice2">
+                            <button className="buttonChoiceEditor2">Éditeur de page web</button>
+                            <img src={require('../choiceEditor/image/web.svg')} alt="éditeur page web illustration" className="backChoice" />
+                        </div>
+                        <div class="flip-card-back2">
+                            <div className="contentTextBackCard">
+                                <h4 className="titleBackCardChoice">Créer sa propre page web </h4>
+                                <p className="textBackCardChoice">Vous pouvez maintenant créer votre propre page internet avec votre URL personnalisée</p>
+                            </div>
+                            <div className="contentTextBackCard">
+                                <h4 className="titleBackCardChoice">Personnaliser sa page web</h4>
+                                <p className="textBackCardChoice">Customisez votre page web à votre image !</p>
+                            </div>
+                            <div className="contentTextBackCard">
+                                <h4 className="titleBackCardChoice">Intégrer son chatbot</h4>
+                                <p className="textBackCardChoice">Votre chatbot est la pièce centrale de votre page web</p>
+                            </div>
+                            <div className="contentTextBackCard">
+                                {(window.innerWidth > 1280 || cardActive) && <button className="buttonLinkChoice">C'est parti</button>}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {/*<a href="#explication" className="containerTitleLanding1">
                 <img src={require('./image/money.png')} alt="gains money" className="imgTitleLanding" />
                 <h3 className="titleLandingTop">Transformer ses visiteurs en clients</h3>
             </a>
@@ -89,10 +146,10 @@ const Landing = () => {
             <a href="#explication" className="containerTitleLanding">
                 <img src={require('./image/data.png')} alt="gains data" className="imgTitleLanding" />
                 <h3 className="titleLandingTop">Se créer une base de donnée d'email et de numéro de téléphone</h3>
-            </a>
+            </a>*/}
             <div className="containerHeadLanding">
                 <div className="containerTextHead">
-                    <div className="contentChatbotLanding">
+                    {/*<div className="contentChatbotLanding">
                         {window.innerWidth > 1280 && <img alt="icon chat" src={require('./image/logo.png')} className="iconChatLanding" />}
                         {window.innerWidth < 1280 &&
                             <div className="contentTitleChatLandingMobile">
@@ -153,7 +210,7 @@ const Landing = () => {
                                 :
                                 <img src={require('./image/data_area.jpg')} alt="espace base de donnée" className="areaImgLanding" />}
                         </div>
-                    </div>
+                            </div>*/}
                     <div id="explication" className="contentHeadLanding">
                         <img alt="time gain" src={require('./image/time_back.svg')} className="imgHeadLanding" />
                         <div className="windowTextHead">
@@ -161,7 +218,7 @@ const Landing = () => {
                                 <h1 className="titleLanding">Simplicité et efficacité</h1>
                             </div>
                             <div className="contentTextLanding">
-                                <p className="textLanding">Votre site devient plus simple de navigation. Grâce à Sortouch les utilisateurs pourront trouver leurs informations de manière simple et rapide. Fini les informations compliquées à trouver, une simple recherche, un simple clic et vous voilà satisfait/servi</p>
+                                <p className="textLanding">Votre site est désormais doté d’une navigation plus simple. Grâce à Sortouch, les utilisateurs pourront trouver leurs informations de manière simple et rapide. Fini les informations compliquées à trouver, une simple recherche, un simple clic et vous voilà servi</p>
                             </div>
                         </div>
                     </div>
@@ -173,7 +230,7 @@ const Landing = () => {
                                 <h1 className="titleLanding">Prise d'information</h1>
                             </div>
                             <div className="contentTextLanding">
-                                <p className="textLanding">Sortouch créer une proximité avec les clients. Il permet ainsi de prendre des informations de contact simplement et de créer une base de données facilement utilisable</p>
+                                <p className="textLanding">Votre chatbot créer une proximité entre vous, vos clients et vos prospects. Il permet ainsi de prendre des informations de contact simplement et de créer une base de données facilement utilisable.</p>
                             </div>
                         </div>
                         {window.innerWidth > 1280 &&

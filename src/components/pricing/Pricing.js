@@ -100,8 +100,8 @@ const Pricing = () => {
 
   return (
     <div className="containerPricing">
-    <title>Sortouch : tarifs</title>
-            <meta name="description" content="Retrouvez les différentes formules et tarifs pour créer votre chatbot simplement avec Sortouch. Essayer gratuitement sans limite de temps !" />
+      <title>Sortouch : tarifs</title>
+      <meta name="description" content="Retrouvez les différentes formules et tarifs pour créer votre chatbot simplement avec Sortouch. Essayer gratuitement sans limite de temps !" />
       {window.innerWidth > 1280 ?
         <Navbar type={"tarifs"} />
         :
@@ -134,44 +134,44 @@ const Pricing = () => {
             <button onClick={() => { setCancel(true) }} className="cancelSub">Résilier</button>
           </div>
         </div>
-          : type === "expert" && !cancel ?
+        : type === "expert" && !cancel ?
 
+          <div className="windowPricingBuy">
+            <div className="containerPricingBuy">
+              <h2 className="titlePlan2">Expert</h2>
+              <div className="pricePlan">Abonné</div>
+              <div className="containerOptionPlan">
+                <img src={require('./image/valid.png')} alt="valid" className="validImg" />
+                <p className="textOptionPlan">Création de chatbot illimité</p>
+              </div>
+              <div className="containerOptionPlan">
+                <img src={require('./image/valid.png')} alt="valid" className="validImg" />
+                <p className="textOptionPlan">Intégration sur votre site</p>
+              </div>
+              <div className="containerOptionPlan">
+                <img src={require('./image/valid.png')} alt="valid" className="validImg" />
+                <p className="textOptionPlan">10 000 réceptions de messages par mois</p>
+              </div>
+              <div className="containerOptionPlan">
+                <img src={require('./image/valid.png')} alt="valid" className="validImg" />
+                <p className="textOptionPlan">Stockage de coordonnées illimité</p>
+              </div>
+              <div className="containerOptionPlan">
+                <img src={require('./image/valid.png')} alt="valid" className="validImg" />
+                <p className="textOptionPlan">Assistance technique</p>
+              </div>
+              <button onClick={() => { setCancel(true) }} className="cancelSub">Résilier</button>
+            </div>
+          </div>
+          : cancel ?
             <div className="windowPricingBuy">
               <div className="containerPricingBuy">
-                <h2 className="titlePlan2">Expert</h2>
-                <div className="pricePlan">Abonné</div>
-                <div className="containerOptionPlan">
-                  <img src={require('./image/valid.png')} alt="valid" className="validImg" />
-                  <p className="textOptionPlan">Création de chatbot illimité</p>
-                </div>
-                <div className="containerOptionPlan">
-                  <img src={require('./image/valid.png')} alt="valid" className="validImg" />
-                  <p className="textOptionPlan">Intégration sur votre site</p>
-                </div>
-                <div className="containerOptionPlan">
-                  <img src={require('./image/valid.png')} alt="valid" className="validImg" />
-                  <p className="textOptionPlan">10 000 réceptions de messages par mois</p>
-                </div>
-                <div className="containerOptionPlan">
-                  <img src={require('./image/valid.png')} alt="valid" className="validImg" />
-                  <p className="textOptionPlan">Stockage de coordonnées illimité</p>
-                </div>
-                <div className="containerOptionPlan">
-                  <img src={require('./image/valid.png')} alt="valid" className="validImg" />
-                  <p className="textOptionPlan">Assistance technique</p>
-                </div>
-                <button onClick={() => { setCancel(true) }} className="cancelSub">Résilier</button>
+                <p className="textCancel">êtes vous sûr de vouloir résilier ?</p>
+                <button onClick={cancelSubscription1} className="cancelSub">Résilier</button>
+                <button onClick={() => { setCancel(false) }} className="cancelSub">Annuler</button>
               </div>
             </div>
-            :  cancel ?
-              <div className="windowPricingBuy">
-                <div className="containerPricingBuy">
-                  <p className="textCancel">êtes vous sûr de vouloir résilier ?</p>
-                  <button onClick={cancelSubscription1} className="cancelSub">Résilier</button>
-                  <button onClick={() => { setCancel(false) }} className="cancelSub">Annuler</button>
-                </div>
-              </div>
-              : null}
+            : null}
       <Plan />
       {!(type === "standard") &&
         <Elements stripe={stripePromise}>

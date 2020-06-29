@@ -663,7 +663,7 @@ const Partner = () => {
                                     <p style={{ fontSize: "22px" }} className="littleRowPartner">user id</p>
                                     <p style={{ fontSize: "22px" }} className="littleRowPartner">chatbot id</p>
                                 </div>
-                                {Array.isArray(resGenerate) && resGenerate.map((res, index) => {
+                                {resGenerate.length > 0 ? resGenerate.map((res, index) => {
                                     return (
                                         <div className="rowPartner">
                                             <p className="littleRowPartner">{res.name_client}</p>
@@ -672,7 +672,9 @@ const Partner = () => {
                                             <p className="littleRowPartner">{res.id}</p>
                                             <p className="littleRowPartner">{modelsId[index]}</p>
                                         </div>)
-                                })}
+                                })
+                                :
+                                <p className="noResultPartner">Aucun compte activé</p>}
                             </>
                             :
                             <>
@@ -681,21 +683,23 @@ const Partner = () => {
                                     <p style={{ fontSize: "22px" }} className="titleRowPartner2">Type d'abonnement</p>
                                     <p style={{ fontSize: "22px" }} className="titleRowPartner3">Gains</p>
                                 </div>
-                                {Array.isArray(resActivate) && resActivate.map(res => {
+                                {resActivate.length > 0 ? resActivate.map(res => {
                                     return (
                                         <div className="rowPartner">
                                             <p className="titleRowPartner1">{res.name_client}</p>
                                             <p className="titleRowPartner2">{res.type}</p>
                                             <p className="titleRowPartner3">{res.type === "standard" ? `+${60 * 30 / 100}€ par mois` : res.type === "expert" ? `+${80 * 30 / 100}€ par mois` : "pas abonné"}</p>
                                         </div>)
-                                })}
+                                })
+                                :
+                                <p className="noResultPartner">Aucun compte généré</p>}
                             </>
                         :
                         !(ongletSelect === 'client generate') ?
                             <>
                                 {!clientActive &&
                                     <p className="titleRowPartnerMobile">Nom du client</p>}
-                                {Array.isArray(resGenerate) && resActivate.map((res, index) => {
+                                {resActivate.length > 0 ? resActivate.map((res, index) => {
                                     return (
                                         !clientActive ?
                                             <div onClick={() => { setClientActive(res.id) }} className="rowPartner">
@@ -711,13 +715,15 @@ const Partner = () => {
                                                 <p className="titleRowPartnerMobile">Gains</p>
                                                 <p className="littleRowPartnerMobile">{res.type === "standard" ? `+${60 * 30 / 100}€ par mois` : res.type === "expert" ? `+${80 * 30 / 100}€ par mois` : "pas abonné"}</p>
                                             </div>)
-                                })}
+                                })
+                                :
+                                <p className="noResultPartner">Aucun compte activé</p>}
                             </>
                             :
                             <>
                                 {!clientActive &&
                                     <p className="titleRowPartnerMobile">Nom du client</p>}
-                                {Array.isArray(resGenerate) && resGenerate.map((res, index) => {
+                                {resGenerate.length > 0 ? resGenerate.map((res, index) => {
                                     return (
                                         !clientActive ?
                                             <div onClick={() => { setClientActive(res.id) }} className="rowPartner">
@@ -737,7 +743,9 @@ const Partner = () => {
                                                 <p className="titleRowPartnerMobile">Chatbot id</p>
                                                 <p className="littleRowPartnerMobile">{modelsId[index]}</p>
                                             </div>)
-                                })}
+                                })
+                                :
+                                <p className="noResultPartner">Aucun compte généré</p>}
                             </>}
                 </div>
             </div>

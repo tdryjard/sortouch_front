@@ -64,6 +64,7 @@ const ModelArea = (props) => {
                 :
                 <MenuBurger type={"models"} />}
             <div className="contentModelArea">
+                <h1 className="titleModelArea">Sélectionnez votre chatbot</h1>
                 <CreateModel models={cards} />
                 {cards.length > 0 &&
                     cards.map((card, index) => {

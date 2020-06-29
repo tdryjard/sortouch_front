@@ -27,7 +27,7 @@ const DocEditor = () => {
             {window.innerWidth < 1280 && <MenuBurger link="editor"/>}
             <div className="contentDoc">
                 <h1 className="titleDoc">Apprenez facilement à utiliser notre éditeur de chatbot</h1>
-                <div className="containerSectionDoc">
+                <div style={{paddingBottom: "0px"}} className="containerSectionDoc">
                     <img src={require('../../landing/image/editor.gif')} alt="editeur video" className="editorMovieDoc"/>
                 </div>
                 <div className="containerSectionDoc">
@@ -53,9 +53,9 @@ const DocEditor = () => {
                     </div>
                 </div>
                 {userId ?
-                <Link to="/editeur" className="containerSectionDoc"><h4 className="titleContainerSectionDoc">Accéder à l'éditeur</h4></Link>
+                <Link to="/editeur" className="containerSectionDoc"><h4 className="titleContainerSectionDoc">Accéder à l'éditeur de chatbot</h4></Link>
                 :
-                <Link to="/connexion" className="containerSectionDoc"><h4 className="titleContainerSectionDoc">Connecter vous afin d'accéder à l'éditeur</h4></Link>}
+                <Link to="/connexion" className="containerSectionDoc"><h4 className="titleContainerSectionDoc">Connecter vous afin d'accéder à l'éditeur de chatbot</h4></Link>}
             </div>
         </div>
     )

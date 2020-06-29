@@ -18,17 +18,27 @@ const PopupPremium = (props) => {
 
     useEffect(() => {
         setActive(props.display)
-    }, [props])
+    }, [props.display])
 
     return (
         <div className={active === true && "windowPopup"}>
-            {type === "free" && active && location.pathname === "/models" ?
+            {(type === "free" || type === "standard") && active && location.pathname === "/models" ?
                 <>
                     <div className="backBlur" />
                     <div className="containerPopup">
                         <img alt="icon" src={require('./image/icon.svg')} className="iconPopup" />
                         <img onClick={() => { setActive(!active) }} alt="close" src={require('../models_area/image/cross.png')} className="crossPopupPremium" />
-                        <p className="textPopup"> Votre compte gratuit ne vous permet de créer seulement 1 chatbot<br/>Veuillez modifier le chatbot d'exemple</p>
+                        <p className="textPopup"> Votre compte {type} ne vous permet de créer seulement 1 chatbot<br/>Veuillez modifier le chatbot déja créé</p>
+                        <Link to="/tarifs" className="buttonPopup">Voir les offres</Link>
+                    </div>
+                </>
+                :type === "expert" && active && location.pathname === "/models" ?
+                <>
+                    <div className="backBlur" />
+                    <div className="containerPopup">
+                        <img alt="icon" src={require('./image/icon.svg')} className="iconPopup" />
+                        <img onClick={() => { setActive(!active) }} alt="close" src={require('../models_area/image/cross.png')} className="crossPopupPremium" />
+                        <p className="textPopup"> Votre compte expert ne vous permet de créer seulement 3 chatbot<br/>Veuillez nous contacter pour une formule sur mesure</p>
                         <Link to="/tarifs" className="buttonPopup">Voir les offres</Link>
                     </div>
                 </>

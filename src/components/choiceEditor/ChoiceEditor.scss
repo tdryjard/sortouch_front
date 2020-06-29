@@ -1,0 +1,389 @@
+.containerChoiceEditor{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    height: 100vh;
+    width: 100%;
+    background-image: url('../chatbot_area/chatbotArea/image/backChatBot.png');
+    background-position: top;
+    background-size: cover;
+    background-color: rgb(252, 252, 252);
+}
+
+.contentChoice{
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    flex-direction: row;
+    box-shadow: 2px 2px 7px rgb(185, 185, 185);
+    border-radius: 10px;
+    height: 40%;
+    width: 70%;
+    background-color: white;
+}
+
+.contentChoice2{
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-direction: row;
+    box-shadow: 2px 2px 7px rgb(185, 185, 185);
+    border-radius: 10px;
+    height: 40%;
+    width: 70%;
+    background-color: white;
+}
+
+.backChoice{
+    width: auto;
+    height: 80%;
+    margin-right: 100px;
+    margin-left: 100px;
+}
+
+.buttonChoiceEditor{
+    text-decoration: none;
+    border: none;
+    color: rgb(255, 255, 255);
+    font-size: 40px;
+    font-family: 'Sen', sans-serif;
+    text-transform: uppercase;
+    font-weight: bold;
+    background: linear-gradient(90deg, rgba(113,0,208,1) 0%, rgba(160,0,255,1) 81%);
+    padding: 15px;
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+}
+
+.buttonChoiceEditor2{
+    text-decoration: none;
+    border: none;
+    color: rgb(255, 255, 255);
+    font-size: 40px;
+    font-family: 'Sen', sans-serif;
+    text-transform: uppercase;
+    font-weight: bold;
+    background: linear-gradient(90deg, rgba(113,0,208,1) 0%, rgba(160,0,255,1) 81%);
+    padding: 15px;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+}
+
+
+
+/* The flip card container - set the width and height to whatever you want. We have added the border property to demonstrate that the flip itself goes out of the box on hover (remove perspective if you don't want the 3D effect */
+.flip-card {
+    background-color: transparent;
+    height: 40%;
+    width: 70%;
+    border: 1px solid #f1f1f1;
+    perspective: 2000px; /* Remove this if you don't want the 3D effect */
+    cursor: pointer;
+    margin-top: 2.5%;
+    margin-bottom: 2.5%;
+  }
+  
+  /* This container is needed to position the front and back side */
+  .flip-card-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    transition: transform 0.8s;
+    transform-style: preserve-3d;
+  }
+  
+  /* Do an horizontal flip when you move the mouse over the flip box container */
+  .flip-card:hover .flip-card-inner {
+    transform: rotateY(180deg);
+  }
+  
+  /* Position the front and back side */
+  .contentChoice, .flip-card-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    -webkit-backface-visibility: hidden; /* Safari */
+    backface-visibility: hidden;
+  }
+  
+  /* Style the front side (fallback if image is missing) */
+  .contentChoice {
+    background-color: rgb(255, 255, 255);
+    color: black;
+  }
+  
+  /* Style the back side */
+  .flip-card-back {
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    flex-direction: row;
+    flex-wrap: wrap;
+    background: linear-gradient(90deg, rgba(113,0,208,1) 0%, rgba(160,0,255,1) 81%);
+    transform: rotateY(180deg);
+    box-shadow: 2px 2px 7px rgb(185, 185, 185);
+    border-radius: 10px;
+  }
+  
+
+
+
+  /* The flip card container - set the width and height to whatever you want. We have added the border property to demonstrate that the flip itself goes out of the box on hover (remove perspective if you don't want the 3D effect */
+.flip-card2 {
+  background-color: transparent;
+  height: 40%;
+  width: 70%;
+  border: 1px solid #f1f1f1;
+  perspective: 2000px; /* Remove this if you don't want the 3D effect */
+  cursor: pointer;
+  margin-top: 2.5%;
+  margin-bottom: 2.5%;
+}
+
+/* This container is needed to position the front and back side */
+.flip-card-inner2 {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  transition: transform 0.8s;
+  transform-style: preserve-3d;
+}
+
+/* Do an horizontal flip when you move the mouse over the flip box container */
+.flip-card2:hover .flip-card-inner2 {
+  transform: rotateY(180deg);
+}
+
+/* Position the front and back side */
+.contentChoice2, .flip-card-back2 {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  -webkit-backface-visibility: hidden; /* Safari */
+  backface-visibility: hidden;
+}
+
+/* Style the front side (fallback if image is missing) */
+.contentChoice2 {
+  background-color: rgb(255, 255, 255);
+  color: black;
+}
+
+/* Style the back side */
+.flip-card-back2 {
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  flex-direction: row;
+  flex-wrap: wrap;
+  background: linear-gradient(90deg, rgba(113,0,208,1) 0%, rgba(160,0,255,1) 81%);
+  transform: rotateY(180deg);
+  box-shadow: 2px 2px 7px rgb(185, 185, 185);
+  border-radius: 10px;
+}
+
+
+.contentTextBackCard{
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  flex-direction: column;
+  width: 40%;
+  margin-left: 5%;
+  margin-right: 5%;
+}
+
+.titleBackCardChoice{
+  font-family: 'Sen', sans-serif;
+  font-size: 25px;
+  font-weight: 500;
+  color: rgb(36, 36, 36);
+  background-color: white;
+  margin-bottom: 0px;
+  margin-top: 10px;
+  padding-right: 10px;
+  padding-left: 10px;;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  border-radius: 5px;
+}
+
+.textBackCardChoice{
+  font-family: 'Sen', sans-serif;
+  font-size: 20px;
+  color: white;
+  text-align: start;
+  font-weight: 600;
+  margin-bottom: 0px;
+}
+
+.buttonLinkChoice{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 60%;
+  height: 60px;
+  border-radius: 10px;
+  background-color: white;
+  box-shadow: 2px 2px 7px rgb(57, 0, 104);
+  text-decoration: none;
+  color: rgb(39, 39, 39);
+  font-family: 'Sen', sans-serif;
+  font-size: 25px;
+  border-top-right-radius: 0;
+  border-bottom-left-radius: 0;
+  border: none;
+  cursor: pointer;
+}
+
+.containerCreatePage{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  width: 500px;
+  height: 300px;
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: 2px 2px 7px rgb(94, 94, 94);
+  padding: 5px;
+  z-index: 25;
+}
+
+.titleCreateUrl{
+  font-family: 'Sen', sans-serif;
+  font-size: 25px;
+  color: rgba(160,0,255,1);
+  margin-top: 10px;
+}
+
+.containerInputUrl{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+}
+
+.inputUrlCreatePage{
+  border: none;
+  border-radius: 4px;
+  height: 20px;
+  margin-left: 4px;
+  border: 2px solid rgb(58, 58, 58);
+  font-family: 'Sen', sans-serif;
+  padding-left: 5px;
+  color: rgb(27, 27, 27);
+}
+
+.buttonCreateUrl{
+  border: 2px solid rgba(160,0,255,1);
+  background-color: white;
+  color: rgba(160,0,255,1);
+  border-radius: 10px;
+  height: 50px;
+  width: 120px;
+  margin-top: 20px;
+  font-family: 'Sen', sans-serif;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.buttonCreateUrl:hover{
+  background-color: rgba(160,0,255,1);
+  color: white;
+}
+
+.alert{
+  width: 80%;
+  color: rgb(255, 72, 72);
+  font-family: 'Sen', sans-serif;
+  text-align: center;
+}
+
+@media screen and (max-width: 1280px){
+  .contentChoice{
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-end;
+  }
+  .contentChoice2{
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+  }
+  .buttonChoiceEditor{
+    margin-top: 50px;
+    border-radius: 5px;
+
+  }
+  .buttonChoiceEditor2{
+    border-radius: 5px;
+
+  }
+  .backChoice{
+    width: 90%;
+    height: auto;
+    margin-left: 0;
+    margin-right: 0;
+    margin-top: 50px;
+  }
+  .backChoice2{
+    width: 90%;
+    height: auto;
+    margin-left: 0;
+    margin-right: 0;
+    margin-top: 50px;
+  }
+  .flip-card{
+    height: 650px;
+    margin-top: 50px;
+    width: 90%;
+  }
+  .flip-card2{
+    height: 720px;
+    margin-top: 50px;
+    width: 90%;
+  }
+  .flip-card-back{
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+  }
+  .flip-card-back2{
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+  .contentTextBackCard{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    margin-left: 0;
+    margin-right: 0;
+    margin-bottom: 25px;
+  }
+  .titleBackCardChoice{
+    width: 80%;
+  }
+  .buttonLinkChoice{
+    margin-top: 25px;
+  }
+  .containerChoiceEditor{
+    height: 100vh;
+
+  }
+  .flip-card-inner{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .textBackCardChoice{
+    width: 85%;
+    text-align: center;
+  }
+}

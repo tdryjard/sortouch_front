@@ -42,23 +42,19 @@ const Plan2 = () => {
                     </div>
                     <div className="containerOptionPlan">
                         <img src={require('../image/valid.png')} alt="valid" className="validImg" />
-                        <p className="textOptionPlan">Création de chatbot illimité</p>
+                        <p className="textOptionPlan">1 page web personnalisée</p>
                     </div>
                     <div className="containerOptionPlan">
                         <img src={require('../image/valid.png')} alt="valid" className="validImg" />
-                        <p className="textOptionPlan">Intégration sur votre site par vous</p>
+                        <p className="textOptionPlan">1 modèle de chatbot</p>
                     </div>
                     <div className="containerOptionPlan">
                         <img src={require('../image/valid.png')} alt="valid" className="validImg" />
-                        <p className="textOptionPlan">2000 réceptions de prise de contact par mois</p>
+                        <p className="textOptionPlan">1000 réceptions de prise de contact par mois</p>
                     </div>
                     <div className="containerOptionPlan">
                         <img src={require('../image/valid.png')} alt="valid" className="validImg" />
-                        <p className="textOptionPlan">10 000 stockages de coordonnées</p>
-                    </div>
-                    <div className="containerOptionPlan">
-                        <img src={require('../image/valid.png')} alt="valid" className="validImg" />
-                        <p className="textOptionPlan">Assistance technique</p>
+                        <p className="textOptionPlan">5 000 stockages de coordonnées</p>
                     </div>
                     {type === "expert" ?
                         <div className="buttonPricing2">

@@ -1,0 +1,237 @@
+.containerOnPage{
+    height: 100vh;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    flex-direction: column;
+}
+
+.containerLeftOnepage{
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-direction: column;
+    width: 40%;
+    padding: 5%;
+    height: 70%;
+    box-shadow: 2px 2px 6px rgb(138, 138, 138);
+    border-radius: 10px;
+    margin-left: 10%;
+}
+
+.chatbotOnpage{
+    position: relative;
+}
+
+.contentTitleOnepage{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    position: relative;
+    margin-bottom: 30px;
+}
+
+.contentDescriptionOnepage{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    position: relative;
+}
+
+.titleOnepage{
+    color: rgb(36, 36, 36);
+    font-size: 30px;
+    font-family: 'Sen', sans-serif;
+    text-align: center;
+}
+
+.descriptionOnepage{
+    font-size: 20px;
+    color: rgb(36, 36, 36);
+    font-family: 'Sen', sans-serif;
+    white-space: pre-wrap;
+}
+
+.editLogoOnepage{
+    height: 25px;
+    width: auto;
+    box-shadow: 1px 1px 4px 0px rgb(177, 177, 177);
+    border-radius: 50%;
+    padding: 5px;
+    z-index: 5;
+    position: absolute;
+    top: -10px;
+    right: -40px;
+    background-color: #1b7eff;
+    cursor: pointer;
+}
+
+.editLogoOnepage2{
+    height: 25px;
+    width: auto;
+    box-shadow: 1px 1px 4px 0px rgb(177, 177, 177);
+    border-radius: 50%;
+    padding: 5px;
+    z-index: 5;
+    position: absolute;
+    top: -10px;
+    right: -40px;
+    background-color: #1b7eff;
+    cursor: pointer;
+}
+
+.upload-btn-wrapper {
+    position: absolute;
+    overflow: hidden;
+    display: inline-block;
+  }
+  
+  .btn {
+    border: 2px solid #1b7eff;
+    color: #1b7eff;
+    background-color: white;
+    padding: 8px 20px;
+    border-radius: 8px;
+    font-size: 20px;
+    font-weight: bold;
+  }
+  
+  .upload-btn-wrapper input[type=file] {
+    font-size: 100px;
+    position: absolute;
+    left: 0;
+    top: 0;
+    opacity: 0;
+  }
+
+  .containerLogoOnepage{
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 100%;
+      height: 30%;
+      overflow: hidden;
+      position: relative;
+      margin-bottom: 30px;
+  }
+
+  .logoOnepage{
+    height: 100%;
+    width: auto;
+  }
+
+.contentTextArea{
+    width: 85%;
+    border: 2px #1b7eff solid;
+    font-family: 'Sen', sans-serif;
+    font-size: 20px;
+    color: rgb(36, 36, 36);
+    white-space: pre-wrap;
+    height: 300px;
+}
+
+.buttonLinkOnepage{
+    width: 180px;
+    height: 55px;
+    border: 2px #1b7eff solid;
+    border-radius: 5px;
+    color: #1b7eff;
+    font-family: 'Sen', sans-serif;
+    font-size: 20px;
+    background-color: #ffffff;
+    position: absolute;
+    right: 250px;
+    top: 50px;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+}
+
+.buttonLinkOnepage:hover{
+    background-color: #1b7eff;
+    color: #ffffff;
+}
+
+.buttonLinkOnepage2{
+    width: 180px;
+    height: 60px;
+    border: 2px #1b7eff solid;
+    border-radius: 5px;
+    color: #ffffff;
+    font-family: 'Sen', sans-serif;
+    font-size: 20px;
+    background-color: #1b7eff;
+    position: absolute;
+    right: 50px;
+    top: 50px;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+}
+
+.buttonLinkOnepage2:hover{
+    background-color: #ffffff;
+    border: 2px #1b7eff solid;
+    color: #1b7eff;
+}
+
+@media screen and (max-width : 1280px){
+    .containerLeftOnepage{
+        width: 90%;
+        padding: 5%;
+        min-height: 80%;
+        height: auto;
+        padding-bottom: 50px;
+        margin-bottom: 10% !important;
+        margin-top: 5% !important;
+        margin: 0;
+        box-shadow: none;
+    }
+    .containerOnPage{
+        align-items: center;
+        min-height: 100vh;
+        height: auto;
+    }
+    .editLogoOnepage{
+        right: 0;
+        top: -25px;
+    }
+
+    .editLogoOnepage2{
+        right: 0px;
+        top: -12px;
+    }
+    .buttonLinkOnepage2{
+        width: 120px;
+        font-size: 18px;
+        position: relative;
+        right: 0;
+        top: 0;
+        text-align: center;
+        margin-left: 15px;
+    }
+    .buttonLinkOnepage{
+        width: 120px;
+        font-size: 18px;
+        position: relative;
+        right: 0;
+        top: 0;
+        text-align: center;
+        margin-right: 15px;
+    }
+    .containerButtonOnepage{
+        width: 100%;
+        margin-top: 30px;
+        margin-bottom: 30px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+}

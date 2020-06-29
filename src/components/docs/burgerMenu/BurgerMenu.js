@@ -36,6 +36,9 @@ const BurgerMenu = (props) => {
                         <Link to="/editeur-doc" className={props.link === "editor" ? "linkMenuDocEditorOn" : "linkMenuDocEditor"}>Éditeur de chatbot</Link>
                     </div>
                     <div className="contentNameSectionMenu">
+                        <Link to="/editeur-web-doc" className={props.link === "editor-web" ? "linkMenuDocEditorOn" : "linkMenuDocEditor"}>Éditeur de page web</Link>
+                    </div>
+                    <div className="contentNameSectionMenu">
                         <p onClick={() => { setSectionIntegrationActive(!sectionIntegrationActive) }} className="titleSectionMenu">Intégration sur votre site</p>
                         {!sectionIntegrationActive ? <img onClick={() => { setSectionIntegrationActive(true) }} className="imgSectionMenuDoc" src={require('../image/plus.png')} /> :
                             <img onClick={() => { setSectionIntegrationActive(false) }} className="imgSectionMenuDoc" src={require('../image/moins.png')} />}

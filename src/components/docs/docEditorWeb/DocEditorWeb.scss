@@ -1,0 +1,54 @@
+.selectChatbotImg{
+    width: 20%;
+    height: auto;
+    box-shadow: 1px 1px 5px rgb(163, 163, 163);
+    margin-right: 2.5%;
+    margin-left: 2.5%;
+    border-radius: 5px;
+}
+
+.selectChatbotImg2{
+    width: 60%;
+    height: auto;
+    box-shadow: 1px 1px 5px rgb(163, 163, 163);
+    margin-right: 2.5%;
+    margin-left: 2.5%;
+    border-radius: 5px;
+}
+.editButtonDoc{
+    border-radius: 50%;
+    height: 30px;
+    width: auto;
+}
+
+.btnDoc{
+    border: 2px solid #1b7eff;
+    color: #1b7eff;
+    background-color: white;
+    padding: 8px 20px;
+    border-radius: 8px;
+    font-size: 20px;
+    font-weight: bold;
+    width: 190px;
+    height: 45px;
+    font-family: 'Sen', sans-serif;
+    margin-bottom: 10px;
+    margin-right: 5px;
+    margin-left: 5px;
+}
+
+@media screen and (max-width: 1280px){
+    .selectChatbotImg2{
+        width: 90%;
+        margin-top: 30px;
+        height: auto;
+    }
+    .selectChatbotImg{
+        width: auto;
+        margin-top: 30px;
+        height: 150px;
+    }
+    .btnDoc{
+        margin-top: 10px
+    }
+}

@@ -194,6 +194,7 @@ const CardModel = (props) => {
 
     const cardSelectToEditor = (type) => {
         sessionStorage.setItem('modelId', props.id)
+        sessionStorage.setItem('chatbotName', props.name)
         localStorage.setItem('popupModel', false)
         setTimeout(() => {
             if (type === "editor") setRedirectEditor(true)
@@ -220,7 +221,7 @@ const CardModel = (props) => {
                         {redirect && <Redirect
                             state={props.id} to="/mails" />}
                         {redirectEditor && <Redirect
-                            state={props.id} to="/editeur" />}
+                            state={props.id} to="/choisir-editeur" />}
                         {window.innerWidth < 1280 && cardSelect ? <button onClick={() => { cardSelectToEditor('mail') }} className="buttonSelectModel">Boite de réception</button> : window.innerWidth > 1280 && <button onClick={() => { cardSelectToEditor('mail') }} className="buttonSelectModel">Boite de réception</button>}
                         {window.innerWidth < 1280 && cardSelect ? <button onClick={() => { cardSelectToEditor('editor') }} className="buttonSelectModel">Modifier</button> : window.innerWidth > 1280 && <button onClick={() => { cardSelectToEditor('editor') }} className="buttonSelectModel">Modifier</button>}
                     </div>

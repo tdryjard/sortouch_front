@@ -1,12 +1,14 @@
 .containerNav{
     display: flex;
     justify-content: center;
-    align-items: center;
+    align-items: flex-start;
     flex-direction: row;
     flex-wrap: wrap;
-    width: 95%;
+    width: 100%;
     padding: 15px;
-    margin-top: 20px;
+    padding-right: 0;
+    padding-left: 0;
+    margin-top: 40px;
     position: absolute;
     top: 0;
 }
@@ -30,8 +32,8 @@
     height: 50px;
     width: 120px;
     background-color: none;
-    color: rgb(255, 92, 255);
-    border: 2px solid rgb(255, 92, 255);
+    color: linear-gradient(90deg, rgba(113,0,208,1) 0%, rgba(160,0,255,1) 81%);
+    border: 2px solid  rgba(113,0,208,1);
     border-radius: 10px;
     font-size: 25px;
     font-family: 'Sen', sans-serif;
@@ -45,14 +47,13 @@
     align-items: center;
     height: 50px;
     width: 120px;
-    background-color: rgb(255, 169, 255);
+    background: linear-gradient(90deg, rgba(113,0,208,1) 0%, rgba(160,0,255,1) 81%);
     color: white;
-    border: 2px solid rgb(255, 169, 255);
     border-radius: 10px;
     font-size: 20px;
     font-family: 'Sen', sans-serif;
     text-decoration: none;
-    padding: 5px 30px 5px 30px;
+    padding: 6px 31px 6px 31px;
     margin-left: 50px;
     text-align: center;
 }
@@ -80,7 +81,7 @@
     color: rgb(31, 31, 31);
     text-decoration: none;
     margin-left: 60px;
-    margin-bottom: 10px;
+    margin-top: 10px;
 }
 
 .linkNavbar:hover{
@@ -94,10 +95,92 @@
     text-decoration: none;
     border-bottom: 2px rgb(63, 63, 63) solid;
     margin-left: 60px;
-    margin-bottom: 10px;
+    margin-top: 10px;
 }
 
-@media screen and (max-width: 1280px){
+.disconnect{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 50px;
+    width: 140px;
+    background-color: white;
+    color: rgba(113,0,208,1);
+    border: 2px solid  rgba(113,0,208,1);
+    border-radius: 10px;
+    font-size: 19px;
+    font-family: 'Sen', sans-serif;
+    text-decoration: none;
+    padding: 5px 30px 5px 30px;
+    margin-left: 50px;
+    margin-top: 5px;
+    cursor: pointer;
+}
+
+.containerChatbotNav{
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-direction: column;
+    height: 50px;
+    background: linear-gradient(90deg, rgba(113,0,208,1) 0%, rgba(160,0,255,1) 81%);
+    border-radius: 5px;
+    cursor: pointer;
+    margin-left: 50px;
+    padding-left: 10px;
+    padding-right: 10px;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+    width: 200px;
+    z-index: 1500;
+    &:hover{
+        .linkNavChatbot{
+            display: block;
+        }
+        .nameChatbotNav{
+            color: rgb(37, 37, 37);
+        }
+    }
+}
+
+.nameChatbotNav{
+    font-size: 22px;
+    font-family: 'Sen', sans-serif;
+    color: white;
+    margin: 0;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+    width: 100%;
+    text-align: center;
+    margin-top: 10px;
+}
+
+.containerChatbotNav:hover{
+    animation: containerNavChatbot 0.5s;
+    height: 200px;
+}
+
+@keyframes containerNavChatbot{
+    from{height: 50px}
+    to{height: 200px}
+}
+
+.linkNavChatbot{
+    font-size: 19px;
+    font-family: 'Sen', sans-serif;
+    display: none;
+    text-decoration: none;
+    margin-top: 20px;
+    color: rgb(255, 255, 255);
+}
+
+.linkNavChatbot:hover{
+    border-bottom: 2px solid rgb(255, 255, 255)
+}
+
+@media screen and (max-width: 1240px){
     .connexionNavbar{
         width: 25%;
         height: 40px;
@@ -128,5 +211,9 @@
         width: 100%;
         margin-top: 25px;
         padding: 0;
+    }
+    .disconnect{
+        margin-left: 0;
+        margin-top: 30px;
     }
 }

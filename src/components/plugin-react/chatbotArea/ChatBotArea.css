@@ -12,19 +12,19 @@
     bottom: 50px;
     right: 50px;
     border-radius: 50%;
-    box-shadow: 0px 0px 5px #6d6d6d;
-    padding: 5px;
+    box-shadow: rgb(100, 100, 100) 0px 0px 7px;
+    padding: 7px;
     background-color: #ffffff;
-    border: 3px #b36fff solid;
+    border: none !important;
 }
 
 .iconChat{
     width: 60px;
     height: auto;
-    background-color: #b36fff;
     border-radius: 50%;
     cursor: pointer;
     z-index: 1000;
+    background-color: white;
 }
 
 @media screen and (max-width: 1200px){
@@ -49,58 +49,7 @@
     height: 90px;
     right: 46%;
     bottom: 26%;
-}
-
-.contentTextIconChat2{
-    z-index: 1010;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    position: absolute;
-    background-image: url('./chat_block2.png');
-    width: 220px;
-    height: 90px;
-    right: 46%;
-    bottom: 26%;
-}
-
-.contentTextIconChat3{
-    z-index: 1010;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    position: absolute;
-    background-image: url('./chat_block3.png');
-    width: 220px;
-    height: 90px;
-    right: 46%;
-    bottom: 26%;
-}
-
-.contentTextIconChat4{
-    z-index: 1010;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    position: absolute;
-    background-image: url('./chat_block4.png');
-    width: 220px;
-    height: 90px;
-    right: 46%;
-    bottom: 26%;
-}
-
-.contentTextIconChat5{
-    z-index: 1010;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    position: absolute;
-    background-image: url('./chat_block5.png');
-    width: 220px;
-    height: 90px;
-    right: 46%;
-    bottom: 26%;
+    box-shadow: 2px 2px 5pax black;
 }
 
 .questionPrint{
@@ -157,7 +106,7 @@
     position: relative;
     min-height: 90%;
     width: 100%;
-    margin-top: 30px;
+    margin-top: 40px;
     overflow-y: visible;
 }
 
@@ -174,7 +123,7 @@
     flex-direction: row !important;
     position: absolute;
     width: 90% !important;
-    background-color: white;
+    background-color: rgb(255, 255, 255);
     height: 35px !important;
     padding: 5px !important;
     padding-right: 5% !important;
@@ -183,13 +132,14 @@
     border-top-left-radius: 15px !important;
     border-top-right-radius: 15px !important;
     z-index: 2 !important;
-    box-shadow: 0px 4px 5px rgb(174, 134, 219) !important;
+    box-shadow: 0px 3px 4px rgb(212, 212, 212);
 }
 
 .crossChatbot{
     height: 18px;
     width: 18px;
-    background-color: rgb(255, 111, 86);
+    background: rgb(255,149,149);
+    background: linear-gradient(90deg, rgba(255,149,149,1) 0%, rgb(235, 74, 74) 81%);
     padding: 5px;
     border-radius: 50%;
     margin-left: 5px;
@@ -199,7 +149,8 @@
 .reloadChatbot{
     height: 18px;
     width: 18px;
-    background-color: rgb(255, 198, 113);
+    background: rgb(255,251,149);
+    background: linear-gradient(90deg, rgba(255,251,149,1) 0%, rgb(255, 186, 58) 81%);
     padding: 5px;
     border-radius: 50%;
     margin-left: 10px;
@@ -209,7 +160,7 @@
 .sortouch{
     position: absolute;
     font-family: 'Lobster', cursive;
-    color: #b36fff;
+    color: #3f3f3f;
     font-size: 22px;
     text-decoration: none;
     right: 20px;
@@ -221,38 +172,55 @@
     justify-content: start;
     align-items: center;
     flex-direction: row;
-    width: 70%;
+    width: 65%;
     border-radius: 10px;
-    padding: 20px;
-    padding-right: 60px;
-    margin-top: 35px;
+    padding: 3%;
+    padding-right: 8%;
+    margin: 0;
+    margin-top: 50px;
     margin-bottom: 0px;
-    background-color: #fdfbfb;
+    background-color: rgb(255, 255, 255);
+    box-shadow: 2px 2px 8px rgb(180, 180, 180);
     position: relative;
     font-family: 'Sen', sans-serif;
     font-size: 20px;
     height: auto;
+    min-height: 40px;
     text-align: left;
-    margin-left: 5px;
+    color: rgb(46, 46, 46);
+    margin-left: 70px;
+    border-bottom-left-radius: 30px;
+    border-bottom-right-radius: 10px;
+    border-top-left-radius: 0%;
+    border-top-right-radius: 10px;
 }
 
 
 .logoChat{
-    width: 40px;
+    width: 50px;
+    padding: 5px;
     height: auto;
-    background-color: #b36fff;
+    background-color: #ffffff;
     border-radius: 50%;
     position: absolute;
-    top: 10px;
-    right: 10px;
+    top: -25px;
+    left: -70px;
+    box-shadow: rgb(100, 100, 100) 0px 0px 5px;
 }
 
-
+.borderChatSortouch:after{
+    position: absolute;
+    left: -20px;
+    width: 20px;
+    height: 15px;
+    border-bottom-left-radius: -10px;
+    content: ' ';
+}
 
 .contentResponseChat{
     display: flex;
     justify-content: flex-end;
-    align-items: center;
+    align-items: flex-end;
     flex-direction: row;
     flex-wrap: wrap;
     background-size: 100%;
@@ -264,71 +232,34 @@
     padding: 10px;
 }
 
-.containerLittleCardResChat{
+.containerCardResponse{
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: rgb(255, 240, 242);
-    box-shadow: -4px -3px 1px 0px #ffffff, 2px 2px 7px 0px rgb(158, 122, 199);
-    margin: 10px;
+    background: rgb(53, 179, 252);
+    background: linear-gradient(90deg, rgba(53,179,252,1) 0%, rgba(8,116,251,1) 81%);
+    box-shadow: -4px -3px 1px 0px #ffffff, 1px 1px 9px 0px rgb(175, 175, 175);
+    margin: 15px;
     margin-right: 0;
     margin-left: 0;
     padding: 10px 20px 10px 20px;
     border-radius: 25px;
     cursor: pointer;
-    min-height: 0px;
-}
-
-.containerLittleCardResChatFirst{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: rgb(255, 240, 242);
-    box-shadow: -4px -3px 1px 0px #ffffff, 2px 2px 7px 0px rgb(158, 122, 199);
-    margin: 10px;
-    margin-right: 0;
-    margin-left: 0;
-    padding: 10px 20px 10px 20px;
-    border-radius: 25px;
-    cursor: pointer;
-    min-height: 0px;
-    margin-top: 40px;
-    width: 70%;
-}
-
-.containerLittleCardResChat:hover{
-    background-color: rgb(252, 235, 235);
-}
-
-.containerLittleCardResChat:active{
-    box-shadow: inset -5px -4px 4px 0px #c9c9c9, inset 2px 2px 9px 0px #ffffff;
-}
-
-.containerLittleCardResChatActive{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: rgb(252, 235, 235);
-    box-shadow: inset 1px 1px 4px 0px #424242, inset -4px -4px 1px 0px #ffffff;
-    padding: 10px 20px 10px 20px;
-    border-radius: 25px;
-    cursor: pointer;
-    width: 70%;
-    min-height: 0px;
+    color: rgb(255, 255, 255);
+    max-width: 80%;
+    border-bottom-right-radius: 0;
+    border-top-right-radius: 20px;
+    margin-bottom: 0;
+    margin-top: 30px;
 }
 
 .contentResponseChat{
     width: 92%;
     margin-left: 0;
+    margin-top: 10px;
     flex-wrap: wrap;
-    justify-content: center;
+    justify-content: flex-end;
     align-items: flex-end;
-}
-
-.containerLittleCardResChat{
-    width: 70%;
-    text-align: center;
-    margin-left: 0;
 }
 
 .textCardResChat{
@@ -392,7 +323,7 @@
 }
 
 .pointChargementSortouch{
-    background-color: white;
+    background: linear-gradient(90deg, rgba(53, 179, 252, 0.822) 0%, rgba(8, 117, 251, 0.808) 81%);
     height: 20px;
     width: 20px;
     border-radius: 50%;
@@ -409,7 +340,7 @@
 }
 
 .pointChargementSortouch2{
-    background-color: white;
+    background: linear-gradient(90deg, rgba(53, 179, 252, 0.822) 0%, rgba(8, 117, 251, 0.808) 81%);
     height: 20px;
     width: 20px;
     border-radius: 50%;
@@ -426,7 +357,7 @@
 }
 
 .pointChargementSortouch3{
-    background-color: white;
+    background: linear-gradient(90deg, rgba(53, 179, 252, 0.822) 0%, rgba(8, 117, 251, 0.808) 81%);
     height: 20px;
     width: 20px;
     border-radius: 50%;
@@ -446,7 +377,8 @@
     height: 18px;
     width: auto;
     padding: 5px;
-    background-color: #6f85ff;
+    background: rgb(53, 179, 252);
+    background: linear-gradient(90deg, rgba(53,179,252,1) 0%, rgba(8,116,251,1) 81%);
     border-radius: 50%;
     margin-left: 10px;
     cursor: pointer;
@@ -471,4 +403,5 @@
     font-family: 'Sen', sans-serif;
     position: absolute;
     bottom: 30px;
+    box-shadow: 1px 1px 5px rgb(170, 170, 170);;
 }

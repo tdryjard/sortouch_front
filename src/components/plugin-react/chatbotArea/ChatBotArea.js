@@ -3,7 +3,9 @@ import Questionchat from '../questionBlock/QuestionChat';
 import cross from './cross.png'
 import logo from './logo.png'
 import reload from './reload.png'
+import back from './back.png'
 import { useForm } from "react-hook-form";
+import url from '.././../../api/url'
 import './FormContact.css'
 import './ChatBotArea.css'
 
@@ -60,7 +62,7 @@ const ChatBotArea = (props) => {
     }
 
     useEffect(() => {
-        if(props.active) setChatActive(true)
+        if (props.active) setChatActive(true)
     }, [props.active])
 
     const searching = (e) => {
@@ -68,7 +70,7 @@ const ChatBotArea = (props) => {
         let wordSplit = word.toLowerCase().split('')
         let resReturn = []
         if (wordSplit.length > 2) {
-            fetch(`https://sortouch-back.herokuapp.com/api/response/findAll/${props.userId}/${props.modelId}`)
+            fetch(`${url}/response/findAll/${props.userId}/${props.modelId}`)
                 .then(res => res.json())
                 .then(res => {
                     for (let i = 0; i < res.length; i++) {
@@ -90,13 +92,13 @@ const ChatBotArea = (props) => {
                         if (nbEgale > 0 && (resReturn[resReturn.length - 1].id !== res[i].id)) resReturn.push(res[i])
                         nbEgale = 0
                     }
-                    let sortResult = resReturn.filter(function(item, pos) {
+                    let sortResult = resReturn.filter(function (item, pos) {
                         return resReturn.indexOf(item) == pos;
                     })
                     if (resReturn.length > 0) setSearch(sortResult)
                 })
         }
-        if(wordSplit.length === 0) setSearch([])
+        if (wordSplit.length === 0) setSearch([])
     }
 
     const sendMail = async (categoryId) => {
@@ -107,7 +109,7 @@ const ChatBotArea = (props) => {
         } else if (!validatePhone(phone)) {
             alert('numéro de téléphone non valide')
         } else {
-            const result = await fetch('https://sortouch-back.herokuapp.com/api/mail/create', {
+            const result = await fetch(`${url}/mail/create`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -124,7 +126,7 @@ const ChatBotArea = (props) => {
                     date: dateChar
                 })
             });
-            const result2 = await fetch('https://sortouch-back.herokuapp.com/api/contact/create', {
+            const result2 = await fetch(`${url}/contact/create`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -155,10 +157,9 @@ const ChatBotArea = (props) => {
         if (props.userId && props.modelId) {
             printContainers()
         }
-    }, [props.userId, props.modelId, responseSelect])
+    }, [props.userId, props.modelId, responseSelect, chatActive])
 
     useEffect(() => {
-        getColor()
         setTimeout(() => {
             setTextIcon(false)
         }, 6000)
@@ -168,7 +169,7 @@ const ChatBotArea = (props) => {
     const printContainers = async () => {
         if (lastResponse !== responseSelect) {
             try {
-                fetch(`https://sortouch-back.herokuapp.com/api/container/findAll/${props.userId}/${responseSelect}/${props.modelId}`)
+                fetch(`${url}/container/findAll/${props.userId}/${responseSelect}/${props.modelId}`)
                     .then(res => res.json())
                     .then(res => {
                         if ((containers.length > 0) && beforeSelect[0] !== 0) {
@@ -196,7 +197,7 @@ const ChatBotArea = (props) => {
             if (res[i]) {
                 let result = []
                 if (res[i].content_type === "question") {
-                    const resNoJson = await fetch(`https://sortouch-back.herokuapp.com/api/relation/findCardQuestion/${res[i].id}/${props.userId}/${props.modelId}`)
+                    const resNoJson = await fetch(`${url}/relation/findCardQuestion/${res[i].id}/${props.userId}/${props.modelId}`)
                     result = await resNoJson.json()
                 }
                 else result = { none: `pas de question container id ${i}` }
@@ -209,7 +210,7 @@ const ChatBotArea = (props) => {
             if (res[i]) {
                 let result = []
                 if (res[i].content_type === "response") {
-                    const resNoJson = await fetch(`https://sortouch-back.herokuapp.com/api/relation/findCardResponse/${res[i].id}/${props.userId}/${props.modelId}`)
+                    const resNoJson = await fetch(`${url}/relation/findCardResponse/${res[i].id}/${props.userId}/${props.modelId}`)
                     result = await resNoJson.json()
                 }
                 else result = { none: `pas de réponse container id ${i}` }
@@ -222,7 +223,7 @@ const ChatBotArea = (props) => {
             if (res[i]) {
                 let result = []
                 if (res[i].content_type === "category") {
-                    const resNoJson = await fetch(`https://sortouch-back.herokuapp.com/api/relation/findCardCategory/${res[i].id}/${props.userId}/${props.modelId}`)
+                    const resNoJson = await fetch(`${url}/relation/findCardCategory/${res[i].id}/${props.userId}/${props.modelId}`)
                     result = await resNoJson.json()
                 }
                 else result = { none: `pas de categorie container id ${i}` }
@@ -234,7 +235,7 @@ const ChatBotArea = (props) => {
     }
 
     const selectResponse = async function (cardId, index, search) {
-        if(search) setSearch([])
+        if (search) setSearch([])
         setPair(!pair)
         const stockContainers = containers
         const numberCard = cardId
@@ -301,7 +302,7 @@ const ChatBotArea = (props) => {
 
 
     const getColor = async () => {
-        const resFind = await fetch(`https://sortouch-back.herokuapp.com/api/model/findAll/${props.userId}`, {
+        const resFind = await fetch(`${url}/model/findAll/${props.userId}`, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
@@ -310,9 +311,11 @@ const ChatBotArea = (props) => {
             }
         })
         const resFindJson = await resFind.json()
-        const resFindSort = await resFindJson.filter(res => res.id === parseInt(props.modelId))
-        if (resFindSort) {
-            setColor(resFindSort[0].color)
+        if (resFindJson.length > 0) {
+            const resFindSort = await resFindJson.filter(res => res.id === parseInt(props.modelId))
+            if (resFindSort) {
+                setColor(resFindSort[0].color)
+            }
         }
     }
 
@@ -323,7 +326,7 @@ const ChatBotArea = (props) => {
     let width = '90%'
     let height = '93%'
     let bottom = '2.5%'
-    if (window.innerWidth > 1000){
+    if (window.innerWidth > 1000) {
         width = '420px'
         height = '75%'
         bottom = '8%'
@@ -341,8 +344,7 @@ const ChatBotArea = (props) => {
         right: '4%',
         borderRadius: '15px',
         boxShadow: '0px 0px 15px #b8b8b8',
-        padding: '5px',
-        background: 'linear-gradient(0deg, rgb(196, 147, 255) 0%, rgb(207, 164, 255) 100%)',
+        background: 'rgb(255, 255, 255)',
         zIndex: '1000'
     }
 
@@ -356,12 +358,12 @@ const ChatBotArea = (props) => {
 
 
     return (
-        <div className={!chatActive && "containerIconChat"} style={!chatActive ? { border: `3px solid ${color}` } : containerChatbot}>
+        <div className={!chatActive && "containerIconChat"} style={chatActive ? containerChatbot : null}>
             {chatActive &&
                 <div className="headChatbot">
                     <img onClick={() => { setChatActive(!chatActive) }} alt="close sortouch" src={cross} className="crossChatbot" />
                     <img onClick={reloadFunction} alt="reload sortouch" src={reload} className="reloadChatbot" />
-                    <img src={require('./back.png')} className="backIconSortouch" onClick={backResponse} />
+                    <img src={back} className="backIconSortouch" onClick={backResponse} />
                     <a target="__blank" href="https://sortouch.com" className="sortouch">Sortouch</a>
                 </div>}
             {!load && !(search.length > 0) ?
@@ -370,10 +372,10 @@ const ChatBotArea = (props) => {
                         {!chatActive ?
                             <div className="contentIcon">
                                 {textIcon &&
-                                    <div className={color === "#3a3a3a" ? "contentTextIconChat2" : color === "#4f2fff" ? "contentTextIconChat3" : color === "#5eeb7c" ? "contentTextIconChat4" : color === "#ff2d2d" ? "contentTextIconChat5" : "contentTextIconChat"}>
+                                    <div className="contentTextIconChat">
                                         <p onClick={activeChat} className="textIconCard"><Questionchat text={"Prenez contact avec moi !"} /></p>
                                     </div>}
-                                <img style={{ backgroundColor: color }} alt="icon chat" onClick={activeChat} src={logo} className="iconChat" />
+                                <img alt="icon chat" onClick={activeChat} src={logo} className="iconChat" />
                             </div>
                             : chatActive && posted === false &&
                             Array.isArray(containers) &&
@@ -385,20 +387,20 @@ const ChatBotArea = (props) => {
                                                 return (
                                                     Array.isArray(cardsQuest[cardsQuest.length - 2]) && cardsQuest[cardsQuest.length - 2][0].id === card.id ?
                                                         <div id={`questionSortouch${index}`} className="contentQuestChat">
-                                                            <Questionchat text={card.content} />
                                                             <img alt="sortouch" src={logo} className="logoChat" />
+                                                            <Questionchat text={card.content} />
                                                         </div>
                                                         :
                                                         <div id={`questionSortouch${index}`} className="contentQuestChat">
-                                                            <p className="textQuest">{card.content}</p>
                                                             <img alt="sortouch" src={logo} className="logoChat" />
+                                                            <p className="textQuest">{card.content}</p>
                                                         </div>
                                                 )
                                             })}
                                         {Array.isArray(cardsRes[index]) && container.content_type === "response" &&
                                             cardsRes[index].map(card => {
                                                 return (
-                                                    <div onClick={() => { selectResponse(card.id, index); setLoad(true) }} className={responseSelected.includes(card.id) ? 'containerLittleCardResChatActive' : 'containerLittleCardResChat'}>
+                                                    <div onClick={() => { selectResponse(card.id, index); setLoad(true) }} className='containerCardResponse'>
                                                         <p id={`container${index}`} className="textCardResChat">{card.content}</p>
                                                     </div>)
                                             })
@@ -444,12 +446,12 @@ const ChatBotArea = (props) => {
                     <div className={chatActive ? "contentChatbot" : "contentIcon"}>
                         {search.map((response, index) => {
                             return (
-                                <div onClick={() => { selectResponse(response.id, index, true); setLoad(true) }} className={index === 0 ? 'containerLittleCardResChatFirst' : 'containerLittleCardResChat'}>
+                                <div onClick={() => { selectResponse(response.id, index, true); setLoad(true) }} className='containerCardResponse'>
                                     <p id={`container${index}`} className="textCardResChat">{response.content}</p>
                                 </div>)
                         })}
                     </div>}
-            {chatActive && containers[containers.length -1] && containers[containers.length -1].content_type !== "category" && 
+            {chatActive && containers[containers.length - 1] && containers[containers.length - 1].content_type !== "category" &&
                 <input placeholder="Rechercher" className="inputSearchSortouch" onChange={searching} />}
         </div >
     )

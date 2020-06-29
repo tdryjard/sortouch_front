@@ -36,16 +36,18 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: rgb(255, 255, 255);
-    color: rgb(255, 169, 255);
-    border: 2px solid rgb(255, 169, 255);
+    height: 50px;
+    width: 120px;
+    background-color: none;
+    color: linear-gradient(90deg, rgba(113,0,208,1) 0%, rgba(160,0,255,1) 81%);
+    border: 2px solid  rgba(113,0,208,1);
     border-radius: 10px;
-    font-size: 20px;
+    font-size: 25px;
     font-family: 'Sen', sans-serif;
     text-decoration: none;
-    padding: 5px 10px 5px 10px;
-    width: 150px;
-    height: 50px;
+    padding: 5px 30px 5px 30px;
+    text-align: center;
+    background-color: white;
     margin-left: 30px;
 }
 

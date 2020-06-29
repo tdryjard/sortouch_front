@@ -41,23 +41,19 @@ const Plan3 = () => {
                     </div>
                     <div className="containerOptionPlan">
                         <img src={require('../image/valid.png')} alt="valid" className="validImg" />
-                        <p className="textOptionPlan">Création de chatbot illimité</p>
+                        <p className="textOptionPlan">3 page web personnalisée</p>
                     </div>
                     <div className="containerOptionPlan">
                         <img src={require('../image/valid.png')} alt="valid" className="validImg" />
-                        <p className="textOptionPlan">Intégration sur votre site par vous</p>
+                        <p className="textOptionPlan">3 modèle de chatbot</p>
                     </div>
                     <div className="containerOptionPlan">
                         <img src={require('../image/valid.png')} alt="valid" className="validImg" />
-                        <p className="textOptionPlan">5 000 réceptions de messages par mois</p>
+                        <p className="textOptionPlan">3 000 réceptions de messages par mois</p>
                     </div>
                     <div className="containerOptionPlan">
                         <img src={require('../image/valid.png')} alt="valid" className="validImg" />
-                        <p className="textOptionPlan">Stockage de coordonnées illimité</p>
-                    </div>
-                    <div className="containerOptionPlan">
-                        <img src={require('../image/valid.png')} alt="valid" className="validImg" />
-                        <p className="textOptionPlan">Assistance technique</p>
+                        <p className="textOptionPlan">10 000 stockages de coordonnées</p>
                     </div>
                     {type === "standard" ?
                         <div className="buttonPricing2">

@@ -89,7 +89,8 @@ const DataArea = () => {
             .then(res => res.json())
             .then(res => {
                 if(type === "free" && res.length > 50) res.length = 50
-                if(type === "standard" && res.length > 10000) res.length = 10000
+                if(type === "standard" && res.length > 5000) res.length = 5000
+                if(type === "expert" && res.length > 10000) res.length = 10000
                 setContacts(res)
                 setSortContacts(res)
             })

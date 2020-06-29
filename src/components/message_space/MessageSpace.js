@@ -61,10 +61,10 @@ const MessageBox = (props) => {
             if (type === "free" && nbMailsOfMonth.length > 16) {
                 setPopup(true)
                 setLimit(nbMailsOfMonth.length)
-            } else if (type === "standard" && nbMailsOfMonth.length > 1800) {
+            } else if (type === "standard" && nbMailsOfMonth.length > 900) {
                 setPopup(true)
                 setLimit(nbMailsOfMonth.length)
-            } else if (type === "expert" && nbMailsOfMonth.length > 9000) {
+            } else if (type === "expert" && nbMailsOfMonth.length > 2500) {
                 setPopup(true)
                 setLimit(nbMailsOfMonth.length)
             }

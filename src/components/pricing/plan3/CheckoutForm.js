@@ -51,32 +51,31 @@ const CheckoutForm = (props) => {
         return re.test(email);
     }
 
-    const validatePhone = (phone) => {
-        let re = /^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/im
-        return re.test(phone)
-    }
-
 
 
     const subscription = async (event) => {
-        setLoad(true)
-        fetch(`${url}/create-customer`, {
-            method: 'post',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({
-                email: mail
+        if (!validateEmail(mail)) setError('Veuillez entrer une email correct')
+        else if (!society) setError(`Veuillez entrer votre nom ou nom d'entreprise`)
+        else {
+            setLoad(true)
+            fetch(`${url}/create-customer`, {
+                method: 'post',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    email: mail
+                })
             })
-        })
-            .then(response => {
-                return response.json();
-            })
-            .then(result => {
-                // result.customer.id is used to map back to the customer object
-                // result.setupIntent.client_secret is used to create the payment method
-                if (result) createPaymentMethod(elements.getElement(CardElement), result.customer.id, 'price_1GwZNuKleZ50Ivn6rjynly4I')
-            });
+                .then(response => {
+                    return response.json();
+                })
+                .then(result => {
+                    // result.customer.id is used to map back to the customer object
+                    // result.setupIntent.client_secret is used to create the payment method
+                    if (result) createPaymentMethod(elements.getElement(CardElement), result.customer.id, 'price_1GwZNuKleZ50Ivn6rjynly4I')
+                });
+        }
     }
 
     function createPaymentMethod(cardElement, customerId, priceId) {
@@ -199,7 +198,6 @@ const CheckoutForm = (props) => {
                 <>
                     <input className="inputPricing" onChange={getMail} placeholder="Votre email" />
                     <input className="inputPricing" onChange={getSociety} placeholder="Nom de votre société" />
-                    <input className="inputPricing" onChange={getPhone} placeholder="Numéro de téléphone" />
                 </>
                 : <img style={{ width: "50%" }} src={require('../image/load.gif')} />}
 

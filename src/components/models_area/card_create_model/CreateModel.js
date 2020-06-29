@@ -82,7 +82,10 @@ const CreateModel = (props) => {
     }
 
     const activeContent = () => {
-        if (props.models.length > 0 && type === "free") {
+        if (props.models.length > 0 && (type === "free" || type === "standard")) {
+            setPopup(true)
+        }
+        else if (props.models.length > 2 && type === "expert") {
             setPopup(true)
         } else {
             setTimeout(() => {
