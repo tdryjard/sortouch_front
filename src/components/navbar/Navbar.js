@@ -1,17 +1,25 @@
 import React, { useState, useEffect } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, Redirect } from 'react-router-dom'
 import './Navbar.scss'
 
 const Navbar = (props) => {
     const [userId, setUserId] = useState()
     const [modelId] = useState(sessionStorage.getItem('modelId'))
     const [chatbotName] = useState(sessionStorage.getItem('chatbotName'))
+    const [redirect, setRedirect] = useState(false)
 
     useEffect(() => {
         if (localStorage.getItem('userId')) {
             setUserId(localStorage.getItem('userId'))
         } else {
             setUserId(sessionStorage.getItem('userId'))
+        }
+        const redirect = sessionStorage.getItem('disconnect')
+        if(redirect === 'true'){
+            sessionStorage.setItem('disconnect', false)
+            setTimeout(() => {
+                setRedirect(true)
+            }, 100)
         }
     }, [])
 
@@ -20,6 +28,7 @@ const Navbar = (props) => {
         sessionStorage.setItem('modelId', '')
         localStorage.setItem('userId', '')
         localStorage.setItem('modelId', '')
+        sessionStorage.setItem('disconnect', true)
         setTimeout(() => {
             window.location.reload()
         }, 100)
@@ -27,6 +36,7 @@ const Navbar = (props) => {
 
     return (
         <div className="containerNav">
+            {redirect && <Redirect to="/"/>}
             <Link to="/" className={props.type === "landing" ? "linkNavbarActive" : "linkNavbar"} >Accueil</Link>
             <Link to="/utiliser-le-site-sortouch" className={props.type === "doc" ? "linkNavbarActive" : "linkNavbar"} >Docs</Link>
             <Link to="/tarifs" className={props.type === "tarifs" ? "linkNavbarActive" : "linkNavbar"} >Tarifs</Link>

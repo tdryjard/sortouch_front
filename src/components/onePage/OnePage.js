@@ -57,7 +57,7 @@ const OnPage = () => {
     }
 
     const getNewDescribe = (e) => {
-        if (e.target.value.split('').length < 351) setDescribeValue(e.target.value)
+        if (e.target.value.split('').length < 451) setDescribeValue(e.target.value)
     }
 
     const updateNewTitle = async () => {
@@ -232,7 +232,7 @@ const OnPage = () => {
                                     style={{ marginTop: '0px' }}
                                     className="contentTextArea"
                                     onChange={getNewDescribe}
-                                    maxLength="255"
+                                    maxLength="455"
                                 />
                                 <img onClick={updateNewDescribe} className="iconDeleteCardBuild" alt="update" src={require('../creating_area/builder/image/update_icon.png')} />
                             </form>}

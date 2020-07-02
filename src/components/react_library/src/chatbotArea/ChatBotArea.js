@@ -73,28 +73,34 @@ const ChatBotArea = (props) => {
                 .then(res => res.json())
                 .then(res => {
                     for (let i = 0; i < res.length; i++) {
-                        let resSplit = res[i].content.split('')
-                        let nbEgale = 0
-                        let nbLetter = 0
-                        for (let iWord = 0; iWord < wordSplit.length; iWord++) {
-                            for (let iRes = 0; iRes < resSplit.length; iRes++) {
-                                if (wordSplit[iWord] === resSplit[iRes]) {
-                                    nbLetter++
-                                    iWord++
-                                    if (nbLetter > 3) resReturn.push(res[i])
-                                } else {
-                                    if (nbLetter > 0) iRes--
-                                    nbLetter = 0
+                        if (res[i].content) {
+                            let resSplit = res[i].content.split('')
+                            let nbEgale = 0
+                            let nbLetter = 0
+                            for (let iWord = 0; iWord < wordSplit.length; iWord++) {
+                                for (let iRes = 0; iRes < resSplit.length; iRes++) {
+                                    if (wordSplit[iWord] === resSplit[iRes]) {
+                                        nbLetter++
+                                        iWord++
+                                        if (nbLetter > 3) resReturn.push(res[i])
+                                    } else {
+                                        if (nbLetter > 0) iRes--
+                                        nbLetter = 0
+                                    }
                                 }
                             }
+                            if (nbEgale > 0 && (resReturn[resReturn.length - 1].id !== res[i].id)) resReturn.push(res[i])
+                            nbEgale = 0
+
                         }
-                        if (nbEgale > 0 && (resReturn[resReturn.length - 1].id !== res[i].id)) resReturn.push(res[i])
-                        nbEgale = 0
                     }
                     let sortResult = resReturn.filter(function (item, pos) {
                         return resReturn.indexOf(item) == pos;
                     })
-                    if (resReturn.length > 0) setSearch(sortResult)
+                    if (resReturn.length > 0) {
+                        if (sortResult.length > 5) sortResult.length = 5
+                        setSearch(sortResult)
+                    }
                 })
         }
         if (wordSplit.length === 0) setSearch([])
@@ -367,7 +373,7 @@ const ChatBotArea = (props) => {
                     <a target="__blank" href="https://sortouch.com" className="sortouch">Sortouch</a>
                 </div>}
             {!chatActive &&
-            <button onClick={() => {setChatActive(true)}} className="menuChatbot">Prévisualiser</button> }
+                <button onClick={() => { setChatActive(true) }} className="menuChatbot">Prévisualiser</button>}
             {!load && !(search.length > 0) ?
                 <div className={chatActive ? "contentChatbot" : "contentIcon"}>
                     <div className={chatActive && "divRelativeSortouch"}>

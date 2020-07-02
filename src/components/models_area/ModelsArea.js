@@ -47,7 +47,9 @@ const ModelArea = (props) => {
                 }
             })
                 .then(res => res.json())
-                .then(res => setCards(res.reverse()))
+                .then(res => { if(res.length > 0){
+                    setCards(res.reverse())
+                }})
         }
     }, [userId, token])
 
@@ -58,7 +60,7 @@ const ModelArea = (props) => {
 
     return (
         <div className="containerModelArea">
-        <title>Sortouch : mes chatbots</title>
+            <title>Sortouch : mes chatbots</title>
             {window.innerWidth > 1280 ?
                 <Navbar type={"models"} />
                 :
@@ -78,7 +80,7 @@ const ModelArea = (props) => {
                     <p className="textPopupMobile">Nous conseillions une utilisation sur ordinateur pour une expérience optimale</p>
                     <img src={require('./image/cross.png')} alt="close" className="crossPopup" onClick={() => { setPoupup(false) }} />
                 </div>}
-            <Footer/>
+            <Footer />
         </div>
     )
 }

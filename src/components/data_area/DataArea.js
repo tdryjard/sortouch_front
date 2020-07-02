@@ -21,7 +21,6 @@ const DataArea = () => {
     const [categoryId, setCategoryId] = useState()
     const [contacts, setContacts] = useState([])
     const [sortContacts, setSortContacts] = useState([])
-    const [chooseColor, setChooseColor] = useState(false)
     const [chooseColorId, setChooseColorId] = useState()
     const [colorSort, setColorSort] = useState('')
     const [colorParamsSelect, setColorParamsSelect] = useState(false)
@@ -29,6 +28,8 @@ const DataArea = () => {
     const [timeOut, setTimeOut] = useState(false)
     const [type, setType] = useState()
     const [popup, setPopup] = useState(false)
+    const [lastColor, setLastColor] = useState(false)
+    const [chooseColor, setChooseColor] = useState(false)
 
     useEffect(() => {
         setTimeout(() => {
@@ -88,11 +89,21 @@ const DataArea = () => {
         })
             .then(res => res.json())
             .then(res => {
-                if(type === "free" && res.length > 50) res.length = 50
-                if(type === "standard" && res.length > 5000) res.length = 5000
-                if(type === "expert" && res.length > 10000) res.length = 10000
+                if (type === "free" && res.length > 50) res.length = 50
+                if (type === "standard" && res.length > 5000) res.length = 5000
+                if (type === "expert" && res.length > 10000) res.length = 10000
                 setContacts(res)
-                setSortContacts(res)
+                if(lastColor !== chooseColor){
+                    let resultSort = []
+                    for(let sortI = 0; sortI < sortContacts.length; sortI++){
+                        for(let resI = 0; resI < res.length; resI++){
+                            if(res[resI].id === sortContacts[sortI].id) resultSort.push(res[resI])
+                        }
+                    }
+                    setSortContacts(resultSort)
+                    setLastColor(chooseColor)
+                }
+                else setSortContacts(res)
             })
     }, [userId, chooseColor])
 
@@ -130,7 +141,7 @@ const DataArea = () => {
                 } else setChoiceModel('Tout')
             }
 
-            if (categoryId && type !== "category") {
+            if (categoryId && type !== "category" && type !== "model") {
                 let sortCategory = stockageContact.filter(contact => contact.category_id !== categoryId)
                 stockContacts = [...stockContacts, ...sortCategory]
             } else if (type === "category") {
@@ -203,21 +214,21 @@ const DataArea = () => {
                         <p onClick={() => { setSelectCategory(!selectCategory) }} className="textChoiceDataGet">{choiceCategory}</p>
                     </div>}
                 {contacts.length > 1 &&
-                <div className="containerColorParams">
-                    {!colorSort ?
-                        <img onClick={() => { setColorParamsSelect(!colorParamsSelect) }} src={require('./image/color_icon.png')} className="colorIconHead" alt="choose color" />
-                        :
-                        <div onClick={() => { setColorParamsSelect(!colorParamsSelect) }} className={`colorIcon${colorSort}Head`} />}
-                    {colorParamsSelect &&
-                        <div className="containerChoiceColorHead">
-                            {colorSort && <img onClick={() => { sort('Tout', 'color') }} src={require('./image/color_icon.png')} className="colorIconHead" alt="choose color" />}
-                            <div onClick={() => { sort('Green', 'color') }} className="colorGreen" />
-                            <div onClick={() => { sort('Blue', 'color') }} className="colorBlue" />
-                            <div onClick={() => { sort('Orange', 'color') }} className="colorOrange" />
-                            <div onClick={() => { sort('Red', 'color') }} className="colorRed" />
-                        </div>}
-                    <img onClick={() => { setColorParamsSelect(!colorParamsSelect) }} src={require('./image/choice_icon.png')} alt="arrow choice" className="arrowChoice" />
-                </div>}
+                    <div className="containerColorParams">
+                        {!colorSort ?
+                            <img onClick={() => { setColorParamsSelect(!colorParamsSelect) }} src={require('./image/color_icon.png')} className="colorIconHead" alt="choose color" />
+                            :
+                            <div onClick={() => { setColorParamsSelect(!colorParamsSelect) }} className={`colorIcon${colorSort}Head`} />}
+                        {colorParamsSelect &&
+                            <div className="containerChoiceColorHead">
+                                {colorSort && <img onClick={() => { sort('Tout', 'color') }} src={require('./image/color_icon.png')} className="colorIconHead" alt="choose color" />}
+                                <div onClick={() => { sort('Green', 'color') }} className="colorGreen" />
+                                <div onClick={() => { sort('Blue', 'color') }} className="colorBlue" />
+                                <div onClick={() => { sort('Orange', 'color') }} className="colorOrange" />
+                                <div onClick={() => { sort('Red', 'color') }} className="colorRed" />
+                            </div>}
+                        <img onClick={() => { setColorParamsSelect(!colorParamsSelect) }} src={require('./image/choice_icon.png')} alt="arrow choice" className="arrowChoice" />
+                    </div>}
             </div>
             <div className="contentDataArea">
                 {selectModel &&
@@ -225,7 +236,7 @@ const DataArea = () => {
                         {modelId && <p className="textChoiceData" onClick={() => { sort('Tout', 'model') }}>Tout</p>}
                         {models.length && models.map(model => {
                             return (
-                                <p className="textChoiceData" onClick={() => { sort(model, 'model') }}>{model.name}</p>
+                                <p className="textChoiceData" onClick={() => { return (setCategoryId(null)), sort(model, 'model') }}>{model.name}</p>
                             )
                         })}
                     </div>}

@@ -81,7 +81,7 @@ const Landing = (props) => {
                 <Navbar type={"landing"} />
                 :
                 <MenuBurger type={"landing"} />}
-            <div style={window.innerWidth > 1280 ? { background: "none", marginTop: "80px" } : { background: "none", marginTop: "80px", height: "190vh" }} className="containerChoiceEditor">
+            <div style={window.innerWidth > 1280 ? { background: "none", marginTop: "80px" } : { background: "none", marginTop: "80px", height: "240vh" }} className="containerChoiceEditor">
                 <div onClick={() => { setCardActive(true) }} className="flip-card">
                     <div className="flip-card-inner">
                         <div className="contentChoice">
@@ -136,6 +136,7 @@ const Landing = (props) => {
                                 <Link to="/connexion" className="buttonLinkChoice">C'est parti</Link>
                                 :
                                 <Link to="/choisir-editeur" className="buttonLinkChoice">C'est parti</Link>}
+                                <a target="_blank" href="https://sortouch.co/web?fleur-et-vous" style={{marginTop: "25px", marginBottom: "25px", padding: "5px"}} className="buttonLinkChoice">Exemple de page perso</a>
                             </div>
                         </div>
                     </div>

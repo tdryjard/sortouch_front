@@ -140,7 +140,7 @@ const CardModel = (props) => {
                                 }
                             })
                             if (deleteResponse) {
-                                const deleteCategory = await fetch(`${url}/category/deleteByModel/${userId}/${modelId}`, {
+                                const deleteContact = await fetch(`${url}/contact/deleteByModel/${userId}/${modelId}`, {
                                     method: 'DELETE',
                                     headers: {
                                         'Content-Type': 'application/json',
@@ -148,8 +148,8 @@ const CardModel = (props) => {
                                         'authorization': token
                                     }
                                 })
-                                if (deleteCategory) {
-                                    const result = await fetch(`${url}/model/delete/${modelId}/${userId}`, {
+                                if (deleteContact) {
+                                    const deleteCategory = await fetch(`${url}/category/deleteByModel/${userId}/${modelId}`, {
                                         method: 'DELETE',
                                         headers: {
                                             'Content-Type': 'application/json',
@@ -157,11 +157,46 @@ const CardModel = (props) => {
                                             'authorization': token
                                         }
                                     })
-                                    if (result) {
-                                        sessionStorage.setItem('modelId', '')
-                                        setTimeout(() => {
-                                            window.location.reload()
-                                        }, 100)
+                                    if (deleteCategory) {
+                                        const resOnepage = await fetch(`${url}/onepage/find/${userId}/${modelId}`)
+                                        const deleteOnepage = await fetch(`${url}/onepage/deleteByModel/${userId}/${modelId}`, {
+                                            method: 'DELETE',
+                                            headers: {
+                                                'Content-Type': 'application/json',
+                                                'Acces-Control-Allow-Origin': { origin },
+                                                'authorization': token
+                                            }
+                                        })
+                                        if (deleteOnepage) {
+                                            let deleteImage = {}
+                                            const resOnepageJson = await resOnepage.json()
+                                            if (resOnepageJson[0]) {
+                                                deleteImage = await fetch(`${url}/image/delete/${resOnepageJson[0].image_id}`, {
+                                                    method: 'DELETE',
+                                                    headers: {
+                                                        'Content-Type': 'application/json',
+                                                        'Acces-Control-Allow-Origin': { origin },
+                                                        'authorization': token
+                                                    }
+                                                })
+                                            }
+                                            if (deleteImage || !resOnepageJson[0]) {
+                                                const result = await fetch(`${url}/model/delete/${modelId}/${userId}`, {
+                                                    method: 'DELETE',
+                                                    headers: {
+                                                        'Content-Type': 'application/json',
+                                                        'Acces-Control-Allow-Origin': { origin },
+                                                        'authorization': token
+                                                    }
+                                                })
+                                                if (result) {
+                                                    sessionStorage.setItem('modelId', '')
+                                                    setTimeout(() => {
+                                                        window.location.reload()
+                                                    }, 100)
+                                                }
+                                            }
+                                        }
                                     }
                                 }
                             }
@@ -171,6 +206,7 @@ const CardModel = (props) => {
             }
         }
     }
+
 
     const updateModel = (event) => {
         let name = inputValue.html.replace('&nbsp;', '')
@@ -207,7 +243,7 @@ const CardModel = (props) => {
             {optionSelected === false ?
                 <div onClick={() => { window.innerWidth < 1280 && setCardSelect(true) }} className={props.index === 0 ? "contentCardModelFirst" : "contentCardModel"}>
                     {window.location.innerWidth > 1280 && props.index === 0 && (localStorage.getItem('popupModel') === "true") &&
-                         <img src={require('./image/popup.png')} className="crossPopupModel"/>
+                        <img src={require('./image/popup.png')} className="crossPopupModel" />
                     }
                     <div className="headCardModel">
                         <div className="contentNewMessageModel">

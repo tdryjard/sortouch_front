@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, Redirect } from 'react-router-dom'
 import './MenuBurger.scss'
 
 const MenuBurger = (props) => {
     const [userId, setUserId] = useState()
     const [modelId] = useState(sessionStorage.getItem('modelId'))
     const [active, setActive] = useState(false)
+    const [redirect, setRedirect] = useState(false)
 
     useEffect(() => {
         if (localStorage.getItem('userId')) {
@@ -13,7 +14,13 @@ const MenuBurger = (props) => {
         } else {
             setUserId(sessionStorage.getItem('userId'))
         }
-
+        const redirect = sessionStorage.getItem('disconnect')
+        if (redirect === 'true') {
+            sessionStorage.setItem('disconnect', false)
+            setTimeout(() => {
+                setRedirect(true)
+            }, 100)
+        }
     }, [])
 
     const disconnect = () => {
@@ -21,6 +28,7 @@ const MenuBurger = (props) => {
         sessionStorage.setItem('modelId', '')
         localStorage.setItem('userId', '')
         localStorage.setItem('modelId', '')
+        sessionStorage.setItem('disconnect', true)
         setTimeout(() => {
             window.location.reload()
         }, 100)
@@ -28,12 +36,13 @@ const MenuBurger = (props) => {
 
     return (
         <div>
+            {redirect && <Redirect to="/" />}
             {!active ?
                 <img src={require('./image/menu_icon.png')} className="menuBurger" alt="menu" onClick={() => { setActive(true) }} />
                 :
                 <div className="containerMenuBurger">
                     <img onClick={() => { setActive(false) }} alt="menu" className="crossIconBurger" src={require('./image/cross.png')} />
-                    <Link to="/" style={{marginTop: "50px"}} className={props.type === "landing" ? "linkBurgerActive" : "linkBurger"} >Accueil</Link>
+                    <Link to="/" style={{ marginTop: "50px" }} className={props.type === "landing" ? "linkBurgerActive" : "linkBurger"} >Accueil</Link>
                     <Link to="/utiliser-le-site-sortouch" className={props.type === "editor-doc" ? "linkBurgerActive" : "linkBurger"} >Docs</Link>
                     <Link to="/tarifs" className={props.type === "tarif" ? "linkBurgerActive" : "linkBurger"} >Tarifs</Link>
                     {!userId && !modelId ?

@@ -1,19 +1,15 @@
 import React, { useState, useEffect } from 'react'
 import url from '../../../api/url';
 import origin from '../../../api/origin';
-import useGlobalState from '../../../hooks/useGlobalState';
-import { Link } from 'react-router-dom'
 import { useForm } from "react-hook-form";
-import ContentEditable from 'react-contenteditable'
+import ContentEditable from 'react-contenteditable';
 import './card.css'
 import './builder.scss'
-import CardListDestination from '../ListStock/cardList/CardListCategory/CardListCategory';
 
 const Builder = () => {
     const [contentEditable] = useState(React.createRef())
     const [containers, setContainers] = useState([])
     const [order, setOrder] = useState(1)
-    const { connectClassDisable, classConnectButton } = useGlobalState();
     const [containersReverse, setContainersReverse] = useState()
     const [cardsQuest, setCardsQuest] = useState([])
     const [cardsRes, setCardsRes] = useState([])
@@ -37,6 +33,8 @@ const Builder = () => {
     const [inputValue, setInputValue] = useState({ html: "" })
     const [popupSelect, setPupopSelect] = useState(false)
     const [popupStep, setPopupStep] = useState(false)
+    const [deleted, setDeleted] = useState(false)
+    const [size, setSize] = useState(false)
 
     const { addCardRef, upCard, handleSubmit } = useForm()
 
@@ -50,6 +48,10 @@ const Builder = () => {
         }
         if (!modelId) setModelId(sessionStorage.getItem('modelId'))
     }, [])
+
+    useEffect(() => {
+
+    }, [deleted])
 
     const printContainers = async () => {
         try {
@@ -96,6 +98,11 @@ const Builder = () => {
     }
 
     useEffect(() => {
+        const element = document.getElementById(`containerBuilder`)
+        if(element) element.scrollTop = element.offsetHeight
+    }, [load])
+
+    useEffect(() => {
         if (userId && modelId) printContainers()
         if (storageContainers) setStorage(true)
     }, [responseSelectChanging, userId, modelId, responseBool])
@@ -122,7 +129,7 @@ const Builder = () => {
                     const resNoJson = await fetch(`${url}/relation/findCardResponse/${res[i].id}/${userId}/${modelId}`)
                     result = await resNoJson.json()
                 }
-                else result = { none: `pas de question container id ${i}` }
+                else result = { none: `pas de réponse container id ${i}` }
                 stockRes = [...stockRes, result]
                 setCardsRes(stockRes)
             }
@@ -135,7 +142,7 @@ const Builder = () => {
                     const resNoJson = await fetch(`${url}/relation/findCardCategory/${res[i].id}/${userId}/${modelId}`)
                     result = await resNoJson.json()
                 }
-                else result = { none: `pas de question container id ${i}` }
+                else result = { none: `pas de catégorie container id ${i}` }
                 stockCategory = [...stockCategory, result]
                 setCardsCategory(stockCategory)
             }
@@ -144,7 +151,7 @@ const Builder = () => {
     }
 
     const createContainer = async (type) => {
-        if(popupStep) setPopupStep(false)
+        if (popupStep) setPopupStep(false)
         let stockContainers = containers
         stockContainers.reverse()
         if (stockContainers[0] && responseSelect !== 0) {
@@ -200,67 +207,12 @@ const Builder = () => {
         setLoad(false)
     }
 
-
-    /*const insertContainerId = async (id, type) => {
-        const relations = await fetch(`${url}/relation/find/${userId}/${modelId}`)
-        const res = await relations.json()
-        let relationsResult = []
-        if (res) {
-            for (let i = 0; i < res.length; i++) {
-                if (res[i].onchange === 1) relationsResult = res[i]
-            }
-            let typeOnChange = "";
-            if (relationsResult.question_id) {
-                typeOnChange = "question"
-            } else if (relationsResult.response_id) {
-                typeOnChange = "response"
-            } else if (relationsResult.category_id) {
-                typeOnChange = "category"
-            }
-            connectClassDisable()
-
-            if (type === typeOnChange) {
-                try {
-                    const result = await fetch(`${url}/relation/update/${userId}/${modelId}`, {
-                        method: 'PUT',
-                        headers: {
-                            'Content-Type': 'application/json',
-                            'Access-Control-Allow-Origin': `${origin}`,
-                            'authorization': token
-                        },
-                        body: JSON.stringify({
-                            container_id: id,
-                            onchange: 0
-                        })
-                    })
-                    if (await result) {
-                        printContainers()
-                    }
-                } catch (error) {
-                    console.log(error);
-                }
-            } else {
-                fetch(`${url}/relation/delete/${userId}/${modelId}`, {
-                    method: 'DELETE',
-                    headers: {
-                        'Content-Type': 'application/json',
-                        'Acces-Control-Allow-Origin': { origin },
-                        'authorization': token
-                    }
-                })
-                alert('veuillez selectionner un contenaire du même type')
-            }
-            if (type !== "response") setStorageContainers(containers)
-            setResponseBool(!responseBool)
-        }
-        setLoad(false)
-    }*/
-
     const selectResponse = async function (numberCard, index) {
-        if (popupSelect){
+        if (popupSelect) {
             setPupopSelect(false)
             setPopupStep(true)
         }
+
         setLoad(false)
         setContainers([])
         setResponseSelect(numberCard)
@@ -302,8 +254,8 @@ const Builder = () => {
     }
 
 
-    const deleteRelationQuestion = async (containerId, cardId) => {
-        fetch(`${url}/relation/deleteQuestionCard/${containerId}/${cardId}/${userId}/${modelId}`, {
+    const deleteRelationQuestion = async (containerId, cardId, index) => {
+        const res = await fetch(`${url}/relation/deleteQuestionCard/${containerId}/${cardId}/${userId}/${modelId}`, {
             method: 'DELETE',
             headers: {
                 'Content-Type': 'application/json',
@@ -311,31 +263,8 @@ const Builder = () => {
                 'authorization': token
             }
         })
-        /*fetch(`${url}/container/delete/${containerId}/${userId}/${modelId}`, {
-            method: 'DELETE',
-            headers: {
-                'Content-Type': 'application/json',
-                'Acces-Control-Allow-Origin': { origin },
-                'authorization': token
-            }
-        })*/
-        setResponseSelect(undefined)
-        setResponseSelected([])
-        setResponseBool(!responseBool)
-        setLoad(false)
-    }
-
-    const deleteRelationResponse = async (containerIndex, containerId, cardId) => {
-        fetch(`${url}/relation/deleteResponseCard/${containerId}/${cardId}/${userId}/${modelId}`, {
-            method: 'DELETE',
-            headers: {
-                'Content-Type': 'application/json',
-                'Acces-Control-Allow-Origin': { origin },
-                'authorization': token
-            }
-        })
-        /*if (cardsRes[containerIndex].length < 2) {
-            await fetch(`${url}/container/delete/${containerId}/${userId}/${modelId}`, {
+        if (res) {
+            const res2 = await fetch(`${url}/question/delete/${cardId}/${userId}/${modelId}`, {
                 method: 'DELETE',
                 headers: {
                     'Content-Type': 'application/json',
@@ -343,16 +272,18 @@ const Builder = () => {
                     'authorization': token
                 }
             })
-        }*/
-
-        setResponseSelect(undefined)
-        setResponseSelected([])
-        setResponseBool(!responseBool)
-        setLoad(false)
+            if (res2) {
+                const stock = cardsQuest
+                stock[index] = { none: `pas de question` }
+                setCardsQuest(stock)
+                setDeleted(!deleted)
+            }
+        }
     }
 
-    const deleteCategory = async (containerId) => {
-        const result1 = await fetch(`${url}/relation/delete/${containerId}/${userId}/${modelId}`, {
+    const deleteRelationResponse = async (event, containerId, cardId, index, cardIndex) => {
+        event.stopPropagation();
+        const res = await fetch(`${url}/relation/deleteResponseCard/${containerId}/${cardId}/${userId}/${modelId}`, {
             method: 'DELETE',
             headers: {
                 'Content-Type': 'application/json',
@@ -360,18 +291,51 @@ const Builder = () => {
                 'authorization': token
             }
         })
-        /*const result2 = await fetch(`${url}/container/delete/${containerId}/${userId}/${modelId}`, {
+        if (res) {
+            const res2 = await fetch(`${url}/response/delete/${cardId}/${userId}/${modelId}`, {
+                method: 'DELETE',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Acces-Control-Allow-Origin': { origin },
+                    'authorization': token
+                }
+            })
+            if (res2) {
+                const stock = cardsRes
+                const subStock = stock[index]
+                subStock.splice(cardIndex, 1)
+                stock[index] = subStock
+                setCardsRes(stock)
+                setDeleted(!deleted)
+            }
+        }
+    }
+
+    const deleteCategory = async (containerId, cardId, index) => {
+        const res = await fetch(`${url}/relation/delete/${containerId}/${userId}/${modelId}`, {
             method: 'DELETE',
             headers: {
                 'Content-Type': 'application/json',
                 'Acces-Control-Allow-Origin': { origin },
                 'authorization': token
             }
-        })*/
-        setResponseSelect(undefined)
-        setResponseSelected([])
-        setResponseBool(!responseBool)
-        setLoad(false)
+        })
+        if (res) {
+            const res2 = await fetch(`${url}/category/delete/${cardId}/${userId}/${modelId}`, {
+                method: 'DELETE',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Acces-Control-Allow-Origin': { origin },
+                    'authorization': token
+                }
+            })
+            if (res2) {
+                const stock = cardsCategory
+                stock[index] = { none: `pas de catégorie` }
+                setCardsCategory(stock)
+                setDeleted(!deleted)
+            }
+        }
     }
 
 
@@ -396,8 +360,8 @@ const Builder = () => {
         setValueCardAdd(e.target.value)
     }
 
-    const sendNewCard = async (containerId, containerType) => {
-        if(localStorage.getItem('popupEditeur2')){
+    const sendNewCard = async (containerId, containerType, index) => {
+        if (localStorage.getItem('popupEditeur2')) {
             localStorage.setItem('popupEditeur2', false)
             setPupopSelect(true)
         }
@@ -432,6 +396,10 @@ const Builder = () => {
                             container_id: containerId
                         })
                     })
+                    const stock = cardsQuest
+                    stock[index] = [res]
+                    setCardsQuest(stock)
+                    setDeleted(!deleted)
                 })
         } else if (containerType === "response") {
             fetch(`${url}/response/add`, {
@@ -449,7 +417,7 @@ const Builder = () => {
             })
                 .then(res => res.json())
                 .then(res => {
-                    resRelation = fetch(`${url}/relation/add`, {
+                    fetch(`${url}/relation/add`, {
                         method: 'POST',
                         headers: {
                             'Content-Type': 'application/json',
@@ -463,6 +431,11 @@ const Builder = () => {
                             container_id: containerId
                         })
                     })
+                    const stock = cardsRes
+                    if(stock[index].message) stock[index] = [res]
+                    else stock[index].push(res)
+                    setCardsRes(stock)
+                    setDeleted(!deleted)
                 })
         } else if (containerType === "category") {
             fetch(`${url}/category/add`, {
@@ -494,19 +467,20 @@ const Builder = () => {
                             container_id: containerId
                         })
                     })
+                    const stock = cardsCategory
+                    stock[index] = [res]
+                    setCardsCategory(stock)
+                    setDeleted(!deleted)
                 })
         }
 
         if (resRelation) {
             setContainerAddCard(null)
-            if (responseSelect !== containers[containers.length - 1].response_id) {
-                setStorageContainers(containers)
-            } else setInsertCard(true)
-            setResponseBool(!responseBool)
+            setInsertCard(true)
         }
     }
 
-    const updateCard = async (cardId, type, containerIndex) => {
+    const updateCard = async (cardId, type, containerIndex, cardIndex) => {
         let content = inputValue.html.replace(/&nbsp;/gi, '').replace(/<div><br><\/div>/gi, '').replace(/<p><br><\/p>/gi, '').replace(/<div>/gi, '').replace(/<\/div>/gi, '')
         content.trim()
         if (type === "question") {
@@ -522,11 +496,11 @@ const Builder = () => {
                 })
             })
             if (res) {
+                let stock = cardsQuest
+                stock[cardIndex][containerIndex].content = content
+                setCardsQuest(stock)
                 setUpdate(null)
                 setTypeUpdate('')
-                setResponseSelect(undefined)
-                setResponseSelected([])
-                setResponseBool(!responseBool)
             }
         }
         if (type === "response") {
@@ -542,11 +516,11 @@ const Builder = () => {
                 })
             })
             if (res) {
+                let stock = cardsRes
+                stock[cardIndex][containerIndex].content = content
+                setCardsRes(stock)
                 setUpdate(null)
                 setTypeUpdate('')
-                setResponseSelect(undefined)
-                setResponseSelected([])
-                setResponseBool(!responseBool)
             }
         }
         if (type === "category") {
@@ -562,17 +536,17 @@ const Builder = () => {
                 })
             })
             if (res) {
+                let stock = cardsCategory
+                stock[cardIndex][containerIndex].name = content
+                setCardsCategory(stock)
                 setUpdate(null)
                 setTypeUpdate('')
-                setResponseSelect(undefined)
-                setResponseSelected([])
-                setResponseBool(!responseBool)
             }
         }
     }
 
     const getUpdateCard = (e) => {
-        if (e.target.value.split().length < 66) setInputValue({ html: e.target.value })
+        if (e.target.value.split().length < 250) setInputValue({ html: e.target.value })
     }
 
     const connect = (id) => {
@@ -585,7 +559,7 @@ const Builder = () => {
     return (
         <>
             {load ?
-                <div className="containerDiagram">
+                <div id="containerBuilder" className="containerDiagram">
                     {Array.isArray(containers) &&
                         containers.map((container, index) => {
                             return (
@@ -599,15 +573,15 @@ const Builder = () => {
                                         {Array.isArray(cardsQuest[index]) && container.content_type === "question" &&
                                             cardsQuest[index].map((card, cardIndex) => {
                                                 return (
-                                                    <div id={`container${container.id}`} className="containerCardQuest">
+                                                    <div className="containerCardQuest">
                                                         {!(cardIndex === update && typeUpdate === "question" && index === containerUpdate) ?
                                                             <>
                                                                 <img onClick={() => { return (setUpdate(cardIndex), setContainerUpdate(index), setTypeUpdate("question"), setInputValue({ html: card.content })) }} className="iconDeleteCardBuild" alt="update" src={require('./image/update_icon.png')} />
-                                                                <img alt="delete" id={`card${card.id}`} onClick={() => { deleteRelationQuestion(container.id, card.id); setLoad(true) }} src={require('../ListStock/cardList/image/delete_icon.png')} className="iconDeleteCardBuildQuest" />
-                                                                <p className="textCardBuildQuest">{card.content}</p>
+                                                                <img alt="delete" id={`card${card.id}`} onClick={() => { deleteRelationQuestion(container.id, card.id, index); setLoad(true) }} src={require('../ListStock/cardList/image/delete_icon.png')} className="iconDeleteCardBuildQuest" />
+                                                                <p id={`container${index}`} className="textCardBuildQuest">{card.content}</p>
                                                             </>
                                                             :
-                                                            <form onSubmit={handleSubmit(updateCard)} className="containerUpdateCard">
+                                                            <form className="containerUpdateCard">
                                                                 <ContentEditable
                                                                     ref={upCard}
                                                                     className="contentQuestionInput"
@@ -617,7 +591,7 @@ const Builder = () => {
                                                                     onChange={getUpdateCard}
                                                                     tagName='article'
                                                                 />
-                                                                <img onClick={() => { updateCard(card.id, 'question', cardIndex) }} className="iconDeleteCardBuild" alt="update" src={require('./image/update_icon.png')} />
+                                                                <img onClick={() => { updateCard(card.id, 'question', cardIndex, index) }} className="iconDeleteCardBuild" alt="update" src={require('./image/update_icon.png')} />
                                                             </form>}
                                                     </div>
                                                 )
@@ -629,7 +603,7 @@ const Builder = () => {
                                                         {!(cardIndex === update && typeUpdate === "response" && containerUpdate === index) ?
                                                             <>
                                                                 <img onClick={() => { return (setUpdate(cardIndex), setContainerUpdate(index), setTypeUpdate('response'), setInputValue({ html: card.content }), cardsRes[index][cardsRes[index].length - 1].id === card.id && popupSelect === true && setPopupStep(true)) }} className="iconDeleteCardBuild" alt="update" src={require('./image/update_icon.png')} />
-                                                                <img alt="delete" id={`card${card.id}`} onClick={() => { deleteRelationResponse(index, container.id, card.id); setLoad(true) }} src={require('../ListStock/cardList/image/delete_icon.png')} className="iconDeleteCardBuild" />
+                                                                <img alt="delete" id={`card${card.id}`} onClick={(event) => { deleteRelationResponse(event, container.id, card.id, index, cardIndex); setLoad(true) }} src={require('../ListStock/cardList/image/delete_icon.png')} className="iconDeleteCardBuild" />
                                                                 <p id={`container${index}`} className="textCardInBuild">{card.content}</p>
                                                             </>
                                                             :
@@ -653,13 +627,13 @@ const Builder = () => {
                                         {Array.isArray(cardsCategory[index]) && container.content_type === "category" &&
                                             cardsCategory[index].map((card, cardIndex) => {
                                                 return (
-                                                    <div id={`container${container.id}`} className={(cardIndex === update && typeUpdate === "category" && containerUpdate === index) ? 'containerUpdateCardRes' : "containerCardCategoryBuild"}>
+                                                    <div id={`container${index}`} className={(cardIndex === update && typeUpdate === "category" && containerUpdate === index) ? 'containerUpdateCardRes' : "containerCardCategoryBuild"}>
                                                         {!(cardIndex === update && typeUpdate === "category" && containerUpdate === index) ?
                                                             <>
                                                                 <img onClick={() => { return (setUpdate(cardIndex), setContainerUpdate(index), setTypeUpdate('category'), setInputValue({ html: card.name })) }} className="iconDeleteCardBuild" alt="update" src={require('./image/update_icon.png')} />
-                                                                <img alt="delete" id={`card${card.id}`} onClick={() => { deleteCategory(container.id); setLoad(true) }} src={require('../ListStock/cardList/image/delete_icon.png')} className="iconDeleteCardBuild" />
+                                                                <img alt="delete" id={`card${card.id}`} onClick={() => { deleteCategory(container.id, card.id, index); setLoad(true) }} src={require('../ListStock/cardList/image/delete_icon.png')} className="iconDeleteCardBuild" />
                                                                 <img alt="mail" src={require('./image/mail_icon.svg')} className="mailIcon" />
-                                                                <p className="textCardCategoryBuild">{card.name}</p>
+                                                                <p id={`container${index}`} className="textCardCategoryBuild">{card.name}</p>
                                                             </>
                                                             :
                                                             <form onSubmit={handleSubmit(updateCard)} className="containerUpdateCard">
@@ -672,7 +646,7 @@ const Builder = () => {
                                                                     onChange={getUpdateCard}
                                                                     tagName='article'
                                                                 />
-                                                                <img onClick={() => { updateCard(card.id, 'category', cardIndex) }} className="iconDeleteCardBuild" alt="update" src={require('./image/update_icon.png')} />
+                                                                <img onClick={() => { updateCard(card.id, 'category', cardIndex, index) }} className="iconDeleteCardBuild" alt="update" src={require('./image/update_icon.png')} />
                                                             </form>}
                                                     </div>
                                                 )
@@ -681,7 +655,7 @@ const Builder = () => {
                                             <>
                                                 <form className="containerAddCard" onSubmit={handleSubmit(sendNewCard)}>
                                                     <textarea maxLength={container.content_type === "question" ? "250" : container.content_type === "response" && "80"} className="addCardInput" ref={addCardRef} onChange={getValueCard} placeholder={container.content_type === "question" ? "nouvelle question" : container.content_type === "response" ? "nouvelle réponse" : "nouvelle catégorie de réception"} />
-                                                    <button className="addCardButton" onClick={() => { sendNewCard(container.id, container.content_type) }}>Valider</button>
+                                                    <button className="addCardButton" onClick={() => { sendNewCard(container.id, container.content_type, index) }}>Valider</button>
                                                 </form>
                                             </>
                                         }
@@ -698,7 +672,7 @@ const Builder = () => {
                             )
                         })}
                     <div className="containerButtonBuilder">
-                        <p className="textAddContainerBuild">Ajouter une étape</p>
+                        <p id="addStep" className="textAddContainerBuild">Ajouter une étape</p>
                         <div className="contentButtonBuild">
 
                             {containersReverse &&
