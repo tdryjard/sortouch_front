@@ -4,15 +4,13 @@ import './Navbar.scss'
 
 const Navbar = (props) => {
     const [userId, setUserId] = useState()
-    const [modelId] = useState(sessionStorage.getItem('modelId'))
-    const [chatbotName] = useState(sessionStorage.getItem('chatbotName'))
+    const [modelId] = useState(localStorage.getItem('modelId'))
+    const [chatbotName] = useState(localStorage.getItem('chatbotName'))
     const [redirect, setRedirect] = useState(false)
 
     useEffect(() => {
         if (localStorage.getItem('userId')) {
             setUserId(localStorage.getItem('userId'))
-        } else {
-            setUserId(sessionStorage.getItem('userId'))
         }
         const redirect = sessionStorage.getItem('disconnect')
         if(redirect === 'true'){
@@ -24,10 +22,9 @@ const Navbar = (props) => {
     }, [])
 
     const disconnect = () => {
-        sessionStorage.setItem('userId', '')
-        sessionStorage.setItem('modelId', '')
         localStorage.setItem('userId', '')
         localStorage.setItem('modelId', '')
+        localStorage.setItem('token', '')
         sessionStorage.setItem('disconnect', true)
         setTimeout(() => {
             window.location.reload()

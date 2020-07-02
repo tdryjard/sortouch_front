@@ -4,15 +4,13 @@ import './MenuBurger.scss'
 
 const MenuBurger = (props) => {
     const [userId, setUserId] = useState()
-    const [modelId] = useState(sessionStorage.getItem('modelId'))
+    const [modelId] = useState(localStorage.getItem('modelId'))
     const [active, setActive] = useState(false)
     const [redirect, setRedirect] = useState(false)
 
     useEffect(() => {
         if (localStorage.getItem('userId')) {
             setUserId(localStorage.getItem('userId'))
-        } else {
-            setUserId(sessionStorage.getItem('userId'))
         }
         const redirect = sessionStorage.getItem('disconnect')
         if (redirect === 'true') {
@@ -24,10 +22,9 @@ const MenuBurger = (props) => {
     }, [])
 
     const disconnect = () => {
-        sessionStorage.setItem('userId', '')
-        sessionStorage.setItem('modelId', '')
         localStorage.setItem('userId', '')
         localStorage.setItem('modelId', '')
+        localStorage.setItem('token', '')
         sessionStorage.setItem('disconnect', true)
         setTimeout(() => {
             window.location.reload()

@@ -20,9 +20,6 @@ const CheckoutForm = (props) => {
         if (localStorage.getItem('userId')) {
             setToken(localStorage.getItem('token'))
             setUserId(localStorage.getItem('userId'))
-        } else {
-            setToken(sessionStorage.getItem('token'))
-            setUserId(sessionStorage.getItem('userId'))
         }
     }, [])
 
@@ -131,7 +128,7 @@ const CheckoutForm = (props) => {
                     })
                 });
                 if (up) {
-                    sessionStorage.setItem('type', 'expert')
+                    localStorage.setItem('type', 'expert')
                     window.location.reload()
                 }
             })

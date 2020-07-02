@@ -11,8 +11,6 @@ const DocReact = () => {
     useEffect(() => {
         if (localStorage.getItem('userId')) {
             setUserId(localStorage.getItem('userId'))
-        } else {
-            setUserId(sessionStorage.getItem('userId'))
         }
     }, [])
 
@@ -42,7 +40,7 @@ const DocReact = () => {
                     <h4 className="titleContainerSectionDoc">Votre user id : {userId ? userId : <Link to="/connexion" className="connexionDoc">Se connecter</Link>}</h4>
                     <h4 className="titleContainerSectionDoc">Trouver son chatbot id</h4>
                     {userId &&
-                    <p className="textDoc">Se rendre votre <Link style={{color: "rgb(46, 46, 46)"}} to="/models">page model</Link> et allez dans les option de votre chatbot (exemple ci-dessous)</p>}
+                    <p className="textDoc">Se rendre sur <Link style={{color: "rgb(46, 46, 46)"}} to="/models">mes chatbots</Link> et aller dans les options du chatbot (exemple ci-dessous)</p>}
                     <div className="containerStepModelid">
                         <img alt="model id étape 1" src={require('./image/modelid1.png')} className="takeModelId" />
                         <img alt="model id étape 2" src={require('./image/modelid2.png')} className="takeModelId" />
