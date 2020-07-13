@@ -24,10 +24,9 @@ const MenuBurger = (props) => {
     }, [])
 
     const disconnect = () => {
-        sessionStorage.setItem('userId', '')
-        sessionStorage.setItem('modelId', '')
         localStorage.setItem('userId', '')
         localStorage.setItem('modelId', '')
+        localStorage.setItem('type', '')
         sessionStorage.setItem('disconnect', true)
         setTimeout(() => {
             window.location.reload()
