@@ -9,6 +9,8 @@ const Plan = () => {
     useEffect(() => {
         if (localStorage.getItem('userId')) {
             setUserId(localStorage.getItem('userId'))
+        } else {
+            setUserId(sessionStorage.getItem('userId'))
         }
 
     }, [])

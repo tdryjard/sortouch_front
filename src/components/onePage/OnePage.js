@@ -19,7 +19,6 @@ const OnPage = () => {
     const [logo, setLogo] = useState()
     const [changeImg, setChangeImg] = useState(false)
     const [copy, setCopy] = useState(false)
-    const [load, setLoad] = useState(false)
 
     const { editTitle, editDescribe, handleSubmit } = useForm()
 
@@ -28,6 +27,10 @@ const OnPage = () => {
             setUserId(parseInt(localStorage.getItem('userId')))
             setModelId(localStorage.getItem('modelId'))
             setToken(localStorage.getItem('token'))
+        } else {
+            setUserId(parseInt(sessionStorage.getItem('userId')))
+            setModelId(sessionStorage.getItem('modelId'))
+            setToken(sessionStorage.getItem('token'))
         }
     }, [])
 
@@ -35,17 +38,15 @@ const OnPage = () => {
         getOnepage()
     }, [changeTitle, changeDescribe, changeImg])
 
-    const getOnepage = async () => {
+    const getOnepage = () => {
         const name = window.location.href.split('?')[1]
-        const res = await fetch(`${url}/onepage/findByName/${name}`)
+        fetch(`${url}/onepage/findByName/${name}`)
             .then(res => res.json())
             .then(res => {
-                if(res[0]){
-                    if (res[0].title) setTitleValue({ html: res[0].title })
-                    if (res[0].description) setDescribeValue({ html: res[0].description })
-                    setOnepage(res[0])
-                    if (res[0].image_id) getImage(res[0].image_id)
-                }
+                if (res[0].title) setTitleValue({ html: res[0].title })
+                if (res[0].description) setDescribeValue({ html: res[0].description })
+                setOnepage(res[0])
+                if (res[0].image_id) getImage(res[0].image_id)
             })
     }
 
@@ -92,16 +93,12 @@ const OnPage = () => {
         const res = await fetch(`${url}/image/find/${id}`)
         const resJson = await res.json()
         setLogo(resJson[0].base)
-        setLoad(false)
     }
 
     const getFile = (e) => {
         if (e.target.files[0]) {
-            setLoad(true)
             let file_size = e.target.files[0].size;
-            if (file_size > 760000){
-                alert(`l'image ne doit pas dépasser 750ko`)
-            }
+            if (file_size > 760000) alert(`l'image ne doit pas dépasser 750ko`)
             else {
                 e.preventDefault();
                 let file = e.target.files[0];
@@ -139,9 +136,7 @@ const OnPage = () => {
                             image_id: resJson.id
                         })
                     })
-                    if (resPut){
-                        setChangeImg(!changeImg)
-                    }
+                    if (resPut) setChangeImg(!changeImg)
                 }
             }
         }
@@ -156,9 +151,7 @@ const OnPage = () => {
                     base: picture
                 })
             })
-            if (res){
-                setChangeImg(!changeImg)
-            }
+            if (res) setChangeImg(!changeImg)
         }
     };
 
@@ -173,7 +166,7 @@ const OnPage = () => {
 
     return (
         <>
-            {onepage && userId === onepage.user_id ?
+            {onepage && userId === onepage.user_id &&
                 <div className="containerOnPage">
                     {window.innerWidth > 1280 &&
                         <>
@@ -213,7 +206,6 @@ const OnPage = () => {
                                 <img onClick={updateNewTitle} className="iconDeleteCardBuild" alt="update" src={require('../creating_area/builder/image/update_icon.png')} />
                             </form>}
                         <div className="containerLogoOnepage">
-                            {load && <img src={require('./image/loading.gif')} alt="chargement" className="loadOnepage"/> }
                             {logo && <img className="logoOnepage" src={logo} />}
                             <div style={logo && { top: "0px", left: "0px" }} class="upload-btn-wrapper">
                                 <button class="btn">Changer d'image</button>
@@ -248,9 +240,10 @@ const OnPage = () => {
                     <div className="chatbotOnpage">
                         {window.innerWidth > 1280 && onepage ? <Chatbot active={true} userId={onepage.user_id} modelId={onepage.model_id} /> : onepage && <Chatbot userId={onepage.user_id} modelId={onepage.model_id} />}
                     </div>
-                </div>
+                </div>}
 
-            :
+
+            {
                 onepage && userId !== onepage.user_id &&
                 <div className="containerOnPage">
                     <div className="containerLeftOnepage">

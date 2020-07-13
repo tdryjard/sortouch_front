@@ -23,6 +23,10 @@ const CreateModel = (props) => {
             setUserId(localStorage.getItem('userId'))
             setToken(localStorage.getItem('token'))
             setType(localStorage.getItem('type'))
+        } else {
+            setUserId(sessionStorage.getItem('userId'))
+            setToken(sessionStorage.getItem('token'))
+            setType(sessionStorage.getItem('type'))
         }
     }, [])
 

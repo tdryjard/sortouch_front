@@ -12,6 +12,8 @@ const DocEditorWeb = () => {
     useEffect(() => {
         if (localStorage.getItem('userId')) {
             setUserId(localStorage.getItem('userId'))
+        } else if (sessionStorage.getItem('userId')) {
+            setUserId(sessionStorage.getItem('userId'))
         }
     }, [])
 
@@ -28,7 +30,7 @@ const DocEditorWeb = () => {
                 <div className="containerSectionDoc">
                     <h4 className="titleContainerSectionDoc">Rendez-vous sur modifier mon chatbot</h4>
                     <div className="contentSectionDoc">
-                        <p className="textContainerSectionColumnDoc">Chaque page web personnalisée que vous pouvez créer est liée à un modèle de chatbot.<br /><br />Afin de créer et personnaliser votre page web, connectez-vous puis rendez-vous dans "mes chatbot", sélectionnez "modifier" sur le chatbot avec lequel vous souhaitez créer votre page web puis sélectionnez "éditeur de page web"</p>
+                        <p className="textContainerSectionColumnDoc">Chaque page web personnalisée que vous pouvez créer est liée à un modèle de chatbot.<br /><br />Afin de créer et personnaliser votre page web, connectez vous puis rendez-vous dans "mes chatbot", sélectionnez "modifier" sur le chatbot avec lequel vous souhaitez créer votre page web puis sélectionnez "éditeur de page web"</p>
                         <div className="containerImgDoc">
                             <img src={require('./image/select.png')} className="selectChatbotImg" alt="selectionner chatbot" />
                             <img src={require('./image/select2.png')} className="selectChatbotImg2" alt="selectionner type éditeur" />
@@ -36,13 +38,13 @@ const DocEditorWeb = () => {
                     </div>
                 </div>
                 <div className="containerSectionDoc">
-                    <h4 className="titleContainerSectionDoc">Personnaliser le titre et la description d'une page web perso</h4>
+                    <h4 className="titleContainerSectionDoc">Personnalisez le titre et la description de votre page</h4>
                     <div className="contentSectionDocColumn">
                         <p className="textContainerSectionColumnDoc">Appuyez simplement sur le bouton <img className="editButtonDoc" alt="edit bouton" src={require('./image/edit.png')}/> afin d'éditer le titre et la description de votre page web</p>
                     </div>
                 </div>
                 <div className="containerSectionDoc">
-                    <h4 className="titleContainerSectionDoc">Ajouter une image</h4>
+                    <h4 className="titleContainerSectionDoc">Ajoutez une image à votre page web</h4>
                     <div className="contentSectionDocColumn">
                         <p className="textContainerSectionColumnDoc">Sélectionnez <button className="btnDoc">Ajouter image</button> sur la page d'édition puis choisissez l'image qui représente au mieux votre activité</p>
                     </div>

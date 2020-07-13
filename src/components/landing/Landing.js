@@ -36,6 +36,8 @@ const Landing = (props) => {
         if (props.location.query && props.location.query.reload) window.location.reload()
         if (localStorage.getItem('userId')) {
             setUserId(localStorage.getItem('userId'))
+        } else if (sessionStorage.getItem('userId')) {
+            setUserId(sessionStorage.getItem('userId'))
         }
     }, [])
 
@@ -95,11 +97,11 @@ const Landing = (props) => {
                             </div>
                             <div className="contentTextBackCard">
                                 <h4 className="titleBackCardChoice">Prévisualiser</h4>
-                                <p className="textBackCardChoice">Vous pouvez visualiser le chatbot que vous êtes en train de créer en direct</p>
+                                <p className="textBackCardChoice">Vous pouvez visualiser le chatbot que vous êtes entrain de créer en direct</p>
                             </div>
                             <div className="contentTextBackCard">
-                                <h4 className="titleBackCardChoice">Des combinaisons infinies</h4>
-                                <p className="textBackCardChoice">Une infinité de combinaisons de questions-réponses peuvent être créées</p>
+                                <h4 className="titleBackCardChoice">Des combinaisons infinis</h4>
+                                <p className="textBackCardChoice">Une infinité de combinaisons de questions/réponses peuvent être créés</p>
                             </div>
                             <div className="contentTextBackCard">
                                 {!userId ?

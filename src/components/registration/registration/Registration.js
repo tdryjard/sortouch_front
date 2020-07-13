@@ -57,8 +57,8 @@ const Registration = (props) => {
                 const result = await response.json();
 
                 if (result && result.status === 200) {
-                    localStorage.setItem("userId", result.data.id)
-                    localStorage.setItem('token', result.token)
+                    sessionStorage.setItem("userId", result.data.id)
+                    sessionStorage.setItem('token', result.token)
                 }
 
 
@@ -491,7 +491,7 @@ const Registration = (props) => {
                                                                                                                             })
                                                                                                                         })
 
-                                                                                                                        localStorage.setItem("type", 'free')
+                                                                                                                        sessionStorage.setItem("type", 'free')
                                                                                                                         localStorage.setItem('popupModel', true)
                                                                                                                         localStorage.setItem('popupEditeur1', true)
                                                                                                                         localStorage.setItem('popupEditeur2', true)
@@ -522,7 +522,7 @@ const Registration = (props) => {
                     }
 
 
-                    const save = await localStorage.getItem('token')
+                    const save = await sessionStorage.getItem('token')
                     if (save && response) {
                         setTimeout(() => {
                             setRedirect(true)

@@ -91,7 +91,7 @@ const CardModel = (props) => {
     }, [categorys, userId, props.id, token])
 
     const deleteModel = async (modelId) => {
-        if (window.confirm('voulez vous supprimer ce chatbot ainsi que : la page web, les mails et coordonnées récoltées associés ?')) {
+        if (window.confirm('voulez vous supprimer ce model ?')) {
             const deleteMail = await fetch(`${url}/mail/deleteByModel/${userId}/${modelId}`, {
                 method: 'DELETE',
                 headers: {
@@ -190,7 +190,7 @@ const CardModel = (props) => {
                                                     }
                                                 })
                                                 if (result) {
-                                                    localStorage.setItem('modelId', '')
+                                                    sessionStorage.setItem('modelId', '')
                                                     setTimeout(() => {
                                                         window.location.reload()
                                                     }, 100)
@@ -229,8 +229,8 @@ const CardModel = (props) => {
     }
 
     const cardSelectToEditor = (type) => {
-        localStorage.setItem('modelId', props.id)
-        localStorage.setItem('chatbotName', props.name)
+        sessionStorage.setItem('modelId', props.id)
+        sessionStorage.setItem('chatbotName', props.name)
         localStorage.setItem('popupModel', false)
         setTimeout(() => {
             if (type === "editor") setRedirectEditor(true)

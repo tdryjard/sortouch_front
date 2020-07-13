@@ -11,6 +11,8 @@ const PopupPremium = (props) => {
     useEffect(() => {
         if (localStorage.getItem('type')) {
             setType(localStorage.getItem('type'))
+        } else if (sessionStorage.getItem('type')) {
+            setType(sessionStorage.getItem('type'))
         }
     }, [])
 

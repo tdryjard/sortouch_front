@@ -7,7 +7,7 @@ import Chatbot from '../../react_library/src/chatbotArea/ChatBotArea'
 import './area.css'
 
 const Area = () => {
-  const [modelId] = useState(localStorage.getItem('modelId'))
+  const [modelId] = useState(sessionStorage.getItem('modelId'))
   const [userId, setUserId] = useState()
   const [token, setToken] = useState()
 
@@ -15,6 +15,10 @@ const Area = () => {
     if(localStorage.getItem('userId')){
       setUserId(localStorage.getItem('userId'))
       setToken(localStorage.getItem('token'))
+    }
+    if(sessionStorage.getItem('userId')){
+      setUserId(sessionStorage.getItem('userId'))
+      setToken(sessionStorage.getItem('token'))
     }
   }, [])
 

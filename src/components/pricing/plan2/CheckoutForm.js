@@ -19,6 +19,9 @@ const CheckoutForm = (props) => {
         if (localStorage.getItem('userId')) {
             setToken(localStorage.getItem('token'))
             setUserId(localStorage.getItem('userId'))
+        } else {
+            setToken(sessionStorage.getItem('token'))
+            setUserId(sessionStorage.getItem('userId'))
         }
     }, [])
 
@@ -130,7 +133,7 @@ const CheckoutForm = (props) => {
                     })
                 })
                 if (up) {
-                    localStorage.setItem('type', 'standard')
+                    sessionStorage.setItem('type', 'standard')
                     window.location.reload()
                 }
             })

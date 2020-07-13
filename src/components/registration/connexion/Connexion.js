@@ -40,11 +40,19 @@ const Connexion = (props) => {
             const result = await response.json();
 
             if (result.status === 200) {
+                if (valid === true && !(result.data.mdp_generate || result.data.email_generate)) {
                     setType(result.data.type)
                     localStorage.setItem("userId", result.data.id)
                     localStorage.setItem("type", result.data.type)
                     localStorage.setItem('token', result.token)
                     setRedirect(true)
+                } else if (valid === false && !(result.data.mdp_generate || result.data.email_generate)) {
+                    setType(result.data.type)
+                    sessionStorage.setItem("userId", result.data.id)
+                    sessionStorage.setItem("type", result.data.type)
+                    sessionStorage.setItem('token', result.token)
+                    setRedirect(true)
+                }
                 if (result.data.mdp_generate || result.data.email_generate) {
                     setToken(result.token)
                     setUserId(result.data.id)
@@ -91,9 +99,9 @@ const Connexion = (props) => {
                 })
                 const res = await resUpdateUser.json()
                 if (res.alert.type === "success") {
-                    localStorage.setItem("userId", userId)
-                    localStorage.setItem("type", type)
-                    localStorage.setItem('token', token)
+                    sessionStorage.setItem("userId", userId)
+                    sessionStorage.setItem("type", type)
+                    sessionStorage.setItem('token', token)
                     setRedirect(true)
                 } else {
                     setAlert("email ou mot de passe incorrect")
@@ -150,6 +158,13 @@ const Connexion = (props) => {
                         <input ref={connexion} onChange={takeMail} className={alert === "veuillez entrer une email correct" ? "inputLogError" : "inputLog"} placeholder="email" />
                         <input ref={connexion} type="password" onChange={takePassword} className={alert === "veuillez entrer une email correct" || alert === "" ? "inputLog" : "inputLogError"} placeholder="mot de passe" />
                         <p onClick={() => { setResetPassword(true) }} className="linkResetPassword">mot de passe oublié ?</p>
+                        <div className="containerStayConnect">
+                            <div className="checkBox" onClick={() => { setValid(!valid) }}>
+                                {valid === true &&
+                                    <img className="cochCheck" src={require("../image/valid.png")} alt="valid icon" />}
+                            </div>
+                            <p className="textStayConnect">rester connecter</p>
+                        </div>
                         <button type="submit" className="validLog">Connexion</button>
                     </form>
                     <Link to={{ pathname: `/inscription`, query: { pricing: true } }} className="linkRegistration">S'inscrire</Link>

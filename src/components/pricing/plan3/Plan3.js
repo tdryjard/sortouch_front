@@ -17,11 +17,16 @@ const Plan3 = () => {
             setUserId(localStorage.getItem('userId'))
             setToken(localStorage.getItem('token'))
             setType(localStorage.getItem('type'))
+        } else {
+            setUserId(sessionStorage.getItem('userId'))
+            setToken(sessionStorage.getItem('token'))
+            setType(sessionStorage.getItem('type'))
         }
     }, [])
 
     useEffect(() => {
-        if (localStorage.getItem('type')) setType(localStorage.getItem('type'))
+        if (sessionStorage.getItem('type')) setType(sessionStorage.getItem('type'))
+        else if (localStorage.getItem('type')) setType(localStorage.getItem('type'))
     }, [])
 
     return (

@@ -20,13 +20,17 @@ const Pricing = () => {
   const stripePromise = loadStripe('pk_live_u4e03SLJFJMC8k4Bv7g1T3Py00rrpMeJLo');
 
   useEffect(() => {
-    if (localStorage.getItem('type')) setType(localStorage.getItem('type'))
+    if (sessionStorage.getItem('type')) setType(sessionStorage.getItem('type'))
+    else if (localStorage.getItem('type')) setType(localStorage.getItem('type'))
   }, [])
 
   useEffect(() => {
     if (localStorage.getItem('userId')) {
       setUserId(localStorage.getItem('userId'))
       setToken(localStorage.getItem('token'))
+    } else {
+      setUserId(sessionStorage.getItem('userId'))
+      setToken(sessionStorage.getItem('token'))
     }
   }, [])
 
@@ -89,6 +93,7 @@ const Pricing = () => {
 
     if (res) {
       localStorage.setItem('type', '')
+      sessionStorage.setItem('type', '')
       window.location.reload()
     }
   }

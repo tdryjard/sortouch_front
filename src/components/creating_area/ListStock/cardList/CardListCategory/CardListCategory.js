@@ -15,8 +15,11 @@ const CardListDestination = (props) => {
         if(localStorage.getItem('userId')){
             setUserId(localStorage.getItem('userId'))
             setToken(localStorage.getItem('token'))
+        } else {
+            setUserId(sessionStorage.getItem('userId'))
+            setToken(sessionStorage.getItem('token'))
         }
-        setModelId(localStorage.getItem('modelId'))
+        setModelId(sessionStorage.getItem('modelId'))
     }, [])
 
     const joinCategory = () => {

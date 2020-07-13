@@ -12,6 +12,8 @@ const DocEditor = () => {
     useEffect(() => {
         if (localStorage.getItem('userId')) {
             setUserId(localStorage.getItem('userId'))
+        } else if (sessionStorage.getItem('userId')) {
+            setUserId(sessionStorage.getItem('userId'))
         }
     }, [])
 
@@ -29,9 +31,9 @@ const DocEditor = () => {
                     <img src={require('../../landing/image/editor.gif')} alt="editeur video" className="editorMovieDoc"/>
                 </div>
                 <div className="containerSectionDoc">
-                    <h4 className="titleContainerSectionDoc">Sélectionner une réponse</h4>
+                    <h4 className="titleContainerSectionDoc">Selectionner une réponse</h4>
                     <div className="contentSectionDoc">
-                        <p className="textContainerSectionColumnDoc">Afin de pouvoir ajouter de nouvelles interactions, il faut lier celle-ci à une réponse.<br/>Cliquez donc simplement sur la réponse avec laquelle vous souhaitez lier les prochaines interactions </p>
+                        <p className="textContainerSectionColumnDoc">Afin de pouvoir ajouter de nouvelles interactions, il faut lier celle ci à une réponse.<br/>Cliquez donc simplement sur la réponse avec laquelle vous souhaitez lier les prochaines interactions </p>
                         <img className="imgSelectResponse" src={require('./image/select_response.png')} alt="selectionner une réponse"/>
                     </div>
                 </div>
@@ -43,9 +45,9 @@ const DocEditor = () => {
                     </div>
                 </div>
                 <div className="containerSectionDoc">
-                    <h4 className="titleContainerSectionDoc">Ajouter une question, réponse ou catégorie de réception</h4>
+                    <h4 className="titleContainerSectionDoc">Ajouter une question, réponse ou catégorie de réceptions</h4>
                     <div className="contentSectionDocColumn">
-                        <p className="textContainerSectionColumnDoc">Appuyez simplement sur le bouton "+" à droite des conteneurs puis écrivez votre question, réponse ou la catégorie dans laquelle vous souhaitez recevoir la prise de contact liée à la réponse précédente.<br/>Puis appuyez sur ajouter</p>
+                        <p className="textContainerSectionColumnDoc">Appuyez simplement sur le bouton "+" à droite des conteneurs puis écrivez votre question, réponse ou la catégorie dans laquelle vous souhaitez recevoir la prise de contact liée à la réponse précédente.<br/>Pui appuyez sur ajouter</p>
                         <img style={{borderRadius: "50px"}} src={require('./image/button_add.png')} alt="Ajouter une question"/>
                         <img className="imgAddContainerDoc" src={require('./image/textarea.png')} alt="textarea"/>
                     </div>
