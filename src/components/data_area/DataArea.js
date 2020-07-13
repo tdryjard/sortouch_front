@@ -7,7 +7,6 @@ import './DataArea.scss'
 
 
 const DataArea = () => {
-    const [mails, setMails] = useState()
     const [userId, setUserId] = useState()
     const [modelId, setModelId] = useState()
     const [token, setToken] = useState()
@@ -30,6 +29,7 @@ const DataArea = () => {
     const [popup, setPopup] = useState(false)
     const [lastColor, setLastColor] = useState(false)
     const [chooseColor, setChooseColor] = useState(false)
+    const [deleteBool, setDeleteBool] = useState(false)
 
     useEffect(() => {
         setTimeout(() => {
@@ -42,10 +42,6 @@ const DataArea = () => {
             setUserId(localStorage.getItem('userId'))
             setToken(localStorage.getItem('token'))
             setType(localStorage.getItem('type'))
-        } else {
-            setUserId(sessionStorage.getItem('userId'))
-            setToken(sessionStorage.getItem('token'))
-            setType(sessionStorage.getItem('type'))
         }
     }, [])
 
@@ -105,7 +101,7 @@ const DataArea = () => {
                 }
                 else setSortContacts(res)
             })
-    }, [userId, chooseColor])
+    }, [userId])
 
 
     const sort = (param, type) => {
@@ -178,8 +174,8 @@ const DataArea = () => {
         }
     }
 
-    const changeColor = (contactId, color) => {
-        fetch(`${url}/contact/update/${contactId}`, {
+    const changeColor = async (contactId, color, index) => {
+        const change = await fetch(`${url}/contact/update/${contactId}`, {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json',
@@ -190,8 +186,39 @@ const DataArea = () => {
                 color: color
             })
         })
-        setChooseColor(false)
+        if(change){
+            const stock = sortContacts
+            console.log(stock)
+            stock[index].color = color
+            console.log(stock)
+            setSortContacts(stock)
+            setDeleteBool(!deleteBool)
+            setChooseColor(false)
+        }
     }
+
+    const deleteContact = async (id, index) => {
+        if(window.confirm('êtes vous sûr de vouloir supprimer ces coordonnées ?')){
+            const deleted = await fetch(`${url}/contact/delete/${id}`, {
+                method: 'DELETE',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Acces-Control-Allow-Origin': { origin },
+                    'authorization': token
+                }
+            })
+            if(deleted){
+                const stock = sortContacts
+                stock.splice(index, 1)
+                setSortContacts(stock)
+                setDeleteBool(!deleteBool)
+            }
+        }
+    }
+
+    useEffect(() => {
+
+    }, [sortContacts, deleteBool])
 
     useEffect(() => {
         if (contacts && contacts.length > 40 && type === "free") setPopup(true)
@@ -253,6 +280,7 @@ const DataArea = () => {
                     return (
                         <div className={contact.color && index === 0 ? `containerContactMargin${contact.color}` :
                             contact.color ? `containerContact${contact.color}` : index === 0 ? "containerContactMargin" : "containerContact"}>
+                            <img onClick={() => {deleteContact(contact.id, index)}} src={require('./image/delete.png')} alt="supprimer icon" className="deleteData"/>
                             <p className="contentInfoContact">{contact.phone}</p>
                             <p className="contentInfoContact">{contact.email}</p>
                             <div className="containerColors">
@@ -262,11 +290,11 @@ const DataArea = () => {
                                     <div onClick={() => { setChooseColor(!chooseColor); setChooseColorId(contact.id) }} className={`colorIcon${contact.color}`} />}
                                 {chooseColor && chooseColorId === contact.id &&
                                     <div className="containerChoiceColor">
-                                        <div onClick={() => { changeColor(contact.id, "Green") }} className="colorGreen" />
-                                        <div onClick={() => { changeColor(contact.id, "Blue") }} className="colorBlue" />
-                                        <div onClick={() => { changeColor(contact.id, "Orange") }} className="colorOrange" />
-                                        <div onClick={() => { changeColor(contact.id, "Red") }} className="colorRed" />
-                                        <div onClick={() => { changeColor(contact.id, "") }} className="colorWhite" />
+                                        <div onClick={() => { changeColor(contact.id, "Green", index) }} className="colorGreen" />
+                                        <div onClick={() => { changeColor(contact.id, "Blue", index) }} className="colorBlue" />
+                                        <div onClick={() => { changeColor(contact.id, "Orange", index) }} className="colorOrange" />
+                                        <div onClick={() => { changeColor(contact.id, "Red", index) }} className="colorRed" />
+                                        <div onClick={() => { changeColor(contact.id, "", index) }} className="colorWhite" />
                                     </div>}
                             </div>
                         </div>

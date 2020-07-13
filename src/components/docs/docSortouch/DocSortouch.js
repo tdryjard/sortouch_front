@@ -12,8 +12,6 @@ const DocSortouch = () => {
     useEffect(() => {
         if (localStorage.getItem('userId')) {
             setUserId(localStorage.getItem('userId'))
-        } else {
-            setUserId(sessionStorage.getItem('userId'))
         }
     }, [])
 
@@ -45,7 +43,7 @@ const DocSortouch = () => {
                     {window.innerWidth > 1280 && <p className="numberStepDoc">2</p>}
                     <div className="onContentDoc">
                         <p className="textDocSortouch">Se rendre sur la page <Link style={{color: "rgb(46, 46, 46)"}} to="/models">mes chatbots</Link></p>
-                        <p className="textDocSortouch">Puis cliquer sur nouveau chatbot et créer son premier chatbot puis le selectionner</p>
+                        <p className="textDocSortouch">Puis cliquer sur nouveau chatbot et créer son premier chatbot puis le sélectionner</p>
                         <div className="containerImgDoc">
                             <img src={require('./image/add_model.png')} className="imgDocSortouch" alt="créer chatbot" />
                             <img src={require('./image/select_model.png')} className="imgDocSortouch" alt="select chatbot" />
@@ -56,7 +54,7 @@ const DocSortouch = () => {
                     <h4 className="titleStepDoc">Personnaliser son chatbot</h4>
                     {window.innerWidth > 1280 && <p className="numberStepDoc">3</p>}
                     <div className="onContentDoc">
-                        <p className="textDocSortouch">Après selection du chatbot, se rendre sur <Link style={{color: "rgb(46, 46, 46)"}} to="/editeur">l'éditeur</Link></p>
+                        <p className="textDocSortouch">Après sélection du chatbot, se rendre sur <Link style={{color: "rgb(46, 46, 46)"}} to="/editeur">l'éditeur</Link></p>
                         <p className="textDocSortouch">Un guide d'utilisation de l'éditeur est disponible <Link style={{color: "rgb(46, 46, 46)"}} to="/editeur-doc">ici</Link></p>
                     </div>
                 </div>
@@ -76,17 +74,17 @@ const DocSortouch = () => {
                 <div className="contentDocSortouch">
                     <h4 className="titleStepDoc">Consultez les prises de contact avec vous via votre chatbot</h4>
                     <div className="onContentDoc">
-                        <p className="textDocSortouchLast">Vous pouvez retrouver tous vos message dans votre <Link style={{color: "rgb(46, 46, 46)"}} to="/mails">boite de réception</Link></p>
-                        <p className="textDocSortouch">Selectionner une catégorie de réception parmis celles que vous aurez créé</p>
+                        <p className="textDocSortouchLast">Vous pouvez retrouver tous vos messages dans votre <Link style={{color: "rgb(46, 46, 46)"}} to="/mails">boite de réception</Link></p>
+                        <p className="textDocSortouch">Sélectionnez une catégorie de réception parmis celles que vous aurez créées</p>
                         <img src={require('./image/category.png')} className="imgDocSortouchCategory1" alt="exemple category" />
                         <p className="textDocSortouch">Puis consulter les messages laissés par vos visiteurs</p>
                         <img src={require('./image/mail.png')} className="imgDocSortouchCategory" alt="exemple mail" />
                     </div>
                 </div>
                 <div className="contentDocSortouch">
-                    <h4 className="titleStepDoc">Consultez votre base de connée d'email et de numéro de téléphone réceptionnés</h4>
+                    <h4 className="titleStepDoc">Consultez votre base de données d'emails et de numéros de téléphone réceptionnés</h4>
                     <div className="onContentDoc">
-                        <p className="textDocSortouchLast">Vous pouvez retrouver votre base de donnée <Link style={{color: "rgb(46, 46, 46)"}} to="/base-de-donnee">ici</Link></p>
+                        <p className="textDocSortouchLast">Vous pouvez retrouver votre base de données <Link style={{color: "rgb(46, 46, 46)"}} to="/base-de-donnee">ici</Link></p>
                         <img src={require('./image/donnee.png')} className="imgDocSortouchDonnee" alt="exemple base de données" />
                     </div>
                 </div>

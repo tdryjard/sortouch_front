@@ -27,11 +27,8 @@ const Area = () => {
         if(localStorage.getItem('userId')){
             setUserId(localStorage.getItem('userId'))
             setToken(localStorage.getItem('token'))
-        } else {
-            setUserId(sessionStorage.getItem('userId'))
-            setToken(sessionStorage.getItem('token'))
         }
-        setModelId(sessionStorage.getItem('modelId'))
+        setModelId(localStorage.getItem('modelId'))
     }, [])
 
   useEffect(() => {

@@ -7,7 +7,7 @@ const ChoiceEditor = () => {
     const [cardActive, setCardActive] = useState(false)
     const [userId, setUserId] = useState()
     const [modelId, setModelId] = useState()
-    const [createPage, setCreatePage] = useState()
+    const [createPage, setCreatePage] = useState(false)
     const [urlCreate, setUrlCreate] = useState('')
     const [redirect, setRedirect] = useState(false)
     const [urlPage, setUrlPage] = useState()
@@ -20,25 +20,21 @@ const ChoiceEditor = () => {
             setUserId(localStorage.getItem('userId'))
             setModelId(localStorage.getItem('modelId'))
             setToken(localStorage.getItem('token'))
-        } else {
-            setUserId(sessionStorage.getItem('userId'))
-            setModelId(sessionStorage.getItem('modelId'))
-            setToken(sessionStorage.getItem('token'))
         }
     })
 
     const searchOnepage = async () => {
-        const res = await fetch(`${url}/onepage/find/${userId}/${modelId}`)
-            .then(res => res.json())
-            .then(res => {
-                if (res[0]) {
-                    setUrlPage(res[0].name)
-                    setTimeout(() => {
-                        setRedirect(true)
-                    }, 100)
-                }
-                else setCreatePage(true)
-            })
+            const res = await fetch(`${url}/onepage/find/${userId}/${modelId}`)
+                .then(res => res.json())
+                .then(res => {
+                    if (res[0]) {
+                        setUrlPage(res[0].name)
+                        setTimeout(() => {
+                            setRedirect(true)
+                        }, 100)
+                    }
+                    else setCreatePage(true)
+                })
     }
 
     const createPageFunction = async () => {
@@ -108,15 +104,15 @@ const ChoiceEditor = () => {
                         <div class="flip-card-back">
                             <div className="contentTextBackCard">
                                 <h4 className="titleBackCardChoice">Éditer son chatbot</h4>
-                                {window.innerWidth > 1280 && <p className="textBackCardChoice">Accéder à l'éditeur de chatbot et ses différentes outils</p>}
+                                {window.innerWidth > 1280 && <p className="textBackCardChoice">Accéder à l'éditeur de chatbot et ses différents outils</p>}
                             </div>
                             <div className="contentTextBackCard">
                                 <h4 className="titleBackCardChoice">Prévisualiser</h4>
-                                {window.innerWidth > 1280 && <p className="textBackCardChoice">Vous pouvez visualiser le chatbot que vous êtes entrain de créer en direct</p>}
+                                {window.innerWidth > 1280 && <p className="textBackCardChoice">Vous pouvez visualiser le chatbot que vous êtes en train de créer en direct</p>}
                             </div>
                             <div className="contentTextBackCard">
-                                <h4 className="titleBackCardChoice">Des combinaisons infinis</h4>
-                                {window.innerWidth > 1280 && <p className="textBackCardChoice">Une infinité de combinaisons de questions/réponses peuvent être créés</p>}
+                                <h4 className="titleBackCardChoice">Des combinaisons infinies</h4>
+                                {window.innerWidth > 1280 && <p className="textBackCardChoice">Une infinité de combinaisons de questions-réponses peuvent être créées</p>}
                             </div>
                             <div className="contentTextBackCard">
                                 {(window.innerWidth > 1280 || cardActive) && <Link to="/editeur-chatbot" className="buttonLinkChoice">C'est parti</Link>}

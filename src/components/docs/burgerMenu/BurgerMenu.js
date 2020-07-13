@@ -7,13 +7,11 @@ const BurgerMenu = (props) => {
     const [sectionIntegrationActive, setSectionIntegrationActive] = useState(false)
     const [changeMenu, setChangeMenu] = useState(false)
     const [userId, setUserId] = useState()
-    const [modelId] = useState(sessionStorage.getItem('modelId'))
+    const [modelId] = useState(localStorage.getItem('modelId'))
 
     useEffect(() => {
         if (localStorage.getItem('userId')) {
             setUserId(localStorage.getItem('userId'))
-        } else {
-            setUserId(sessionStorage.getItem('userId'))
         }
 
     }, [])

@@ -34,14 +34,8 @@ const MessageBox = (props) => {
             setUserId(localStorage.getItem('userId'))
             setToken(localStorage.getItem('token'))
             setType(localStorage.getItem('type'))
-        } else {
-            setUserId(sessionStorage.getItem('userId'))
-            setToken(sessionStorage.getItem('token'))
-            setType(sessionStorage.getItem('type'))
         }
-        if (sessionStorage.getItem('modelId')) {
-            setModelId(sessionStorage.getItem('modelId'))
-        }
+            setModelId(localStorage.getItem('modelId'))
     }, [])
 
     const getDay = () => {
@@ -145,20 +139,6 @@ const MessageBox = (props) => {
             }, 200)
         }
     }
-
-    const findAll = () => {
-        fetch(`${url}/category/findAll/${userId}/${modelId}`, {
-            method: 'GET',
-            headers: {
-                'Content-Type': 'application/json',
-                'Acces-Control-Allow-Origin': { origin },
-                'authorization': token
-            }
-        })
-            .then(res => res.json())
-            .then(res => setCategorys(res))
-    }
-
 
 
     return (

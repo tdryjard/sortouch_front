@@ -25,10 +25,6 @@ const Partner = () => {
             setUserId(localStorage.getItem('userId'))
             setType(localStorage.getItem('type'))
             setToken(localStorage.getItem('token'))
-        } else {
-            setUserId(sessionStorage.getItem('userId'))
-            setType(sessionStorage.getItem('type'))
-            setToken(sessionStorage.getItem('token'))
         }
     }, [])
 

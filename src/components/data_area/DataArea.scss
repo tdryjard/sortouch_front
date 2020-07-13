@@ -474,6 +474,12 @@
     margin-right: 30%;
 }
 
+.deleteData{
+    height: 35px;
+    width: auto;
+    cursor: pointer;
+}
+
 @media screen and (max-width: 1280px){
     .contentDataArea{
         width: 90%;
@@ -613,5 +619,10 @@
     .arrowChoice{
         width: 13px;
         height: auto;
+    }
+    .deleteData{
+        position: absolute;
+        left: 10px;
+        bottom: 20%;
     }
 }

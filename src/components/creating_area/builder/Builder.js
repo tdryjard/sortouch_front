@@ -42,11 +42,8 @@ const Builder = () => {
         if (localStorage.getItem('userId') && (!userId || !token)) {
             setUserId(localStorage.getItem('userId'))
             setToken(localStorage.getItem('token'))
-        } else if (!userId || !token) {
-            setUserId(sessionStorage.getItem('userId'))
-            setToken(sessionStorage.getItem('token'))
         }
-        if (!modelId) setModelId(sessionStorage.getItem('modelId'))
+        if (!modelId) setModelId(localStorage.getItem('modelId'))
     }, [])
 
     useEffect(() => {
