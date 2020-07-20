@@ -48,7 +48,7 @@ const ChatBotArea = () => {
 
     const printContainers = async () => {
         try{
-            fetch(`${url}/container/findAll/${userId}/${responseSelect}/${modelId}`)
+            fetch(`${url}/chatbot/container/findAll/${userId}/${responseSelect}/${modelId}`)
             .then(res => res.json())
             .then(res => {
                 if(res.length){
@@ -77,7 +77,7 @@ const ChatBotArea = () => {
         let stock = []
         for(let i = 0; i < res.length + 3; i++){
             if(res[i]){
-                let resulted = await fetch(`${url}/relation/findCardQuestion/${res[i].id}/${userId}/${modelId}`, {
+                let resulted = await fetch(`${url}/chatbot/relation/findCardQuestion/${res[i].id}/${userId}/${modelId}`, {
                     method: 'GET',
                     headers: {
                     'Content-Type' :'application/json'
@@ -99,7 +99,7 @@ const ChatBotArea = () => {
         let stockRes = []
         for(let i = 0; i < res.length + 3; i++){
             if(res[i]){
-                let resulted = await fetch(`${url}/relation/findCardResponse/${res[i].id}/${userId}/${modelId}`, {
+                let resulted = await fetch(`${url}/chatbot/relation/findCardResponse/${res[i].id}/${userId}/${modelId}`, {
                     method: 'GET',
                     headers: {
                     'Content-Type' :'application/json'
@@ -113,7 +113,7 @@ const ChatBotArea = () => {
         let stockCategory = []
         for(let i = 0; i < res.length + 3; i++){
             if(typeof res[i] === 'object'){
-                let resulted = await fetch(`${url}/relation/findCardCategory/${res[i].id}/${userId}/${modelId}`, {
+                let resulted = await fetch(`${url}/chatbot/relation/findCardCategory/${res[i].id}/${userId}/${modelId}`, {
                     method: 'GET',
                     headers: {
                     'Content-Type' :'application/json'

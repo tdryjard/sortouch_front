@@ -93,7 +93,7 @@ const CardListResponse = (props) => {
 
     const joinResponse = () => {
         let valid = true
-        fetch(`${url}/relation/find/${userId}/${modelId}`)
+        fetch(`${url}/chatbot/relation/find/${userId}/${modelId}`)
         .then(res => res.json())
         .then(res => {
             for(let i = 0; i < res.length; i++){

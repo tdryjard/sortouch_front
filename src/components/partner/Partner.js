@@ -116,9 +116,11 @@ const Partner = () => {
     const generateAccount = async (password, mail) => {
         const response = await fetch(`${url}/user/create`, {
             method: 'POST',
+            credentials: 'include',
             headers: {
                 'Content-Type': 'application/json',
-                'Acces-Control-Allow-Origin': { origin }
+                'Access-Control-Allow-Credentials': true,
+                'authorization': token
             },
             body: JSON.stringify({
                 email: mail,
@@ -135,9 +137,12 @@ const Partner = () => {
                     email: mail,
                     password: password
                 }),
+                credentials: 'include',
                 headers: {
-                    'Content-Type': 'application/json'
-                }
+                    'Content-Type': 'application/json',
+                    'Access-Control-Allow-Credentials': true,
+                    'authorization': token
+                },
             });
             // Récupération du status de la requête
             const result = await response.json();
@@ -151,13 +156,14 @@ const Partner = () => {
             if (data.data) {
                 let modelCreate = await fetch(url + '/model/add', {
                     method: 'POST',
+                    credentials: 'include',
                     headers: {
                         'Content-Type': 'application/json',
-                        'Acces-Control-Allow-Origin': { origin },
+                        'Access-Control-Allow-Credentials': true,
                         'authorization': token
                     },
                     body: JSON.stringify({
-                        name: 'exemple chatbot',
+                        name: 'exemple',
                         user_id: userIdGenerate
                     })
                 });
@@ -166,9 +172,10 @@ const Partner = () => {
                 if (modelCreate) {
                     let postContainerOne = await fetch(url + '/container/create', {
                         method: 'POST',
+                        credentials: 'include',
                         headers: {
                             'Content-Type': 'application/json',
-                            'Acces-Control-Allow-Origin': { origin },
+                            'Access-Control-Allow-Credentials': true,
                             'authorization': token
                         },
                         body: JSON.stringify({
@@ -182,9 +189,10 @@ const Partner = () => {
                     if (postContainerOne) {
                         const questionFirstResponse = await fetch(url + '/question/add', {
                             method: 'POST',
+                            credentials: 'include',
                             headers: {
                                 'Content-Type': 'application/json',
-                                'Acces-Control-Allow-Origin': { origin },
+                                'Access-Control-Allow-Credentials': true,
                                 'authorization': token
                             },
                             body: JSON.stringify({
@@ -200,9 +208,10 @@ const Partner = () => {
                             const containerFirstId = containerFirst.id
                             const relationFirst = await fetch(`${url}/relation/add`, {
                                 method: 'POST',
+                                credentials: 'include',
                                 headers: {
                                     'Content-Type': 'application/json',
-                                    'Acces-Control-Allow-Origin': { origin },
+                                    'Access-Control-Allow-Credentials': true,
                                     'authorization': token
                                 },
                                 body: JSON.stringify({
@@ -231,9 +240,10 @@ const Partner = () => {
                                 if (postContainerTwo) {
                                     const responseFirst = await fetch(url + '/response/add', {
                                         method: 'POST',
+                                        credentials: 'include',
                                         headers: {
                                             'Content-Type': 'application/json',
-                                            'Acces-Control-Allow-Origin': { origin },
+                                            'Access-Control-Allow-Credentials': true,
                                             'authorization': token
                                         },
                                         body: JSON.stringify({
@@ -245,9 +255,10 @@ const Partner = () => {
                                     if (responseFirst) {
                                         const responseTwo = await fetch(url + '/response/add', {
                                             method: 'POST',
+                                            credentials: 'include',
                                             headers: {
                                                 'Content-Type': 'application/json',
-                                                'Acces-Control-Allow-Origin': { origin },
+                                                'Access-Control-Allow-Credentials': true,
                                                 'authorization': token
                                             },
                                             body: JSON.stringify({
@@ -263,9 +274,10 @@ const Partner = () => {
                                             const containerTwoId = containerTwo.id
                                             const relationTwo = await fetch(`${url}/relation/add`, {
                                                 method: 'POST',
+                                                credentials: 'include',
                                                 headers: {
                                                     'Content-Type': 'application/json',
-                                                    'Acces-Control-Allow-Origin': { origin },
+                                                    'Access-Control-Allow-Credentials': true,
                                                     'authorization': token
                                                 },
                                                 body: JSON.stringify({
@@ -280,9 +292,10 @@ const Partner = () => {
                                                 const responseTwoId = responseTwoJson.id
                                                 const relationThree = await fetch(`${url}/relation/add`, {
                                                     method: 'POST',
+                                                    credentials: 'include',
                                                     headers: {
                                                         'Content-Type': 'application/json',
-                                                        'Acces-Control-Allow-Origin': { origin },
+                                                        'Access-Control-Allow-Credentials': true,
                                                         'authorization': token
                                                     },
                                                     body: JSON.stringify({
@@ -295,9 +308,10 @@ const Partner = () => {
                                                 if (relationThree) {
                                                     let postContainerThree = await fetch(url + '/container/create', {
                                                         method: 'POST',
+                                                        credentials: 'include',
                                                         headers: {
                                                             'Content-Type': 'application/json',
-                                                            'Acces-Control-Allow-Origin': { origin },
+                                                            'Access-Control-Allow-Credentials': true,
                                                             'authorization': token
                                                         },
                                                         body: JSON.stringify({
@@ -311,9 +325,10 @@ const Partner = () => {
                                                     if (postContainerThree) {
                                                         let postContainerFour = await fetch(url + '/container/create', {
                                                             method: 'POST',
+                                                            credentials: 'include',
                                                             headers: {
                                                                 'Content-Type': 'application/json',
-                                                                'Acces-Control-Allow-Origin': { origin },
+                                                                'Access-Control-Allow-Credentials': true,
                                                                 'authorization': token
                                                             },
                                                             body: JSON.stringify({
@@ -327,9 +342,10 @@ const Partner = () => {
                                                         if (postContainerFour) {
                                                             const questionTwo = await fetch(url + '/question/add', {
                                                                 method: 'POST',
+                                                                credentials: 'include',
                                                                 headers: {
                                                                     'Content-Type': 'application/json',
-                                                                    'Acces-Control-Allow-Origin': { origin },
+                                                                    'Access-Control-Allow-Credentials': true,
                                                                     'authorization': token
                                                                 },
                                                                 body: JSON.stringify({
@@ -345,9 +361,10 @@ const Partner = () => {
                                                                 const questionTwoId = questionTwoJson.id
                                                                 const relationThree = await fetch(`${url}/relation/add`, {
                                                                     method: 'POST',
+                                                                    credentials: 'include',
                                                                     headers: {
                                                                         'Content-Type': 'application/json',
-                                                                        'Acces-Control-Allow-Origin': { origin },
+                                                                        'Access-Control-Allow-Credentials': true,
                                                                         'authorization': token
                                                                     },
                                                                     body: JSON.stringify({
@@ -362,9 +379,10 @@ const Partner = () => {
                                                                     const containerFourId = containerFourJson.id
                                                                     const relationThree = await fetch(`${url}/relation/add`, {
                                                                         method: 'POST',
+                                                                        credentials: 'include',
                                                                         headers: {
                                                                             'Content-Type': 'application/json',
-                                                                            'Acces-Control-Allow-Origin': { origin },
+                                                                            'Access-Control-Allow-Credentials': true,
                                                                             'authorization': token
                                                                         },
                                                                         body: JSON.stringify({
@@ -393,9 +411,10 @@ const Partner = () => {
                                                                         if (containerFive) {
                                                                             let containerSix = await fetch(url + '/container/create', {
                                                                                 method: 'POST',
+                                                                                credentials: 'include',
                                                                                 headers: {
                                                                                     'Content-Type': 'application/json',
-                                                                                    'Acces-Control-Allow-Origin': { origin },
+                                                                                    'Access-Control-Allow-Credentials': true,
                                                                                     'authorization': token
                                                                                 },
                                                                                 body: JSON.stringify({
@@ -409,9 +428,10 @@ const Partner = () => {
                                                                             if (containerSix) {
                                                                                 const responseThree = await fetch(url + '/response/add', {
                                                                                     method: 'POST',
+                                                                                    credentials: 'include',
                                                                                     headers: {
                                                                                         'Content-Type': 'application/json',
-                                                                                        'Acces-Control-Allow-Origin': { origin },
+                                                                                        'Access-Control-Allow-Credentials': true,
                                                                                         'authorization': token
                                                                                     },
                                                                                     body: JSON.stringify({
@@ -423,9 +443,10 @@ const Partner = () => {
                                                                                 if (responseThree) {
                                                                                     const responseFour = await fetch(url + '/response/add', {
                                                                                         method: 'POST',
+                                                                                        credentials: 'include',
                                                                                         headers: {
                                                                                             'Content-Type': 'application/json',
-                                                                                            'Acces-Control-Allow-Origin': { origin },
+                                                                                            'Access-Control-Allow-Credentials': true,
                                                                                             'authorization': token
                                                                                         },
                                                                                         body: JSON.stringify({
@@ -441,9 +462,10 @@ const Partner = () => {
                                                                                         const containerFiveId = containerFiveJson.id
                                                                                         const relationThree = await fetch(`${url}/relation/add`, {
                                                                                             method: 'POST',
+                                                                                            credentials: 'include',
                                                                                             headers: {
                                                                                                 'Content-Type': 'application/json',
-                                                                                                'Acces-Control-Allow-Origin': { origin },
+                                                                                                'Access-Control-Allow-Credentials': true,
                                                                                                 'authorization': token
                                                                                             },
                                                                                             body: JSON.stringify({
@@ -460,9 +482,10 @@ const Partner = () => {
                                                                                             const containerSixId = containerSixJson.id
                                                                                             const relationThree = await fetch(`${url}/relation/add`, {
                                                                                                 method: 'POST',
+                                                                                                credentials: 'include',
                                                                                                 headers: {
                                                                                                     'Content-Type': 'application/json',
-                                                                                                    'Acces-Control-Allow-Origin': { origin },
+                                                                                                    'Access-Control-Allow-Credentials': true,
                                                                                                     'authorization': token
                                                                                                 },
                                                                                                 body: JSON.stringify({
@@ -475,9 +498,10 @@ const Partner = () => {
                                                                                             if (relationThree) {
                                                                                                 const categoryFirst = await fetch(url + '/category/add', {
                                                                                                     method: 'POST',
+                                                                                                    credentials: 'include',
                                                                                                     headers: {
                                                                                                         'Content-Type': 'application/json',
-                                                                                                        'Acces-Control-Allow-Origin': { origin },
+                                                                                                        'Access-Control-Allow-Credentials': true,
                                                                                                         'authorization': token
                                                                                                     },
                                                                                                     body: JSON.stringify({
@@ -489,9 +513,10 @@ const Partner = () => {
                                                                                                 if (categoryFirst) {
                                                                                                     const categoryTwo = await fetch(url + '/category/add', {
                                                                                                         method: 'POST',
+                                                                                                        credentials: 'include',
                                                                                                         headers: {
                                                                                                             'Content-Type': 'application/json',
-                                                                                                            'Acces-Control-Allow-Origin': { origin },
+                                                                                                            'Access-Control-Allow-Credentials': true,
                                                                                                             'authorization': token
                                                                                                         },
                                                                                                         body: JSON.stringify({
@@ -503,9 +528,10 @@ const Partner = () => {
                                                                                                     if (categoryTwo) {
                                                                                                         let containerSeven = await fetch(url + '/container/create', {
                                                                                                             method: 'POST',
+                                                                                                            credentials: 'include',
                                                                                                             headers: {
                                                                                                                 'Content-Type': 'application/json',
-                                                                                                                'Acces-Control-Allow-Origin': { origin },
+                                                                                                                'Access-Control-Allow-Credentials': true,
                                                                                                                 'authorization': token
                                                                                                             },
                                                                                                             body: JSON.stringify({
@@ -523,9 +549,10 @@ const Partner = () => {
                                                                                                             const containerSevenId = containerSevenJson.id
                                                                                                             const relationFour = await fetch(`${url}/relation/add`, {
                                                                                                                 method: 'POST',
+                                                                                                                credentials: 'include',
                                                                                                                 headers: {
                                                                                                                     'Content-Type': 'application/json',
-                                                                                                                    'Acces-Control-Allow-Origin': { origin },
+                                                                                                                    'Access-Control-Allow-Credentials': true,
                                                                                                                     'authorization': token
                                                                                                                 },
                                                                                                                 body: JSON.stringify({
@@ -538,9 +565,10 @@ const Partner = () => {
                                                                                                             if (relationFour) {
                                                                                                                 let containerHeight = await fetch(url + '/container/create', {
                                                                                                                     method: 'POST',
+                                                                                                                    credentials: 'include',
                                                                                                                     headers: {
                                                                                                                         'Content-Type': 'application/json',
-                                                                                                                        'Acces-Control-Allow-Origin': { origin },
+                                                                                                                        'Access-Control-Allow-Credentials': true,
                                                                                                                         'authorization': token
                                                                                                                     },
                                                                                                                     body: JSON.stringify({
@@ -558,9 +586,10 @@ const Partner = () => {
                                                                                                                     const containerHeightId = containerHeightJson.id
                                                                                                                     const relationFour = await fetch(`${url}/relation/add`, {
                                                                                                                         method: 'POST',
+                                                                                                                        credentials: 'include',
                                                                                                                         headers: {
                                                                                                                             'Content-Type': 'application/json',
-                                                                                                                            'Acces-Control-Allow-Origin': { origin },
+                                                                                                                            'Access-Control-Allow-Credentials': true,
                                                                                                                             'authorization': token
                                                                                                                         },
                                                                                                                         body: JSON.stringify({
@@ -573,8 +602,10 @@ const Partner = () => {
                                                                                                                     if (relationFour) {
                                                                                                                         const resUpdateUser = await fetch(`${url}/user/update/${userIdGenerate}`, {
                                                                                                                             method: 'PUT',
+                                                                                                                            credentials: 'include',
                                                                                                                             headers: {
                                                                                                                                 'Content-Type': 'application/json',
+                                                                                                                                'Access-Control-Allow-Credentials': true,
                                                                                                                                 'authorization': token
                                                                                                                             },
                                                                                                                             body: JSON.stringify({
@@ -617,28 +648,40 @@ const Partner = () => {
         }
     }
 
+    const disconnect = () => {
+        localStorage.setItem('userId', '')
+        localStorage.setItem('modelId', '')
+        localStorage.setItem('token', '')
+        localStorage.setItem('type', '')
+        sessionStorage.setItem('disconnect', true)
+        setTimeout(() => {
+            window.location.reload()
+        }, 100)
+    }
+
 
     return (
         <div className="containerPartner">
             <title>Sortouch : partenaire</title>
             <div className="containerNav">
                 <Link to="/" className="linkNavbar" >Menu</Link>
-                <Link to="/installer-wordpress" className="linkNavbar" >Installer chatbot sur Wordpress</Link>
-                <Link to="/installer-react" className="linkNavbar" >Installer chatbot sur ReactJs</Link>
+                <Link to="/installer-wordpress" className="linkNavbar" >Installer secrétaire sur Wordpress</Link>
+                <Link to="/installer-react" className="linkNavbar" >Installer secrétaire sur ReactJs</Link>
+                {window.innerWidth > 1280 && <button onClick={disconnect} className="disconnect" >Déconnexion</button>}
             </div>
             <div className="contentPartner">
                 {window.innerWidth > 1280 ?
-                <div className="containerStats">
-                    <p className="gainPartner">{nbStandard} formules standard</p>
-                    <p className="gainPartner">{nbExpert} formules expert</p>
-                    <p className="totalGainPartner">{gain}€ revenus mensuel</p>
-                </div>
-                :
-                <div className="containerStats">
-                    <p style={{fontSize: "15px"}} className="gainPartner">{nbStandard} formules standard</p>
-                    <p style={{fontSize: "15px"}} className="gainPartner">{nbExpert} formules expert</p>
-                    <p style={{fontSize: "15px"}} className="totalGainPartner">{gain}€ revenus mensuel</p>
-                </div>}
+                    <div className="containerStats">
+                        <p className="gainPartner">{nbStandard} formules standard</p>
+                        <p className="gainPartner">{nbExpert} formules expert</p>
+                        <p className="totalGainPartner">{gain}€ revenus mensuel</p>
+                    </div>
+                    :
+                    <div className="containerStats">
+                        <p style={{ fontSize: "15px" }} className="gainPartner">{nbStandard} formules standard</p>
+                        <p style={{ fontSize: "15px" }} className="gainPartner">{nbExpert} formules expert</p>
+                        <p style={{ fontSize: "15px" }} className="totalGainPartner">{gain}€ revenus mensuel</p>
+                    </div>}
                 <div className="containerOngletsPartner">
                     <button onClick={() => { setOngletSelect('client sub'); setClientActive(0) }} className={ongletSelect === 'client sub' ? "ongletPartnerSubActive" : "ongletPartnerSub"}>Comptes activés</button>
                     <button onClick={() => { setOngletSelect('client generate'); setClientActive(0) }} className={ongletSelect === 'client generate' ? "ongletPartnerSubActive" : "ongletPartnerSub"}>Comptes générés</button>
@@ -657,7 +700,7 @@ const Partner = () => {
                                     <p style={{ fontSize: "22px" }} className="littleRowPartner">Mot de passe généré</p>
                                     <p style={{ fontSize: "22px" }} className="littleRowPartner">Email générée</p>
                                     <p style={{ fontSize: "22px" }} className="littleRowPartner">user id</p>
-                                    <p style={{ fontSize: "22px" }} className="littleRowPartner">chatbot id</p>
+                                    <p style={{ fontSize: "22px" }} className="littleRowPartner">model id</p>
                                 </div>
                                 {resGenerate.length > 0 ? resGenerate.map((res, index) => {
                                     return (
@@ -669,8 +712,8 @@ const Partner = () => {
                                             <p className="littleRowPartner">{modelsId[index]}</p>
                                         </div>)
                                 })
-                                :
-                                <p className="noResultPartner">Aucun compte activé</p>}
+                                    :
+                                    <p className="noResultPartner">Aucun compte activé</p>}
                             </>
                             :
                             <>
@@ -687,8 +730,8 @@ const Partner = () => {
                                             <p className="titleRowPartner3">{res.type === "standard" ? `+${60 * 30 / 100}€ par mois` : res.type === "expert" ? `+${80 * 30 / 100}€ par mois` : "pas abonné"}</p>
                                         </div>)
                                 })
-                                :
-                                <p className="noResultPartner">Aucun compte généré</p>}
+                                    :
+                                    <p className="noResultPartner">Aucun compte généré</p>}
                             </>
                         :
                         !(ongletSelect === 'client generate') ?
@@ -699,11 +742,11 @@ const Partner = () => {
                                     return (
                                         !clientActive ?
                                             <div onClick={() => { setClientActive(res.id) }} className="rowPartner">
-                                                <p style={{margin: "5px", fontSize: "18px"}} className="titleRowPartnerMobile">{res.name_client}</p>
+                                                <p style={{ margin: "5px", fontSize: "18px" }} className="titleRowPartnerMobile">{res.name_client}</p>
                                             </div>
                                             : clientActive === res.id &&
                                             <div className="containerClientPartnerActive">
-                                                <button onClick={() => {setClientActive(0)}} className="backViewClientPartner">Voir autres clients</button>
+                                                <button onClick={() => { setClientActive(0) }} className="backViewClientPartner">Voir autres clients</button>
                                                 <p className="titleRowPartnerMobile">Nom du client</p>
                                                 <p className="littleRowPartnerMobile">{res.name_client}</p>
                                                 <p className="titleRowPartnerMobile">Type d'abonnement</p>
@@ -712,8 +755,8 @@ const Partner = () => {
                                                 <p className="littleRowPartnerMobile">{res.type === "standard" ? `+${60 * 30 / 100}€ par mois` : res.type === "expert" ? `+${80 * 30 / 100}€ par mois` : "pas abonné"}</p>
                                             </div>)
                                 })
-                                :
-                                <p className="noResultPartner">Aucun compte activé</p>}
+                                    :
+                                    <p className="noResultPartner">Aucun compte activé</p>}
                             </>
                             :
                             <>
@@ -723,11 +766,11 @@ const Partner = () => {
                                     return (
                                         !clientActive ?
                                             <div onClick={() => { setClientActive(res.id) }} className="rowPartner">
-                                                <p style={{margin: "5px", fontSize: "18px"}} className="titleRowPartnerMobile">{res.name_client}</p>
+                                                <p style={{ margin: "5px", fontSize: "18px" }} className="titleRowPartnerMobile">{res.name_client}</p>
                                             </div>
                                             : clientActive === res.id &&
                                             <div className="containerClientPartnerActive">
-                                                <button onClick={() => {setClientActive(0)}} className="backViewClientPartner">Voir autres clients</button>
+                                                <button onClick={() => { setClientActive(0) }} className="backViewClientPartner">Voir autres clients</button>
                                                 <p className="titleRowPartnerMobile">Nom du client</p>
                                                 <p className="littleRowPartnerMobile">{res.name_client}</p>
                                                 <p className="titleRowPartnerMobile">Mot de passe généré</p>
@@ -736,15 +779,16 @@ const Partner = () => {
                                                 <p className="littleRowPartnerMobile">{res.email_generate}</p>
                                                 <p className="titleRowPartnerMobile">User id</p>
                                                 <p className="littleRowPartnerMobile">{res.id}</p>
-                                                <p className="titleRowPartnerMobile">Chatbot id</p>
+                                                <p className="titleRowPartnerMobile">model id</p>
                                                 <p className="littleRowPartnerMobile">{modelsId[index]}</p>
                                             </div>)
                                 })
-                                :
-                                <p className="noResultPartner">Aucun compte généré</p>}
+                                    :
+                                    <p className="noResultPartner">Aucun compte généré</p>}
                             </>}
                 </div>
             </div>
+            {window.innerWidth < 1280 && <button style={{ marginBottom: "50px" }} onClick={disconnect} className="disconnect" >Déconnexion</button>}
         </div>
     )
 }

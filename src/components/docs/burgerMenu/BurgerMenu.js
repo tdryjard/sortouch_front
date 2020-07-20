@@ -31,7 +31,7 @@ const BurgerMenu = (props) => {
                     </div>
 
                     <div className="contentNameSectionMenu">
-                        <Link to="/editeur-doc" className={props.link === "editor" ? "linkMenuDocEditorOn" : "linkMenuDocEditor"}>Éditeur de chatbot</Link>
+                        <Link to="/editeur-doc" className={props.link === "editor" ? "linkMenuDocEditorOn" : "linkMenuDocEditor"}>Éditeur de secrétaire</Link>
                     </div>
                     <div className="contentNameSectionMenu">
                         <Link to="/editeur-web-doc" className={props.link === "editor-web" ? "linkMenuDocEditorOn" : "linkMenuDocEditor"}>Éditeur de page web</Link>

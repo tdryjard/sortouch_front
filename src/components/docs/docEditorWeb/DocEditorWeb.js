@@ -3,7 +3,7 @@ import Menu from '../menu/Menu'
 import MenuBurger from '../burgerMenu/BurgerMenu'
 import Navbar from '../../navbar/Navbar'
 import { Link } from 'react-router-dom'
-import Footer from '../../footer/Footer'
+import PopupCookie from '../../popupCookie/PopupCookie'
 import './DocEditorWeb.scss'
 
 const DocEditorWeb = () => {
@@ -18,6 +18,7 @@ const DocEditorWeb = () => {
 
     return (
         <div className="containerDoc">
+        {localStorage.getItem('cookie') !== 'accept' && <PopupCookie />}
             <title>Sortouch : tuto éditeur</title>
             <meta name="description" content="Apprendre à éditer son premier chatbot en suivant un simple guide. Apprendre comment ajouter des question, réponses et boite de réception à votre chatbot" />
             {window.innerWidth > 1280 && <Navbar type={"doc"} />}

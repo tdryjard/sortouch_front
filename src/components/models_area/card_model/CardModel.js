@@ -40,7 +40,7 @@ const CardModel = (props) => {
 
     useEffect(() => {
         if (userId && props.id) {
-            fetch(`${url}/category/findAll/${userId}/${props.id}`, {
+            fetch(`${url}/chatbot/category/findAll/${userId}/${props.id}`, {
                 headers: {
                     'Content-Type': 'application/json',
                     'Access-Control-Allow-Origin': `${origin}`,
@@ -59,11 +59,12 @@ const CardModel = (props) => {
             for (let n = 0; n < categorys.length; n++) {
                 if (categorys[n].id) {
                     fetch(`${url}/mail/find/${userId}/${props.id}/${categorys[n].id}`, {
+                        credentials: 'include',
                         headers: {
                             'Content-Type': 'application/json',
-                            'Access-Control-Allow-Origin': `${origin}`,
+                            'Access-Control-Allow-Credentials': true,
                             'authorization': token
-                        }
+                        },
                     })
                         .then(res => res.json())
                         .then(res => {
@@ -91,12 +92,13 @@ const CardModel = (props) => {
     }, [categorys, userId, props.id, token])
 
     const deleteModel = async (modelId) => {
-        if (window.confirm('voulez vous supprimer ce chatbot ainsi que : la page web, les mails et coordonnées récoltées associés ?')) {
+        if (window.confirm('voulez vous supprimer ce modèle ainsi que : la page web, les mails et coordonnées récoltées associés ?')) {
             const deleteMail = await fetch(`${url}/mail/deleteByModel/${userId}/${modelId}`, {
                 method: 'DELETE',
+                credentials: 'include',
                 headers: {
                     'Content-Type': 'application/json',
-                    'Acces-Control-Allow-Origin': { origin },
+                    'Access-Control-Allow-Credentials': true,
                     'authorization': token
                 }
             })
@@ -104,9 +106,10 @@ const CardModel = (props) => {
             if (deleteMail) {
                 const deleteRelation = await fetch(`${url}/relation/deleteByModel/${userId}/${modelId}`, {
                     method: 'DELETE',
+                    credentials: 'include',
                     headers: {
                         'Content-Type': 'application/json',
-                        'Acces-Control-Allow-Origin': { origin },
+                        'Access-Control-Allow-Credentials': true,
                         'authorization': token
                     }
                 })
@@ -114,9 +117,10 @@ const CardModel = (props) => {
                 if (deleteRelation) {
                     const deleteContainer = await fetch(`${url}/container/deleteByModel/${userId}/${modelId}`, {
                         method: 'DELETE',
+                        credentials: 'include',
                         headers: {
                             'Content-Type': 'application/json',
-                            'Acces-Control-Allow-Origin': { origin },
+                            'Access-Control-Allow-Credentials': true,
                             'authorization': token
                         }
                     })
@@ -124,36 +128,40 @@ const CardModel = (props) => {
                     if (deleteContainer) {
                         const deleteQuestion = await fetch(`${url}/question/deleteByModel/${userId}/${modelId}`, {
                             method: 'DELETE',
+                            credentials: 'include',
                             headers: {
                                 'Content-Type': 'application/json',
-                                'Acces-Control-Allow-Origin': { origin },
+                                'Access-Control-Allow-Credentials': true,
                                 'authorization': token
                             }
                         })
                         if (deleteQuestion) {
                             const deleteResponse = await fetch(`${url}/response/deleteByModel/${userId}/${modelId}`, {
                                 method: 'DELETE',
+                                credentials: 'include',
                                 headers: {
                                     'Content-Type': 'application/json',
-                                    'Acces-Control-Allow-Origin': { origin },
+                                    'Access-Control-Allow-Credentials': true,
                                     'authorization': token
                                 }
                             })
                             if (deleteResponse) {
                                 const deleteContact = await fetch(`${url}/contact/deleteByModel/${userId}/${modelId}`, {
                                     method: 'DELETE',
+                                    credentials: 'include',
                                     headers: {
                                         'Content-Type': 'application/json',
-                                        'Acces-Control-Allow-Origin': { origin },
+                                        'Access-Control-Allow-Credentials': true,
                                         'authorization': token
                                     }
                                 })
                                 if (deleteContact) {
                                     const deleteCategory = await fetch(`${url}/category/deleteByModel/${userId}/${modelId}`, {
                                         method: 'DELETE',
+                                        credentials: 'include',
                                         headers: {
                                             'Content-Type': 'application/json',
-                                            'Acces-Control-Allow-Origin': { origin },
+                                            'Access-Control-Allow-Credentials': true,
                                             'authorization': token
                                         }
                                     })
@@ -161,9 +169,10 @@ const CardModel = (props) => {
                                         const resOnepage = await fetch(`${url}/onepage/find/${userId}/${modelId}`)
                                         const deleteOnepage = await fetch(`${url}/onepage/deleteByModel/${userId}/${modelId}`, {
                                             method: 'DELETE',
+                                            credentials: 'include',
                                             headers: {
                                                 'Content-Type': 'application/json',
-                                                'Acces-Control-Allow-Origin': { origin },
+                                                'Access-Control-Allow-Credentials': true,
                                                 'authorization': token
                                             }
                                         })
@@ -173,9 +182,10 @@ const CardModel = (props) => {
                                             if (resOnepageJson[0]) {
                                                 deleteImage = await fetch(`${url}/image/delete/${resOnepageJson[0].image_id}`, {
                                                     method: 'DELETE',
+                                                    credentials: 'include',
                                                     headers: {
                                                         'Content-Type': 'application/json',
-                                                        'Acces-Control-Allow-Origin': { origin },
+                                                        'Access-Control-Allow-Credentials': true,
                                                         'authorization': token
                                                     }
                                                 })
@@ -183,9 +193,10 @@ const CardModel = (props) => {
                                             if (deleteImage || !resOnepageJson[0]) {
                                                 const result = await fetch(`${url}/model/delete/${modelId}/${userId}`, {
                                                     method: 'DELETE',
+                                                    credentials: 'include',
                                                     headers: {
                                                         'Content-Type': 'application/json',
-                                                        'Acces-Control-Allow-Origin': { origin },
+                                                        'Access-Control-Allow-Credentials': true,
                                                         'authorization': token
                                                     }
                                                 })
@@ -216,9 +227,10 @@ const CardModel = (props) => {
         const modelId = parseInt(event.target.id.replace('model', ''))
         fetch(`${url}/model/update/${modelId}/${userId}`, {
             method: 'PUT',
+            credentials: 'include',
             headers: {
                 'Content-Type': 'application/json',
-                'Access-Control-Allow-Origin': `${origin}`,
+                'Access-Control-Allow-Credentials': true,
                 'authorization': token
             },
             body: JSON.stringify({
@@ -265,7 +277,7 @@ const CardModel = (props) => {
                 :
                 <div className={props.index === 0 ? "contentCardModelOptionFirst" : "contentCardModelOption"}>
                     <div className="containerHeadoptionCardModel">
-                        <p className="modelId">chatbot id : {props.id}</p>
+                        <p className="modelId">model id : {props.id}</p>
                         <img onClick={() => { setOptionSelected(false) }} className="croixIcon" src={require('./image/croix_icon.png')} alt="option" />
                     </div>
                     <ContentEditable

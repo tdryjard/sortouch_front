@@ -239,6 +239,7 @@
         width: 85%;
         height: 80%;
         margin: 0;
+        overflow: hidden;
     }
     .contentCategory{
         width: 75%;
@@ -277,8 +278,10 @@
 }
 
 .loadingGifMessage{
-    width: 30%;
-    height: auto;
+    position: absolute;
+    top: 25%;
+    height: 50%;
+    width: auto;
     border-radius: 50px;
     margin-left: 35%;
     margin-top: 50px;

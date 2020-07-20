@@ -28,7 +28,7 @@ const Plan4 = () => {
         } else if (!validatePhone(phone)) {
             alert('numéro de téléphone non valide')
         } else {
-            const result = await fetch(`${url}/mail/create`, {
+            const result = await fetch(`${url}/chatbot/mail/create`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -89,7 +89,7 @@ const Plan4 = () => {
                     <h2 className="titlePlan2">Sur mesure</h2>
                     <div className="containerOptionPlan4">
                         <img src={require('../image/valid.png')} alt="valid" className="validImg" />
-                        <p className="textOptionPlan">Création de votre chatbot sur mesure</p>
+                        <p className="textOptionPlan">Création de votre secrétaire personnelle sur mesure</p>
                     </div>
                     <div className="containerOptionPlan4">
                         <img src={require('../image/valid.png')} alt="valid" className="validImg" />
@@ -101,7 +101,7 @@ const Plan4 = () => {
                     </div>
                     <div className="containerOptionPlan4">
                         <img src={require('../image/valid.png')} alt="valid" className="validImg" />
-                        <p className="textOptionPlan">Intégration du chatbot sur votre site par nos soins</p>
+                        <p className="textOptionPlan">Intégration de votre secrétaire sur votre site par nos soins</p>
                     </div>
                     <div className="containerOptionPlan4">
                         <img src={require('../image/valid.png')} alt="valid" className="validImg" />

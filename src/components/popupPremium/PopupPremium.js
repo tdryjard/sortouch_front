@@ -26,7 +26,7 @@ const PopupPremium = (props) => {
                     <div className="containerPopup">
                         <img alt="icon" src={require('./image/icon.svg')} className="iconPopup" />
                         <img onClick={() => { setActive(!active) }} alt="close" src={require('../models_area/image/cross.png')} className="crossPopupPremium" />
-                        <p className="textPopup"> Votre compte {type} ne vous permet de créer seulement 1 chatbot<br/>Veuillez modifier le chatbot déja créé</p>
+                        <p className="textPopup"> Votre compte {type} ne vous permet de créer seulement 1 modèle<br/>Veuillez modifier le modèle déja créé</p>
                         <Link to="/tarifs" className="buttonPopup">Voir les offres</Link>
                     </div>
                 </>
@@ -36,7 +36,7 @@ const PopupPremium = (props) => {
                     <div className="containerPopup">
                         <img alt="icon" src={require('./image/icon.svg')} className="iconPopup" />
                         <img onClick={() => { setActive(!active) }} alt="close" src={require('../models_area/image/cross.png')} className="crossPopupPremium" />
-                        <p className="textPopup"> Votre compte expert ne vous permet de créer seulement 3 chatbot<br/>Veuillez nous contacter pour une formule sur mesure</p>
+                        <p className="textPopup"> Votre compte expert ne vous permet de créer seulement 3 mdoèle<br/>Veuillez nous contacter pour une formule sur mesure</p>
                         <Link to="/tarifs" className="buttonPopup">Voir les offres</Link>
                     </div>
                 </>

@@ -40,7 +40,7 @@ const OnPage = () => {
         const res = await fetch(`${url}/onepage/findByName/${name}`)
             .then(res => res.json())
             .then(res => {
-                if(res[0]){
+                if (res[0]) {
                     if (res[0].title) setTitleValue({ html: res[0].title })
                     if (res[0].description) setDescribeValue({ html: res[0].description })
                     setOnepage(res[0])
@@ -63,8 +63,10 @@ const OnPage = () => {
         const newTitle = titleValue.html.replace(/&nbsp;/gi, '').replace(/<div><br><\/div>/gi, '').replace(/<p><br><\/p>/gi, '').replace(/<div>/gi, '').replace(/<\/div>/gi, '').replace(/&amp;/gi, '&')
         const res = await fetch(`${url}/onepage/update/${userId}/${modelId}`, {
             method: 'PUT',
+            credentials: 'include',
             headers: {
                 'Content-Type': 'application/json',
+                'Access-Control-Allow-Credentials': true,
                 'authorization': token
             },
             body: JSON.stringify({
@@ -77,8 +79,10 @@ const OnPage = () => {
     const updateNewDescribe = async () => {
         const res = await fetch(`${url}/onepage/update/${userId}/${modelId}`, {
             method: 'PUT',
+            credentials: 'include',
             headers: {
                 'Content-Type': 'application/json',
+                'Access-Control-Allow-Credentials': true,
                 'authorization': token
             },
             body: JSON.stringify({
@@ -99,7 +103,7 @@ const OnPage = () => {
         if (e.target.files[0]) {
             setLoad(true)
             let file_size = e.target.files[0].size;
-            if (file_size > 760000){
+            if (file_size > 760000) {
                 alert(`l'image ne doit pas dépasser 750ko`)
             }
             else {
@@ -119,8 +123,10 @@ const OnPage = () => {
             if (picture) {
                 const res = await fetch(`${url}/image/create`, {
                     method: 'POST',
+                    credentials: 'include',
                     headers: {
                         'Content-Type': 'application/json',
+                        'Access-Control-Allow-Credentials': true,
                         'authorization': token
                     },
                     body: JSON.stringify({
@@ -131,15 +137,17 @@ const OnPage = () => {
                     const resJson = await res.json()
                     const resPut = await fetch(`${url}/onepage/update/${userId}/${modelId}`, {
                         method: 'PUT',
+                        credentials: 'include',
                         headers: {
                             'Content-Type': 'application/json',
+                            'Access-Control-Allow-Credentials': true,
                             'authorization': token
                         },
                         body: JSON.stringify({
                             image_id: resJson.id
                         })
                     })
-                    if (resPut){
+                    if (resPut) {
                         setChangeImg(!changeImg)
                     }
                 }
@@ -148,15 +156,17 @@ const OnPage = () => {
         else {
             const res = await fetch(`${url}/image/update/${onepage.image_id}`, {
                 method: 'PUT',
+                credentials: 'include',
                 headers: {
                     'Content-Type': 'application/json',
+                    'Access-Control-Allow-Credentials': true,
                     'authorization': token
                 },
                 body: JSON.stringify({
                     base: picture
                 })
             })
-            if (res){
+            if (res) {
                 setChangeImg(!changeImg)
             }
         }
@@ -165,11 +175,11 @@ const OnPage = () => {
     function clipboard() {
         /* Get the text field */
         var copyText = `https://sortouch.co/web?${window.location.href.split('?')[1]}`
-      
+
         navigator.clipboard.writeText(copyText)
-      
+
         setCopy(true)
-      }
+    }
 
     return (
         <>
@@ -179,17 +189,17 @@ const OnPage = () => {
                         <>
                             <Link to="/editeur-chatbot" className="buttonLinkOnepage">Éditer le chatbot</Link>
                             {!copy ?
-                            <button onClick={clipboard} className="buttonLinkOnepage2">Partager sa page</button>
-                            :
-                            <button onClick={clipboard} className="buttonLinkOnepage2">Copié !</button>}
+                                <button onClick={clipboard} className="buttonLinkOnepage2">Partager sa page</button>
+                                :
+                                <button onClick={clipboard} className="buttonLinkOnepage2">Copié !</button>}
                         </>}
                     {window.innerWidth < 1280 &&
                         <div className="containerButtonOnepage">
                             <Link to="/editeur-chatbot" className="buttonLinkOnepage">Éditer le chatbot</Link>
                             {!copy ?
-                            <button onClick={clipboard} className="buttonLinkOnepage2">Partager sa page</button>
-                            :
-                            <button onClick={clipboard} className="buttonLinkOnepage2">Copié !</button>}
+                                <button onClick={clipboard} className="buttonLinkOnepage2">Partager sa page</button>
+                                :
+                                <button onClick={clipboard} className="buttonLinkOnepage2">Copié !</button>}
                         </div>
                     }
                     <div className="containerLeftOnepage">
@@ -213,7 +223,7 @@ const OnPage = () => {
                                 <img onClick={updateNewTitle} className="iconDeleteCardBuild" alt="update" src={require('../creating_area/builder/image/update_icon.png')} />
                             </form>}
                         <div className="containerLogoOnepage">
-                            {load && <img src={require('./image/loading.gif')} alt="chargement" className="loadOnepage"/> }
+                            {load && <img src={require('./image/loading.gif')} alt="chargement" className="loadOnepage" />}
                             {logo && <img className="logoOnepage" src={logo} />}
                             <div style={logo && { top: "0px", left: "0px" }} class="upload-btn-wrapper">
                                 <button class="btn">Changer d'image</button>
@@ -250,7 +260,7 @@ const OnPage = () => {
                     </div>
                 </div>
 
-            :
+                :
                 onepage && userId !== onepage.user_id &&
                 <div className="containerOnPage">
                     <div className="containerLeftOnepage">

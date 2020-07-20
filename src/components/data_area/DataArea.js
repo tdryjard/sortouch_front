@@ -4,6 +4,7 @@ import MenuBurger from '../menuBurger/MenuBurger'
 import PopupPremium from '../popupPremium/PopupPremium'
 import url from '../../api/url'
 import './DataArea.scss'
+import ExpireToken from '../expireToken/ExpireToken'
 
 
 const DataArea = () => {
@@ -46,54 +47,41 @@ const DataArea = () => {
     }, [])
 
     useEffect(() => {
-        fetch(`${url}/model/findAll/${userId}`, {
+        fetch(`${url}/chatbot/category/findAll/${userId}/${modelId}`, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
-                'Acces-Control-Allow-Origin': { origin },
-                'authorization': token
-            }
-        })
-            .then(res => res.json())
-            .then(res => setModels(res))
-    }, [userId, token])
-
-    useEffect(() => {
-        fetch(`${url}/category/findAll/${userId}/${modelId}`, {
-            method: 'GET',
-            headers: {
-                'Content-Type': 'application/json',
-                'Acces-Control-Allow-Origin': { origin },
                 'authorization': token
             }
         })
             .then(res => res.json())
             .then(res => {
+                if(res.status === 400) tokenExpire()
                 setCategorys(res)
                 if (!categorySelect && res[0]) setCategorySelect(res[0].id)
             })
-    }, [userId, modelId])
 
-    useEffect(() => {
         fetch(`${url}/contact/findByUser/${userId}`, {
             method: 'GET',
+            credentials: 'include',
             headers: {
                 'Content-Type': 'application/json',
-                'Acces-Control-Allow-Origin': { origin },
+                'Access-Control-Allow-Credentials': true,
                 'authorization': token
             }
         })
             .then(res => res.json())
             .then(res => {
+                if(res.status === 400) tokenExpire()
                 if (type === "free" && res.length > 50) res.length = 50
                 if (type === "standard" && res.length > 5000) res.length = 5000
                 if (type === "expert" && res.length > 10000) res.length = 10000
                 setContacts(res)
-                if(lastColor !== chooseColor){
+                if (lastColor !== chooseColor) {
                     let resultSort = []
-                    for(let sortI = 0; sortI < sortContacts.length; sortI++){
-                        for(let resI = 0; resI < res.length; resI++){
-                            if(res[resI].id === sortContacts[sortI].id) resultSort.push(res[resI])
+                    for (let sortI = 0; sortI < sortContacts.length; sortI++) {
+                        for (let resI = 0; resI < res.length; resI++) {
+                            if (res[resI].id === sortContacts[sortI].id) resultSort.push(res[resI])
                         }
                     }
                     setSortContacts(resultSort)
@@ -101,7 +89,27 @@ const DataArea = () => {
                 }
                 else setSortContacts(res)
             })
-    }, [userId])
+
+        fetch(`${url}/model/findAll/${userId}`, {
+            method: 'GET',
+            credentials: 'include',
+            headers: {
+                'Content-Type': 'application/json',
+                'Access-Control-Allow-Credentials': true,
+                'authorization': token
+            }
+        })
+            .then(res => res.json())
+            .then(res => {
+                if(res.status === 400) tokenExpire()
+                setModels(res)
+            })
+
+    }, [userId, modelId, token])
+
+    useEffect(() => {
+
+    }, [models, contacts, categorys])
 
 
     const sort = (param, type) => {
@@ -177,20 +185,20 @@ const DataArea = () => {
     const changeColor = async (contactId, color, index) => {
         const change = await fetch(`${url}/contact/update/${contactId}`, {
             method: 'PUT',
+            credentials: 'include',
             headers: {
                 'Content-Type': 'application/json',
-                'Access-Control-Allow-Origin': `${origin}`,
+                'Access-Control-Allow-Credentials': true,
                 'authorization': token
             },
             body: JSON.stringify({
                 color: color
             })
         })
-        if(change){
+        if (change) {
+            if(change.status === 400) tokenExpire()
             const stock = sortContacts
-            console.log(stock)
             stock[index].color = color
-            console.log(stock)
             setSortContacts(stock)
             setDeleteBool(!deleteBool)
             setChooseColor(false)
@@ -198,16 +206,18 @@ const DataArea = () => {
     }
 
     const deleteContact = async (id, index) => {
-        if(window.confirm('êtes vous sûr de vouloir supprimer ces coordonnées ?')){
+        if (window.confirm('êtes vous sûr de vouloir supprimer ces coordonnées ?')) {
             const deleted = await fetch(`${url}/contact/delete/${id}`, {
                 method: 'DELETE',
+                credentials: 'include',
                 headers: {
                     'Content-Type': 'application/json',
-                    'Acces-Control-Allow-Origin': { origin },
+                    'Access-Control-Allow-Credentials': true,
                     'authorization': token
                 }
             })
-            if(deleted){
+            if (deleted) {
+                if(deleted.status === 400) tokenExpire()
                 const stock = sortContacts
                 stock.splice(index, 1)
                 setSortContacts(stock)
@@ -224,6 +234,18 @@ const DataArea = () => {
         if (contacts && contacts.length > 40 && type === "free") setPopup(true)
         if (contacts && contacts.length > 9500 && type === "standard") setPopup(true)
     }, [contacts, type])
+
+    const tokenExpire = () => {
+        localStorage.setItem('userId', '')
+        localStorage.setItem('modelId', '')
+        localStorage.setItem('token', '')
+        localStorage.setItem('type', '')
+        localStorage.setItem('expireToken', true)
+        sessionStorage.setItem('disconnect', true)
+        setTimeout(() => {
+            window.location.reload()
+        }, 100)
+    }
 
     return (
         <div className="containerModelArea">
@@ -280,7 +302,7 @@ const DataArea = () => {
                     return (
                         <div className={contact.color && index === 0 ? `containerContactMargin${contact.color}` :
                             contact.color ? `containerContact${contact.color}` : index === 0 ? "containerContactMargin" : "containerContact"}>
-                            <img onClick={() => {deleteContact(contact.id, index)}} src={require('./image/delete.png')} alt="supprimer icon" className="deleteData"/>
+                            <img onClick={() => { deleteContact(contact.id, index) }} src={require('./image/delete.png')} alt="supprimer icon" className="deleteData" />
                             <p className="contentInfoContact">{contact.phone}</p>
                             <p className="contentInfoContact">{contact.email}</p>
                             <div className="containerColors">

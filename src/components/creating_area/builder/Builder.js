@@ -52,8 +52,9 @@ const Builder = () => {
 
     const printContainers = async () => {
         try {
-            const resJson = await fetch(`${url}/container/findAll/${userId}/${responseSelect}/${modelId}`)
+            const resJson = await fetch(`${url}/chatbot/container/findAll/${userId}/${responseSelect}/${modelId}`)
             const res = await resJson.json()
+            if(res.status === 400) tokenExpire()
             const storageContainer = await storageContainers
             if (res.length) {
                 const stockRes = res.slice().reverse()
@@ -110,7 +111,7 @@ const Builder = () => {
             if (res[i]) {
                 let result = []
                 if (res[i].content_type === "question") {
-                    const resNoJson = await fetch(`${url}/relation/findCardQuestion/${res[i].id}/${userId}/${modelId}`)
+                    const resNoJson = await fetch(`${url}/chatbot/relation/findCardQuestion/${res[i].id}/${userId}/${modelId}`)
                     result = await resNoJson.json()
                 }
                 else result = { none: `pas de question container id ${i}` }
@@ -123,7 +124,7 @@ const Builder = () => {
             if (res[i]) {
                 let result = []
                 if (res[i].content_type === "response") {
-                    const resNoJson = await fetch(`${url}/relation/findCardResponse/${res[i].id}/${userId}/${modelId}`)
+                    const resNoJson = await fetch(`${url}/chatbot/relation/findCardResponse/${res[i].id}/${userId}/${modelId}`)
                     result = await resNoJson.json()
                 }
                 else result = { none: `pas de réponse container id ${i}` }
@@ -136,7 +137,7 @@ const Builder = () => {
             if (res[i]) {
                 let result = []
                 if (res[i].content_type === "category") {
-                    const resNoJson = await fetch(`${url}/relation/findCardCategory/${res[i].id}/${userId}/${modelId}`)
+                    const resNoJson = await fetch(`${url}/chatbot/relation/findCardCategory/${res[i].id}/${userId}/${modelId}`)
                     result = await resNoJson.json()
                 }
                 else result = { none: `pas de catégorie container id ${i}` }
@@ -156,9 +157,10 @@ const Builder = () => {
                 try {
                     let postContainerOne = await fetch(url + '/container/create', {
                         method: 'POST',
+                        credentials: 'include',
                         headers: {
                             'Content-Type': 'application/json',
-                            'Acces-Control-Allow-Origin': { origin },
+                            'Access-Control-Allow-Credentials': true,
                             'authorization': token
                         },
                         body: JSON.stringify({
@@ -181,9 +183,10 @@ const Builder = () => {
             try {
                 let postContainer = await fetch(url + '/container/create', {
                     method: 'POST',
+                    credentials: 'include',
                     headers: {
                         'Content-Type': 'application/json',
-                        'Acces-Control-Allow-Origin': { origin },
+                        'Access-Control-Allow-Credentials': true,
                         'authorization': token
                     },
                     body: JSON.stringify({
@@ -254,18 +257,20 @@ const Builder = () => {
     const deleteRelationQuestion = async (containerId, cardId, index) => {
         const res = await fetch(`${url}/relation/deleteQuestionCard/${containerId}/${cardId}/${userId}/${modelId}`, {
             method: 'DELETE',
+            credentials: 'include',
             headers: {
                 'Content-Type': 'application/json',
-                'Acces-Control-Allow-Origin': { origin },
+                'Access-Control-Allow-Credentials': true,
                 'authorization': token
             }
         })
         if (res) {
             const res2 = await fetch(`${url}/question/delete/${cardId}/${userId}/${modelId}`, {
                 method: 'DELETE',
+                credentials: 'include',
                 headers: {
                     'Content-Type': 'application/json',
-                    'Acces-Control-Allow-Origin': { origin },
+                    'Access-Control-Allow-Credentials': true,
                     'authorization': token
                 }
             })
@@ -282,18 +287,20 @@ const Builder = () => {
         event.stopPropagation();
         const res = await fetch(`${url}/relation/deleteResponseCard/${containerId}/${cardId}/${userId}/${modelId}`, {
             method: 'DELETE',
+            credentials: 'include',
             headers: {
                 'Content-Type': 'application/json',
-                'Acces-Control-Allow-Origin': { origin },
+                'Access-Control-Allow-Credentials': true,
                 'authorization': token
             }
         })
         if (res) {
             const res2 = await fetch(`${url}/response/delete/${cardId}/${userId}/${modelId}`, {
                 method: 'DELETE',
+                credentials: 'include',
                 headers: {
                     'Content-Type': 'application/json',
-                    'Acces-Control-Allow-Origin': { origin },
+                    'Access-Control-Allow-Credentials': true,
                     'authorization': token
                 }
             })
@@ -311,18 +318,20 @@ const Builder = () => {
     const deleteCategory = async (containerId, cardId, index) => {
         const res = await fetch(`${url}/relation/delete/${containerId}/${userId}/${modelId}`, {
             method: 'DELETE',
+            credentials: 'include',
             headers: {
                 'Content-Type': 'application/json',
-                'Acces-Control-Allow-Origin': { origin },
+                'Access-Control-Allow-Credentials': true,
                 'authorization': token
             }
         })
         if (res) {
             const res2 = await fetch(`${url}/category/delete/${cardId}/${userId}/${modelId}`, {
                 method: 'DELETE',
+                credentials: 'include',
                 headers: {
                     'Content-Type': 'application/json',
-                    'Acces-Control-Allow-Origin': { origin },
+                    'Access-Control-Allow-Credentials': true,
                     'authorization': token
                 }
             })
@@ -339,9 +348,10 @@ const Builder = () => {
     const deleteContainer = async (containerId) => {
         const res = await fetch(`${url}/container/delete/${containerId}/${userId}/${modelId}`, {
             method: 'DELETE',
+            credentials: 'include',
             headers: {
                 'Content-Type': 'application/json',
-                'Acces-Control-Allow-Origin': { origin },
+                'Access-Control-Allow-Credentials': true,
                 'authorization': token
             }
         })
@@ -366,9 +376,10 @@ const Builder = () => {
         if (containerType === "question") {
             await fetch(`${url}/question/add`, {
                 method: 'POST',
+                credentials: 'include',
                 headers: {
                     'Content-Type': 'application/json',
-                    'Acces-Control-Allow-Origin': { origin },
+                    'Access-Control-Allow-Credentials': true,
                     'authorization': token
                 },
                 body: JSON.stringify({
@@ -381,9 +392,10 @@ const Builder = () => {
                 .then(res => {
                     resRelation = fetch(`${url}/relation/add`, {
                         method: 'POST',
+                        credentials: 'include',
                         headers: {
                             'Content-Type': 'application/json',
-                            'Acces-Control-Allow-Origin': { origin },
+                            'Access-Control-Allow-Credentials': true,
                             'authorization': token
                         },
                         body: JSON.stringify({
@@ -401,9 +413,10 @@ const Builder = () => {
         } else if (containerType === "response") {
             fetch(`${url}/response/add`, {
                 method: 'POST',
+                credentials: 'include',
                 headers: {
                     'Content-Type': 'application/json',
-                    'Acces-Control-Allow-Origin': { origin },
+                    'Access-Control-Allow-Credentials': true,
                     'authorization': token
                 },
                 body: JSON.stringify({
@@ -416,9 +429,10 @@ const Builder = () => {
                 .then(res => {
                     fetch(`${url}/relation/add`, {
                         method: 'POST',
+                        credentials: 'include',
                         headers: {
                             'Content-Type': 'application/json',
-                            'Acces-Control-Allow-Origin': { origin },
+                            'Access-Control-Allow-Credentials': true,
                             'authorization': token
                         },
                         body: JSON.stringify({
@@ -437,9 +451,10 @@ const Builder = () => {
         } else if (containerType === "category") {
             fetch(`${url}/category/add`, {
                 method: 'POST',
+                credentials: 'include',
                 headers: {
                     'Content-Type': 'application/json',
-                    'Acces-Control-Allow-Origin': { origin },
+                    'Access-Control-Allow-Credentials': true,
                     'authorization': token
                 },
                 body: JSON.stringify({
@@ -452,9 +467,10 @@ const Builder = () => {
                 .then(res => {
                     resRelation = fetch(`${url}/relation/add`, {
                         method: 'POST',
+                        credentials: 'include',
                         headers: {
                             'Content-Type': 'application/json',
-                            'Acces-Control-Allow-Origin': { origin },
+                            'Access-Control-Allow-Credentials': true,
                             'authorization': token
                         },
                         body: JSON.stringify({
@@ -483,9 +499,10 @@ const Builder = () => {
         if (type === "question") {
             let res = await fetch(`${url}/question/update/${cardId}/${userId}/${modelId}`, {
                 method: 'PUT',
+                credentials: 'include',
                 headers: {
                     'Content-Type': 'application/json',
-                    'Access-Control-Allow-Origin': `${origin}`,
+                    'Access-Control-Allow-Credentials': true,
                     'authorization': token
                 },
                 body: JSON.stringify({
@@ -503,9 +520,10 @@ const Builder = () => {
         if (type === "response") {
             let res = await fetch(`${url}/response/update/${cardId}/${userId}/${modelId}`, {
                 method: 'PUT',
+                credentials: 'include',
                 headers: {
                     'Content-Type': 'application/json',
-                    'Access-Control-Allow-Origin': `${origin}`,
+                    'Access-Control-Allow-Credentials': true,
                     'authorization': token
                 },
                 body: JSON.stringify({
@@ -523,9 +541,10 @@ const Builder = () => {
         if (type === "category") {
             let res = await fetch(`${url}/category/update/${cardId}/${userId}/${modelId}`, {
                 method: 'PUT',
+                credentials: 'include',
                 headers: {
                     'Content-Type': 'application/json',
-                    'Access-Control-Allow-Origin': `${origin}`,
+                    'Access-Control-Allow-Credentials': true,
                     'authorization': token
                 },
                 body: JSON.stringify({
@@ -551,6 +570,18 @@ const Builder = () => {
         if (localStorage.getItem('popupEditeur1') === "true") {
             localStorage.setItem('popupEditeur1', false)
         }
+    }
+
+    const tokenExpire = () => {
+        localStorage.setItem('userId', '')
+        localStorage.setItem('modelId', '')
+        localStorage.setItem('token', '')
+        localStorage.setItem('type', '')
+        localStorage.setItem('expireToken', true)
+        sessionStorage.setItem('disconnect', true)
+        setTimeout(() => {
+            window.location.reload()
+        }, 100)
     }
 
     return (
@@ -616,8 +647,6 @@ const Builder = () => {
                                                                 />
                                                                 <img onClick={() => { updateCard(card.id, 'response', cardIndex, index) }} className="iconDeleteCardBuild" alt="update" src={require('./image/update_icon.png')} />
                                                             </form>}
-                                                        {window.location.innerWidth > 1280 && cardsRes[index][cardsRes[index].length - 1].id === card.id && popupSelect === true &&
-                                                            <img src={require('./image/popupSelect.png')} className="crossPopupEditor" />}
                                                     </div>)
                                             })
                                         }
@@ -661,8 +690,6 @@ const Builder = () => {
                                         !Array.isArray(cardsCategory[index]) && !(cardsRes[index] && container.content_type === "response" && cardsRes[index].length > 3) && !(cardsQuest[index] && container.content_type === "question" && cardsQuest[index].length > 0) &&
                                         <div className="contentIconCardBuild">
                                             <img id={`connect${container.id}`} onClick={() => { connect(container.id) }} className={containerAddCard !== container.id ? "imgConnectActive" : "imgConnect"} alt="ajouter une interaction" src={require('./image/plus_icon.png')} />
-                                            {index === 1 && (localStorage.getItem('popupEditeur1') === "true") &&
-                                                <img src={require('./image/popupRes.png')} className="crossPopupEditor" />}
                                         </div>
                                     }
                                 </div>
@@ -695,8 +722,6 @@ const Builder = () => {
                                             <p className="textAddBuild">réception</p>
                                         </div>
                                         : null}
-                                    {window.location.innerWidth > 1280 && popupStep === true &&
-                                        <img src={require('./image/popupStep.png')} className="crossPopupEditor" />}
                                 </div>}
                         </div>
                     </div>

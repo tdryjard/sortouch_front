@@ -70,7 +70,7 @@ const ChatBotArea = (props) => {
         let wordSplit = word.toLowerCase().split('')
         let resReturn = []
         if (wordSplit.length > 2) {
-            fetch(`${url}/response/findAll/${props.userId}/${props.modelId}`)
+            fetch(`https://sortouch-back.herokuapp.com/chatbot/response/findAll/${props.userId}/${props.modelId}`)
                 .then(res => res.json())
                 .then(res => {
                     for (let i = 0; i < res.length; i++) {
@@ -109,7 +109,7 @@ const ChatBotArea = (props) => {
         } else if (!validatePhone(phone)) {
             alert('numéro de téléphone non valide')
         } else {
-            const result = await fetch(`${url}/mail/create`, {
+            const result = await fetch(`https://sortouch-back.herokuapp.com/chatbot/mail/create`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -126,7 +126,7 @@ const ChatBotArea = (props) => {
                     date: dateChar
                 })
             });
-            const result2 = await fetch(`${url}/contact/create`, {
+            const result2 = await fetch(`https://sortouch-back.herokuapp.com/chatbot/contact/create`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -169,7 +169,7 @@ const ChatBotArea = (props) => {
     const printContainers = async () => {
         if (lastResponse !== responseSelect) {
             try {
-                fetch(`${url}/container/findAll/${props.userId}/${responseSelect}/${props.modelId}`)
+                fetch(`https://sortouch-back.herokuapp.com/chatbot/container/findAll/${props.userId}/${responseSelect}/${props.modelId}`)
                     .then(res => res.json())
                     .then(res => {
                         if ((containers.length > 0) && beforeSelect[0] !== 0) {
@@ -197,7 +197,7 @@ const ChatBotArea = (props) => {
             if (res[i]) {
                 let result = []
                 if (res[i].content_type === "question") {
-                    const resNoJson = await fetch(`${url}/relation/findCardQuestion/${res[i].id}/${props.userId}/${props.modelId}`)
+                    const resNoJson = await fetch(`https://sortouch-back.herokuapp.com/chatbot/relation/findCardQuestion/${res[i].id}/${props.userId}/${props.modelId}`)
                     result = await resNoJson.json()
                 }
                 else result = { none: `pas de question container id ${i}` }
@@ -210,7 +210,7 @@ const ChatBotArea = (props) => {
             if (res[i]) {
                 let result = []
                 if (res[i].content_type === "response") {
-                    const resNoJson = await fetch(`${url}/relation/findCardResponse/${res[i].id}/${props.userId}/${props.modelId}`)
+                    const resNoJson = await fetch(`https://sortouch-back.herokuapp.com/chatbot/relation/findCardResponse/${res[i].id}/${props.userId}/${props.modelId}`)
                     result = await resNoJson.json()
                 }
                 else result = { none: `pas de réponse container id ${i}` }
@@ -223,7 +223,7 @@ const ChatBotArea = (props) => {
             if (res[i]) {
                 let result = []
                 if (res[i].content_type === "category") {
-                    const resNoJson = await fetch(`${url}/relation/findCardCategory/${res[i].id}/${props.userId}/${props.modelId}`)
+                    const resNoJson = await fetch(`https://sortouch-back.herokuapp.com/chatbot/relation/findCardCategory/${res[i].id}/${props.userId}/${props.modelId}`)
                     result = await resNoJson.json()
                 }
                 else result = { none: `pas de categorie container id ${i}` }
@@ -302,7 +302,7 @@ const ChatBotArea = (props) => {
 
 
     const getColor = async () => {
-        const resFind = await fetch(`${url}/model/findAll/${props.userId}`, {
+        const resFind = await fetch(`https://sortouch-back.herokuapp.com/model/findAll/${props.userId}`, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
@@ -324,12 +324,14 @@ const ChatBotArea = (props) => {
     }, [color])
 
     let width = '90%'
-    let height = '93%'
-    let bottom = '2.5%'
-    if (window.innerWidth > 1000) {
+    let height = '85vh'
+    let marginTop = '30px'
+    let marginBottom = '50px'
+    if (window.innerWidth > 1280) {
         width = '420px'
-        height = '75%'
-        bottom = '8%'
+        height = '70vh'
+        marginTop = '0'
+        marginBottom = '0'
     }
 
     let containerChatbot = {
@@ -339,13 +341,13 @@ const ChatBotArea = (props) => {
         flexDirection: 'column',
         height: height,
         width: width,
-        position: 'fixed',
-        bottom: bottom,
-        right: '4%',
+        marginTop: marginTop,
+        marginBottom, marginBottom,
+        position: 'relative',
         borderRadius: '15px',
         boxShadow: '0px 0px 15px #b8b8b8',
         background: 'rgb(255, 255, 255)',
-        zIndex: '1000'
+        zIndex: '0'
     }
 
     const backResponse = () => {
@@ -361,8 +363,7 @@ const ChatBotArea = (props) => {
         <div className={!chatActive && "containerIconChat"} style={chatActive ? containerChatbot : null}>
             {chatActive &&
                 <div className="headChatbot">
-                    <img onClick={() => { setChatActive(!chatActive) }} alt="close sortouch" src={cross} className="crossChatbot" />
-                    <img onClick={reloadFunction} alt="reload sortouch" src={reload} className="reloadChatbot" />
+                    <img style={{marginLeft: '0px'}} onClick={reloadFunction} alt="reload sortouch" src={reload} className="reloadChatbot" />
                     <img src={back} className="backIconSortouch" onClick={backResponse} />
                     <a target="__blank" href="https://sortouch.com" className="sortouch">Sortouch</a>
                 </div>}
@@ -373,7 +374,7 @@ const ChatBotArea = (props) => {
                             <div className="contentIcon">
                                 {textIcon &&
                                     <div className="contentTextIconChat">
-                                        <p onClick={activeChat} className="textIconCard"><Questionchat text={"Prenez contact avec moi !"} /></p>
+                                        <p onClick={activeChat} className="textIconCard"><Questionchat text={"Aidez moi à vous guider !"} /></p>
                                     </div>}
                                 <img alt="icon chat" onClick={activeChat} src={logo} className="iconChat" />
                             </div>

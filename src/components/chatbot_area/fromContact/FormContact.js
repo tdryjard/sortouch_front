@@ -31,7 +31,7 @@ const FormContact = (props) => {
         } else if (!validatePhone(phone)){
             alert('numéro de téléphone non valide')
         } else {
-            fetch(url + '/mail/create', {
+            fetch(url + '/chatbot/mail/create', {
                 method: 'POST',
                 headers: {
                     'Content-Type' :'application/json',

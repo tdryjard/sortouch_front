@@ -25,6 +25,7 @@ const MenuBurger = (props) => {
         localStorage.setItem('userId', '')
         localStorage.setItem('modelId', '')
         localStorage.setItem('token', '')
+        localStorage.setItem('type', '')
         sessionStorage.setItem('disconnect', true)
         setTimeout(() => {
             window.location.reload()
@@ -41,7 +42,6 @@ const MenuBurger = (props) => {
                     <img onClick={() => { setActive(false) }} alt="menu" className="crossIconBurger" src={require('./image/cross.png')} />
                     <Link to="/" style={{ marginTop: "50px" }} className={props.type === "landing" ? "linkBurgerActive" : "linkBurger"} >Accueil</Link>
                     <Link to="/utiliser-le-site-sortouch" className={props.type === "editor-doc" ? "linkBurgerActive" : "linkBurger"} >Docs</Link>
-                    <Link to="/tarifs" className={props.type === "tarif" ? "linkBurgerActive" : "linkBurger"} >Tarifs</Link>
                     {!userId && !modelId ?
                         <div className="contentConnect">
                             <Link to="/connexion" className="connexionNavbar">Connexion</Link>
@@ -49,7 +49,7 @@ const MenuBurger = (props) => {
                         </div>
                         :
                         <>
-                            <Link to="/models" className={props.type === "models" ? "linkBurgerActive" : "linkBurger"} >Mes chatbot</Link>
+                            <Link to="/models" className={props.type === "models" ? "linkBurgerActive" : "linkBurger"} >Mes modèles</Link>
                             <Link to="/base-de-donnee" className={props.type === "data" ? "linkBurgerActive" : "linkBurger"} >Données collectées</Link>
                         </>
                     }

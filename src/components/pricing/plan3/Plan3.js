@@ -36,11 +36,11 @@ const Plan3 = () => {
                     </div>
                     <div className="containerOptionPlan">
                         <img src={require('../image/valid.png')} alt="valid" className="validImg" />
-                        <p className="textOptionPlan">3 page web personnalisée</p>
+                        <p className="textOptionPlan">3 page web personnalisées</p>
                     </div>
                     <div className="containerOptionPlan">
                         <img src={require('../image/valid.png')} alt="valid" className="validImg" />
-                        <p className="textOptionPlan">3 modèle de chatbot</p>
+                        <p className="textOptionPlan">3 secrétaires personnelle</p>
                     </div>
                     <div className="containerOptionPlan">
                         <img src={require('../image/valid.png')} alt="valid" className="validImg" />

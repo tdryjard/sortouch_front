@@ -49,11 +49,11 @@ const ResetPassword = (props) => {
         if (email && resetBool === false) {
             const resFind = await fetch(`${url}/user/findByEmail/${email}`, {
                 method: 'GET',
+                credentials: 'include',
                 headers: {
                     'Content-Type': 'application/json',
-                    'Acces-Control-Allow-Origin': { origin },
-                    'authorization': "validy24816"
-                }
+                    'Access-Control-Allow-Credentials': true
+                },
             })
             const resJson = await resFind.json()
             let key = generatePassword()
@@ -64,8 +64,10 @@ const ResetPassword = (props) => {
             if (await resFind.status === 200) {
                 const resUpdateUser = await fetch(`${url}/user/update/${resJson[0].id}`, {
                     method: 'PUT',
+                    credentials: 'include',
                     headers: {
-                        'Content-Type': 'application/json'
+                        'Content-Type': 'application/json',
+                        'Access-Control-Allow-Credentials': true
                     },
                     body: JSON.stringify({
                         key_reset: key
@@ -98,9 +100,11 @@ const ResetPassword = (props) => {
                     key_reset: keyEnter,
                     userId: userId
                 }),
+                credentials: 'include',
                 headers: {
-                    'Content-Type': 'application/json'
-                }
+                    'Content-Type': 'application/json',
+                    'Access-Control-Allow-Credentials': true
+                },
             });
             if (response.status === 200) {
 
@@ -136,9 +140,10 @@ const ResetPassword = (props) => {
         else {
             const resUpdateUser = await fetch(`${url}/user/changeLog/${userId}`, {
                 method: 'PUT',
+                credentials: 'include',
                 headers: {
                     'Content-Type': 'application/json',
-                    'authorization': 'validy24816'
+                    'Access-Control-Allow-Credentials': true
                 },
                 body: JSON.stringify({
                     password: firstPassword,

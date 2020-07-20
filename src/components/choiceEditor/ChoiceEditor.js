@@ -28,6 +28,7 @@ const ChoiceEditor = () => {
                 .then(res => res.json())
                 .then(res => {
                     if (res[0]) {
+                        if(res[0].status === 400) tokenExpire()
                         setUrlPage(res[0].name)
                         setTimeout(() => {
                             setRedirect(true)
@@ -48,9 +49,10 @@ const ChoiceEditor = () => {
         else {
             const result = await fetch(`${url}/onepage/create`, {
                 method: 'POST',
+                credentials: 'include',
                 headers: {
                     'Content-Type': 'application/json',
-                    'Acces-Control-Allow-Origin': { origin },
+                    'Access-Control-Allow-Credentials': true,
                     'authorization': token
                 },
                 body: JSON.stringify({
@@ -84,14 +86,25 @@ const ChoiceEditor = () => {
                 setAlert('')
             }, 4000)
         }
+    }
 
+    const tokenExpire = () => {
+        localStorage.setItem('userId', '')
+        localStorage.setItem('modelId', '')
+        localStorage.setItem('token', '')
+        localStorage.setItem('type', '')
+        localStorage.setItem('expireToken', true)
+        sessionStorage.setItem('disconnect', true)
+        setTimeout(() => {
+            window.location.reload()
+        }, 100)
     }
 
     return (
         <div className="containerChoiceEditor">
             {redirect && <Redirect to={`/web?${urlPage}`} />}
             {!createPage && window.innerWidth < 1280 &&
-                <Link to="/editeur-chatbot" style={{ width: "82%", marginTop: "15px", marginBottom: "15px", boxShadow: "2px 2px 7px rgb(141, 141, 141)", textAlign: "center" }} className="buttonChoiceEditor">Éditeur de chatbot</Link>}
+                <Link to="/editeur-chatbot" style={{ width: "82%", marginTop: "15px", marginBottom: "15px", boxShadow: "2px 2px 7px rgb(141, 141, 141)", textAlign: "center" }} className="buttonChoiceEditor">Éditeur d'interactions</Link>}
             {!createPage && window.innerWidth < 1280 &&
                 <button onClick={searchOnepage} style={{ width: "90%", marginTop: "15px", marginBottom: "15px", boxShadow: "2px 2px 7px rgb(141, 141, 141)" }} className="buttonChoiceEditor2">Éditeur de page web</button>}
             {!createPage && window.innerWidth > 1280 &&
@@ -99,16 +112,16 @@ const ChoiceEditor = () => {
                     <div className="flip-card-inner">
                         <div className="contentChoice">
                             <img src={require('./image/chatbot.svg')} alt="éditeur chatbot illustration" className="backChoice" />
-                            <button className="buttonChoiceEditor">Éditeur de chatbot</button>
+                            <button className="buttonChoiceEditor">Éditer sa secrétaire personnelle</button>
                         </div>
                         <div class="flip-card-back">
                             <div className="contentTextBackCard">
-                                <h4 className="titleBackCardChoice">Éditer son chatbot</h4>
-                                {window.innerWidth > 1280 && <p className="textBackCardChoice">Accéder à l'éditeur de chatbot et ses différents outils</p>}
+                                <h4 className="titleBackCardChoice">Éditer sa secrétaire</h4>
+                                {window.innerWidth > 1280 && <p className="textBackCardChoice">Accéder aux différents outils de créations</p>}
                             </div>
                             <div className="contentTextBackCard">
                                 <h4 className="titleBackCardChoice">Prévisualiser</h4>
-                                {window.innerWidth > 1280 && <p className="textBackCardChoice">Vous pouvez visualiser le chatbot que vous êtes en train de créer en direct</p>}
+                                {window.innerWidth > 1280 && <p className="textBackCardChoice">Vous pouvez visualiser les interactions que vous êtes en train de créer en direct</p>}
                             </div>
                             <div className="contentTextBackCard">
                                 <h4 className="titleBackCardChoice">Des combinaisons infinies</h4>
@@ -137,8 +150,8 @@ const ChoiceEditor = () => {
                                 {window.innerWidth > 1280 && <p className="textBackCardChoice">Customisez votre page web à votre image !</p>}
                             </div>
                             <div className="contentTextBackCard">
-                                <h4 className="titleBackCardChoice">Intégrer son chatbot</h4>
-                                {window.innerWidth > 1280 && <p className="textBackCardChoice">Votre chatbot est la pièce centrale à votre page web</p>}
+                                <h4 className="titleBackCardChoice">Intégrer sa secrétaire</h4>
+                                {window.innerWidth > 1280 && <p className="textBackCardChoice">Votre secrétaire personnelle est automatiquement ajoutée à votre page</p>}
                             </div>
                             <div className="contentTextBackCard">
                                 {(window.innerWidth > 1280 || cardActive) && <button onClick={searchOnepage} className="buttonLinkChoice">C'est parti</button>}

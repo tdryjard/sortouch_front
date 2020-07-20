@@ -1,0 +1,161 @@
+.containerCookie{
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    flex-direction: row;
+    position: fixed;
+    right: 0;
+    top: 70%;
+    background-color: white;
+    box-shadow: 2px 2px 7px rgb(150, 150, 150);
+    padding: 20px 30px 20px 30px;
+    width: 500px;
+    animation: popupCookie 1s;
+    z-index: 11000;
+    border-bottom: 3px solid rgba(113,0,208,1);
+    border-top: 3px solid rgba(113,0,208,1);
+    border-left: 3px solid rgba(113,0,208,1);
+    height: 150px;
+    overflow: hidden;
+}
+
+@keyframes popupCookie{
+    from{
+        width: 0px;
+    }
+    to{
+        width: 500px;
+    }
+}
+
+.containerCookieClose{
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    flex-direction: row;
+    position: fixed;
+    right: 0;
+    top: 70%;
+    background-color: white;
+    box-shadow: 2px 2px 7px rgb(150, 150, 150);
+    width: 0;
+    animation: popupCookieClose 1s;
+    z-index: 11000;
+    height: 150px;
+    padding: 0;
+    border: none;
+}
+
+@keyframes popupCookieClose{
+    from{
+        width: 500px;
+        padding: 20px 30px 20px 30px;
+        border-bottom: 3px solid rgba(113,0,208,1);
+        border-top: 3px solid rgba(113,0,208,1);
+        border-left: 3px solid rgba(113,0,208,1);
+    }
+    to{
+        border: none;
+        padding: 0;
+        width: 0px;
+        display: none;
+    }
+}
+
+.textCookie{
+    font-family: 'Sen', sans-serif;
+    color: rgb(51, 51, 51);
+    font-size: 17px;
+    text-align: justify;
+    animation: textCookie 1s;
+}
+
+@keyframes textCookie{
+    0%{
+        opacity: 0;
+    }
+    95%{
+        opacity: 0;
+    }
+    100%{
+        opacity: 100%;
+    }
+}
+
+.butonCookie{
+    background-color: rgba(113,0,208,1);
+    border: none;
+    color: white;
+    font-family: 'Sen', sans-serif;
+    font-size: 22px;
+    margin-left: 40px;
+    padding: 15px 20px 15px 20px;
+    cursor: pointer;
+}
+
+@media screen and (max-width: 1200px){
+    .containerCookie{
+        top: 60vh;
+        width: 90%;
+        height: 170px;
+        padding: 10px 10px 20px 10px;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+    
+    @keyframes popupCookie{
+        from{
+            width: 0px;
+        }
+        to{
+            width: 90%;
+        }
+    }
+    
+    .containerCookieClose{
+        top: 60vh;
+        width: 0%;
+        height: 170px;
+    }
+    
+    @keyframes popupCookieCloseMobile{
+        from{
+            width: 90%;
+            padding: 20px 30px 20px 30px;
+            border-bottom: 3px solid rgba(113,0,208,1);
+            border-top: 3px solid rgba(113,0,208,1);
+            border-left: 3px solid rgba(113,0,208,1);
+        }
+        to{
+            border: none;
+            padding: 0;
+            width: 0px;
+            display: none;
+        }
+    }
+    
+    .textCookie{
+        font-family: 'Sen', sans-serif;
+        color: rgb(51, 51, 51);
+        font-size: 15px;
+        text-align: center;
+        animation: textCookie 1s;
+    }
+    
+    @keyframes textCookie{
+        0%{
+            opacity: 0;
+        }
+        95%{
+            opacity: 0;
+        }
+        100%{
+            opacity: 100%;
+        }
+    }
+
+    .butonCookie{
+        margin-left: 0px;
+    }
+}

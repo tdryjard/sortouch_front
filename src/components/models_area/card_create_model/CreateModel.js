@@ -37,9 +37,10 @@ const CreateModel = (props) => {
         let name = inputValue.html.replace(/&nbsp;/gi, '').replace(/<div><br><\/div>/gi, '').replace(/<p><br><\/p>/gi, '').replace(/<div>/gi, '').replace(/<\/div>/gi, '')
         const res = await fetch(url + '/model/add', {
             method: 'POST',
+            credentials: 'include',
             headers: {
                 'Content-Type': 'application/json',
-                'Acces-Control-Allow-Origin': { origin },
+                'Access-Control-Allow-Credentials': true,
                 'authorization': token
             },
             body: JSON.stringify({
@@ -52,9 +53,10 @@ const CreateModel = (props) => {
         if (result) {
             fetch(url + '/container/create', {
                 method: 'POST',
+                credentials: 'include',
                 headers: {
                     'Content-Type': 'application/json',
-                    'Acces-Control-Allow-Origin': { origin },
+                    'Access-Control-Allow-Credentials': true,
                     'authorization': token
                 },
                 body: JSON.stringify({

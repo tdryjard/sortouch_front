@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 import Menu from '../menu/Menu'
 import MenuBurger from '../burgerMenu/BurgerMenu'
 import Navbar from '../../navbar/Navbar'
+import PopupCookie from '../../popupCookie/PopupCookie'
 import './DocReact.scss'
 
 const DocReact = () => {
@@ -16,6 +17,7 @@ const DocReact = () => {
 
     return (
         <div className="containerDoc">
+        {localStorage.getItem('cookie') !== 'accept' && <PopupCookie />}
         <title>Sortouch : installer chatbot sur ReactJs</title>
             <meta name="description" content="Apprendre à installer son chatbot sur son site ReactJs" />
             {window.innerWidth > 1280 && <Navbar type={"doc"} />}
@@ -38,9 +40,9 @@ const DocReact = () => {
                         <img alt="block code 1" src={require('./image/code3.png')} className="blockCode" />
                     </div>
                     <h4 className="titleContainerSectionDoc">Votre user id : {userId ? userId : <Link to="/connexion" className="connexionDoc">Se connecter</Link>}</h4>
-                    <h4 className="titleContainerSectionDoc">Trouver son chatbot id</h4>
+                    <h4 className="titleContainerSectionDoc">Trouver son model id</h4>
                     {userId &&
-                    <p className="textDoc">Se rendre sur <Link style={{color: "rgb(46, 46, 46)"}} to="/models">mes chatbots</Link> et aller dans les options du chatbot (exemple ci-dessous)</p>}
+                    <p className="textDoc">Se rendre sur <Link style={{color: "rgb(46, 46, 46)"}} to="/models">mes modèles</Link> et aller dans les options du modèle (exemple ci-dessous)</p>}
                     <div className="containerStepModelid">
                         <img alt="model id étape 1" src={require('./image/modelid1.png')} className="takeModelId" />
                         <img alt="model id étape 2" src={require('./image/modelid2.png')} className="takeModelId" />

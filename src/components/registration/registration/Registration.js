@@ -57,7 +57,7 @@ const Registration = (props) => {
                 const result = await response.json();
 
                 if (result && result.status === 200) {
-                    localStorage.setItem("userId", result.data.id)
+                    localStorage.setItem("userId", result.id)
                     localStorage.setItem('token', result.token)
                 }
 
@@ -71,13 +71,14 @@ const Registration = (props) => {
                 if (data.data) {
                     let modelCreate = await fetch(url + '/model/add', {
                         method: 'POST',
+                        credentials: 'include',
                         headers: {
                             'Content-Type': 'application/json',
-                            'Acces-Control-Allow-Origin': { origin },
+                            'Access-Control-Allow-Credentials': true,
                             'authorization': token
                         },
                         body: JSON.stringify({
-                            name: 'exemple chatbot',
+                            name: 'exemple',
                             user_id: userId
                         })
                     });
@@ -86,9 +87,10 @@ const Registration = (props) => {
                     if (modelCreate) {
                         let postContainerOne = await fetch(url + '/container/create', {
                             method: 'POST',
+                            credentials: 'include',
                             headers: {
                                 'Content-Type': 'application/json',
-                                'Acces-Control-Allow-Origin': { origin },
+                                'Access-Control-Allow-Credentials': true,
                                 'authorization': token
                             },
                             body: JSON.stringify({
@@ -102,9 +104,10 @@ const Registration = (props) => {
                         if (postContainerOne) {
                             const questionFirstResponse = await fetch(url + '/question/add', {
                                 method: 'POST',
+                                credentials: 'include',
                                 headers: {
                                     'Content-Type': 'application/json',
-                                    'Acces-Control-Allow-Origin': { origin },
+                                    'Access-Control-Allow-Credentials': true,
                                     'authorization': token
                                 },
                                 body: JSON.stringify({
@@ -120,9 +123,10 @@ const Registration = (props) => {
                                 const containerFirstId = containerFirst.id
                                 const relationFirst = await fetch(`${url}/relation/add`, {
                                     method: 'POST',
+                                    credentials: 'include',
                                     headers: {
                                         'Content-Type': 'application/json',
-                                        'Acces-Control-Allow-Origin': { origin },
+                                        'Access-Control-Allow-Credentials': true,
                                         'authorization': token
                                     },
                                     body: JSON.stringify({
@@ -135,9 +139,10 @@ const Registration = (props) => {
                                 if (relationFirst) {
                                     let postContainerTwo = await fetch(url + '/container/create', {
                                         method: 'POST',
+                                        credentials: 'include',
                                         headers: {
                                             'Content-Type': 'application/json',
-                                            'Acces-Control-Allow-Origin': { origin },
+                                            'Access-Control-Allow-Credentials': true,
                                             'authorization': token
                                         },
                                         body: JSON.stringify({
@@ -151,9 +156,10 @@ const Registration = (props) => {
                                     if (postContainerTwo) {
                                         const responseFirst = await fetch(url + '/response/add', {
                                             method: 'POST',
+                                            credentials: 'include',
                                             headers: {
                                                 'Content-Type': 'application/json',
-                                                'Acces-Control-Allow-Origin': { origin },
+                                                'Access-Control-Allow-Credentials': true,
                                                 'authorization': token
                                             },
                                             body: JSON.stringify({
@@ -165,9 +171,10 @@ const Registration = (props) => {
                                         if (responseFirst) {
                                             const responseTwo = await fetch(url + '/response/add', {
                                                 method: 'POST',
+                                                credentials: 'include',
                                                 headers: {
                                                     'Content-Type': 'application/json',
-                                                    'Acces-Control-Allow-Origin': { origin },
+                                                    'Access-Control-Allow-Credentials': true,
                                                     'authorization': token
                                                 },
                                                 body: JSON.stringify({
@@ -183,9 +190,10 @@ const Registration = (props) => {
                                                 const containerTwoId = containerTwo.id
                                                 const relationTwo = await fetch(`${url}/relation/add`, {
                                                     method: 'POST',
+                                                    credentials: 'include',
                                                     headers: {
                                                         'Content-Type': 'application/json',
-                                                        'Acces-Control-Allow-Origin': { origin },
+                                                        'Access-Control-Allow-Credentials': true,
                                                         'authorization': token
                                                     },
                                                     body: JSON.stringify({
@@ -200,9 +208,10 @@ const Registration = (props) => {
                                                     const responseTwoId = responseTwoJson.id
                                                     const relationThree = await fetch(`${url}/relation/add`, {
                                                         method: 'POST',
+                                                        credentials: 'include',
                                                         headers: {
                                                             'Content-Type': 'application/json',
-                                                            'Acces-Control-Allow-Origin': { origin },
+                                                            'Access-Control-Allow-Credentials': true,
                                                             'authorization': token
                                                         },
                                                         body: JSON.stringify({
@@ -215,9 +224,10 @@ const Registration = (props) => {
                                                     if (relationThree) {
                                                         let postContainerThree = await fetch(url + '/container/create', {
                                                             method: 'POST',
+                                                            credentials: 'include',
                                                             headers: {
                                                                 'Content-Type': 'application/json',
-                                                                'Acces-Control-Allow-Origin': { origin },
+                                                                'Access-Control-Allow-Credentials': true,
                                                                 'authorization': token
                                                             },
                                                             body: JSON.stringify({
@@ -231,9 +241,10 @@ const Registration = (props) => {
                                                         if (postContainerThree) {
                                                             let postContainerFour = await fetch(url + '/container/create', {
                                                                 method: 'POST',
+                                                                credentials: 'include',
                                                                 headers: {
                                                                     'Content-Type': 'application/json',
-                                                                    'Acces-Control-Allow-Origin': { origin },
+                                                                    'Access-Control-Allow-Credentials': true,
                                                                     'authorization': token
                                                                 },
                                                                 body: JSON.stringify({
@@ -247,9 +258,10 @@ const Registration = (props) => {
                                                             if (postContainerFour) {
                                                                 const questionTwo = await fetch(url + '/question/add', {
                                                                     method: 'POST',
+                                                                    credentials: 'include',
                                                                     headers: {
                                                                         'Content-Type': 'application/json',
-                                                                        'Acces-Control-Allow-Origin': { origin },
+                                                                        'Access-Control-Allow-Credentials': true,
                                                                         'authorization': token
                                                                     },
                                                                     body: JSON.stringify({
@@ -265,9 +277,10 @@ const Registration = (props) => {
                                                                     const questionTwoId = questionTwoJson.id
                                                                     const relationThree = await fetch(`${url}/relation/add`, {
                                                                         method: 'POST',
+                                                                        credentials: 'include',
                                                                         headers: {
                                                                             'Content-Type': 'application/json',
-                                                                            'Acces-Control-Allow-Origin': { origin },
+                                                                            'Access-Control-Allow-Credentials': true,
                                                                             'authorization': token
                                                                         },
                                                                         body: JSON.stringify({
@@ -282,9 +295,10 @@ const Registration = (props) => {
                                                                         const containerFourId = containerFourJson.id
                                                                         const relationThree = await fetch(`${url}/relation/add`, {
                                                                             method: 'POST',
+                                                                            credentials: 'include',
                                                                             headers: {
                                                                                 'Content-Type': 'application/json',
-                                                                                'Acces-Control-Allow-Origin': { origin },
+                                                                                'Access-Control-Allow-Credentials': true,
                                                                                 'authorization': token
                                                                             },
                                                                             body: JSON.stringify({
@@ -297,9 +311,10 @@ const Registration = (props) => {
                                                                         if (relationThree) {
                                                                             let containerFive = await fetch(url + '/container/create', {
                                                                                 method: 'POST',
+                                                                                credentials: 'include',
                                                                                 headers: {
                                                                                     'Content-Type': 'application/json',
-                                                                                    'Acces-Control-Allow-Origin': { origin },
+                                                                                    'Access-Control-Allow-Credentials': true,
                                                                                     'authorization': token
                                                                                 },
                                                                                 body: JSON.stringify({
@@ -313,9 +328,10 @@ const Registration = (props) => {
                                                                             if (containerFive) {
                                                                                 let containerSix = await fetch(url + '/container/create', {
                                                                                     method: 'POST',
+                                                                                    credentials: 'include',
                                                                                     headers: {
                                                                                         'Content-Type': 'application/json',
-                                                                                        'Acces-Control-Allow-Origin': { origin },
+                                                                                        'Access-Control-Allow-Credentials': true,
                                                                                         'authorization': token
                                                                                     },
                                                                                     body: JSON.stringify({
@@ -329,9 +345,10 @@ const Registration = (props) => {
                                                                                 if (containerSix) {
                                                                                     const responseThree = await fetch(url + '/response/add', {
                                                                                         method: 'POST',
+                                                                                        credentials: 'include',
                                                                                         headers: {
                                                                                             'Content-Type': 'application/json',
-                                                                                            'Acces-Control-Allow-Origin': { origin },
+                                                                                            'Access-Control-Allow-Credentials': true,
                                                                                             'authorization': token
                                                                                         },
                                                                                         body: JSON.stringify({
@@ -343,9 +360,10 @@ const Registration = (props) => {
                                                                                     if (responseThree) {
                                                                                         const responseFour = await fetch(url + '/response/add', {
                                                                                             method: 'POST',
+                                                                                            credentials: 'include',
                                                                                             headers: {
                                                                                                 'Content-Type': 'application/json',
-                                                                                                'Acces-Control-Allow-Origin': { origin },
+                                                                                                'Access-Control-Allow-Credentials': true,
                                                                                                 'authorization': token
                                                                                             },
                                                                                             body: JSON.stringify({
@@ -361,9 +379,10 @@ const Registration = (props) => {
                                                                                             const containerFiveId = containerFiveJson.id
                                                                                             const relationThree = await fetch(`${url}/relation/add`, {
                                                                                                 method: 'POST',
+                                                                                                credentials: 'include',
                                                                                                 headers: {
                                                                                                     'Content-Type': 'application/json',
-                                                                                                    'Acces-Control-Allow-Origin': { origin },
+                                                                                                    'Access-Control-Allow-Credentials': true,
                                                                                                     'authorization': token
                                                                                                 },
                                                                                                 body: JSON.stringify({
@@ -380,9 +399,10 @@ const Registration = (props) => {
                                                                                                 const containerSixId = containerSixJson.id
                                                                                                 const relationThree = await fetch(`${url}/relation/add`, {
                                                                                                     method: 'POST',
+                                                                                                    credentials: 'include',
                                                                                                     headers: {
                                                                                                         'Content-Type': 'application/json',
-                                                                                                        'Acces-Control-Allow-Origin': { origin },
+                                                                                                        'Access-Control-Allow-Credentials': true,
                                                                                                         'authorization': token
                                                                                                     },
                                                                                                     body: JSON.stringify({
@@ -395,9 +415,10 @@ const Registration = (props) => {
                                                                                                 if (relationThree) {
                                                                                                     const categoryFirst = await fetch(url + '/category/add', {
                                                                                                         method: 'POST',
+                                                                                                        credentials: 'include',
                                                                                                         headers: {
                                                                                                             'Content-Type': 'application/json',
-                                                                                                            'Acces-Control-Allow-Origin': { origin },
+                                                                                                            'Access-Control-Allow-Credentials': true,
                                                                                                             'authorization': token
                                                                                                         },
                                                                                                         body: JSON.stringify({
@@ -409,9 +430,10 @@ const Registration = (props) => {
                                                                                                     if (categoryFirst) {
                                                                                                         const categoryTwo = await fetch(url + '/category/add', {
                                                                                                             method: 'POST',
+                                                                                                            credentials: 'include',
                                                                                                             headers: {
                                                                                                                 'Content-Type': 'application/json',
-                                                                                                                'Acces-Control-Allow-Origin': { origin },
+                                                                                                                'Access-Control-Allow-Credentials': true,
                                                                                                                 'authorization': token
                                                                                                             },
                                                                                                             body: JSON.stringify({
@@ -423,9 +445,10 @@ const Registration = (props) => {
                                                                                                         if (categoryTwo) {
                                                                                                             let containerSeven = await fetch(url + '/container/create', {
                                                                                                                 method: 'POST',
+                                                                                                                credentials: 'include',
                                                                                                                 headers: {
                                                                                                                     'Content-Type': 'application/json',
-                                                                                                                    'Acces-Control-Allow-Origin': { origin },
+                                                                                                                    'Access-Control-Allow-Credentials': true,
                                                                                                                     'authorization': token
                                                                                                                 },
                                                                                                                 body: JSON.stringify({
@@ -443,9 +466,10 @@ const Registration = (props) => {
                                                                                                                 const containerSevenId = containerSevenJson.id
                                                                                                                 const relationFour = await fetch(`${url}/relation/add`, {
                                                                                                                     method: 'POST',
+                                                                                                                    credentials: 'include',
                                                                                                                     headers: {
                                                                                                                         'Content-Type': 'application/json',
-                                                                                                                        'Acces-Control-Allow-Origin': { origin },
+                                                                                                                        'Access-Control-Allow-Credentials': true,
                                                                                                                         'authorization': token
                                                                                                                     },
                                                                                                                     body: JSON.stringify({
@@ -458,9 +482,10 @@ const Registration = (props) => {
                                                                                                                 if (relationFour) {
                                                                                                                     let containerHeight = await fetch(url + '/container/create', {
                                                                                                                         method: 'POST',
+                                                                                                                        credentials: 'include',
                                                                                                                         headers: {
                                                                                                                             'Content-Type': 'application/json',
-                                                                                                                            'Acces-Control-Allow-Origin': { origin },
+                                                                                                                            'Access-Control-Allow-Credentials': true,
                                                                                                                             'authorization': token
                                                                                                                         },
                                                                                                                         body: JSON.stringify({
@@ -478,9 +503,10 @@ const Registration = (props) => {
                                                                                                                         const containerHeightId = containerHeightJson.id
                                                                                                                         const relationFour = await fetch(`${url}/relation/add`, {
                                                                                                                             method: 'POST',
+                                                                                                                            credentials: 'include',
                                                                                                                             headers: {
                                                                                                                                 'Content-Type': 'application/json',
-                                                                                                                                'Acces-Control-Allow-Origin': { origin },
+                                                                                                                                'Access-Control-Allow-Credentials': true,
                                                                                                                                 'authorization': token
                                                                                                                             },
                                                                                                                             body: JSON.stringify({

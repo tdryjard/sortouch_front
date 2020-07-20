@@ -18,21 +18,23 @@ const AreaMessage = (props) => {
         if (props.userId && props.modelId && props.categoryId) {
             fetch(`${url}/mail/find/${props.userId}/${props.modelId}/${props.categoryId}`, {
                 method: 'GET',
+                credentials: 'include',
                 headers: {
                     'Content-Type': 'application/json',
-                    'Acces-Control-Allow-Origin': { origin },
+                    'Access-Control-Allow-Credentials': true,
                     'authorization': props.token
                 }
             })
                 .then(res => res.json())
                 .then(res => {
                     if (res.length > 0) {
+                        if (res.status === 400) tokenExpire()
                         let result = res.filter(mail => mail.deleted !== 1)
                         if (props.type === "free" && result.length > 20) result.length = 20
                         if (props.type === "standard" && result.length > 1000) result.length = 1000
                         if (props.type === "expert" && result.length > 3000) result.length = 3000
                         setMails(result)
-                    }
+                    } else setMails([])
                 })
         }
     }, [props.categoryId, props.userId, props.modelId, mailSelect, deleted])
@@ -55,9 +57,10 @@ const AreaMessage = (props) => {
         setMailSelect(index)
         fetch(`${url}/mail/update/${props.userId}/${props.modelId}/${props.categoryId}/${mailId}`, {
             method: 'PUT',
+            credentials: 'include',
             headers: {
                 'Content-Type': 'application/json',
-                'Access-Control-Allow-Origin': `${origin}`,
+                'Access-Control-Allow-Credentials': true,
                 'authorization': props.token
             },
             body: JSON.stringify({
@@ -70,9 +73,10 @@ const AreaMessage = (props) => {
         if (window.confirm('voulez vous supprimer ce model ?')) {
             fetch(`${url}/mail/updateSimple/${mailId}`, {
                 method: 'PUT',
+                credentials: 'include',
                 headers: {
                     'Content-Type': 'application/json',
-                    'Access-Control-Allow-Origin': `${origin}`,
+                    'Access-Control-Allow-Credentials': true,
                     'authorization': props.token
                 },
                 body: JSON.stringify({
@@ -86,6 +90,18 @@ const AreaMessage = (props) => {
                 addingCard()
             }
         }
+    }
+
+    const tokenExpire = () => {
+        localStorage.setItem('userId', '')
+        localStorage.setItem('modelId', '')
+        localStorage.setItem('token', '')
+        localStorage.setItem('type', '')
+        localStorage.setItem('expireToken', true)
+        sessionStorage.setItem('disconnect', true)
+        setTimeout(() => {
+            window.location.reload()
+        }, 100)
     }
 
     return (

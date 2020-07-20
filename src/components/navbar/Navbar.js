@@ -25,6 +25,7 @@ const Navbar = (props) => {
         localStorage.setItem('userId', '')
         localStorage.setItem('modelId', '')
         localStorage.setItem('token', '')
+        localStorage.setItem('type', '')
         sessionStorage.setItem('disconnect', true)
         setTimeout(() => {
             window.location.reload()
@@ -36,7 +37,6 @@ const Navbar = (props) => {
             {redirect && <Redirect to="/"/>}
             <Link to="/" className={props.type === "landing" ? "linkNavbarActive" : "linkNavbar"} >Accueil</Link>
             <Link to="/utiliser-le-site-sortouch" className={props.type === "doc" ? "linkNavbarActive" : "linkNavbar"} >Docs</Link>
-            <Link to="/tarifs" className={props.type === "tarifs" ? "linkNavbarActive" : "linkNavbar"} >Tarifs</Link>
             {!userId && window.innerWidth > 1280 ?
                 <div className="contentConnect">
                     <Link to="/connexion" className="connexionNavbar">Connexion</Link>
@@ -47,7 +47,7 @@ const Navbar = (props) => {
                         <Link to="/base-de-donnee" className={props.type === "data" ? "linkNavbarActive" : "linkNavbar"} >Données collectées</Link>
                         <div className="containerChatbotNav" >
                             <p className="nameChatbotNav">{chatbotName}</p>
-                            <Link to="/models" className="linkNavChatbot" >Changer de chatbot</Link>
+                            <Link to="/models" className="linkNavChatbot" >Changer de modèle</Link>
                             <Link to="/mails" className="linkNavChatbot" >Boite de réception</Link>
                             <Link to="/choisir-editeur" className="linkNavChatbot" >Éditeur</Link>
                         </div>
@@ -55,7 +55,7 @@ const Navbar = (props) => {
                     </>
                     : userId ?
                         <>
-                            <Link to="/models" className={props.type === "models" ? "linkNavbarActive" : "linkNavbar"} >Mes chatbots</Link>
+                            <Link to="/models" className={props.type === "models" ? "linkNavbarActive" : "linkNavbar"} >Mes modèles</Link>
                             <Link to="/base-de-donnee" className={props.type === "data" ? "linkNavbarActive" : "linkNavbar"} >Données collectées</Link>
                             <button onClick={disconnect} className="disconnect" >Déconnexion</button>
                         </>

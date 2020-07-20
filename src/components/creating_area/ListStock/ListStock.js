@@ -39,7 +39,7 @@ const Area = () => {
     setResponses(null)
     setCategorys(null)
 
-    fetch(`${url}/question/findAll/${userId}/${modelId}`)
+    fetch(`${url}/chatbot/question/findAll/${userId}/${modelId}`)
     .then(res => res.json())
     .then(res => {
       if(res.length){
@@ -55,7 +55,7 @@ const Area = () => {
     setResponses(null)
     setCategorys(null)
 
-    fetch(`${url}/question/findAll/${userId}/${modelId}`)
+    fetch(`${url}/chatbot/question/findAll/${userId}/${modelId}`)
     .then(res => res.json())
     .then(res => {
       if(res.length){
@@ -71,7 +71,7 @@ const Area = () => {
     setQuestions(null)
     setCategorys(null)
 
-    fetch(`${url}/response/findAll/${userId}/${modelId}`)
+    fetch(`${url}/chatbot/response/findAll/${userId}/${modelId}`)
     .then(res => res.json())
     .then(res => {
       if(res.length){
@@ -87,7 +87,7 @@ const Area = () => {
     setQuestions(null)
     setResponses(null)
 
-      fetch(`${url}/category/findAll/${userId}/${modelId}`,  {
+      fetch(`${url}/chatbot/category/findAll/${userId}/${modelId}`,  {
         method: 'GET',
         headers: {
           'Content-Type' :'application/json',
@@ -105,7 +105,7 @@ const Area = () => {
     addingCardFinish()
 
     if(responses){
-      fetch(`${url}/response/findAll/${userId}/${modelId}`)
+      fetch(`${url}/chatbot/response/findAll/${userId}/${modelId}`)
       .then(res => res.json())
       .then(res => {
         if(res.length){
@@ -115,7 +115,7 @@ const Area = () => {
     
 
     if(categorys){
-      fetch(`${url}/category/findAll/${userId}/${modelId}`,  {
+      fetch(`${url}/chatbot/category/findAll/${userId}/${modelId}`,  {
         method: 'GET',
         headers: {
           'Content-Type' :'application/json',
@@ -130,7 +130,7 @@ const Area = () => {
     }
 
     if(questions){
-      fetch(`${url}/question/findAll/${userId}/${modelId}`)
+      fetch(`${url}/chatbot/question/findAll/${userId}/${modelId}`)
       .then(res => res.json())
       .then(res => {
         if(res.length){

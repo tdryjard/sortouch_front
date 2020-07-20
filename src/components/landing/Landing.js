@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from 'react'
 import Navbar from '../navbar/Navbar'
 import { Link } from 'react-router-dom'
-import QuestionChat from './QuestionChat'
-import Chatbot from './../plugin-react/chatbotArea/ChatBotArea'
+import Chatbot from '../plugin-react/chatbotArea/ChatBotArea'
+import ChatbotMobile from '../react_library/src/chatbotArea/ChatBotArea'
 import MenuBurger from '../menuBurger/MenuBurger'
 import Footer from '../footer/Footer'
+import ExpireToken from '../expireToken/ExpireToken'
+import PopupCookie from '../popupCookie/PopupCookie'
 import './Landing.scss'
 
 const Landing = (props) => {
@@ -62,18 +64,25 @@ const Landing = (props) => {
 
     return (
         <div className="containerLanding">
+            {localStorage.getItem('cookie') !== 'accept' && <PopupCookie />}
+            {localStorage.getItem('expireToken') === 'true' && <ExpireToken active={true} />}
             <title>Sortouch : éditeur de chatbot gratuit</title>
-            <meta name="description" content="Créer facilement et gratuitement son chatbot pour son site. Gérer ses prises de contacts et stocker les coordonnées de ses visiteurs." />
+            <meta name="description" content="Créer sa secrétaire personnelle qui répond automatiquement aux questions et trie les messages laissés dans sa boite de réception Sortouch. Créer sa page web perso avec sa secrétaire automatique ou intégrer sa secrétaire à son site web" />
             <div className="firstContainerLanding">
-                <img src={require('./image/firstImg.png')} className="firstImgLanding" alt="pc et telephone présentation" />
+                {window.innerWidth > 1280 && <Chatbot active={true} modelId={11} userId={21} />}
                 <div className="containerFirstTextLanding">
-                    <h1 className="titleFirstLanding">Créer un Chat Bot en toute simplicité</h1>
+                    <h1 className="titleFirstLanding">Créer sa secrétaire personnelle facilement</h1>
                     <span className="borderBottom" />
-                    <h2 className="describeFirstContainerLanding">Sortouch vous permet de créer facilement des interactions avec vos visiteurs et les guider à travers des questions et réponses éditables !
-                    <br /><br />Ajoutez un formulaire de contact à votre chatbot puis recevez les messages laissés par vos visiteurs et stockez leurs coordonnées.
-                    <br /><br />Intégrez votre chatbot à votre site <p style={{fontWeight: "bold", width: "30px", marginTop: "5px", marginBottom: "5px"}}>ou</p> Créez votre page web personnalisée avec votre chatbot </h2>
-                    <div onClick={() => { setChatbotActive(!chatbotActive) }} className="startBotButton">Démo <img src={require('./image/back.png')} className="backReverseIcon" /> </div>
+                    <h2 className="describeFirstContainerLanding">Sortouch vous permet d'automatiser des interactions à travers des questions et réponses éditables !
+                    <br /><br />Ajoutez des formulaires de contact puis recevez les messages triés automatiquement dans votre boîte de réception Sortouch.
+                    <br /><br />Créez votre page web personnalisée avec votre secrétaire Sortouch et votre lien partageable<p style={{ fontWeight: "bold", width: "30px", marginTop: "5px", marginBottom: "5px" }}>ou</p>Intégrez votre secrétaire Sortouch à votre site web
+                    <br /><br /><span style={{ fontWeight: "bold" }}>Tout ça en 5 minutes chrono !</span></h2>
                 </div>
+                {window.innerWidth < 1280 && <div onClick={() => { setChatbotActive(!chatbotActive) }} className="startBotButton">
+                    Démo
+                    <img src={require('./image/back.png')} className="backReverseIcon" />
+                    {chatbotActive && <ChatbotMobile active={chatbotActive} modelId={11} userId={21} />}
+                </div>}
             </div>
             {window.innerWidth > 1280 ?
                 <Navbar type={"landing"} />
@@ -83,19 +92,19 @@ const Landing = (props) => {
                 <div onClick={() => { setCardActive(true) }} className="flip-card">
                     <div className="flip-card-inner">
                         <div className="contentChoice">
-                            {window.innerWidth < 1280 ? <img style={{marginBottom: "100px", marginTop: "0px"}} src={require('../choiceEditor/image/chatbot.svg')} alt="éditeur chatbot illustration" className="backChoice" />
-                            :
-                            <img src={require('../choiceEditor/image/chatbot.svg')} alt="éditeur chatbot illustration" className="backChoice" />}
-                            <button className="buttonChoiceEditor">Éditeur de chatbot</button>
+                            {window.innerWidth < 1280 ? <img style={{ marginBottom: "100px", marginTop: "0px" }} src={require('../choiceEditor/image/chatbot.svg')} alt="éditeur chatbot illustration" className="backChoice" />
+                                :
+                                <img src={require('../choiceEditor/image/chatbot.svg')} alt="éditeur chatbot illustration" className="backChoice" />}
+                            <button className="buttonChoiceEditor">Éditer sa secrétaire personnelle</button>
                         </div>
                         <div class="flip-card-back">
                             <div className="contentTextBackCard">
-                                <h4 className="titleBackCardChoice">Éditer son chatbot</h4>
+                                <h4 className="titleBackCardChoice">Éditer sa secrétaire</h4>
                                 <p className="textBackCardChoice">Accéder aux différents outils de créations</p>
                             </div>
                             <div className="contentTextBackCard">
                                 <h4 className="titleBackCardChoice">Prévisualiser</h4>
-                                <p className="textBackCardChoice">Vous pouvez visualiser le chatbot que vous êtes en train de créer en direct</p>
+                                <p className="textBackCardChoice">Vous pouvez visualiser les interactions que vous êtes en train de créer en direct</p>
                             </div>
                             <div className="contentTextBackCard">
                                 <h4 className="titleBackCardChoice">Des combinaisons infinies</h4>
@@ -103,9 +112,9 @@ const Landing = (props) => {
                             </div>
                             <div className="contentTextBackCard">
                                 {!userId ?
-                                <Link to="/connexion" className="buttonLinkChoice">C'est parti</Link>
-                                :
-                                <Link to="/editeur-chatbot" className="buttonLinkChoice">C'est parti</Link>}
+                                    <Link to="/connexion" className="buttonLinkChoice">C'est parti</Link>
+                                    :
+                                    <Link to="/editeur-chatbot" className="buttonLinkChoice">C'est parti</Link>}
                             </div>
                         </div>
                     </div>
@@ -126,15 +135,15 @@ const Landing = (props) => {
                                 <p className="textBackCardChoice">Customisez votre page web à votre image !</p>
                             </div>
                             <div className="contentTextBackCard">
-                                <h4 className="titleBackCardChoice">Intégrer son chatbot</h4>
-                                <p className="textBackCardChoice">Votre chatbot est la pièce centrale de votre page web</p>
+                                <h4 className="titleBackCardChoice">Intégrer sa secrétaire</h4>
+                                <p className="textBackCardChoice">Votre secrétaire personnelle est automatiquement ajoutée à votre page</p>
                             </div>
                             <div className="contentTextBackCard">
                                 {!userId ?
-                                <Link to="/connexion" className="buttonLinkChoice">C'est parti</Link>
-                                :
-                                <Link to="/choisir-editeur" className="buttonLinkChoice">C'est parti</Link>}
-                                <a target="_blank" href="https://sortouch.co/web?fleur-et-vous" style={{marginTop: "25px", marginBottom: "25px", padding: "5px"}} className="buttonLinkChoice">Exemple de page perso</a>
+                                    <Link to="/connexion" className="buttonLinkChoice">C'est parti</Link>
+                                    :
+                                    <Link to="/choisir-editeur" className="buttonLinkChoice">C'est parti</Link>}
+                                <a target="_blank" href="https://sortouch.co/web?fleur-et-vous" style={{ marginTop: "25px", marginBottom: "25px", padding: "5px" }} className="buttonLinkChoice">Exemple de page perso</a>
                             </div>
                         </div>
                     </div>
@@ -220,10 +229,10 @@ const Landing = (props) => {
                         <img alt="time gain" src={require('./image/time_back.svg')} className="imgHeadLanding" />
                         <div className="windowTextHead">
                             <div className="contentTitleLanding">
-                                <h1 className="titleLanding">Simplicité et efficacité</h1>
+                                <h1 className="titleLanding">Gains de temps</h1>
                             </div>
                             <div className="contentTextLanding">
-                                <p className="textLanding">Votre site est désormais doté d’une navigation plus simple. Grâce à Sortouch, les utilisateurs pourront trouver leurs informations de manière simple et rapide. Fini les informations compliquées à trouver, une simple recherche, un simple clic et vous voilà servi</p>
+                                <p className="textLanding">Finit la boîte mail en bazar et surchargée, fini les réponses répétitives aux questions récurrentes, finit le téléphone qui sonne pour une simple information. Ceux qui veulent vous contacter obtiennent des réponses rapidement et vous, ne cherchez plus l'email important parmi les spams et autres emails sans importance.</p>
                             </div>
                         </div>
                     </div>
@@ -232,10 +241,10 @@ const Landing = (props) => {
                             <img alt="prospect gain" src={require('./image/graphic.svg')} className="imgHeadLanding" />}
                         <div className="windowTextHead">
                             <div className="contentTitleLanding">
-                                <h1 className="titleLanding">Prise d'information</h1>
+                                <h1 className="titleLanding">Gérez vos contacts</h1>
                             </div>
                             <div className="contentTextLanding">
-                                <p className="textLanding">Votre chatbot créer une proximité entre vous, vos clients et vos prospects. Il permet ainsi de prendre des informations de contact simplement et de créer une base de données facilement utilisable.</p>
+                                <p className="textLanding">Grace au gestionnaire de coordonnées Sortouch, vous ne perdrez plus jamais de contact. Toutes les coordonnées envoyées via votre secrétaire personnelle, sont stockés et peuvent être triées et classifier dans votre espace "base de données".</p>
                             </div>
                         </div>
                         {window.innerWidth > 1280 &&
@@ -245,10 +254,10 @@ const Landing = (props) => {
                         <img alt="mail" src={require('./image/mail_back.svg')} className="imgHeadLanding" />
                         <div className="windowTextHead">
                             <div className="contentTitleLanding">
-                                <h1 className="titleLanding">Les tunnels de vente sont indispensables</h1>
+                                <h1 className="titleLanding">Gagnez en visiilité</h1>
                             </div>
                             <div className="contentTextLanding">
-                                <p className="textLanding">Un tunnel de vente représente les différentes étapes de la transformation d'un visiteur sur votre site en client<br />Attirer un visiteur sur son site est une première étape<br />Mais la plupart du temps, cela ne suffit pas !<br />Il faut encore préciser ce tunnel de vente en recontactant personnellement votre prospect, par mail ou par téléphone dans les meilleurs des cas</p>
+                                <p className="textLanding">Grâce au gestionnaire de coordonnées Sortouch, vous ne perdrez plus jamais de contact. Toutes les coordonnées envoyées via votre secrétaire personnelle, sont stockées et peuvent être triées et classifier dans votre espace "base de données".</p>
                             </div>
                         </div>
                     </div>
@@ -260,7 +269,6 @@ const Landing = (props) => {
                     :
                     <Link to="/models" className="goButtonLanding">Essayer gratuitement</Link>}
             </div>
-            <Chatbot active={chatbotActive} modelId={11} userId={21} />
             <Footer />
         </div>
     )

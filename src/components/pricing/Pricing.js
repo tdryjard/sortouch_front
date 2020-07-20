@@ -108,23 +108,23 @@ const Pricing = () => {
             <div className="pricePlan">Abonné</div>
             <div className="containerOptionPlan">
               <img src={require('./image/valid.png')} alt="valid" className="validImg" />
-              <p className="textOptionPlan">Création de chatbot illimité</p>
+              <p className="textOptionPlan">Nombre d'utilisateurs illimité</p>
             </div>
             <div className="containerOptionPlan">
               <img src={require('./image/valid.png')} alt="valid" className="validImg" />
-              <p className="textOptionPlan">Intégration sur votre site</p>
+              <p className="textOptionPlan">1 page web personnalisée</p>
             </div>
             <div className="containerOptionPlan">
               <img src={require('./image/valid.png')} alt="valid" className="validImg" />
-              <p className="textOptionPlan">2000 réceptions de prise de contact par mois</p>
+              <p className="textOptionPlan">1 secrétaire personnelle</p>
+            </div>
+            <div className="containerOptionPlan">
+              <img src={require('./image/valid.png')} alt="valid" className="validImg" />
+              <p className="textOptionPlan">1000 réceptions de messages par mois</p>
             </div>
             <div className="containerOptionPlan">
               <img src={require('./image/valid.png')} alt="valid" className="validImg" />
               <p className="textOptionPlan">5 000 stockages de coordonnées</p>
-            </div>
-            <div className="containerOptionPlan">
-              <img src={require('./image/valid.png')} alt="valid" className="validImg" />
-              <p className="textOptionPlan">Assistance technique</p>
             </div>
             <button onClick={() => { setCancel(true) }} className="cancelSub">Résilier</button>
           </div>
@@ -137,23 +137,23 @@ const Pricing = () => {
               <div className="pricePlan">Abonné</div>
               <div className="containerOptionPlan">
                 <img src={require('./image/valid.png')} alt="valid" className="validImg" />
-                <p className="textOptionPlan">Création de chatbot illimité</p>
+                <p className="textOptionPlan">Nombre d'utilisateurs illimité</p>
               </div>
               <div className="containerOptionPlan">
                 <img src={require('./image/valid.png')} alt="valid" className="validImg" />
-                <p className="textOptionPlan">Intégration sur votre site</p>
+                <p className="textOptionPlan">3 page web personnalisées</p>
               </div>
               <div className="containerOptionPlan">
                 <img src={require('./image/valid.png')} alt="valid" className="validImg" />
-                <p className="textOptionPlan">10 000 réceptions de messages par mois</p>
+                <p className="textOptionPlan">3 secrétaires personnelle</p>
               </div>
               <div className="containerOptionPlan">
                 <img src={require('./image/valid.png')} alt="valid" className="validImg" />
-                <p className="textOptionPlan">Stockage de coordonnées illimité</p>
+                <p className="textOptionPlan">3 000 réceptions de messages par mois</p>
               </div>
               <div className="containerOptionPlan">
                 <img src={require('./image/valid.png')} alt="valid" className="validImg" />
-                <p className="textOptionPlan">Assistance technique</p>
+                <p className="textOptionPlan">10 000 stockages de coordonnées</p>
               </div>
               <button onClick={() => { setCancel(true) }} className="cancelSub">Résilier</button>
             </div>

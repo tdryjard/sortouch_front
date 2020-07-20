@@ -35,7 +35,7 @@ const MessageBox = (props) => {
             setToken(localStorage.getItem('token'))
             setType(localStorage.getItem('type'))
         }
-            setModelId(localStorage.getItem('modelId'))
+        setModelId(localStorage.getItem('modelId'))
     }, [])
 
     const getDay = () => {
@@ -61,9 +61,10 @@ const MessageBox = (props) => {
         if (getDay() === 0) {
             fetch(`${url}/mail/delete/${userId}`, {
                 method: 'DELETE',
+                credentials: 'include',
                 headers: {
                     'Content-Type': 'application/json',
-                    'Access-Control-Allow-Origin': `${origin}`,
+                    'Access-Control-Allow-Credentials': true,
                     'authorization': token
                 }
             })
@@ -81,11 +82,10 @@ const MessageBox = (props) => {
 
     useEffect(() => {
         if (userId && modelId) {
-            fetch(`${url}/category/findAll/${userId}/${modelId}`, {
+            fetch(`${url}/chatbot/category/findAll/${userId}/${modelId}`, {
                 method: 'GET',
                 headers: {
                     'Content-Type': 'application/json',
-                    'Acces-Control-Allow-Origin': { origin },
                     'authorization': token
                 }
             })
@@ -98,9 +98,10 @@ const MessageBox = (props) => {
                 })
             fetch(`${url}/mail/findByUser/${userId}`, {
                 method: 'GET',
+                credentials: 'include',
                 headers: {
                     'Content-Type': 'application/json',
-                    'Acces-Control-Allow-Origin': { origin },
+                    'Access-Control-Allow-Credentials': true,
                     'authorization': token
                 }
             })
@@ -116,12 +117,14 @@ const MessageBox = (props) => {
                 if (categorys[n].id) {
                     let res = await fetch(`${url}/mail/find/${userId}/${modelId}/${categorys[n].id}`, {
                         method: 'GET',
+                        credentials: 'include',
                         headers: {
                             'Content-Type': 'application/json',
-                            'Acces-Control-Allow-Origin': { origin },
+                            'Access-Control-Allow-Credentials': true,
                             'authorization': token
                         }
                     })
+                    if (res.status === 400) tokenExpire()
                     let result = []
                     res = await res.json()
                     if (res.length > 0) {
@@ -140,10 +143,35 @@ const MessageBox = (props) => {
         }
     }
 
+    const findAll = () => {
+        fetch(`${url}/chatbot/category/findAll/${userId}/${modelId}`, {
+            method: 'GET',
+            credentials: 'include',
+            headers: {
+                'Content-Type': 'application/json',
+                'Access-Control-Allow-Credentials': true,
+                'authorization': token
+            }
+        })
+            .then(res => res.json())
+            .then(res => setCategorys(res))
+    }
+
+    const tokenExpire = () => {
+        localStorage.setItem('userId', '')
+        localStorage.setItem('modelId', '')
+        localStorage.setItem('token', '')
+        localStorage.setItem('type', '')
+        localStorage.setItem('expireToken', true)
+        sessionStorage.setItem('disconnect', true)
+        setTimeout(() => {
+            window.location.reload()
+        }, 100)
+    }
 
     return (
         <div className="containerMessageSpace">
-        <title>Sortouch : boite de réception</title>
+            <title>Sortouch : boite de réception</title>
             {popup && <PopupPremium display={popup} limit={limit} />}
             {window.innerWidth > 1280 ?
                 <Navbar type={"mails"} />
@@ -157,21 +185,21 @@ const MessageBox = (props) => {
                         categorys.map((category, index) => {
                             return (
                                 <div onClick={() => { setCategoryIndex(index); setCategorySelect(category.id); setCategoryOpen(!categoryOpen) }} className="contentCategory">
-                                        <div className="contentUnderCategory">
-                                            <p className="titleCategory">{category.name}</p>
-                                            <div className="contentIconCategory">
-                                                {unview &&
-                                                    <div className="contentNewMessage">
-                                                        <img src={require('./image/newMessage_icon.png')} className="newMessageIcon" alt="new message" />
-                                                        <p className="nbNewMessage">{unview[index]}</p>
-                                                    </div>}
-                                            </div>
+                                    <div className="contentUnderCategory">
+                                        <p className="titleCategory">{category.name}</p>
+                                        <div className="contentIconCategory">
+                                            {unview &&
+                                                <div className="contentNewMessage">
+                                                    <img src={require('./image/newMessage_icon.png')} className="newMessageIcon" alt="new message" />
+                                                    <p className="nbNewMessage">{unview[index]}</p>
+                                                </div>}
                                         </div>
+                                    </div>
                                 </div>
                             )
                         })
                         :
-                        <p className="textNoCategory">Acune catégories de réceptions <br/><br/> Vous pouvez en ajouter grace à <Link to="/editeur">l'éditeur</Link></p>}
+                        <p className="textNoCategory">Acune catégories de réceptions <br /><br /> Vous pouvez en ajouter grace à <Link to="/editeur">l'éditeur</Link></p>}
                 </div>}
             {!load &&
                 <AreaMessage type={type} token={token} modelId={modelId} userId={userId} categoryId={categorySelect} categoryName={categorys[categoryIndex] && categorys[categoryIndex].name} />}

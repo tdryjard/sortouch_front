@@ -25,45 +25,52 @@ const Connexion = (props) => {
     const { connexion, handleSubmit } = useForm()
 
     const validSub = async () => {
-        // Envoi de la requête
-        try {
-            const response = await fetch(`${url}/user/connect`, {
+        const cookie = await fetch(`${url}/cookie`, {
+            method: 'GET',
+            credentials: 'include',
+            headers: {
+                'Content-Type': 'application/json',
+                'Access-Control-Allow-Credentials': true
+            }
+        })
+        if (cookie) {
+            fetch(`${url}/user/connect`, {
                 method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
                 body: JSON.stringify({
                     email: mail,
                     password: password
-                }),
-                headers: {
-                    'Content-Type': 'application/json'
-                }
-            })
-            const result = await response.json();
-
-            if (result.status === 200) {
-                    setType(result.data.type)
-                    localStorage.setItem("userId", result.data.id)
-                    localStorage.setItem("type", result.data.type)
-                    localStorage.setItem('token', result.token)
-                    setRedirect(true)
-                if (result.data.mdp_generate || result.data.email_generate) {
-                    setToken(result.token)
-                    setUserId(result.data.id)
-                    setType(result.data.type)
-                    setPartnerId(result.data.partner_id)
-                    setClientName(result.data.name_client)
-                    setChangeLog(true)
-                }
-            } else {
+                })
+            }).then(res => res.json())
+                .then(result => {
+                    if (result.status === 200) {
+                        setType(result.type)
+                        localStorage.setItem("userId", result.id)
+                        localStorage.setItem("type", result.type)
+                        localStorage.setItem('token', result.token)
+                        if (result.mdp_generate || result.email_generate) {
+                            setToken(result.token)
+                            setUserId(result.id)
+                            setType(result.type)
+                            setPartnerId(result.partner_id)
+                            setClientName(result.name_client)
+                            setChangeLog(true)
+                        } else setRedirect(true)
+                    } else {
+                        setAlert("email ou mot de passe incorrect")
+                        setTimeout(() => {
+                            setAlert('')
+                        }, 2000);
+                    }
+                })
+            setTimeout(() => {
                 setAlert("email ou mot de passe incorrect")
                 setTimeout(() => {
                     setAlert('')
                 }, 2000);
-            }
-        } catch{
-            setAlert("email ou mot de passe incorrect")
-            setTimeout(() => {
-                setAlert('')
-            }, 2000);
+            }, 500)
         }
     }
 
@@ -78,9 +85,11 @@ const Connexion = (props) => {
             try {
                 const resUpdateUser = await fetch(`${url}/user/changeLog/${userId}`, {
                     method: 'PUT',
+                    credentials: 'include',
                     headers: {
                         'Content-Type': 'application/json',
-                        'authorization': 'validy24816'
+                        'Access-Control-Allow-Credentials': true,
+                        'authorization': token
                     },
                     body: JSON.stringify({
                         password: password,
@@ -137,8 +146,7 @@ const Connexion = (props) => {
                 :
                 <MenuBurger type={"models"} />}
             {redirect && type === "partner" ? <Redirect to={{ pathname: `/`, query: { reload: true } }} />
-                : redirect && !props.location.query ? <Redirect to={{ pathname: `/models` }} />
-                : redirect && props.location.query && props.location.query.pricing && <Redirect to='/tarifs' />}
+                : redirect && !props.location.query && <Redirect to={{ pathname: `/models` }} />}
             {!changeLog && !resetPassword &&
                 <div className="contentRegister">
                     <h4 className="titleRegister">Connexion</h4>
