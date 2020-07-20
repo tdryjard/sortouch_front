@@ -2,7 +2,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    flex-direction: row;
+    flex-direction: column;
     position: relative;
     background-color: rgb(254, 249, 249);
     width: 80%;
@@ -19,15 +19,18 @@
     color:  rgba(160,0,255,1);
     font-family: 'Sen', sans-serif;
     margin-right: 30px;
+    margin-top: 20px;
+    margin-bottom: 20px;
 }
 
 .titleStepDoc{
-    font-size: 30px;
-    font-family: 'Sen', sans-serif;
-    position: absolute;
-    top: 20px;
-    color: rgb(37, 37, 37);
+    width: 90%;
+    font-size: 24px;
+    letter-spacing: 1px;
+    color: rgb(36, 36, 36);
+    font-weight: 500;
     text-align: center;
+    font-family: 'Sen', sans-serif;
 }
 
 .onContentDocFirst{
@@ -43,7 +46,7 @@
     justify-content: center;
     flex-direction: column;
     width: 90%;
-    margin-top: 80px;
+    margin-top: 30px;
 }
 
 .orDocSortouch{
@@ -142,6 +145,9 @@
     .onContentDocFirst{
         flex-direction: column;
     }
+    .onContentDoc{
+        margin-top: 30px;
+    }
     .orDocSortouch{
         margin-left: 0;
     }
@@ -159,9 +165,10 @@
         z-index: 10;
     }
     .titleStepDoc{
+        text-align: start;
         font-size: 25px;
         margin: 0;
-        width: 80%;
+        width: 90%;
     }
     .inscriptionDocSortouch{
         display: flex;
@@ -210,6 +217,10 @@
         height: auto;
     }
     .textDocSortouchLast{
-        margin-top: 150px;
+        margin-top: 30px;
+        text-align: start;
+    }
+    .textDocSortouch{
+        text-align: start;
     }
 }

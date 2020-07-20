@@ -81,8 +81,8 @@ const Landing = (props) => {
                 {window.innerWidth < 1280 && <div onClick={() => { setChatbotActive(!chatbotActive) }} className="startBotButton">
                     Démo
                     <img src={require('./image/back.png')} className="backReverseIcon" />
-                    {chatbotActive && <ChatbotMobile active={chatbotActive} modelId={11} userId={21} />}
                 </div>}
+                {chatbotActive && <ChatbotMobile active={chatbotActive} modelId={11} userId={21} landing={true} />}
             </div>
             {window.innerWidth > 1280 ?
                 <Navbar type={"landing"} />

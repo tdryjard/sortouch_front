@@ -54,7 +54,7 @@ const Builder = () => {
         try {
             const resJson = await fetch(`${url}/chatbot/container/findAll/${userId}/${responseSelect}/${modelId}`)
             const res = await resJson.json()
-            if(res.status === 400) tokenExpire()
+            if (res.status === 400) tokenExpire()
             const storageContainer = await storageContainers
             if (res.length) {
                 const stockRes = res.slice().reverse()
@@ -97,7 +97,7 @@ const Builder = () => {
 
     useEffect(() => {
         const element = document.getElementById(`containerBuilder`)
-        if(element) element.scrollTop = element.offsetHeight
+        if (element) element.scrollTop = element.offsetHeight
     }, [load])
 
     useEffect(() => {
@@ -252,7 +252,6 @@ const Builder = () => {
         }, 0)
         setLoad(false)
     }
-
 
     const deleteRelationQuestion = async (containerId, cardId, index) => {
         const res = await fetch(`${url}/relation/deleteQuestionCard/${containerId}/${cardId}/${userId}/${modelId}`, {
@@ -443,7 +442,7 @@ const Builder = () => {
                         })
                     })
                     const stock = cardsRes
-                    if(stock[index].message) stock[index] = [res]
+                    if (stock[index].message) stock[index] = [res]
                     else stock[index].push(res)
                     setCardsRes(stock)
                     setDeleted(!deleted)
@@ -596,7 +595,7 @@ const Builder = () => {
                                         {!Array.isArray(cardsQuest[index]) && !Array.isArray(cardsCategory[index]) && !Array.isArray(cardsRes[index]) &&
                                             <div className="contentEmptyContainer">
                                                 {index !== 0 && <img onClick={() => { deleteContainer(container.id); setLoad(true) }} alt="delete container" src={require('./image/cross.png')} className="crossIconContainer" />}
-                                                <p className="typeContainer">contenaire à {container.content_type}</p>
+                                                {window.innerWidth > 1200 && <p className="typeContainer">contenaire à {container.content_type}</p>}
                                             </div>}
                                         {Array.isArray(cardsQuest[index]) && container.content_type === "question" &&
                                             cardsQuest[index].map((card, cardIndex) => {
@@ -688,8 +687,14 @@ const Builder = () => {
                                     </div>
                                     {
                                         !Array.isArray(cardsCategory[index]) && !(cardsRes[index] && container.content_type === "response" && cardsRes[index].length > 3) && !(cardsQuest[index] && container.content_type === "question" && cardsQuest[index].length > 0) &&
-                                        <div className="contentIconCardBuild">
-                                            <img id={`connect${container.id}`} onClick={() => { connect(container.id) }} className={containerAddCard !== container.id ? "imgConnectActive" : "imgConnect"} alt="ajouter une interaction" src={require('./image/plus_icon.png')} />
+                                        <div onClick={() => { connect(container.id) }}  className={containerAddCard !== container.id ? "imgConnectActive" : "imgConnect"}>
+                                            <img id={`connect${container.id}`} style={{height: '35px', width: 'auto'}} alt="ajouter une interaction" src={require('./image/plus_icon.png')} />
+                                            {container.content_type === "response" ?
+                                                <p className="textAddBuilder">réponse</p>
+                                                : container.content_type === "question" ?
+                                                    <p className="textAddBuilder">question</p>
+                                                    : container.content_type === "category" &&
+                                                    <p className="textAddBuilder">catégorie</p>}
                                         </div>
                                     }
                                 </div>

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
-import Chatbot from '../plugin-react/chatbotArea/ChatBotArea'
+import Chatbot from './chatbot/src/chatbotArea/ChatBotArea'
 import ContentEditable from 'react-contenteditable'
 import { useForm } from "react-hook-form";
 import url from '../../api/url'

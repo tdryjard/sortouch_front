@@ -12,7 +12,7 @@
     font-family: 'Sen', sans-serif;
     font-weight: bold;
     letter-spacing: 1px;
-    text-align: start;
+    text-align: center;
 }
 
 .containerSectionDoc{
@@ -125,8 +125,8 @@
 @media screen and (max-width: 1280px){
     .titleDoc{
         margin-top: 150px;
-        text-align: center;
-        font-size: 30px;
+        text-align: start;
+        font-size: 25px;
         max-width: 85%;
         margin-bottom: 0;
     }
@@ -166,5 +166,8 @@
     .imgCategoryDoc{
         width: 85%;
         height: auto;
+    }
+    .titleContainerSectionDoc{
+        text-align: start;
     }
 }

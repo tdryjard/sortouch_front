@@ -86,10 +86,10 @@ const ModelArea = (props) => {
                         )
                     })}
             </div>
-            {mobile && popup &&
+            {mobile && popup && localStorage.getItem('popupModelArea') !== "close" &&
                 <div className="containerPopupMobile">
                     <p className="textPopupMobile">Nous conseillions une utilisation sur ordinateur pour une expérience optimale</p>
-                    <img src={require('./image/cross.png')} alt="close" className="crossPopup" onClick={() => { setPoupup(false) }} />
+                    <img src={require('./image/cross.png')} alt="close" className="crossPopup" onClick={() => { setPoupup(false); localStorage.setItem('popupModelArea', 'close') }} />
                 </div>}
             <Footer />
         </div>

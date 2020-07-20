@@ -104,9 +104,9 @@ const ChoiceEditor = () => {
         <div className="containerChoiceEditor">
             {redirect && <Redirect to={`/web?${urlPage}`} />}
             {!createPage && window.innerWidth < 1280 &&
-                <Link to="/editeur-chatbot" style={{ width: "82%", marginTop: "15px", marginBottom: "15px", boxShadow: "2px 2px 7px rgb(141, 141, 141)", textAlign: "center" }} className="buttonChoiceEditor">Éditeur d'interactions</Link>}
+                <Link to="/editeur-chatbot" style={{ fontSize: '25px', width: "82%", marginTop: "25px", marginBottom: "25px", boxShadow: "2px 2px 7px rgb(141, 141, 141)", textAlign: "center" }} className="buttonChoiceEditor">Éditeur d'interactions</Link>}
             {!createPage && window.innerWidth < 1280 &&
-                <button onClick={searchOnepage} style={{ width: "90%", marginTop: "15px", marginBottom: "15px", boxShadow: "2px 2px 7px rgb(141, 141, 141)" }} className="buttonChoiceEditor2">Éditeur de page web</button>}
+                <button onClick={searchOnepage} style={{ fontSize: '25px', width: "90%", marginTop: "25px", marginBottom: "25px", boxShadow: "2px 2px 7px rgb(141, 141, 141)" }} className="buttonChoiceEditor2">Éditeur de page web</button>}
             {!createPage && window.innerWidth > 1280 &&
                 <Link to="/editeur-chatbot" onClick={() => { setCardActive(true) }} className="flip-card">
                     <div className="flip-card-inner">

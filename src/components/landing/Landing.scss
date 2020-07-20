@@ -65,6 +65,17 @@
     justify-content: flex-start;
     align-items: flex-start;
     flex-direction: column;
+    animation: textbloc 1s;
+}
+
+@keyframes textbloc{
+    from{
+        margin-left: 1000px;
+    }
+    to{
+        margin-left: 5%;
+    }
+
 }
 
 .titleFirstLanding{
@@ -444,6 +455,7 @@
     .containerFirstTextLanding{
         width: 90%;
         height: auto;
+        animation: none;
     }
     .firstImgLanding{
         width: 100%;

@@ -168,22 +168,28 @@
 
 .imgConnect{
     filter: blur(0.2px);
-    width: 45px;
-    padding: 5px;
-    height: auto;
-    background-color: rgb(194, 194, 194);
-    border-radius: 50%;
-    box-shadow: 1px 1px 4px 0px rgb(46, 46, 46) inset, -2px -2px 1px 0px rgb(192, 192, 192) inset;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    padding: 5px 10px 5px 10px;
+    height: 40px;
+    background-color: rgb(255, 225, 225);
+    border-radius: 30px;
+    box-shadow: 1px 1px 4px 0px rgb(99, 99, 99) inset, -3px -3px 1px 0px rgb(255, 255, 255) inset;
     margin-left: 45px;
     margin-right: 15px;
 }
 
 .imgConnectActive{
-    width: 45px;
-    padding: 5px;
-    height: auto;
-    background-color: rgb(240, 240, 240);
-    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    padding: 5px 10px 5px 10px;
+    height: 40px;
+    background: rgb(252, 235, 235);
+    border-radius: 30px;
     box-shadow: -3px -3px 2px 0px #ffffff, 3px 3px 5px 0px #adadad;
     cursor: pointer;
     animation: connectButton 0.5s;
@@ -201,6 +207,14 @@
     to{
         margin-right: 300px;
     }
+}
+
+.textAddBuilder{
+    font-size: 18px;
+    font-family: 'Sen', sans-serif;
+    color: rgb(56, 56, 56);
+    margin-left: 7px;
+    margin-right: 7px;
 }
 
 .containerCardQuest{
@@ -442,6 +456,7 @@ img.loadGif{
     .containerDiagram{
         width: 100%;
         padding-bottom: 100px;
+        height: auto;
     }
     .contentBuildCard{
         margin-left: 0;
@@ -493,5 +508,27 @@ img.loadGif{
         z-index: 100;
         top: 0;
         border-radius: 50%;
+    }
+    .contentButtonAddBuild{
+        flex-direction: column;
+    }
+    .containerAddBuild{
+        margin-top: 15px;
+        margin-bottom: 15px;
+    }
+    .contentBuildResponse{
+        flex-direction: column;
+    }
+    .imgConnectActive{
+        margin-left: 0;
+        margin-right: 0;
+        margin-top: 15px;
+        margin-bottom: 15px;
+    }
+    .imgConnect{
+        margin-left: 0;
+        margin-right: 0;
+        margin-top: 15px;
+        margin-bottom: 15px;
     }
 }
