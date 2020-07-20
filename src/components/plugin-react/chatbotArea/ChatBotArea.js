@@ -70,13 +70,7 @@ const ChatBotArea = (props) => {
         let wordSplit = word.toLowerCase().split('')
         let resReturn = []
         if (wordSplit.length > 2) {
-            fetch(`https://sortouch-back.herokuapp.com/chatbot/response/findAll/${props.userId}/${props.modelId}`, {
-                method: 'GET',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'Acces-Control-Allow-Origin': '*'
-                }
-            })
+            fetch(`https://sortouch-back.herokuapp.com/chatbot/response/findAll/${props.userId}/${props.modelId}`)
                 .then(res => res.json())
                 .then(res => {
                     for (let i = 0; i < res.length; i++) {
@@ -175,13 +169,7 @@ const ChatBotArea = (props) => {
     const printContainers = async () => {
         if (lastResponse !== responseSelect) {
             try {
-                fetch(`https://sortouch-back.herokuapp.com/chatbot/container/findAll/${props.userId}/${responseSelect}/${props.modelId}`, {
-                    method: 'GET',
-                    headers: {
-                        'Content-Type': 'application/json',
-                        'Acces-Control-Allow-Origin': '*'
-                    }
-                })
+                fetch(`https://sortouch-back.herokuapp.com/chatbot/container/findAll/${props.userId}/${responseSelect}/${props.modelId}`)
                     .then(res => res.json())
                     .then(res => {
                         if ((containers.length > 0) && beforeSelect[0] !== 0) {
@@ -209,13 +197,7 @@ const ChatBotArea = (props) => {
             if (res[i]) {
                 let result = []
                 if (res[i].content_type === "question") {
-                    const resNoJson = await fetch(`https://sortouch-back.herokuapp.com/chatbot/relation/findCardQuestion/${res[i].id}/${props.userId}/${props.modelId}`, {
-                        method: 'GET',
-                        headers: {
-                            'Content-Type': 'application/json',
-                            'Acces-Control-Allow-Origin': '*'
-                        }
-                    })
+                    const resNoJson = await fetch(`https://sortouch-back.herokuapp.com/chatbot/relation/findCardQuestion/${res[i].id}/${props.userId}/${props.modelId}`)
                     result = await resNoJson.json()
                 }
                 else result = { none: `pas de question container id ${i}` }
@@ -228,13 +210,7 @@ const ChatBotArea = (props) => {
             if (res[i]) {
                 let result = []
                 if (res[i].content_type === "response") {
-                    const resNoJson = await fetch(`https://sortouch-back.herokuapp.com/chatbot/relation/findCardResponse/${res[i].id}/${props.userId}/${props.modelId}`, {
-                        method: 'GET',
-                        headers: {
-                            'Content-Type': 'application/json',
-                            'Acces-Control-Allow-Origin': '*'
-                        }
-                    })
+                    const resNoJson = await fetch(`https://sortouch-back.herokuapp.com/chatbot/relation/findCardResponse/${res[i].id}/${props.userId}/${props.modelId}`)
                     result = await resNoJson.json()
                 }
                 else result = { none: `pas de réponse container id ${i}` }
@@ -247,13 +223,7 @@ const ChatBotArea = (props) => {
             if (res[i]) {
                 let result = []
                 if (res[i].content_type === "category") {
-                    const resNoJson = await fetch(`https://sortouch-back.herokuapp.com/chatbot/relation/findCardCategory/${res[i].id}/${props.userId}/${props.modelId}`, {
-                        method: 'GET',
-                        headers: {
-                            'Content-Type': 'application/json',
-                            'Acces-Control-Allow-Origin': '*'
-                        }
-                    })
+                    const resNoJson = await fetch(`https://sortouch-back.herokuapp.com/chatbot/relation/findCardCategory/${res[i].id}/${props.userId}/${props.modelId}`)
                     result = await resNoJson.json()
                 }
                 else result = { none: `pas de categorie container id ${i}` }
@@ -393,7 +363,7 @@ const ChatBotArea = (props) => {
         <div className={!chatActive && "containerIconChat"} style={chatActive ? containerChatbot : null}>
             {chatActive &&
                 <div className="headChatbot">
-                    <img style={{ marginLeft: '0px' }} onClick={reloadFunction} alt="reload sortouch" src={reload} className="reloadChatbot" />
+                    <img style={{marginLeft: '0px'}} onClick={reloadFunction} alt="reload sortouch" src={reload} className="reloadChatbot" />
                     <img src={back} className="backIconSortouch" onClick={backResponse} />
                     <a target="__blank" href="https://sortouch.com" className="sortouch">Sortouch</a>
                 </div>}
