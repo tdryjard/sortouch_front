@@ -66,7 +66,7 @@ const Landing = (props) => {
         <div className="containerLanding">
             {localStorage.getItem('cookie') !== 'accept' && <PopupCookie />}
             {localStorage.getItem('expireToken') === 'true' && <ExpireToken active={true} />}
-            <title>Sortouch : éditeur de chatbot gratuit</title>
+            <title>Sortouch : Créer sa secrétaire personnelle</title>
             <meta name="description" content="Créer sa secrétaire personnelle qui répond automatiquement aux questions et trie les messages laissés dans sa boite de réception Sortouch. Créer sa page web perso avec sa secrétaire automatique ou intégrer sa secrétaire à son site web" />
             <div className="firstContainerLanding">
                 {window.innerWidth > 1280 && <Chatbot active={true} modelId={11} userId={21} />}
