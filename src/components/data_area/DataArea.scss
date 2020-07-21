@@ -136,7 +136,7 @@
     width: 100%;
     height: 45px;
     border-bottom: 1px solid rgb(206, 206, 206);
-    margin-top: 50px;
+    margin-top: 20px;
 }
 
 .containerContactGreen{
@@ -192,7 +192,7 @@
     height: 45px;
     border-bottom: 1px solid rgb(206, 206, 206);
     background-color: rgb(137, 255, 147);
-    margin-top: 50px;
+    margin-top: 20px;
 }
 
 .containerContactMarginBlue{
@@ -204,7 +204,7 @@
     height: 45px;
     border-bottom: 1px solid rgb(206, 206, 206);
     background-color: rgb(155, 137, 255);
-    margin-top: 50px;
+    margin-top: 20px;
 }
 
 .containerContactMarginOrange{
@@ -216,7 +216,7 @@
     height: 45px;
     border-bottom: 1px solid rgb(206, 206, 206);
     background-color: rgb(255, 176, 111);
-    margin-top: 50px;
+    margin-top: 20px;
 }
 
 .containerContactMarginRed{
@@ -224,7 +224,7 @@
     justify-content: flex-end;
     align-items: center;
     flex-direction: row;
-    margin-top: 50px;
+    margin-top: 20px;
     width: 100%;
     height: 45px;
     border-bottom: 1px solid rgb(206, 206, 206);
@@ -480,6 +480,50 @@
     cursor: pointer;
 }
 
+.buttonAddContact{
+    background-color: rgb(181, 120, 253);
+    border: none;
+    box-shadow: 2px 2px 7px rgb(221, 221, 221);
+    color: white;
+    font-family: 'Sen', sans-serif;
+    padding: 10px 15px 10px 15px;
+    border-radius: 5px;
+    font-size: 18px;
+    cursor: pointer;
+}
+
+.containerAddContact{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    width: 100%;
+    height: 60px;
+    margin-top: 15px;
+}
+
+.inputAddContact{
+    border: none;
+    border-bottom: 1px solid rgb(65, 65, 65);
+    width: 30%;
+    margin-left: 3%;
+    margin-right: 3%;
+    font-size: 18px;
+}
+
+.addContactButton{
+    background-color: rgb(181, 120, 253);
+    border: none;
+    box-shadow: 2px 2px 7px rgb(221, 221, 221);
+    color: white;
+    font-family: 'Sen', sans-serif;
+    padding: 10px 15px 10px 15px;
+    border-radius: 5px;
+    font-size: 18px;
+    cursor: pointer;
+    margin-left: 5%;
+}
+
 @media screen and (max-width: 1280px){
     .contentDataArea{
         width: 90%;
@@ -624,5 +668,8 @@
         position: absolute;
         left: 10px;
         bottom: 20%;
+    }
+    .containerAddContact{
+        width: 95%;
     }
 }

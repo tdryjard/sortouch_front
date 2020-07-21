@@ -31,6 +31,9 @@ const DataArea = () => {
     const [lastColor, setLastColor] = useState(false)
     const [chooseColor, setChooseColor] = useState(false)
     const [deleteBool, setDeleteBool] = useState(false)
+    const [addContact, setAddContact] = useState(false)
+    const [numberPhone, setNumberPone] = useState('')
+    const [email, setEmail] = useState('')
 
     useEffect(() => {
         setTimeout(() => {
@@ -56,7 +59,7 @@ const DataArea = () => {
         })
             .then(res => res.json())
             .then(res => {
-                if(res.status === 400) tokenExpire()
+                if (res.status === 400) tokenExpire()
                 setCategorys(res)
                 if (!categorySelect && res[0]) setCategorySelect(res[0].id)
             })
@@ -72,7 +75,7 @@ const DataArea = () => {
         })
             .then(res => res.json())
             .then(res => {
-                if(res.status === 400) tokenExpire()
+                if (res.status === 400) tokenExpire()
                 if (type === "free" && res.length > 50) res.length = 50
                 if (type === "standard" && res.length > 5000) res.length = 5000
                 if (type === "expert" && res.length > 10000) res.length = 10000
@@ -101,11 +104,11 @@ const DataArea = () => {
         })
             .then(res => res.json())
             .then(res => {
-                if(res.status === 400) tokenExpire()
+                if (res.status === 400) tokenExpire()
                 setModels(res)
             })
 
-    }, [userId, modelId, token])
+    }, [userId, modelId, token, addContact])
 
     useEffect(() => {
 
@@ -196,7 +199,7 @@ const DataArea = () => {
             })
         })
         if (change) {
-            if(change.status === 400) tokenExpire()
+            if (change.status === 400) tokenExpire()
             const stock = sortContacts
             stock[index].color = color
             setSortContacts(stock)
@@ -217,7 +220,7 @@ const DataArea = () => {
                 }
             })
             if (deleted) {
-                if(deleted.status === 400) tokenExpire()
+                if (deleted.status === 400) tokenExpire()
                 const stock = sortContacts
                 stock.splice(index, 1)
                 setSortContacts(stock)
@@ -228,7 +231,7 @@ const DataArea = () => {
 
     useEffect(() => {
 
-    }, [sortContacts, deleteBool])
+    }, [sortContacts, deleteBool, addContact])
 
     useEffect(() => {
         if (contacts && contacts.length > 40 && type === "free") setPopup(true)
@@ -245,6 +248,31 @@ const DataArea = () => {
         setTimeout(() => {
             window.location.reload()
         }, 100)
+    }
+
+    const getNumberPhone = (e) => {
+        setNumberPone(e.target.value)
+    }
+
+    const getEmail = (e) => {
+        setEmail(e.target.value)
+    }
+
+    const sendNewContact = async () => {
+        const newContact = await fetch(`${url}/chatbot/contact/create`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                email: email,
+                phone: numberPhone,
+                user_id: userId
+            })
+        })
+        if(newContact) {
+            setAddContact(false)
+        }
     }
 
     return (
@@ -280,6 +308,16 @@ const DataArea = () => {
                     </div>}
             </div>
             <div className="contentDataArea">
+                <div className="containerAddContact">
+                    {!addContact ?
+                        <button className="buttonAddContact" onClick={() => { setAddContact(true) }}>Nouveau contact</button>
+                        :
+                        <>
+                            <input maxLength="15" onChange={getNumberPhone} className="inputAddContact" placeholder="numéro de téléphone" />
+                            <input maxLength="100" onChange={getEmail} className="inputAddContact" placeholder="adresse email" />
+                            <button onClick={sendNewContact} className="addContactButton">Ajouter</button>
+                        </>}
+                </div>
                 {selectModel &&
                     <div className="listModelsData">
                         {modelId && <p className="textChoiceData" onClick={() => { sort('Tout', 'model') }}>Tout</p>}
