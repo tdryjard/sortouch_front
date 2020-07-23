@@ -37,6 +37,7 @@ const Navbar = (props) => {
             {redirect && <Redirect to="/"/>}
             <Link to="/" className={props.type === "landing" ? "linkNavbarActive" : "linkNavbar"} >Accueil</Link>
             <Link to="/utiliser-le-site-sortouch" className={props.type === "doc" ? "linkNavbarActive" : "linkNavbar"} >Docs</Link>
+            <Link to="/blog" className={props.type === "blog" ? "linkNavbarActive" : "linkNavbar"} >Blog</Link>
             {!userId && window.innerWidth > 1280 ?
                 <div className="contentConnect">
                     <Link to="/connexion" className="connexionNavbar">Connexion</Link>

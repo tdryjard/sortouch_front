@@ -64,10 +64,17 @@ const Landing = (props) => {
 
     return (
         <div className="containerLanding">
-            {localStorage.getItem('cookie') !== 'accept' && <PopupCookie />}
-            {localStorage.getItem('expireToken') === 'true' && <ExpireToken active={true} />}
+        <head>
             <title>Sortouch : Créer sa secrétaire personnelle</title>
             <meta name="description" content="Créer sa secrétaire personnelle qui répond automatiquement aux questions et trie les messages laissés dans sa boite de réception Sortouch. Créer sa page web perso avec sa secrétaire automatique ou intégrer sa secrétaire à son site web" />
+            <meta name="og:title" property="og:title" content="Créer sa secrétaire personnelle" />
+            <meta name="og:description" property="og:description" content="Créer facilement un chat bot qui répond à votre place et trie vos email. à héberger gratuitement ou à installer sur son site" />
+            <meta name="og:image" property="og:image" content="https://sortouch.co/static/media/chatbot.5d205088.svg" />
+            <meta name="robots" content="index, follow"/>
+        </head>
+            {localStorage.getItem('cookie') !== 'accept' && <PopupCookie />}
+            {localStorage.getItem('expireToken') === 'true' && <ExpireToken active={true} />}
+            <meta name="description" content="" />
             <div className="firstContainerLanding">
                 {window.innerWidth > 1280 && <Chatbot active={true} modelId={11} userId={21} />}
                 <div className="containerFirstTextLanding">
