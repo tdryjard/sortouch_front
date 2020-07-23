@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { Switch, Route } from "react-router-dom";
+import ReactGA from 'react-ga';
+import "./App.css";
+
 import Builder from "./components/creating_area/area/Area";
 import MessageSpace from "./components/message_space/MessageSpace";
-import "./App.css";
 import ModelArea from "./components/models_area/ModelsArea";
 import ChatbotArea from './components/chatbot_area/chatbotArea/ChatBotArea'
 import Landing from './components/landing/Landing'
@@ -22,7 +24,9 @@ import CGV from './components/CGV/CGV'
 import ChoiceEditor from './components/choiceEditor/ChoiceEditor'
 import OnePage from './components/onePage/OnePage'
 import DocEditorWeb from './components/docs/docEditorWeb/DocEditorWeb'
-import ReactGA from 'react-ga';
+
+import Blog from './components/blog/Blog'
+import Art1 from './components/blog/art1/Art1'
 
 
 function App() {
@@ -33,9 +37,6 @@ function App() {
     if (localStorage.getItem('userId')) {
       setUserId(localStorage.getItem('userId'))
       setType(localStorage.getItem('type'))
-    } else {
-      setUserId(sessionStorage.getItem('userId'))
-      setType(sessionStorage.getItem('type'))
     }
     initializeReactGA()
   }, [])
@@ -81,6 +82,9 @@ function App() {
             <Route path="/conditions-utilisateur" component={CGV} />
             <Route path="/choisir-editeur" component={ChoiceEditor} />
             <Route path="/web" component={OnePage} />
+
+            <Route path="/blog" component={Blog} />
+            <Route path="/comment-securiser-son-email-professionnel" component={Art1} />
           </>
           :
           <>
@@ -100,6 +104,9 @@ function App() {
             <Route path="/conditions-utilisateur" component={CGV} />
             <Route path="/choisir-editeur" component={ChoiceEditor} />
             <Route path="/web" component={OnePage} />
+
+            <Route path="/blog" component={Blog} />
+            <Route path="/comment-securiser-son-email-professionnel" component={Art1} />
           </>
         :
         <>
