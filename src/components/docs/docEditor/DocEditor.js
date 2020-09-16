@@ -20,6 +20,7 @@ const DocEditor = () => {
         <div className="containerDoc">
         {localStorage.getItem('cookie') !== 'accept' && <PopupCookie />}
         <title>Sortouch : tuto éditeur</title>
+            <meta name="title" property="title" content="Apprendre à créer et éditer son chatbot" />
             <meta name="description" content="Apprendre à créer son chatbot en suivant un simple guide. Apprendre comment ajouter des question, réponses et boite de réception à votre chatbot" />
             {window.innerWidth > 1280 && <Navbar type={"doc"}/>}
             {window.innerWidth > 1280 && <Menu link="editor"/>}

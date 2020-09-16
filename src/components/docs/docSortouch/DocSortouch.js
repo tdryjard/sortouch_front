@@ -20,6 +20,7 @@ const DocSortouch = () => {
         {localStorage.getItem('cookie') !== 'accept' && <PopupCookie />}
         <title>Sortouch : comment utiliser sortouch</title>
             <meta name="description" content="Apprendre facilement comment utiliser la plateforme de création de chatbot et de gestion des contacts Sortouch en suivant un court tuto" />
+            <meta name="titile" content="Apprendre à utiliser l'éditeur de chatbot Sortouch" />
             {window.innerWidth > 1280 && <Navbar type={"doc"} />}
             {window.innerWidth > 1280 && <Menu link="sortouch" />}
             {window.innerWidth < 1280 && <MenuBurger link="sortouch" />}

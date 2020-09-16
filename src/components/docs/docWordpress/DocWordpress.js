@@ -18,6 +18,7 @@ const DocWordpress = () => {
     return (
         <div className="containerDoc">
             <title>Sortouch : installer son chatbot sur son site Wordpress</title>
+            <meta name="title" property="title" content="installer son chatbot sur son site Wordpress" />
             {localStorage.getItem('cookie') !== 'accept' && <PopupCookie />}
             <meta name="description" content="Apprendre comment installer son chatbot sur son site Wordpress simplement" />
             {window.innerWidth > 1280 && <Navbar type={"doc"} />}

@@ -8,6 +8,9 @@ import './blog.scss'
 const Blog = () => {
     return (
         <div className="containerBlog">
+            <title>Sortouch: blog</title>
+            <meta name="title" property="title" content="Tout connaitre sur les chatbots" />
+            <meta name="description" content="Découvrir tout ce qu'il y a à savoir sur les chatbot. Comment créer un chatbot, à quoi sert un chatbot, le futur des chatbots et l'utilisation de plugin sur Wordpress" />
             {window.innerWidth > 1280 ?
                 <Navbar type={"blog"} />
                 :

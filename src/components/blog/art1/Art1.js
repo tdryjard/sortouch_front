@@ -8,6 +8,7 @@ const Art1 = () => {
         <div className="containerBlog">
             <head>
                 <title>Comment sécuriser son email professionnel ?</title>
+            <meta name="title" property="title" content="Comment sécuriser son email professionnel" />
                 <meta name="description" content="Les meilleures astuces et méthodes afin de garder son adresse mail professionnel propre, éviter les spams et email marketing" />
                 <meta name="og:title" property="og:title" content="Top astuces pour sécuriser son email professionnel" />
                 <meta name="og:description" property="og:description" content="Les meilleures astuces et méthodes afin de garder son adresse mail professionnel propre, éviter les spams et email marketing" />

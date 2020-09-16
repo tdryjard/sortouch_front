@@ -19,6 +19,7 @@ const DocReact = () => {
         <div className="containerDoc">
         {localStorage.getItem('cookie') !== 'accept' && <PopupCookie />}
         <title>Sortouch : installer son chatbot sur ReactJs</title>
+            <meta name="title" property="title" content="installer son chatbot sur son site React" />
             <meta name="description" content="Apprendre à installer son chatbot sur son site ReactJs" />
             {window.innerWidth > 1280 && <Navbar type={"doc"} />}
             {window.innerWidth > 1280 && <Menu sectionSelect="install" link="docReact" />}
