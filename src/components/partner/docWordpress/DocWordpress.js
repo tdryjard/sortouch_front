@@ -27,12 +27,12 @@ const DocWordpress = () => {
             <title>Sortouch : doc wordpress partenaire</title>
             <div className="containerNav">
                 <Link to="/" className="linkNavbar" >Menu</Link>
-                <Link to="/installer-wordpress" className="linkNavbar" >Installer secrétaire sur Wordpress</Link>
-                <Link to="/installer-react" className="linkNavbar" >Installer secrétaire sur ReactJs</Link>
+                <Link to="/installer-wordpress" className="linkNavbar" >Installer son chatbot sur Wordpress</Link>
+                <Link to="/installer-react" className="linkNavbar" >Installer son chatbot sur ReactJs</Link>
                 {window.innerWidth > 1280 && <button onClick={disconnect} className="disconnect" >Déconnexion</button>}
             </div>
             <div style={{ marginLeft: "0" }} className="contentDoc">
-                <h1 className="titleDoc">Intégrer secrétaire sur un site Wordpress</h1>
+                <h1 className="titleDoc">Intégrer son chatbot sur un site Wordpress</h1>
                 <img alt="react logo" src={require('./image/wordpress.png')} className="reactLogo" />
                 <h4 className="titleContainerSectionDocWordpress">Sur votre ordinateur</h4>
                 <a href="sortouch_plugin.zip"

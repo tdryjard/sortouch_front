@@ -24,15 +24,15 @@ const DocReact = () => {
 
     return (
         <div className="containerDocPartner">
-            <title>Sortouch : installer secrétaire sur React | partenaire</title>
+            <title>Sortouch : installer chatbot sur React | partenaire</title>
             <div className="containerNav">
                 <Link to="/" className="linkNavbar" >Menu</Link>
-                <Link to="/installer-wordpress" className="linkNavbar" >Installer secrétaire sur Wordpress</Link>
-                <Link to="/installer-react" className="linkNavbar" >Installer secrétaire sur ReactJs</Link>
+                <Link to="/installer-wordpress" className="linkNavbar" >Installer chatbot sur Wordpress</Link>
+                <Link to="/installer-react" className="linkNavbar" >Installer chatbot sur ReactJs</Link>
                 {window.innerWidth > 1280 && <button onClick={disconnect} className="disconnect" >Déconnexion</button>}
             </div>
             <div style={{ marginLeft: "0" }} className="contentDoc">
-                <h1 className="titleDoc">Intégrer sa secrétaire personnelle sur un site ReactJs</h1>
+                <h1 className="titleDoc">Intégrer son chatbot sur un site ReactJs</h1>
                 <img alt="react logo" src={require('./image/react.svg')} className="reactLogo" />
                 <div style={{ width: "80%" }} className="containerSectionDoc">
                     <h4 className="titleContainerSectionDoc">Installer la librairie</h4>

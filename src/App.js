@@ -22,7 +22,6 @@ import DocReactPartner from './components/partner/docReact/DocReact'
 import DocWordpressPartner from './components/partner/docWordpress/DocWordpress'
 import CGV from './components/CGV/CGV'
 import ChoiceEditor from './components/choiceEditor/ChoiceEditor'
-import OnePage from './components/onePage/OnePage'
 import DocEditorWeb from './components/docs/docEditorWeb/DocEditorWeb'
 
 import Blog from './components/blog/Blog'
@@ -69,7 +68,6 @@ function App() {
             <Route path="/inscription" component={Registration} />
             <Route path="/connexion" component={Connexion} />
             <Route path="/editeur-doc" component={DocEditor} />
-            <Route path="/editeur-web-doc" component={DocEditorWeb} />
             <Route path="/partager-son-chatbot-doc" component={DocShare} />
             <Route path="/installer-react" component={DocReact} />
             <Route path="/installer-wordpress" component={DocWordpress} />
@@ -80,8 +78,6 @@ function App() {
             <Route path="/editeur-chatbot" component={Builder} />
             <Route path="/base-de-donnee" component={DataArea} />
             <Route path="/conditions-utilisateur" component={CGV} />
-            <Route path="/choisir-editeur" component={ChoiceEditor} />
-            <Route path="/web" component={OnePage} />
 
             <Route path="/blog" component={Blog} />
             <Route path="/comment-securiser-son-email-professionnel" component={Art1} />
@@ -95,15 +91,12 @@ function App() {
             <Route path="/chatbot" component={ChatbotArea} />
             <Route path="/editeur-chatbot" component={Builder} />
             <Route path="/editeur-doc" component={DocEditor} />
-            <Route path="/editeur-web-doc" component={DocEditorWeb} />
             <Route path="/partager-son-chatbot-doc" component={DocShare} />
             <Route path="/installer-react" component={DocReact} />
             <Route path="/installer-wordpress" component={DocWordpress} />
             <Route path="/utiliser-le-site-sortouch" component={DocSortouch} />
             <Route path="/tarifs" component={Pricing} />
             <Route path="/conditions-utilisateur" component={CGV} />
-            <Route path="/choisir-editeur" component={ChoiceEditor} />
-            <Route path="/web" component={OnePage} />
 
             <Route path="/blog" component={Blog} />
             <Route path="/comment-securiser-son-email-professionnel" component={Art1} />
@@ -114,9 +107,7 @@ function App() {
           <Route path="/installer-react" component={DocReactPartner} />
           <Route path="/installer-wordpress" component={DocWordpressPartner} />
           <Route path="/conditions-utilisateur" component={CGV} />
-          <Route path="/choisir-editeur" component={ChoiceEditor} />
           <Route path="/editeur-web-doc" component={DocEditorWeb} />
-          <Route path="/web" component={OnePage} />
         </>}
     </Switch>
   );

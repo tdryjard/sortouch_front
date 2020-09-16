@@ -55,7 +55,7 @@ const MenuBurger = (props) => {
                         </>
                     }
                     {modelId && <Link to="/mails" className={props.type === "mails" ? "linkBurgerActive" : "linkBurger"} >Boite de réception</Link>}
-                    {modelId && <Link to="/choisir-editeur" className={props.type === "editeur" ? "linkBurgerActive" : "linkBurger"} >Éditeur</Link>}
+                    {modelId && <Link to="/editeur-chatbot" className={props.type === "editeur" ? "linkBurgerActive" : "linkBurger"} >Éditeur</Link>}
                     {userId && <button onClick={disconnect} className="disconnect" >Déconnexion</button>}
                 </div>
             }

@@ -90,7 +90,7 @@ const Art1 = () => {
                 à défaut de partager votre adresse email,
                 <a className="linkArt" href="https://sortouch.co"> sortouch.co</a> vous permet de partager un lien vers une page web avec un robot que vous pouvez créer vous-même.<br /> Ce robot répondra à votre place aux questions les plus fréquentes et donnera la possibilité de vous contacter via un formulaire.<br /><br />
 
-                Cerise sur le pancake, votre “secrétaire personnelle” s’occupera de trier automatiquement les messages laissés en différentes catégories que vous retrouverez dans votre boîte de réception.<br /><br />
+                Cerise sur le pancake, votre chatbot s’occupera de trier automatiquement les messages laissés en différentes catégories que vous retrouverez dans votre boîte de réception.<br /><br />
 
                 De cette façon, vous gagnerez du temps dans la gestion des mails de vos prospects et vous garderez votre adresse emails professionnelle secrète pour ceux que vous n’avez jamais contacté vous-même.<br /><br />
 

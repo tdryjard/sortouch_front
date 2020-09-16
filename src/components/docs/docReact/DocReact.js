@@ -18,13 +18,13 @@ const DocReact = () => {
     return (
         <div className="containerDoc">
         {localStorage.getItem('cookie') !== 'accept' && <PopupCookie />}
-        <title>Sortouch : installer sa secrétaire personnelle sur ReactJs</title>
+        <title>Sortouch : installer son chatbot sur ReactJs</title>
             <meta name="description" content="Apprendre à installer son chatbot sur son site ReactJs" />
             {window.innerWidth > 1280 && <Navbar type={"doc"} />}
             {window.innerWidth > 1280 && <Menu sectionSelect="install" link="docReact" />}
             {window.innerWidth < 1280 && <MenuBurger sectionSelect="install" link="docReact" />}
             <div className="contentDoc">
-                <h1 className="titleDoc">Intégrer sa secrétaire personnelle à son site React</h1>
+                <h1 className="titleDoc">Intégrer son chatbot à son site React</h1>
                 <img alt="react logo" src={require('./image/react.svg')} className="reactLogo" />
                 <div className="containerSectionDoc">
                     <h4 className="titleContainerSectionDoc">Installer la librairie</h4>

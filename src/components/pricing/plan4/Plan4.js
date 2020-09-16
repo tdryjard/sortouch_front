@@ -89,7 +89,7 @@ const Plan4 = () => {
                     <h2 className="titlePlan2">Sur mesure</h2>
                     <div className="containerOptionPlan4">
                         <img src={require('../image/valid.png')} alt="valid" className="validImg" />
-                        <p className="textOptionPlan">Création de votre secrétaire personnelle sur mesure</p>
+                        <p className="textOptionPlan">Nous créons votre chatbot sur mesure</p>
                     </div>
                     <div className="containerOptionPlan4">
                         <img src={require('../image/valid.png')} alt="valid" className="validImg" />
@@ -101,7 +101,7 @@ const Plan4 = () => {
                     </div>
                     <div className="containerOptionPlan4">
                         <img src={require('../image/valid.png')} alt="valid" className="validImg" />
-                        <p className="textOptionPlan">Intégration de votre secrétaire sur votre site par nos soins</p>
+                        <p className="textOptionPlan">Intégration de votre chatbot sur votre site par nos soins</p>
                     </div>
                     <div className="containerOptionPlan4">
                         <img src={require('../image/valid.png')} alt="valid" className="validImg" />

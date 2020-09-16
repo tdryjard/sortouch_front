@@ -65,9 +65,9 @@ const Landing = (props) => {
     return (
         <div className="containerLanding">
         <head>
-            <title>Sortouch : Créer sa secrétaire personnelle</title>
-            <meta name="description" content="Créer sa secrétaire personnelle qui répond automatiquement aux questions et trie les messages laissés dans sa boite de réception Sortouch. Créer sa page web perso avec sa secrétaire automatique ou intégrer sa secrétaire à son site web" />
-            <meta name="og:title" property="og:title" content="Créer sa secrétaire personnelle" />
+            <title>Sortouch : Créer son chatbot simplement</title>
+            <meta name="description" content="Créer son chatbot simplement. Éditer des questions et réponses automatiques. Installer son chatbot sur son site Wordpress ou ReactJs. Créer un formulaire de contact pour recevoir des messages via son site" />
+            <meta name="og:title" property="og:title" content="Créer son chatbot simplement" />
             <meta name="og:description" property="og:description" content="Créer facilement un chat bot qui répond à votre place et trie vos email. à héberger gratuitement ou à installer sur son site" />
             <meta name="og:image" property="og:image" content="https://sortouch.co/static/media/chatbot.5d205088.svg" />
             <meta name="robots" content="index, follow"/>
@@ -78,12 +78,12 @@ const Landing = (props) => {
             <div className="firstContainerLanding">
                 {window.innerWidth > 1280 && <Chatbot active={true} modelId={11} userId={21} />}
                 <div className="containerFirstTextLanding">
-                    <h1 className="titleFirstLanding">Créer sa secrétaire personnelle facilement</h1>
+                    <h1 className="titleFirstLanding">Créer son chatbot simplement</h1>
                     <span className="borderBottom" />
-                    <h2 className="describeFirstContainerLanding">Sortouch vous permet d'automatiser des interactions à travers des questions et réponses éditables !
-                    <br /><br />Ajoutez des formulaires de contact puis recevez les messages triés automatiquement dans votre boîte de réception Sortouch.
-                    <br /><br />Créez votre page web personnalisée avec votre secrétaire Sortouch et votre lien partageable<p style={{ fontWeight: "bold", width: "30px", marginTop: "5px", marginBottom: "5px" }}>ou</p>Intégrez votre secrétaire Sortouch à votre site web
-                    <br /><br /><span style={{ fontWeight: "bold" }}>Tout ça en 5 minutes chrono !</span></h2>
+                    <h2 className="describeFirstContainerLanding">Sortouch permet d'automatiser des interactions à travers des questions et réponses éditables !
+                    <br /><br />Ajouter des formulaires de contact liées à certaines réponses et recevoir les messages de ses viditeurs triés automatiquement dans sa boîte de réception Sortouch.
+                    <br /><p style={{ fontWeight: "bold" }}>à essayer gratuitement dès maintenant !</p>
+                    Nos <Link style={{color: "black"}} to='/installer-wordpress'>tutos</Link> ne vous parle pas ? Prenez contact et nous nous chargeons d'installer votre chatbot sur votre site </h2>
                 </div>
                 {window.innerWidth < 1280 && <div onClick={() => { setChatbotActive(!chatbotActive) }} className="startBotButton">
                     Démo
@@ -95,18 +95,18 @@ const Landing = (props) => {
                 <Navbar type={"landing"} />
                 :
                 <MenuBurger type={"landing"} />}
-            <div style={window.innerWidth > 1280 ? { background: "none", marginTop: "80px" } : { background: "none", marginTop: "80px", height: "240vh" }} className="containerChoiceEditor">
+            <div style={window.innerWidth > 1280 ? { background: "none", marginTop: "80px" } : { background: "none", marginTop: "80px"}} className="containerChoiceEditor">
                 <div onClick={() => { setCardActive(true) }} className="flip-card">
                     <div className="flip-card-inner">
                         <div className="contentChoice">
                             {window.innerWidth < 1280 ? <img style={{ marginBottom: "100px", marginTop: "0px" }} src={require('../choiceEditor/image/chatbot.svg')} alt="éditeur chatbot illustration" className="backChoice" />
                                 :
                                 <img src={require('../choiceEditor/image/chatbot.svg')} alt="éditeur chatbot illustration" className="backChoice" />}
-                            <button className="buttonChoiceEditor">Éditer sa secrétaire personnelle</button>
+                            <button className="buttonChoiceEditor">Éditer son chatbot</button>
                         </div>
                         <div class="flip-card-back">
                             <div className="contentTextBackCard">
-                                <h4 className="titleBackCardChoice">Éditer sa secrétaire</h4>
+                                <h4 className="titleBackCardChoice">Divers outils à vote portée</h4>
                                 <p className="textBackCardChoice">Accéder aux différents outils de créations</p>
                             </div>
                             <div className="contentTextBackCard">
@@ -126,6 +126,7 @@ const Landing = (props) => {
                         </div>
                     </div>
                 </div>
+                {/*
                 <div onClick={() => { setCardActive(true) }} className="flip-card2">
                     <div className="flip-card-inner2">
                         <div style={{ justifyContent: "flex-start" }} className="contentChoice2">
@@ -155,6 +156,7 @@ const Landing = (props) => {
                         </div>
                     </div>
                 </div>
+                */}
             </div>
             {/*<a href="#explication" className="containerTitleLanding1">
                 <img src={require('./image/money.png')} alt="gains money" className="imgTitleLanding" />
@@ -236,7 +238,7 @@ const Landing = (props) => {
                         <img alt="time gain" src={require('./image/time_back.svg')} className="imgHeadLanding" />
                         <div className="windowTextHead">
                             <div className="contentTitleLanding">
-                                <h1 className="titleLanding">Gains de temps</h1>
+                                <h1 className="titleLanding">Gagner du temps avec ses visiteurs</h1>
                             </div>
                             <div className="contentTextLanding">
                                 <p className="textLanding">Finit la boîte mail en bazar et surchargée, fini les réponses répétitives aux questions récurrentes, finit le téléphone qui sonne pour une simple information. Ceux qui veulent vous contacter obtiennent des réponses rapidement et vous, ne cherchez plus l'email important parmi les spams et autres emails sans importance.</p>
@@ -248,10 +250,10 @@ const Landing = (props) => {
                             <img alt="prospect gain" src={require('./image/graphic.svg')} className="imgHeadLanding" />}
                         <div className="windowTextHead">
                             <div className="contentTitleLanding">
-                                <h1 className="titleLanding">Gérez vos contacts</h1>
+                                <h1 className="titleLanding">Récupérer des coordonnées propects</h1>
                             </div>
                             <div className="contentTextLanding">
-                                <p className="textLanding">Grace au gestionnaire de coordonnées Sortouch, vous ne perdrez plus jamais de contact. Toutes les coordonnées envoyées via votre secrétaire personnelle, sont stockés et peuvent être triées et classifier dans votre espace "base de données".</p>
+                                <p className="textLanding">Grace au gestionnaire de coordonnées Sortouch, vous ne perdrez plus jamais de contact. Toutes les coordonnées envoyées via votre chatbot, sont stockés et peuvent être triées et classifier dans votre espace "base de données".</p>
                             </div>
                         </div>
                         {window.innerWidth > 1280 &&
@@ -261,10 +263,10 @@ const Landing = (props) => {
                         <img alt="mail" src={require('./image/mail_back.svg')} className="imgHeadLanding" />
                         <div className="windowTextHead">
                             <div className="contentTitleLanding">
-                                <h1 className="titleLanding">Gagnez en visiilité</h1>
+                                <h1 className="titleLanding">Faire gagner du temps à ses visiteurs</h1>
                             </div>
                             <div className="contentTextLanding">
-                                <p className="textLanding">Grâce au gestionnaire de coordonnées Sortouch, vous ne perdrez plus jamais de contact. Toutes les coordonnées envoyées via votre secrétaire personnelle, sont stockées et peuvent être triées et classifier dans votre espace "base de données".</p>
+                                <p className="textLanding">Chercher une informations sur un site est parfois un long parcours. Les visiteurs sur votre site, comme tous aujourd'hui, veulent aller au plus vite et si ils n'obtiennent pas rapidement leurs réponses, ils partent. Ce qui a pour effet de faire perdre des prospects ainsi qui faire baisser le référencement Google. Via les Réponses automatiques que vous aurez programmé, vos visiteurs obtiendront rapidmement leurs réponses et gagnerons du temps</p>
                             </div>
                         </div>
                     </div>

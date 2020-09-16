@@ -20,12 +20,12 @@ const DocEditor = () => {
         <div className="containerDoc">
         {localStorage.getItem('cookie') !== 'accept' && <PopupCookie />}
         <title>Sortouch : tuto éditeur</title>
-            <meta name="description" content="Apprendre à éditer sa secrétaire personnelle en suivant un simple guide. Apprendre comment ajouter des question, réponses et boite de réception à votre secrétaire automatique" />
+            <meta name="description" content="Apprendre à créer son chatbot en suivant un simple guide. Apprendre comment ajouter des question, réponses et boite de réception à votre chatbot" />
             {window.innerWidth > 1280 && <Navbar type={"doc"}/>}
             {window.innerWidth > 1280 && <Menu link="editor"/>}
             {window.innerWidth < 1280 && <MenuBurger link="editor"/>}
             <div className="contentDoc">
-                <h1 className="titleDoc">Apprenez facilement à utiliser notre éditeur de secrétaire personnelle</h1>
+                <h1 className="titleDoc">Apprenez facilement à utiliser notre éditeur de chatbot</h1>
                 <div style={{paddingBottom: "0px"}} className="containerSectionDoc">
                     <img src={require('../../landing/image/editor.gif')} alt="editeur video" className="editorMovieDoc"/>
                 </div>

@@ -92,7 +92,7 @@ const CardModel = (props) => {
     }, [categorys, userId, props.id, token])
 
     const deleteModel = async (modelId) => {
-        if (window.confirm('voulez vous supprimer ce modèle ainsi que : la page web, les mails et coordonnées récoltées associés ?')) {
+        if (window.confirm('voulez vous supprimer ce modèle ainsi que : les mails et coordonnées récoltées associés ?')) {
             const deleteMail = await fetch(`${url}/mail/deleteByModel/${userId}/${modelId}`, {
                 method: 'DELETE',
                 credentials: 'include',
@@ -269,7 +269,7 @@ const CardModel = (props) => {
                         {redirect && <Redirect
                             state={props.id} to="/mails" />}
                         {redirectEditor && <Redirect
-                            state={props.id} to="/choisir-editeur" />}
+                            state={props.id} to="/editeur-chatbot" />}
                         {window.innerWidth < 1280 && cardSelect ? <button onClick={() => { cardSelectToEditor('mail') }} className="buttonSelectModel">Boite de réception</button> : window.innerWidth > 1280 && <button onClick={() => { cardSelectToEditor('mail') }} className="buttonSelectModel">Boite de réception</button>}
                         {window.innerWidth < 1280 && cardSelect ? <button onClick={() => { cardSelectToEditor('editor') }} className="buttonSelectModel">Modifier</button> : window.innerWidth > 1280 && <button onClick={() => { cardSelectToEditor('editor') }} className="buttonSelectModel">Modifier</button>}
                     </div>

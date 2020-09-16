@@ -19,7 +19,6 @@ const Footer = () => {
                 <Link to="/installer-wordpress" className="linkFooter">Installer sur un site Wordpress</Link>
                 <Link to="/utiliser-le-site-sortouch" className="linkFooter">Documentation du site</Link>
                 <Link to="/editeur-doc" className="linkFooter">Documentation de l'éditeur d'interactions</Link>
-                <Link to="/editeur-web-doc" className="linkFooter">Documentation de l'éditeur de page web</Link>
                 <Link to="/installer-react" className="linkFooter">Installer sur un site ReactJs</Link>
                 <Link to="/tarifs" className="linkFooter">Tarifs</Link>
                 <Link to="/conditions-utilisateur" className="linkFooter">Conditions générales d'utilisation</Link>

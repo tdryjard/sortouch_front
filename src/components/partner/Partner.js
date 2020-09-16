@@ -665,8 +665,8 @@ const Partner = () => {
             <title>Sortouch : partenaire</title>
             <div className="containerNav">
                 <Link to="/" className="linkNavbar" >Menu</Link>
-                <Link to="/installer-wordpress" className="linkNavbar" >Installer secrétaire sur Wordpress</Link>
-                <Link to="/installer-react" className="linkNavbar" >Installer secrétaire sur ReactJs</Link>
+                <Link to="/installer-wordpress" className="linkNavbar" >Installer son chatbot sur Wordpress</Link>
+                <Link to="/installer-react" className="linkNavbar" >Installer son chatbot sur ReactJs</Link>
                 {window.innerWidth > 1280 && <button onClick={disconnect} className="disconnect" >Déconnexion</button>}
             </div>
             <div className="contentPartner">

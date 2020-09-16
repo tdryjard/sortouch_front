@@ -19,7 +19,7 @@ const DocSortouch = () => {
         <div className="containerDoc">
         {localStorage.getItem('cookie') !== 'accept' && <PopupCookie />}
         <title>Sortouch : comment utiliser sortouch</title>
-            <meta name="description" content="Apprendre facilement comment utiliser la plateforme de création de secrétaire automatique et de gestion des contacts Sortouch en suivant un court tuto" />
+            <meta name="description" content="Apprendre facilement comment utiliser la plateforme de création de chatbot et de gestion des contacts Sortouch en suivant un court tuto" />
             {window.innerWidth > 1280 && <Navbar type={"doc"} />}
             {window.innerWidth > 1280 && <Menu link="sortouch" />}
             {window.innerWidth < 1280 && <MenuBurger link="sortouch" />}
@@ -40,7 +40,7 @@ const DocSortouch = () => {
                         <p className="titleStepDoc">Vous êtes déja connecté, parfait !</p>
                     </div>}
                 <div className="contentDocSortouch">
-                    <h4 className="titleStepDoc">Créer son premier modèle de secrétaire personnelle</h4>
+                    <h4 className="titleStepDoc">Créer son premier modèle de chatbot</h4>
                     {window.innerWidth > 1280 && <p className="numberStepDoc">2</p>}
                     <div className="onContentDoc">
                         <p className="textDocSortouch">Se rendre sur la page <Link style={{color: "rgb(46, 46, 46)"}} to="/models">mes modèles</Link></p>
@@ -60,20 +60,14 @@ const DocSortouch = () => {
                     </div>
                 </div>
                 <div className="contentDocSortouch">
-                    <h4 className="titleStepDoc">Intégrer sa secrétaire personnelle à son site</h4>
+                    <h4 className="titleStepDoc">Intégrer son chatbot sur son site</h4>
                     <div className="onContentDoc">
                         <p className="textDocSortouch">Intégrer à son site wordpress <Link style={{color: "rgb(46, 46, 46)"}} to="/installer-wordpress">ici</Link></p>
                         <p className="textDocSortouch">Intégrer à son site ReactJs <Link style={{color: "rgb(46, 46, 46)"}} to="/installer-react">ici</Link></p>
                     </div>
                 </div>
                 <div className="contentDocSortouch">
-                    <h4 className="titleStepDoc">Créer une page web personnalisée avec sa secrétaire</h4>
-                    <div className="onContentDoc">
-                        <p className="textDocSortouch">Retrouvez toute notre documentation sur la création de page web perso <Link style={{color: "rgb(46, 46, 46)"}} to="/editeur-web-doc">ici</Link></p>
-                    </div>
-                </div>
-                <div className="contentDocSortouch">
-                    <h4 className="titleStepDoc">Consultez les prises de contact avec vous via votre secrétaire personnelle</h4>
+                    <h4 className="titleStepDoc">Consultez les prises de contact avec vous via votre chatbot</h4>
                     <div className="onContentDoc">
                         <p className="textDocSortouchLast">Vous pouvez retrouver tous vos messages dans votre <Link style={{color: "rgb(46, 46, 46)"}} to="/mails">boite de réception</Link></p>
                         <p className="textDocSortouch">Sélectionnez une catégorie de réception parmi celles que vous aurez créées</p>

@@ -50,63 +50,65 @@ const DataArea = () => {
     }, [])
 
     useEffect(() => {
-        fetch(`${url}/chatbot/category/findAll/${userId}/${modelId}`, {
-            method: 'GET',
-            headers: {
-                'Content-Type': 'application/json',
-                'authorization': token
-            }
-        })
-            .then(res => res.json())
-            .then(res => {
-                if (res.status === 400) tokenExpire()
-                setCategorys(res)
-                if (!categorySelect && res[0]) setCategorySelect(res[0].id)
-            })
-
-        fetch(`${url}/contact/findByUser/${userId}`, {
-            method: 'GET',
-            credentials: 'include',
-            headers: {
-                'Content-Type': 'application/json',
-                'Access-Control-Allow-Credentials': true,
-                'authorization': token
-            }
-        })
-            .then(res => res.json())
-            .then(res => {
-                if (res.status === 400) tokenExpire()
-                if (type === "free" && res.length > 50) res.length = 50
-                if (type === "standard" && res.length > 5000) res.length = 5000
-                if (type === "expert" && res.length > 10000) res.length = 10000
-                setContacts(res)
-                if (lastColor !== chooseColor) {
-                    let resultSort = []
-                    for (let sortI = 0; sortI < sortContacts.length; sortI++) {
-                        for (let resI = 0; resI < res.length; resI++) {
-                            if (res[resI].id === sortContacts[sortI].id) resultSort.push(res[resI])
-                        }
-                    }
-                    setSortContacts(resultSort)
-                    setLastColor(chooseColor)
+        if (token) {
+            fetch(`${url}/chatbot/category/findAll/${userId}/${modelId}`, {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'authorization': token
                 }
-                else setSortContacts(res)
             })
+                .then(res => res.json())
+                .then(res => {
+                    if (res.status === 400) tokenExpire()
+                    setCategorys(res)
+                    if (!categorySelect && res[0]) setCategorySelect(res[0].id)
+                })
 
-        fetch(`${url}/model/findAll/${userId}`, {
-            method: 'GET',
-            credentials: 'include',
-            headers: {
-                'Content-Type': 'application/json',
-                'Access-Control-Allow-Credentials': true,
-                'authorization': token
-            }
-        })
-            .then(res => res.json())
-            .then(res => {
-                if (res.status === 400) tokenExpire()
-                setModels(res)
+            fetch(`${url}/contact/findByUser/${userId}`, {
+                method: 'GET',
+                credentials: 'include',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Access-Control-Allow-Credentials': true,
+                    'authorization': token
+                }
             })
+                .then(res => res.json())
+                .then(res => {
+                    if (res.status === 400) tokenExpire()
+                    if (type === "free" && res.length > 50) res.length = 50
+                    if (type === "standard" && res.length > 5000) res.length = 5000
+                    if (type === "expert" && res.length > 10000) res.length = 10000
+                    setContacts(res)
+                    if (lastColor !== chooseColor) {
+                        let resultSort = []
+                        for (let sortI = 0; sortI < sortContacts.length; sortI++) {
+                            for (let resI = 0; resI < res.length; resI++) {
+                                if (res[resI].id === sortContacts[sortI].id) resultSort.push(res[resI])
+                            }
+                        }
+                        setSortContacts(resultSort)
+                        setLastColor(chooseColor)
+                    }
+                    else setSortContacts(res)
+                })
+
+            fetch(`${url}/model/findAll/${userId}`, {
+                method: 'GET',
+                credentials: 'include',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Access-Control-Allow-Credentials': true,
+                    'authorization': token
+                }
+            })
+                .then(res => res.json())
+                .then(res => {
+                    if (res.status === 400) tokenExpire()
+                    setModels(res)
+                })
+        }
 
     }, [userId, modelId, token, addContact])
 
@@ -270,7 +272,7 @@ const DataArea = () => {
                 user_id: userId
             })
         })
-        if(newContact) {
+        if (newContact) {
             setAddContact(false)
         }
     }

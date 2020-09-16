@@ -17,14 +17,14 @@ const DocWordpress = () => {
 
     return (
         <div className="containerDoc">
-            <title>Sortouch : installer sa secrétaire personnelle sur Wordpress</title>
+            <title>Sortouch : installer son chatbot sur son site Wordpress</title>
             {localStorage.getItem('cookie') !== 'accept' && <PopupCookie />}
             <meta name="description" content="Apprendre comment installer son chatbot sur son site Wordpress simplement" />
             {window.innerWidth > 1280 && <Navbar type={"doc"} />}
             {window.innerWidth > 1280 && <Menu sectionSelect="install" link="docWordpress" />}
             {window.innerWidth < 1280 && <MenuBurger sectionSelect="install" link="docWordpress" />}
             <div className="contentDoc">
-                <h1 className="titleDoc">Intégrer sa secrétaire personnelle à son site Wordpress</h1>
+                <h1 className="titleDoc">Intégrer son chatbot sur son site Wordpress</h1>
                 <img alt="react logo" src={require('./image/wordpress.png')} className="reactLogo" />
                 <h4 className="titleContainerSectionDocWordpress">Sur votre ordinateur</h4>
                 <a href="sortouch.zip"

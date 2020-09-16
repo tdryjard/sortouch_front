@@ -10,8 +10,7 @@ const Menu = (props) => {
     return (
         <div className="menuDoc">
             <Link to="/utiliser-le-site-sortouch" className={props.link === "sortouch" ? "linkMenuDocOn" : "linkMenuDoc"}>Guide Sortouch</Link>
-            <Link to="/editeur-doc" className={props.link === "editor" ? "linkMenuDocOn" : "linkMenuDoc"}>Éditeur de secrétaire</Link>
-            <Link to="/editeur-web-doc" className={props.link === "editor-web" ? "linkMenuDocOn" : "linkMenuDoc"}>Éditeur de page web</Link>
+            <Link to="/editeur-doc" className={props.link === "editor" ? "linkMenuDocOn" : "linkMenuDoc"}>Éditeur de chatbot</Link>
             {/*<div className="contentNameSectionMenu">
                 <p onClick={() => { setSectionChatbotActive(!sectionChatbotActive) }} className="titleSectionMenu">Créer le chatbot parfait</p>
                 {!sectionChatbotActive ? <img onClick={() => { setSectionChatbotActive(true) }} className="imgSectionMenuDoc" src={require('../image/plus.png')} /> :

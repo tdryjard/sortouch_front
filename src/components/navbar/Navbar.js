@@ -50,7 +50,7 @@ const Navbar = (props) => {
                             <p className="nameChatbotNav">{chatbotName}</p>
                             <Link to="/models" className="linkNavChatbot" >Changer de modèle</Link>
                             <Link to="/mails" className="linkNavChatbot" >Boite de réception</Link>
-                            <Link to="/choisir-editeur" className="linkNavChatbot" >Éditeur</Link>
+                            <Link to="/editeur-chatbot" className="linkNavChatbot" >Éditeur</Link>
                         </div>
                         <button onClick={disconnect} className="disconnect" >Déconnexion</button>
                     </>
