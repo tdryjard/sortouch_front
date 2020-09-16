@@ -81,9 +81,9 @@ const Landing = (props) => {
                     <h1 className="titleFirstLanding">Créer son chatbot simplement</h1>
                     <span className="borderBottom" />
                     <h2 className="describeFirstContainerLanding">Sortouch permet d'automatiser des interactions à travers des questions et réponses éditables !
-                    <br /><br />Ajouter des formulaires de contact liées à certaines réponses et recevoir les messages de ses viditeurs triés automatiquement dans sa boîte de réception Sortouch.
+                    <br /><br />Ajouter des formulaires de contacts liés à certaines réponses et recevoir les messages de ses visiteurs triés automatiquement dans sa boîte de réception Sortouch.
                     <br /><p style={{ fontWeight: "bold" }}>à essayer gratuitement dès maintenant !</p>
-                    Nos <Link style={{color: "black"}} to='/installer-wordpress'>tutos</Link> ne vous parle pas ? Prenez contact et nous nous chargeons d'installer votre chatbot sur votre site </h2>
+                    Nos <Link style={{color: "black"}} to='/installer-wordpress'>tutos</Link> ne vous parlent pas ? Prenez contact et nous nous chargeons d'installer votre chatbot sur votre site </h2>
                 </div>
                 {window.innerWidth < 1280 && <div onClick={() => { setChatbotActive(!chatbotActive) }} className="startBotButton">
                     Démo
@@ -106,7 +106,7 @@ const Landing = (props) => {
                         </div>
                         <div class="flip-card-back">
                             <div className="contentTextBackCard">
-                                <h4 className="titleBackCardChoice">Divers outils à vote portée</h4>
+                                <h4 className="titleBackCardChoice">Divers outils à votre porté</h4>
                                 <p className="textBackCardChoice">Accéder aux différents outils de créations</p>
                             </div>
                             <div className="contentTextBackCard">
@@ -250,10 +250,10 @@ const Landing = (props) => {
                             <img alt="prospect gain" src={require('./image/graphic.svg')} className="imgHeadLanding" />}
                         <div className="windowTextHead">
                             <div className="contentTitleLanding">
-                                <h1 className="titleLanding">Récupérer des coordonnées propects</h1>
+                                <h1 className="titleLanding">Récupérer des coordonnés de prospects</h1>
                             </div>
                             <div className="contentTextLanding">
-                                <p className="textLanding">Grace au gestionnaire de coordonnées Sortouch, vous ne perdrez plus jamais de contact. Toutes les coordonnées envoyées via votre chatbot, sont stockés et peuvent être triées et classifier dans votre espace "base de données".</p>
+                                <p className="textLanding">Grâce au gestionnaire de coordonnées Sortouch, vous ne perdrez plus jamais de contact. Toutes les coordonnées envoyées via votre chatbot sont stockées et peuvent être triées et classifier dans votre espace "base de données".</p>
                             </div>
                         </div>
                         {window.innerWidth > 1280 &&
@@ -266,7 +266,7 @@ const Landing = (props) => {
                                 <h1 className="titleLanding">Faire gagner du temps à ses visiteurs</h1>
                             </div>
                             <div className="contentTextLanding">
-                                <p className="textLanding">Chercher une informations sur un site est parfois un long parcours. Les visiteurs sur votre site, comme tous aujourd'hui, veulent aller au plus vite et si ils n'obtiennent pas rapidement leurs réponses, ils partent. Ce qui a pour effet de faire perdre des prospects ainsi qui faire baisser le référencement Google. Via les Réponses automatiques que vous aurez programmé, vos visiteurs obtiendront rapidmement leurs réponses et gagnerons du temps</p>
+                                <p className="textLanding">Rechercher une information sur un site est parfois un long parcours. Les visiteurs sur votre site, comme tous aujourd'hui, veulent aller au plus vite et s'ils n'obtiennent pas rapidement leurs réponses, ils partent. Ce qui a pour effet de faire perdre des prospects ainsi qui faire baisser le référencement Google. Via les Réponses automatiques que vous aurez programmées, vos visiteurs obtiendront rapidement leurs réponses et gagneront du temps</p>
                             </div>
                         </div>
                     </div>
