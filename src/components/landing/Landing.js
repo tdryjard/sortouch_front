@@ -7,6 +7,7 @@ import MenuBurger from '../menuBurger/MenuBurger'
 import Footer from '../footer/Footer'
 import ExpireToken from '../expireToken/ExpireToken'
 import PopupCookie from '../popupCookie/PopupCookie'
+import { Helmet } from "react-helmet";
 import './Landing.scss'
 
 const Landing = (props) => {
@@ -64,15 +65,17 @@ const Landing = (props) => {
 
     return (
         <div className="containerLanding">
-        <head>
-            <title>Sortouch : Créer son chatbot simplement</title>
-            <meta name="title" property="title" content="Créer et installer son chatbot simplement" />
-            <meta name="description" content="Créer son chatbot simplement. Éditer des questions et réponses automatiques. Installer son chatbot sur son site Wordpress ou ReactJs. Créer un formulaire de contact pour recevoir des messages via son site" />
-            <meta name="og:title" property="og:title" content="Créer son chatbot simplement" />
-            <meta name="og:description" property="og:description" content="Créer facilement un chat bot qui répond à votre place et trie vos email. à héberger gratuitement ou à installer sur son site" />
-            <meta name="og:image" property="og:image" content="https://sortouch.co/static/media/chatbot.5d205088.svg" />
-            <meta name="robots" content="index, follow"/>
-        </head>
+            <Helmet>
+                <title>Sortouch : Créer son chatbot simplement</title>
+                <meta name="twitter:card" content="Sortouch" />
+                <meta name="title" property="title" content="Créer et installer son chatbot simplement" />
+                <meta name="description" content="Créer son chatbot simplement. Éditer des questions et réponses automatiques. Installer son chatbot sur son site Wordpress ou ReactJs. Créer un formulaire de contact pour recevoir des messages via son site" />
+                <meta name="og:title" property="og:title" content="Créer son chatbot simplement" />
+                <meta name="og:description" property="og:description" content="Créer facilement un chat bot qui répond à votre place et trie vos email. à héberger gratuitement ou à installer sur son site" />
+                <meta name="og:image" property="og:image" content="https://sortouch.co/static/media/chatbot.5d205088.svg" />
+                <meta property="og:type" content="article" />
+                <meta name="robots" content="index, follow" />
+            </Helmet>
             {localStorage.getItem('cookie') !== 'accept' && <PopupCookie />}
             {localStorage.getItem('expireToken') === 'true' && <ExpireToken active={true} />}
             <meta name="description" content="" />
@@ -84,7 +87,7 @@ const Landing = (props) => {
                     <h2 className="describeFirstContainerLanding">Sortouch permet d'automatiser des interactions à travers des questions et réponses éditables !
                     <br /><br />Ajouter des formulaires de contacts liés à certaines réponses et recevoir les messages de ses visiteurs triés automatiquement dans sa boîte de réception Sortouch.
                     <br /><p style={{ fontWeight: "bold" }}>à essayer gratuitement dès maintenant !</p>
-                    Nos <Link style={{color: "black"}} to='/installer-wordpress'>tutos</Link> ne vous parlent pas ? Prenez contact et nous nous chargeons d'installer votre chatbot sur votre site </h2>
+                    Nos <Link style={{ color: "black" }} to='/installer-wordpress'>tutos</Link> ne vous parlent pas ? Prenez contact et nous nous chargeons d'installer votre chatbot sur votre site </h2>
                 </div>
                 {window.innerWidth < 1280 && <div onClick={() => { setChatbotActive(!chatbotActive) }} className="startBotButton">
                     Démo
@@ -96,7 +99,7 @@ const Landing = (props) => {
                 <Navbar type={"landing"} />
                 :
                 <MenuBurger type={"landing"} />}
-            <div style={window.innerWidth > 1280 ? { background: "none", marginTop: "80px" } : { background: "none", marginTop: "80px"}} className="containerChoiceEditor">
+            <div style={window.innerWidth > 1280 ? { background: "none", marginTop: "80px" } : { background: "none", marginTop: "80px" }} className="containerChoiceEditor">
                 <div onClick={() => { setCardActive(true) }} className="flip-card">
                     <div className="flip-card-inner">
                         <div className="contentChoice">

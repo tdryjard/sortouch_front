@@ -21,8 +21,8 @@ import Partner from './components/partner/Partner'
 import DocReactPartner from './components/partner/docReact/DocReact'
 import DocWordpressPartner from './components/partner/docWordpress/DocWordpress'
 import CGV from './components/CGV/CGV'
-import ChoiceEditor from './components/choiceEditor/ChoiceEditor'
 import DocEditorWeb from './components/docs/docEditorWeb/DocEditorWeb'
+import NotFound from './components/404/404'
 
 import Blog from './components/blog/Blog'
 import Art1 from './components/blog/art1/Art1'
@@ -81,6 +81,7 @@ function App() {
 
             <Route path="/blog" component={Blog} />
             <Route path="/comment-securiser-son-email-professionnel" component={Art1} />
+            <Route component={NotFound} />
           </>
           :
           <>
@@ -97,9 +98,11 @@ function App() {
             <Route path="/utiliser-le-site-sortouch" component={DocSortouch} />
             <Route path="/tarifs" component={Pricing} />
             <Route path="/conditions-utilisateur" component={CGV} />
+            <Route component={NotFound} />
 
             <Route path="/blog" component={Blog} />
             <Route path="/comment-securiser-son-email-professionnel" component={Art1} />
+            <Route component={NotFound} />
           </>
         :
         <>
@@ -108,6 +111,7 @@ function App() {
           <Route path="/installer-wordpress" component={DocWordpressPartner} />
           <Route path="/conditions-utilisateur" component={CGV} />
           <Route path="/editeur-web-doc" component={DocEditorWeb} />
+          <Route component={NotFound} />
         </>}
     </Switch>
   );

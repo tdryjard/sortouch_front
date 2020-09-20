@@ -4,6 +4,7 @@ import Menu from '../menu/Menu'
 import MenuBurger from '../burgerMenu/BurgerMenu'
 import Navbar from '../../navbar/Navbar'
 import PopupCookie from '../../popupCookie/PopupCookie'
+import { Helmet } from "react-helmet";
 import './DocWordpress.scss'
 
 const DocWordpress = () => {
@@ -15,12 +16,55 @@ const DocWordpress = () => {
         }
     }, [])
 
+    const shemaOrg = [ {
+        "@context" : "http://schema.org",
+        "@type" : "Article",
+        "name" : "Intégrer son chatbot sur son site Wordpress",
+        "image" : "https://sortouch.co/static/media/wordpress.c42ad450.png"
+      }, {
+        "@context" : "http://schema.org",
+        "@type" : "Article",
+        "name" : "Intégrer son chatbot sur son site Wordpress",
+        "image" : "https://sortouch.co/static/media/modelid1.61b9cd82.png",
+        "articleSection" : "Sur votre ordinateur"
+      }, {
+        "@context" : "http://schema.org",
+        "@type" : "Article",
+        "name" : "Intégrer son chatbot sur son site Wordpress",
+        "image" : "https://sortouch.co/static/media/modelid1.61b9cd82.png",
+        "articleSection" : "Sur wordrpess",
+        "articleBody" : "2) Extraire le dossier puis le placer dans le dossier wp-content/plugins de wordpress en local",
+        "url" : "https://sortouch.co/sortouch.zip"
+      }, {
+        "@context" : "http://schema.org",
+        "@type" : "Article",
+        "name" : "Intégrer son chatbot sur son site Wordpress",
+        "image" : "https://sortouch.co/static/media/modelid1.61b9cd82.png",
+        "articleSection" : "Sur votre site",
+        "articleBody" : "Activer le plugin Sortouch qui est apparu dans la section &quot;extensions&quot;"
+      }, {
+        "@context" : "http://schema.org",
+        "@type" : "Article",
+        "name" : "Intégrer son chatbot sur son site Wordpress",
+        "image" : "https://sortouch.co/static/media/modelid1.61b9cd82.png",
+        "articleSection" : "Trouver son user id",
+        "articleBody" : [ "1) Ajouter un bloc Shortcode (code court) sur votre site wordpress", "2) écrivez la même chose que l&#39;image ci-dessous en remplaçant le texte entre guillemets avec votre user id et votre model id" ]
+      }, {
+        "@context" : "http://schema.org",
+        "@type" : "Article",
+        "name" : "Intégrer son chatbot sur son site Wordpress",
+        "image" : "https://sortouch.co/static/media/modelid1.61b9cd82.png",
+        "articleSection" : "Trouver son modèle id"
+      } ]
+
     return (
         <div className="containerDoc">
-            <title>Sortouch : installer son chatbot sur son site Wordpress</title>
-            <meta name="title" property="title" content="installer son chatbot sur son site Wordpress" />
-            {localStorage.getItem('cookie') !== 'accept' && <PopupCookie />}
-            <meta name="description" content="Apprendre comment installer son chatbot sur son site Wordpress simplement" />
+            <Helmet>
+                <title>Sortouch : installer son chatbot sur son site Wordpress</title>
+                <meta name="title" property="title" content="installer son chatbot sur son site Wordpress" />
+                {localStorage.getItem('cookie') !== 'accept' && <PopupCookie />}
+                <meta name="description" content="Apprendre comment installer son chatbot sur son site Wordpress simplement" />
+            </Helmet>
             {window.innerWidth > 1280 && <Navbar type={"doc"} />}
             {window.innerWidth > 1280 && <Menu sectionSelect="install" link="docWordpress" />}
             {window.innerWidth < 1280 && <MenuBurger sectionSelect="install" link="docWordpress" />}

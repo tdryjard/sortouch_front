@@ -4,6 +4,7 @@ import Menu from '../menu/Menu'
 import MenuBurger from '../burgerMenu/BurgerMenu'
 import Navbar from '../../navbar/Navbar'
 import PopupCookie from '../../popupCookie/PopupCookie'
+import { Helmet } from "react-helmet";
 import './DocReact.scss'
 
 const DocReact = () => {
@@ -15,12 +16,29 @@ const DocReact = () => {
         }
     }, [])
 
+    const shemaOrg = [{
+        "@context": "http://schema.org",
+        "@type": "Article",
+        "name": "Intégrer son chatbot à son site React",
+        "image": "https://sortouch.co/static/media/modelid1.61b9cd82.png",
+        "articleSection": "Installer la librairie"
+    }, {
+        "@context": "http://schema.org",
+        "@type": "Article",
+        "name": "Intégrer son chatbot à son site React",
+        "image": "https://sortouch.co/static/media/modelid1.61b9cd82.png",
+        "articleSection": "Trouver son model id",
+        "articleBody": "$ npm install sortouch-react"
+    }]
+
     return (
         <div className="containerDoc">
-        {localStorage.getItem('cookie') !== 'accept' && <PopupCookie />}
-        <title>Sortouch : installer son chatbot sur ReactJs</title>
-            <meta name="title" property="title" content="installer son chatbot sur son site React" />
-            <meta name="description" content="Apprendre à installer son chatbot sur son site ReactJs" />
+            {localStorage.getItem('cookie') !== 'accept' && <PopupCookie />}
+            <Helmet>
+                <title>Sortouch : installer son chatbot sur ReactJs</title>
+                <meta name="title" property="title" content="installer son chatbot sur son site React" />
+                <meta name="description" content="Apprendre à installer son chatbot sur son site ReactJs" />
+            </Helmet>
             {window.innerWidth > 1280 && <Navbar type={"doc"} />}
             {window.innerWidth > 1280 && <Menu sectionSelect="install" link="docReact" />}
             {window.innerWidth < 1280 && <MenuBurger sectionSelect="install" link="docReact" />}
@@ -43,7 +61,7 @@ const DocReact = () => {
                     <h4 className="titleContainerSectionDoc">Votre user id : {userId ? userId : <Link to="/connexion" className="connexionDoc">Se connecter</Link>}</h4>
                     <h4 className="titleContainerSectionDoc">Trouver son model id</h4>
                     {userId &&
-                    <p className="textDoc">Se rendre sur <Link style={{color: "rgb(46, 46, 46)"}} to="/models">mes modèles</Link> et aller dans les options du modèle (exemple ci-dessous)</p>}
+                        <p className="textDoc">Se rendre sur <Link style={{ color: "rgb(46, 46, 46)" }} to="/models">mes modèles</Link> et aller dans les options du modèle (exemple ci-dessous)</p>}
                     <div className="containerStepModelid">
                         <img alt="model id étape 1" src={require('./image/modelid1.png')} className="takeModelId" />
                         <img alt="model id étape 2" src={require('./image/modelid2.png')} className="takeModelId" />
