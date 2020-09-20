@@ -17,8 +17,8 @@
     "react-ga": "^3.0.0",
     "react-helmet": "^6.1.0",
     "react-hook-form": "^5.7.2",
-    "react-router": "^5.1.2",
-    "react-router-dom": "^5.1.2",
+    "react-router": "^5.2.0",
+    "react-router-dom": "^5.2.0",
     "react-router-sitemap": "^1.2.0",
     "react-scripts": "3.4.0",
     "sortouch-react": "0.0.161"

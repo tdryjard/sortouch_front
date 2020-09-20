@@ -1,7 +1,8 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, Redirect } from "react";
 import { Switch, Route } from "react-router-dom";
 import ReactGA from 'react-ga';
 import "./App.css";
+import "./components/choiceEditor/ChoiceEditor.scss"
 
 import Builder from "./components/creating_area/area/Area";
 import MessageSpace from "./components/message_space/MessageSpace";
@@ -60,57 +61,55 @@ function App() {
   }
 
   return (
-    <Switch>
-      {type !== "partner" ?
-        !userId ?
-          <>
-            <Route exact path="/" component={Landing} />
-            <Route path="/inscription" component={Registration} />
-            <Route path="/connexion" component={Connexion} />
-            <Route path="/editeur-doc" component={DocEditor} />
-            <Route path="/partager-son-chatbot-doc" component={DocShare} />
-            <Route path="/installer-react" component={DocReact} />
-            <Route path="/installer-wordpress" component={DocWordpress} />
-            <Route path="/utiliser-le-site-sortouch" component={DocSortouch} />
-            <Route path="/tarifs" component={Pricing} />
-            <Route path="/models" component={ModelArea} />
-            <Route path="/mails" component={MessageSpace} />
-            <Route path="/editeur-chatbot" component={Builder} />
-            <Route path="/base-de-donnee" component={DataArea} />
-            <Route path="/conditions-utilisateur" component={CGV} />
-            <Route path="/blog" component={Blog} />
-            <Route path="/comment-securiser-son-email-professionnel" component={Art1} />
-            <Route component={NotFound} />
-          </>
-          :
-          <>
-            <Route exact path="/" component={Landing} />
-            <Route path="/models" component={ModelArea} />
-            <Route path="/base-de-donnee" component={DataArea} />
-            <Route path="/mails" component={MessageSpace} />
-            <Route path="/chatbot" component={ChatbotArea} />
-            <Route path="/editeur-chatbot" component={Builder} />
-            <Route path="/editeur-doc" component={DocEditor} />
-            <Route path="/partager-son-chatbot-doc" component={DocShare} />
-            <Route path="/installer-react" component={DocReact} />
-            <Route path="/installer-wordpress" component={DocWordpress} />
-            <Route path="/utiliser-le-site-sortouch" component={DocSortouch} />
-            <Route path="/tarifs" component={Pricing} />
-            <Route path="/conditions-utilisateur" component={CGV} />
-            <Route path="/blog" component={Blog} />
-            <Route path="/comment-securiser-son-email-professionnel" component={Art1} />
-            <Route component={NotFound} />
-          </>
-        :
-        <>
-          <Route exact path="/" component={Partner} />
-          <Route path="/installer-react" component={DocReactPartner} />
-          <Route path="/installer-wordpress" component={DocWordpressPartner} />
+    type !== "partner" ?
+      !userId ?
+
+        <Switch>
+          <Route exact path="/" component={Landing} />
+          <Route path="/inscription" component={Registration} />
+          <Route path="/connexion" component={Connexion} />
+          <Route path="/editeur-doc" component={DocEditor} />
+          <Route path="/partager-son-chatbot-doc" component={DocShare} />
+          <Route path="/installer-react" component={DocReact} />
+          <Route path="/installer-wordpress" component={DocWordpress} />
+          <Route path="/utiliser-le-site-sortouch" component={DocSortouch} />
+          <Route path="/tarifs" component={Pricing} />
+          <Route path="/models" component={ModelArea} />
+          <Route path="/mails" component={MessageSpace} />
+          <Route path="/editeur-chatbot" component={Builder} />
+          <Route path="/base-de-donnee" component={DataArea} />
           <Route path="/conditions-utilisateur" component={CGV} />
-          <Route path="/editeur-web-doc" component={DocEditorWeb} />
+          <Route path="/blog" component={Blog} />
+          <Route path="/comment-securiser-son-email-professionnel" component={Art1} />
+        </Switch>
+        :
+        <Switch>
+          <Route exact path="/" component={Landing} />
+          <Route path="/models" component={ModelArea} />
+          <Route path="/base-de-donnee" component={DataArea} />
+          <Route path="/mails" component={MessageSpace} />
+          <Route path="/chatbot" component={ChatbotArea} />
+          <Route path="/editeur-chatbot" component={Builder} />
+          <Route path="/editeur-doc" component={DocEditor} />
+          <Route path="/partager-son-chatbot-doc" component={DocShare} />
+          <Route path="/installer-react" component={DocReact} />
+          <Route path="/installer-wordpress" component={DocWordpress} />
+          <Route path="/utiliser-le-site-sortouch" component={DocSortouch} />
+          <Route path="/tarifs" component={Pricing} />
+          <Route path="/conditions-utilisateur" component={CGV} />
+          <Route path="/blog" component={Blog} />
+          <Route path="/comment-securiser-son-email-professionnel" component={Art1} />
+
           <Route component={NotFound} />
-        </>}
-    </Switch>
+        </Switch>
+      :
+      <Switch>
+        <Route exact path="/" component={Partner} />
+        <Route path="/installer-react" component={DocReactPartner} />
+        <Route path="/installer-wordpress" component={DocWordpressPartner} />
+        <Route path="/conditions-utilisateur" component={CGV} />
+        <Route path="/editeur-web-doc" component={DocEditorWeb} />
+      </Switch>
   );
 }
 
