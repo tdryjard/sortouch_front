@@ -68,15 +68,17 @@ const Landing = (props) => {
             <Helmet>
                 <title>Sortouch : Créer son chatbot simplement</title>
                 <meta name="twitter:card" content="Sortouch" />
-                <meta name="twitter:title" property="og:title" content="Créer son chatbot simplement" />
-                <meta name="twitter:description" property="og:description" content="Créer facilement un chat bot qui répond à votre place et trie vos email. à héberger gratuitement ou à installer sur son site" />
-                <meta name="twitter:image" property="og:image" content="https://sortouch.co/static/media/chatbot.5d205088.svg" />
+                <meta name="twitter:site" content="https://sortouch.co" />
+                <meta name="twitter:title" property="twitter:title" content="Créer son chatbot simplement" />
+                <meta name="twitter:description" property="twitter:description" content="Créer facilement un chat bot qui répond à votre place et trie vos email. à héberger gratuitement ou à installer sur son site" />
+                <meta name="twitter:image" property="twitter:image" content="https://sortouch.co/static/media/chatbot.5d205088.svg" />
                 <meta name="title" property="title" content="Créer et installer son chatbot simplement" />
                 <meta name="description" content="Créer son chatbot simplement. Éditer des questions et réponses automatiques. Installer son chatbot sur son site Wordpress ou ReactJs. Créer un formulaire de contact pour recevoir des messages via son site" />
                 <meta name="og:title" property="og:title" content="Créer son chatbot simplement" />
                 <meta name="og:description" property="og:description" content="Créer facilement un chat bot qui répond à votre place et trie vos email. à héberger gratuitement ou à installer sur son site" />
                 <meta name="og:image" property="og:image" content="https://sortouch.co/static/media/chatbot.5d205088.svg" />
                 <meta property="og:type" content="article" />
+                <meta name="og:url" property="og:url" content="https://sortouch.co" />
                 <meta name="robots" content="index, follow" />
             </Helmet>
             {localStorage.getItem('cookie') !== 'accept' && <PopupCookie />}

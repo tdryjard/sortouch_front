@@ -81,7 +81,7 @@ function App() {
           <Route path="/conditions-utilisateur" component={CGV} />
           <Route path="/blog" component={Blog} />
           <Route path="/comment-securiser-son-email-professionnel" component={Art1} />
-          <Route component={NotFound} status={404} />
+          <Route path='*' component={NotFound} status={404} />
         </Switch>
         :
         <Switch>
@@ -100,7 +100,7 @@ function App() {
           <Route path="/conditions-utilisateur" component={CGV} />
           <Route path="/blog" component={Blog} />
           <Route path="/comment-securiser-son-email-professionnel" component={Art1} />
-          <Route component={NotFound} status={404} />
+          <Route path='*' component={NotFound} status={404} />
         </Switch>
       :
       <Switch>
@@ -109,7 +109,7 @@ function App() {
         <Route path="/installer-wordpress" component={DocWordpressPartner} />
         <Route path="/conditions-utilisateur" component={CGV} />
         <Route path="/editeur-web-doc" component={DocEditorWeb} />
-        <Route component={NotFound} status={404} />
+        <Route path='*' component={NotFound} status={404} />
       </Switch>
   );
 }
