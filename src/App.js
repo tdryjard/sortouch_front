@@ -78,7 +78,6 @@ function App() {
             <Route path="/editeur-chatbot" component={Builder} />
             <Route path="/base-de-donnee" component={DataArea} />
             <Route path="/conditions-utilisateur" component={CGV} />
-
             <Route path="/blog" component={Blog} />
             <Route path="/comment-securiser-son-email-professionnel" component={Art1} />
             <Route component={NotFound} />
@@ -98,8 +97,6 @@ function App() {
             <Route path="/utiliser-le-site-sortouch" component={DocSortouch} />
             <Route path="/tarifs" component={Pricing} />
             <Route path="/conditions-utilisateur" component={CGV} />
-            <Route component={NotFound} />
-
             <Route path="/blog" component={Blog} />
             <Route path="/comment-securiser-son-email-professionnel" component={Art1} />
             <Route component={NotFound} />
