@@ -50,7 +50,7 @@ const DocReact = () => {
             <Helmet>
                 <title>Sortouch : installer son chatbot sur ReactJs</title>
                 <script type="application/ld+json">
-                    {shemaOrg}
+                    {JSON.stringify(shemaOrg)}
                 </script>
                 <meta name="title" property="title" content="installer son chatbot sur son site React" />
                 <meta name="description" content="Apprendre à installer son chatbot sur son site ReactJs" />

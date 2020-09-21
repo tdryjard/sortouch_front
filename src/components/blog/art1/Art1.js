@@ -78,7 +78,7 @@ const Art1 = () => {
             <Helmet>
                 <title>Comment sécuriser son email professionnel ?</title>
                 <script type="application/ld+json">
-                    {shemaOrg}
+                    {JSON.stringify(shemaOrg)}
                 </script>
                 <meta name="title" property="title" content="Comment sécuriser son email professionnel" />
                 <meta name="description" content="Les meilleures astuces et méthodes afin de garder son adresse mail professionnel propre, éviter les spams et email marketing" />

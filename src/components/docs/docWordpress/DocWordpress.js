@@ -54,7 +54,7 @@ const DocWordpress = () => {
             <Helmet>
                 <title>Sortouch : installer son chatbot sur son site Wordpress</title>
                 <script type="application/ld+json">
-                    {shemaOrg}
+                    {JSON.stringify(shemaOrg)}
                 </script>
                 <meta name="title" property="title" content="installer son chatbot sur son site Wordpress" />
                 {localStorage.getItem('cookie') !== 'accept' && <PopupCookie />}

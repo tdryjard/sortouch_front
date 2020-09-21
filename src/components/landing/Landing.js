@@ -103,7 +103,7 @@ const Landing = (props) => {
         <div className="containerLanding">
             <Helmet>
                 <script type="application/ld+json">
-                    {shemaOrg}
+                    {JSON.stringify(shemaOrg)}
                 </script>
                 <title>Sortouch : Créer son chatbot simplement</title>
                 <meta name="twitter:card" content="Sortouch" />

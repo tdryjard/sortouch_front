@@ -52,7 +52,7 @@ const DocSortouch = () => {
             <Helmet>
                 <title>Sortouch : comment utiliser sortouch</title>
                 <script type="application/ld+json">
-                    {shemaOrg}
+                    {JSON.stringify(shemaOrg)}
                 </script>
                 <meta name="description" content="Apprendre facilement comment utiliser la plateforme de création de chatbot et de gestion des contacts Sortouch en suivant un court tuto" />
                 <meta name="title" content="Apprendre à utiliser l'éditeur de chatbot Sortouch" />
