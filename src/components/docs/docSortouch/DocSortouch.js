@@ -16,49 +16,44 @@ const DocSortouch = () => {
         }
     }, [])
 
-    const shemaOrg = [ {
-        "@context" : "http://schema.org",
-        "@type" : "Article",
-        "name" : "Créer son premier modèle de chatbot",
-        "articleSection" : "Personnaliser son modèle",
-        "articleBody" : "Se rendre sur la page <A href=\"/models\" style=\"color: rgb(46, 46, 46);\">mes modèles</A></P><P class=\"textDocSortouch\">Puis cliquer sur le nouveau modèle et créer son premier modèle puis le sélectionner"
-      }, {
-        "@context" : "http://schema.org",
-        "@type" : "Article",
-        "articleSection" : "Intégrer son chatbot sur son site",
-        "articleBody" : "Après sélection du modèle, se rendre sur <A href=\"/editeur\" style=\"color: rgb(46, 46, 46);\">l&#39;éditeur</A></P><P class=\"textDocSortouch\">Un guide d&#39;utilisation de l&#39;éditeur est disponible <A href=\"/editeur-doc\" style=\"color: rgb(46, 46, 46);\">ici"
-      }, {
-        "@context" : "http://schema.org",
-        "@type" : "Article",
-        "articleBody" : "Intégrer à son site wordpress",
-        "url" : "https://sortouch.co/installer-wordpress"
-      }, {
-        "@context" : "http://schema.org",
-        "@type" : "Article",
-        "articleSection" : "Consultez les prises de contact avec vous via votre chatbot",
-        "articleBody" : "Intégrer à son site ReactJs",
-        "url" : "https://sortouch.co/installer-react"
-      }, {
-        "@context" : "http://schema.org",
-        "@type" : "Article",
-        "articleBody" : "Vous pouvez retrouver tous vos messages dans votre <A href=\"/mails\" style=\"color: rgb(46, 46, 46);\">boite de réception</A></P><P class=\"textDocSortouch\">Sélectionnez une catégorie de réception parmi celles que vous aurez créées"
-      }, {
-        "@context" : "http://schema.org",
-        "@type" : "Article",
-        "articleSection" : "Consultez votre base de données d'emails et de numéros de téléphone réceptionnés",
-        "articleBody" : "Puis consulter les messages laissés par vos visiteurs"
-      }, {
-        "@context" : "http://schema.org",
-        "@type" : "Article",
-        "articleBody" : "Vous pouvez retrouver votre base de données",
-        "url" : "https://sortouch.co/base-de-donnee"
-      } ]
+    const shemaOrg = {
+        "@context": "https://schema.org/", 
+        "@type": "HowTo", 
+        "name": "Créer son premier modèle de chatbot",
+        "description": "Apprendre à créer son premier chatbot ou agent conversationnel facilement en quelques étapes",
+        "totalTime": "PT3M",
+        "estimatedCost": {
+          "@type": "MonetaryAmount",
+          "currency": "EUR",
+          "value": "0"
+        },
+        "step": [{
+          "@type": "HowToStep",
+          "text": `Se rendre sur la page mes modèles
+      Puis cliquer sur le nouveau modèle et créer son premier modèle puis le sélectionner`
+        },{
+          "@type": "HowToStep",
+          "text": "Personnaliser son modèle"
+        },{
+          "@type": "HowToStep",
+          "text": "Intégrer son chatbot sur son site"
+        },{
+          "@type": "HowToStep",
+          "text": "Consultez les prises de contact avec vous via votre chatbot"
+        },{
+          "@type": "HowToStep",
+          "text": "Consultez votre base de données d'emails et de numéros de téléphone réceptionnés"
+        }]    
+      }
 
     return (
         <div className="containerDoc">
             {localStorage.getItem('cookie') !== 'accept' && <PopupCookie />}
             <Helmet>
                 <title>Sortouch : comment utiliser sortouch</title>
+                <script type="application/ld+json">
+                    {shemaOrg}
+                </script>
                 <meta name="description" content="Apprendre facilement comment utiliser la plateforme de création de chatbot et de gestion des contacts Sortouch en suivant un court tuto" />
                 <meta name="title" content="Apprendre à utiliser l'éditeur de chatbot Sortouch" />
             </Helmet>

@@ -16,28 +16,35 @@ const DocEditor = () => {
         }
     }, [])
 
-    const shemaOrg = [{
-        "@context": "http://schema.org",
-        "@type": "Article",
+    const shemaOrg = {
+        "@context": "https://schema.org/", 
+        "@type": "HowTo", 
         "name": "Apprenez facilement à utiliser notre éditeur de chatbot",
-        "articleSection": "Sélectionner une réponse",
-        "articleBody": "Afin de pouvoir ajouter de nouvelles interactions, il faut lier celle-ci à une réponse.<BR/>Cliquez donc simplement sur la réponse avec laquelle vous souhaitez lier les prochaines interactions",
-        "url": "https://sortouch.co/connexion"
-    }, {
-        "@context": "http://schema.org",
-        "@type": "Article",
-        "name": "Apprenez facilement à utiliser notre éditeur de chatbot",
-        "articleSection": "Ajouter une interaction",
-        "articleBody": "Afin d&#39;ajouter une interaction dans l&#39;éditeur il faut simplement appuyer sur le bouton d&#39;ajout du type d&#39;interaction désiré",
-        "url": "https://sortouch.co/connexion"
-    }, {
-        "@context": "http://schema.org",
-        "@type": "Article",
-        "name": "Apprenez facilement à utiliser notre éditeur de chatbot",
-        "articleSection": "Ajouter une question, réponse ou catégorie de réception",
-        "articleBody": "Appuyez simplement sur le bouton &quot;+&quot; à droite des conteneurs puis écrivez votre question, réponse ou la catégorie dans laquelle vous souhaitez recevoir la prise de contact liée à la réponse précédente.<BR/>Puis appuyez sur ajouter",
-        "url": "https://sortouch.co/connexion"
-    }]
+        "description": "Apprendre comment créer son chatbot facilement avec un éditeur grtui. Créer un agent conversationnel avec des questions et réponses éditables. Ajouter un formulaire à son chatbot",
+        "image": "https://sortouch.co/static/media/editor.08bb5830.gif",
+        "totalTime": "PT3M",
+        "estimatedCost": {
+          "@type": "MonetaryAmount",
+          "currency": "EUR",
+          "value": "0"
+        },
+        "step": [{
+          "@type": "HowToStep",
+          "text": "Sélectionner une réponse",
+          "image": "https://sortouch.co/static/media/select_response.1b6de463.png",
+          "name": "sélection d'une réponse"
+        },{
+          "@type": "HowToStep",
+          "text": "Ajouter une interaction",
+          "image": "https://sortouch.co/static/media/add_container.2233c75c.png",
+          "name": "Ajout interaction"
+        },{
+          "@type": "HowToStep",
+          "text": "Ajouter une question, réponse ou catégorie de réception",
+          "image": "https://sortouch.co/static/media/textarea.9a744034.png",
+          "name": "ajouter une question"
+        }]    
+      }
 
 
     return (
@@ -45,6 +52,9 @@ const DocEditor = () => {
             {localStorage.getItem('cookie') !== 'accept' && <PopupCookie />}
             <Helmet>
                 <title>Sortouch : tuto éditeur</title>
+                <script type="application/ld+json">
+                    {shemaOrg}
+                </script>
                 <meta name="title" property="title" content="Apprendre à créer et éditer son chatbot" />
                 <meta name="description" content="Apprendre à créer son chatbot en suivant un simple guide. Apprendre comment ajouter des question, réponses et boite de réception à votre chatbot" />
             </Helmet>

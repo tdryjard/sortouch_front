@@ -4,79 +4,82 @@ import MenuBurger from '../../menuBurger/MenuBurger'
 import Footer from '../../footer/Footer'
 import { Helmet } from "react-helmet";
 
-const shemaOrg = [{
-    "@context": "http://schema.org",
+const shemaOrg = {
+    "@context": "https://schema.org",
     "@type": "Article",
-    "name": "Comment sécuriser son email professionnel ?",
-    "articleBody": "Nous sommes dans une période où l’e-mailing (démarchage commercial par mail) et les spams sont de plus en plus courants.<BR/>Sécuriser son adresse mail professionnelle face à ces méthodes marketing devient donc primordiale afin que sa boîte de réception Gmail, Outlook, Yahoo…. ne devienne pas une poubelle et reste exclusivement réservée aux mails importants."
-}, {
-    "@context": "http://schema.org",
-    "@type": "Article",
-    "name": "Comment sécuriser son email professionnel ?",
-    "articleSection": "Pourquoi je reçois des mails alors que je n’ai pas partagé mon adresse email à ces entreprises ?",
-    "articleBody": "Il y a de nombreuses méthodes pour une entreprise B2B ou B2C d’obtenir des adresses email, en voici quelques-unes :"
-}, {
-    "@context": "http://schema.org",
-    "@type": "Article",
-    "name": "Comment sécuriser son email professionnel ?",
-    "articleBody": "Je vous déconseille néanmoins d’utiliser des bases de données d’emails pour votre marketing ! Le retour sur investissement est souvent à perte car en réalité très peu ciblé et les possesseurs de ces adresses emails sont dans le même cas que beaucoup, leur boîte de réception d’emails est surchargée de spams, annonces marketing… Ils passent donc presque tous à la trappe"
-}, {
-    "@context": "http://schema.org",
-    "@type": "Article",
-    "name": "Comment sécuriser son email professionnel ?",
-    "articleSection": "Les inscriptions sur des sites",
-    "articleBody": "La grande majorité des sites internet demandent votre email afin de s’inscrire.<BR/>Email qui se retrouve directement dans leurs bases de données afin de prospecter"
-}, {
-    "@context": "http://schema.org",
-    "@type": "Article",
-    "name": "Comment sécuriser son email professionnel ?",
-    "articleSection": "L’inscription aux newsletters",
-    "articleBody": "L’on peut observer une forte augmentation des eBooks, formations et autres produits digitaux vendus gratuitement contre une inscription à une newsletter.<BR/> N’oubliez pas, si un service est gratuit, alors c’est vous le produit.<BR/> Votre email se retrouve ensuite dans diverses bases de données à prospecter"
-}, {
-    "@context": "http://schema.org",
-    "@type": "Article",
-    "name": "Comment sécuriser son email professionnel ?",
-    "articleSection": "Divulguer son adresse email ouvertement sur les réseaux sociaux ou sur internet",
-    "articleBody": "En mettant votre adresse email en avant sur les réseaux sociaux ou votre site web, vous laissez porte ouverte au scraping. Qu’est-ce que le scraping ? Le scraping consiste à laisser un petit logiciel parcourir le web pour extraire automatiquement des informations (comme votre email si celle-ci se retrouve sur le web)"
-}, {
-    "@context": "http://schema.org",
-    "@type": "Article",
-    "name": "Comment sécuriser son email professionnel ?",
-    "articleSection": ["Alors comment éviter que mon adresse email se retrouve dans des bases de données d’entreprise ?", "Si vous avez un site : ne pas mettre son adresse email en clair dans son code source"],
-    "articleBody": "Je vous parlais du scraping, afin d’empêcher les méchants robots qui scrutent internet de récupérer votre email, la première astuce consiste à ne pas mettre son adresse email en clair dans le code source de son site mais à remplacer ça par une image"
-}, {
-    "@context": "http://schema.org",
-    "@type": "Article",
-    "name": "Comment sécuriser son email professionnel ?",
-    "articleSection": "Utiliser une adresse email “poubelle”",
-    "articleBody": "Cette méthode s’applique à l’inscription sur un site ou à une newsletter.<BR/>Au lieu de partager son adresse mail perso courante ou professionnel, au moment de souscrire à un site ou à une newsletter, entrez une adresse email que vous aurez créée spécialement pour le spam.<BR/> De cette façon, les spams restent entre spam et ne viennent pas se mélanger aux autres mails importants"
-}, {
-    "@context": "http://schema.org",
-    "@type": "Article",
-    "name": "Comment sécuriser son email professionnel ?",
-    "articleSection": "Je suis obligé de partager mon adresse email publiquement, comment faire ?",
-    "articleBody": "Si vous êtes un professionnel, pour beaucoup de raisons vous devez partager votre email publiquement afin que tout le monde puisse vous contacter.<BR/><BR/>Dans ce cas, vous lisez cet article au bon endroit :)<BR/><BR/>à défaut de partager votre adresse email,<A class=\"linkArt\" href=\"https://sortouch.co\"> sortouch.co</A> vous permet de partager un lien vers une page web avec un robot que vous pouvez créer vous-même.<BR/> Ce robot répondra à votre place aux questions les plus fréquentes et donnera la possibilité de vous contacter via un formulaire.<BR/><BR/>Cerise sur le pancake, votre chatbot s’occupera de trier automatiquement les messages laissés en différentes catégories que vous retrouverez dans votre boîte de réception.<BR/><BR/>De cette façon, vous gagnerez du temps dans la gestion des mails de vos prospects et vous garderez votre adresse emails professionnelle secrète pour ceux que vous n’avez jamais contacté vous-même."
-}, {
-    "@context": "http://schema.org",
-    "@type": "Article",
-    "name": "Comment sécuriser son email professionnel ?",
-    "articleSection": "Acheter des lots d’adresse mail",
-    "articleBody": "Eh oui, il est possible sur internet d’acheter un grand nombre d’adresses email en ciblant précisément ses prospects et pour des prix allant de 10€ à 10 000€.<BR/>Les plateformes proposants ce service d’achat d’emails sont nombreuses, en voici deux très connues :",
-    "url": "https://www.acheter-base-email.com/"
-}, {
-    "@context": "http://schema.org",
-    "@type": "Article",
-    "name": "Comment sécuriser son email professionnel ?",
-    "articleSection": "Acheter des lots d’adresse mail",
-    "articleBody": "Eh oui, il est possible sur internet d’acheter un grand nombre d’adresses email en ciblant précisément ses prospects et pour des prix allant de 10€ à 10 000€.<BR/>Les plateformes proposants ce service d’achat d’emails sont nombreuses, en voici deux très connues :",
-    "url": "https://www.base-email.com/"
-}]
+    "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "https://sortouch.co/comment-securiser-son-email-professionnel"
+    },
+    "headline": "Comment sécuriser son email professionnel ?",
+    "description": `Nous sommes dans une période où l’e-mailing (démarchage commercial par mail) et les spams sont de plus en plus courants.
+  Sécuriser son adresse mail professionnelle face à ces méthodes marketing devient donc primordiale afin que sa boîte de réception Gmail, Outlook, Yahoo…. ne devienne pas une poubelle et reste exclusivement réservée aux mails importants.
+  
+  Pourquoi je reçois des mails alors que je n’ai pas partagé mon adresse email à ces entreprises ?
+  Il y a de nombreuses méthodes pour une entreprise B2B ou B2C d’obtenir des adresses email, en voici quelques-unes :
+  Acheter des lots d’adresse mail
+  Eh oui, il est possible sur internet d’acheter un grand nombre d’adresses email en ciblant précisément ses prospects et pour des prix allant de 10€ à 10 000€.
+  Les plateformes proposants ce service d’achat d’emails sont nombreuses, en voici deux très connues : acheter_base_email.com, base_email.com
+  
+  Je vous déconseille néanmoins d’utiliser des bases de données d’emails pour votre marketing ! Le retour sur investissement est souvent à perte car en réalité très peu ciblé et les possesseurs de ces adresses emails sont dans le même cas que beaucoup, leur boîte de réception d’emails est surchargée de spams, annonces marketing… Ils passent donc presque tous à la trappe.
+  
+  Les inscriptions sur des sites
+  La grande majorité des sites internet demandent votre email afin de s’inscrire.
+  Email qui se retrouve directement dans leurs bases de données afin de prospecter.
+  
+  L’inscription aux newsletters
+  L’on peut observer une forte augmentation des eBooks, formations et autres produits digitaux vendus gratuitement contre une inscription à une newsletter.
+  N’oubliez pas, si un service est gratuit, alors c’est vous le produit.
+  Votre email se retrouve ensuite dans diverses bases de données à prospecter.
+  
+  Divulguer son adresse email ouvertement sur les réseaux sociaux ou sur internet
+  En mettant votre adresse email en avant sur les réseaux sociaux ou votre site web, vous laissez porte ouverte au scraping. Qu’est-ce que le scraping ? Le scraping consiste à laisser un petit logiciel parcourir le web pour extraire automatiquement des informations (comme votre email si celle-ci se retrouve sur le web)
+  
+  Alors comment éviter que mon adresse email se retrouve dans des bases de données d’entreprise ?
+  Si vous avez un site : ne pas mettre son adresse email en clair dans son code source
+  Je vous parlais du scraping, afin d’empêcher les méchants robots qui scrutent internet de récupérer votre email, la première astuce consiste à ne pas mettre son adresse email en clair dans le code source de son site mais à remplacer ça par une image.
+  
+  Utiliser une adresse email “poubelle”
+  Cette méthode s’applique à l’inscription sur un site ou à une newsletter.
+  Au lieu de partager son adresse mail perso courante ou professionnel, au moment de souscrire à un site ou à une newsletter, entrez une adresse email que vous aurez créée spécialement pour le spam.
+  De cette façon, les spams restent entre spam et ne viennent pas se mélanger aux autres mails importants.
+  
+  Je suis obligé de partager mon adresse email publiquement, comment faire ?
+  Si vous êtes un professionnel, pour beaucoup de raisons vous devez partager votre email publiquement afin que tout le monde puisse vous contacter.
+  
+  Dans ce cas, vous lisez cet article au bon endroit :)
+
+  à défaut de partager votre adresse email, sortouch.co vous permet de partager un lien vers une page web avec un robot que vous pouvez créer vous-même.
+Ce robot répondra à votre place aux questions les plus fréquentes et donnera la possibilité de vous contacter via un formulaire.
+
+Cerise sur le pancake, votre chatbot s’occupera de trier automatiquement les messages laissés en différentes catégories que vous retrouverez dans votre boîte de réception.
+
+De cette façon, vous gagnerez du temps dans la gestion des mails de vos prospects et vous garderez votre adresse emails professionnelle secrète pour ceux que vous n’avez jamais contacté vous-même.`,
+    "image": "https://sortouch.co/static/media/cover.591fdfd9.png",
+    "author": {
+        "@type": "Organization",
+        "name": "Sortouch"
+    },
+    "publisher": {
+        "@type": "Organization",
+        "name": "Sortouch",
+        "logo": {
+            "@type": "ImageObject",
+            "url": ""
+        }
+    },
+    "datePublished": "2020-09-15",
+    "dateModified": "2020-09-21"
+}
 
 const Art1 = () => {
     return (
         <div className="containerBlog">
             <Helmet>
                 <title>Comment sécuriser son email professionnel ?</title>
+                <script type="application/ld+json">
+                    {shemaOrg}
+                </script>
                 <meta name="title" property="title" content="Comment sécuriser son email professionnel" />
                 <meta name="description" content="Les meilleures astuces et méthodes afin de garder son adresse mail professionnel propre, éviter les spams et email marketing" />
                 <meta name="og:title" property="og:title" content="Top astuces pour sécuriser son email professionnel" />

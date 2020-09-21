@@ -63,9 +63,48 @@ const Landing = (props) => {
         }
     }, []);
 
+    const shemaOrg = {
+        "@context": "https://schema.org",
+        "@type": "Article",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https://sortouch.co"
+        },
+        "headline": "Créer son chatbot simplement",
+        "description": "Sortouch permet d'automatiser des interactions à travers des questions et réponses éditables !
+      
+      Ajouter des formulaires de contacts liés à certaines réponses et recevoir les messages de ses visiteurs triés automatiquement dans sa boîte de réception Sortouch.
+      à essayer gratuitement dès maintenant !
+      Nos tutos ne vous parlent pas? Prenez contact et nous nous chargeons d'installer votre chatbot sur votre site
+      Gagner du temps avec ses visiteurs
+      Finit la boîte mail en bazar et surchargée, fini les réponses répétitives aux questions récurrentes, finit le téléphone qui sonne pour une simple information.Ceux qui veulent vous contacter obtiennent des réponses rapidement et vous, ne cherchez plus l'email important parmi les spams et autres emails sans importance.
+      Récupérer des coordonnés de prospects
+      Grâce au gestionnaire de coordonnées Sortouch, vous ne perdrez plus jamais de contact.Toutes les coordonnées envoyées via votre chatbot sont stockées et peuvent être triées et classifier dans votre espace "base de données".
+      Faire gagner du temps à ses visiteurs
+      Rechercher une information sur un site est parfois un long parcours.Les visiteurs sur votre site, comme tous aujourd'hui, veulent aller au plus vite et s'ils n'obtiennent pas rapidement leurs réponses, ils partent. Ce qui a pour effet de faire perdre des prospects ainsi qui faire baisser le référencement Google. Via les Réponses automatiques que vous aurez programmées, vos visiteurs obtiendront rapidement leurs réponses et gagneront du temps",
+        "image": "https://sortouch.co/static/media/chatbot.5d205088.svg",
+        "author": {
+            "@type": "Organization",
+            "name": "Sortouch"
+        },
+        "publisher": {
+            "@type": "Organization",
+            "name": "Sortouch",
+            "logo": {
+                "@type": "ImageObject",
+                "url": ""
+            }
+        },
+        "datePublished": "2020-09-15",
+        "dateModified": "2020-09-21"
+    }
+
     return (
         <div className="containerLanding">
             <Helmet>
+                <script type="application/ld+json">
+                    {shemaOrg}
+                </script>
                 <title>Sortouch : Créer son chatbot simplement</title>
                 <meta name="twitter:card" content="Sortouch" />
                 <meta name="twitter:site" content="https://sortouch.co" />

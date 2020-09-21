@@ -16,51 +16,46 @@ const DocWordpress = () => {
         }
     }, [])
 
-    const shemaOrg = [ {
-        "@context" : "http://schema.org",
-        "@type" : "Article",
-        "name" : "Intégrer son chatbot sur son site Wordpress",
-        "image" : "https://sortouch.co/static/media/wordpress.c42ad450.png"
-      }, {
-        "@context" : "http://schema.org",
-        "@type" : "Article",
-        "name" : "Intégrer son chatbot sur son site Wordpress",
-        "image" : "https://sortouch.co/static/media/modelid1.61b9cd82.png",
-        "articleSection" : "Sur votre ordinateur"
-      }, {
-        "@context" : "http://schema.org",
-        "@type" : "Article",
-        "name" : "Intégrer son chatbot sur son site Wordpress",
-        "image" : "https://sortouch.co/static/media/modelid1.61b9cd82.png",
-        "articleSection" : "Sur wordrpess",
-        "articleBody" : "2) Extraire le dossier puis le placer dans le dossier wp-content/plugins de wordpress en local",
-        "url" : "https://sortouch.co/sortouch.zip"
-      }, {
-        "@context" : "http://schema.org",
-        "@type" : "Article",
-        "name" : "Intégrer son chatbot sur son site Wordpress",
-        "image" : "https://sortouch.co/static/media/modelid1.61b9cd82.png",
-        "articleSection" : "Sur votre site",
-        "articleBody" : "Activer le plugin Sortouch qui est apparu dans la section &quot;extensions&quot;"
-      }, {
-        "@context" : "http://schema.org",
-        "@type" : "Article",
-        "name" : "Intégrer son chatbot sur son site Wordpress",
-        "image" : "https://sortouch.co/static/media/modelid1.61b9cd82.png",
-        "articleSection" : "Trouver son user id",
-        "articleBody" : [ "1) Ajouter un bloc Shortcode (code court) sur votre site wordpress", "2) écrivez la même chose que l&#39;image ci-dessous en remplaçant le texte entre guillemets avec votre user id et votre model id" ]
-      }, {
-        "@context" : "http://schema.org",
-        "@type" : "Article",
-        "name" : "Intégrer son chatbot sur son site Wordpress",
-        "image" : "https://sortouch.co/static/media/modelid1.61b9cd82.png",
-        "articleSection" : "Trouver son modèle id"
-      } ]
+    const shemaOrg = {
+      "@context": "https://schema.org/", 
+      "@type": "HowTo", 
+      "name": "Intégrer son chatbot sur son site Wordpress",
+      "description": "Apprendre à intégrer un chatbot sur son site Wordpress. Comment mettre un plugin en sortcode. Mettre un plugin sur son site wordpress. Un agent conversationnel sur son site",
+      "image": "https://sortouch.co/static/media/wordpress.c42ad450.png",
+      "totalTime": "PT3M",
+      "estimatedCost": {
+        "@type": "MonetaryAmount",
+        "currency": "EUR",
+        "value": "0"
+      },
+      "step": [{
+        "@type": "HowToStep",
+        "text": "Télécharger le plugin"
+      },{
+        "@type": "HowToStep",
+        "text": "Extraire le dossier puis le placer dans le dossier wp-content/plugins de wordpress en local"
+      },{
+        "@type": "HowToStep",
+        "text": `Activer le plugin Sortouch qui est apparu dans la section "extensions"`
+      },{
+        "@type": "HowToStep",
+        "text": "Ajouter un bloc Shortcode (code court) sur votre site wordpress"
+      },{
+        "@type": "HowToStep",
+        "text": "écrivez la même chose que l'image ci-dessous en remplaçant le texte entre guillemets avec votre user id et votre model id"
+      },{
+        "@type": "HowToStep",
+        "text": "Se rendre sur mes modèles et aller dans les options du modèle (exemple ci-dessous)"
+      }]    
+    }
 
     return (
         <div className="containerDoc">
             <Helmet>
                 <title>Sortouch : installer son chatbot sur son site Wordpress</title>
+                <script type="application/ld+json">
+                    {shemaOrg}
+                </script>
                 <meta name="title" property="title" content="installer son chatbot sur son site Wordpress" />
                 {localStorage.getItem('cookie') !== 'accept' && <PopupCookie />}
                 <meta name="description" content="Apprendre comment installer son chatbot sur son site Wordpress simplement" />

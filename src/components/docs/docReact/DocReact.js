@@ -16,26 +16,42 @@ const DocReact = () => {
         }
     }, [])
 
-    const shemaOrg = [{
-        "@context": "http://schema.org",
-        "@type": "Article",
+    const shemaOrg = {
+        "@context": "https://schema.org/",
+        "@type": "HowTo",
         "name": "Intégrer son chatbot à son site React",
-        "image": "https://sortouch.co/static/media/modelid1.61b9cd82.png",
-        "articleSection": "Installer la librairie"
-    }, {
-        "@context": "http://schema.org",
-        "@type": "Article",
-        "name": "Intégrer son chatbot à son site React",
-        "image": "https://sortouch.co/static/media/modelid1.61b9cd82.png",
-        "articleSection": "Trouver son model id",
-        "articleBody": "$ npm install sortouch-react"
-    }]
+        "description": `Apprendre comment installer son chatbot sur son site React js.
+      Télécharger et installer une librairie npm sur son site.`,
+        "image": "https://sortouch.co/static/media/react.5d5d9eef.svg",
+        "totalTime": "PT3M",
+        "estimatedCost": {
+            "@type": "MonetaryAmount",
+            "currency": "EUR",
+            "value": "0"
+        },
+        "step": [{
+            "@type": "HowToStep",
+            "text": "Installer la librairie"
+        }, {
+            "@type": "HowToStep",
+            "text": "Importer la librairie dans son code"
+        }, {
+            "@type": "HowToStep",
+            "text": "Intégrer au code"
+        }, {
+            "@type": "HowToStep",
+            "text": "Se rendre sur mes modèles et aller dans les options du modèle (exemple ci-dessous)"
+        }]
+    }
 
     return (
         <div className="containerDoc">
             {localStorage.getItem('cookie') !== 'accept' && <PopupCookie />}
             <Helmet>
                 <title>Sortouch : installer son chatbot sur ReactJs</title>
+                <script type="application/ld+json">
+                    {shemaOrg}
+                </script>
                 <meta name="title" property="title" content="installer son chatbot sur son site React" />
                 <meta name="description" content="Apprendre à installer son chatbot sur son site ReactJs" />
             </Helmet>
