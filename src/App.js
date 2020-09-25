@@ -27,6 +27,7 @@ import NotFound from './components/404/404'
 
 import Blog from './components/blog/Blog'
 import Art1 from './components/blog/art1/Art1'
+import Art2 from './components/blog/art2/Art2'
 
 
 function App() {
@@ -81,6 +82,7 @@ function App() {
           <Route path="/conditions-utilisateur" component={CGV} />
           <Route path="/blog" component={Blog} />
           <Route path="/comment-securiser-son-email-professionnel" component={Art1} />
+          <Route path="/les-chatbot-expliqué-simplement" component={Art2} />
           <Route path='*' component={NotFound} status={404} />
         </Switch>
         :
@@ -100,6 +102,7 @@ function App() {
           <Route path="/conditions-utilisateur" component={CGV} />
           <Route path="/blog" component={Blog} />
           <Route path="/comment-securiser-son-email-professionnel" component={Art1} />
+          <Route path="/les-chatbot-expliqué-simplement" component={Art2} />
           <Route path='*' component={NotFound} status={404} />
         </Switch>
       :
