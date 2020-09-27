@@ -173,7 +173,7 @@ Les tâches répétitives dans la plupart des domaines laissent de plus en plus 
                 <h2 className="h2Art">Les différents types de chatbot</h2>
                 <img alt="chatbots family" src={require('./images/many_chatbot.png')} className="firstImgArt" />
                 <p className="textArt">
-                    Il existe aujourd’hui différents types de chatbot, qui ont chacun leurs avantages et leurs inconvénients, nous allons voir ensemble les différences et caractéristique entre les deux.
+                    Il existe aujourd’hui différents types de chatbot, qui ont chacun leurs avantages et leurs inconvénients, nous allons voir ensemble les différences et caractéristique de chacun.
                 </p>
                 <h3 className="h4Art">Les chatbot dotés d’intelligence artificielle, “IA”</h3>
                 <p className="textArt">
