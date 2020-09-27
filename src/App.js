@@ -82,7 +82,7 @@ function App() {
           <Route path="/conditions-utilisateur" component={CGV} />
           <Route path="/blog" component={Blog} />
           <Route path="/comment-securiser-son-email-professionnel" component={Art1} />
-          <Route path="/les-chatbot-expliqué-simplement" component={Art2} />
+          <Route path="/chatbot-explication-simple" component={Art2} />
           <Route path='*' component={NotFound} status={404} />
         </Switch>
         :
@@ -102,7 +102,7 @@ function App() {
           <Route path="/conditions-utilisateur" component={CGV} />
           <Route path="/blog" component={Blog} />
           <Route path="/comment-securiser-son-email-professionnel" component={Art1} />
-          <Route path="/les-chatbot-expliqué-simplement" component={Art2} />
+          <Route path="/chatbot-explication-simple" component={Art2} />
           <Route path='*' component={NotFound} status={404} />
         </Switch>
       :
