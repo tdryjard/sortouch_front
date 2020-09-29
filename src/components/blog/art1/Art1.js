@@ -12,49 +12,7 @@ const shemaOrg = {
         "@id": "https://sortouch.co/comment-securiser-son-email-professionnel"
     },
     "headline": "Comment sécuriser son email professionnel ?",
-    "description": `Nous sommes dans une période où l’e-mailing (démarchage commercial par mail) et les spams sont de plus en plus courants.
-  Sécuriser son adresse mail professionnelle face à ces méthodes marketing devient donc primordiale afin que sa boîte de réception Gmail, Outlook, Yahoo…. ne devienne pas une poubelle et reste exclusivement réservée aux mails importants.
-  
-  Pourquoi je reçois des mails alors que je n’ai pas partagé mon adresse email à ces entreprises ?
-  Il y a de nombreuses méthodes pour une entreprise B2B ou B2C d’obtenir des adresses email, en voici quelques-unes :
-  Acheter des lots d’adresse mail
-  Eh oui, il est possible sur internet d’acheter un grand nombre d’adresses email en ciblant précisément ses prospects et pour des prix allant de 10€ à 10 000€.
-  Les plateformes proposants ce service d’achat d’emails sont nombreuses, en voici deux très connues : acheter_base_email.com, base_email.com
-  
-  Je vous déconseille néanmoins d’utiliser des bases de données d’emails pour votre marketing ! Le retour sur investissement est souvent à perte car en réalité très peu ciblé et les possesseurs de ces adresses emails sont dans le même cas que beaucoup, leur boîte de réception d’emails est surchargée de spams, annonces marketing… Ils passent donc presque tous à la trappe.
-  
-  Les inscriptions sur des sites
-  La grande majorité des sites internet demandent votre email afin de s’inscrire.
-  Email qui se retrouve directement dans leurs bases de données afin de prospecter.
-  
-  L’inscription aux newsletters
-  L’on peut observer une forte augmentation des eBooks, formations et autres produits digitaux vendus gratuitement contre une inscription à une newsletter.
-  N’oubliez pas, si un service est gratuit, alors c’est vous le produit.
-  Votre email se retrouve ensuite dans diverses bases de données à prospecter.
-  
-  Divulguer son adresse email ouvertement sur les réseaux sociaux ou sur internet
-  En mettant votre adresse email en avant sur les réseaux sociaux ou votre site web, vous laissez porte ouverte au scraping. Qu’est-ce que le scraping ? Le scraping consiste à laisser un petit logiciel parcourir le web pour extraire automatiquement des informations (comme votre email si celle-ci se retrouve sur le web)
-  
-  Alors comment éviter que mon adresse email se retrouve dans des bases de données d’entreprise ?
-  Si vous avez un site : ne pas mettre son adresse email en clair dans son code source
-  Je vous parlais du scraping, afin d’empêcher les méchants robots qui scrutent internet de récupérer votre email, la première astuce consiste à ne pas mettre son adresse email en clair dans le code source de son site mais à remplacer ça par une image.
-  
-  Utiliser une adresse email “poubelle”
-  Cette méthode s’applique à l’inscription sur un site ou à une newsletter.
-  Au lieu de partager son adresse mail perso courante ou professionnel, au moment de souscrire à un site ou à une newsletter, entrez une adresse email que vous aurez créée spécialement pour le spam.
-  De cette façon, les spams restent entre spam et ne viennent pas se mélanger aux autres mails importants.
-  
-  Je suis obligé de partager mon adresse email publiquement, comment faire ?
-  Si vous êtes un professionnel, pour beaucoup de raisons vous devez partager votre email publiquement afin que tout le monde puisse vous contacter.
-  
-  Dans ce cas, vous lisez cet article au bon endroit :)
-
-  à défaut de partager votre adresse email, sortouch.co vous permet de partager un lien vers une page web avec un robot que vous pouvez créer vous-même.
-Ce robot répondra à votre place aux questions les plus fréquentes et donnera la possibilité de vous contacter via un formulaire.
-
-Cerise sur le pancake, votre chatbot s’occupera de trier automatiquement les messages laissés en différentes catégories que vous retrouverez dans votre boîte de réception.
-
-De cette façon, vous gagnerez du temps dans la gestion des mails de vos prospects et vous garderez votre adresse emails professionnelle secrète pour ceux que vous n’avez jamais contacté vous-même.`,
+    "description": `Les meilleures astuces et méthodes afin de garder son adresse mail professionnel propre, éviter les spams et email marketing`,
     "image": "https://sortouch.co/static/media/cover.591fdfd9.png",
     "author": {
         "@type": "Organization",

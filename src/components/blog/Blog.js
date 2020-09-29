@@ -16,6 +16,12 @@ const Blog = () => {
                 :
                 <MenuBurger type={"blog"} />}
             <div className="contentBlog">
+                <Link to="/creer-chatbot-parfait" className="containerLinkArt">
+                    <img className="imgPreArt" src={require('./art3/images/first_cover.png')} alt="chatbot parfait" />
+                    <div className="containerTitlePreArt">
+                        <h2 className="titlePreArt">Créer le chatbot parfait en 5 étapes</h2>
+                    </div>
+                </Link>
                 <Link to="/chatbot-explication-simple" className="containerLinkArt">
                     <img className="imgPreArt" src={require('./art2/images/chatbot_illustration.png')} alt="illustration chatbot" />
                     <div className="containerTitlePreArt">
