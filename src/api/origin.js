@@ -1,2 +1,2 @@
-const origin = 'http://api.sortouch.co';
+const origin = 'https://condescending-dubinsky-20416d.netlify.app';
 export default origin;
